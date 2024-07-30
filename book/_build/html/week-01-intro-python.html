@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Module 1: Introduction to Python Computations &#8212; Computational Problem Solving in the Chemical Sciences</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week-01-intro-python';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Computational Problem Solving in the Chemical Sciences" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Problem Solving in the Chemical Sciences - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Computational Problem Solving in the Chemical Sciences
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Module 1: Introduction to Python Computations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fweek-01-intro-python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/week-01-intro-python.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Module 1: Introduction to Python Computations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-python">1.1: Introduction to Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-installation-and-setup">1.2: Python Installation and Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-data-types">1.3: Python Data Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-operators">1.4: Variables and Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-statements">1.5: Control Flow Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-modules">1.6: Functions and Modules</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="module-1-introduction-to-python-computations">
+<h1>Module 1: Introduction to Python Computations<a class="headerlink" href="#module-1-introduction-to-python-computations" title="Link to this heading">#</a></h1>
+<section id="introduction-to-python">
+<h2>1.1: Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Link to this heading">#</a></h2>
+<p>Python is a high-level, interpreted, and general-purpose programming language. It was created by Guido van Rossum and released in 1991. Python is known for its simplicity and readability. It is widely used in various fields such as web development, data science, machine learning, artificial intelligence, and scientific computing.</p>
+<p>Python has a large standard library that provides a wide range of modules and packages for different tasks. It also has a vibrant community that contributes to the development of libraries and frameworks, making Python a popular choice for many programmers.</p>
+<p>In this module, we will introduce you to Python and its basic syntax. We will cover the following topics:</p>
+<ul class="simple">
+<li><p>Python installation and setup</p></li>
+<li><p>Python data types</p></li>
+<li><p>Variables and operators</p></li>
+<li><p>Control flow statements</p></li>
+<li><p>Functions and modules</p></li>
+<li><p>Input and output operations</p></li>
+</ul>
+<p>Let’s get started!</p>
+</section>
+<section id="python-installation-and-setup">
+<h2>1.2: Python Installation and Setup<a class="headerlink" href="#python-installation-and-setup" title="Link to this heading">#</a></h2>
+<p>Before you start writing Python code, you need to install Python on your system. Python is available for different operating systems such as Windows, macOS, and Linux. You can download the latest version of Python from the official website (<a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>).</p>
+<p>Once you have installed Python on your system, you can start writing Python code using an Integrated Development Environment (IDE) or a code editor. Some popular IDEs for Python development are:</p>
+<ul class="simple">
+<li><p>PyCharm</p></li>
+<li><p>Visual Studio Code</p></li>
+<li><p>Jupyter Notebook</p></li>
+<li><p>Spyder</p></li>
+<li><p>IDLE (Python’s Integrated Development and Learning Environment)</p></li>
+</ul>
+<p>You can choose any of these IDEs based on your preference and start writing Python code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this course, we will be using Visual Studio Code as the primary IDE for Python development. You can download Visual Studio Code from the official website (<a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>).</p>
+</div>
+</section>
+<section id="python-data-types">
+<h2>1.3: Python Data Types<a class="headerlink" href="#python-data-types" title="Link to this heading">#</a></h2>
+<p>Python has several built-in data types that are used to store and manipulate data. Some of the common data types in Python are:</p>
+<ul class="simple">
+<li><p>Integer (<code class="docutils literal notranslate"><span class="pre">int</span></code>): Represents whole numbers without any decimal point.</p></li>
+<li><p>Float (<code class="docutils literal notranslate"><span class="pre">float</span></code>): Represents real numbers with a decimal point.</p></li>
+<li><p>String (<code class="docutils literal notranslate"><span class="pre">str</span></code>): Represents a sequence of characters enclosed in single or double quotes.</p></li>
+<li><p>Boolean (<code class="docutils literal notranslate"><span class="pre">bool</span></code>): Represents a boolean value (<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p></li>
+</ul>
+<p>Let’s look at some examples of these data types in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integer</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Float</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># String</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John Doe&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># Boolean</span>
+<span class="n">is_student</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">is_student</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+3.14
+John Doe
+True
+</pre></div>
+</div>
+</div>
+</div>
+<p>In Python, you can use the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function to check the data type of a variable. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;int&#39;&gt;</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;float&#39;&gt;</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="s2">&quot;Hello, World!&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;str&#39;&gt;</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;bool&#39;&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+&lt;class &#39;str&#39;&gt;
+&lt;class &#39;bool&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-and-operators">
+<h2>1.4: Variables and Operators<a class="headerlink" href="#variables-and-operators" title="Link to this heading">#</a></h2>
+<p>In Python, variables are used to store data values. You can assign a value to a variable using the assignment operator (<code class="docutils literal notranslate"><span class="pre">=</span></code>). Variables can store different types of data such as integers, floats, strings, and booleans.</p>
+<p>Python supports various operators that are used to perform arithmetic, comparison, logical, and assignment operations. Some of the common operators in Python are:</p>
+<ul class="simple">
+<li><p>Arithmetic operators: <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code>, <code class="docutils literal notranslate"><span class="pre">//</span></code>, <code class="docutils literal notranslate"><span class="pre">**</span></code></p></li>
+<li><p>Comparison operators: <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></li>
+<li><p>Logical operators: <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code></p></li>
+<li><p>Assignment operators: <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code>, <code class="docutils literal notranslate"><span class="pre">%=</span></code></p></li>
+</ul>
+<p>Let’s look at some examples of variables and operators in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assigning values to variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="n">is_student</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Arithmetic operators</span>
+<span class="n">summation</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">difference</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+<span class="n">product</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+<span class="n">quotient</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+<span class="n">remainder</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="n">y</span>
+<span class="n">floor_division</span> <span class="o">=</span> <span class="n">x</span> <span class="o">//</span> <span class="n">y</span>
+<span class="n">power</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="c1"># Comparison operators</span>
+<span class="n">is_equal</span> <span class="o">=</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span>
+<span class="n">is_not_equal</span> <span class="o">=</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span>
+<span class="n">is_greater</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span>
+<span class="n">is_less</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span>
+<span class="n">is_greater_equal</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span>
+<span class="n">is_less_equal</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span>
+
+<span class="c1"># Logical operators</span>
+<span class="n">and_result</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">or_result</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">not_result</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Assignment operators</span>
+<span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">-=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="control-flow-statements">
+<h2>1.5: Control Flow Statements<a class="headerlink" href="#control-flow-statements" title="Link to this heading">#</a></h2>
+<p>Control flow statements are used to control the flow of execution in a program. Python supports various control flow statements such as:</p>
+<ul class="simple">
+<li><p>Conditional statements (<code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code>): Used to execute different blocks of code based on certain conditions.</p></li>
+<li><p>Loop statements (<code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>): Used to iterate over a sequence of elements or execute a block of code repeatedly.</p></li>
+<li><p>Break and continue statements: Used to alter the flow of execution in loops.</p></li>
+<li><p>Pass statement: Used as a placeholder when no action is required.</p></li>
+</ul>
+<p>Let’s look at some examples of control flow statements in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conditional statements</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conditional statements&quot;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Positive number&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Negative number&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Zero&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Loop statements</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loop statements&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Break and continue statements</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Break statements&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continue statements&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Pass statement</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pass statement&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Conditional statements
+Positive number
+
+Loop statements
+0
+1
+2
+3
+4
+
+Break statements
+0
+1
+2
+
+Continue statements
+0
+1
+2
+4
+
+Pass statement
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="functions-and-modules">
+<h2>1.6: Functions and Modules<a class="headerlink" href="#functions-and-modules" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to Computational Problem Solving in the Chemical Sciences</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-python">1.1: Introduction to Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-installation-and-setup">1.2: Python Installation and Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-data-types">1.3: Python Data Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-operators">1.4: Variables and Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-statements">1.5: Control Flow Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-modules">1.6: Functions and Modules</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert B. Wexler
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
