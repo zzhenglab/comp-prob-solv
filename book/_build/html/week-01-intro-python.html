@@ -381,6 +381,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-operators">1.4: Variables and Operators</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-statements">1.5: Control Flow Statements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-modules">1.6: Functions and Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-with-matplotlib">1.7: Plotting with Matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-pandas">1.8: NumPy and Pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-output-operations">1.9: Input and Output Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">1.10: Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -438,29 +442,29 @@ document.write(`
 <p>Let’s look at some examples of these data types in Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integer</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Atomic number (integer)</span>
+<span class="n">atomic_number</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Neon</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Atomic number of Neon:&quot;</span><span class="p">,</span> <span class="n">atomic_number</span><span class="p">)</span>
 
-<span class="c1"># Float</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mf">3.14</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="c1"># Atomic mass (float)</span>
+<span class="n">atomic_mass</span> <span class="o">=</span> <span class="mf">20.18</span>  <span class="c1"># Neon</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Atomic mass of Neon:&quot;</span><span class="p">,</span> <span class="n">atomic_mass</span><span class="p">)</span>
 
-<span class="c1"># String</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John Doe&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="c1"># Chemical element (string)</span>
+<span class="n">element_name</span> <span class="o">=</span> <span class="s2">&quot;Neon&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Element name:&quot;</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
 
-<span class="c1"># Boolean</span>
-<span class="n">is_student</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">is_student</span><span class="p">)</span>
+<span class="c1"># Element is a gas at room temperature (boolean)</span>
+<span class="n">is_gas_at_room_temp</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is Neon a gas at room temperature?&quot;</span><span class="p">,</span> <span class="n">is_gas_at_room_temp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
-3.14
-John Doe
-True
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Atomic number of Neon: 10
+Atomic mass of Neon: 20.18
+Element name: Neon
+Is Neon a gas at room temperature? True
 </pre></div>
 </div>
 </div>
@@ -468,25 +472,29 @@ True
 <p>In Python, you can use the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function to check the data type of a variable. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;int&#39;&gt;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Atomic number of Neon (integer)</span>
+<span class="n">atomic_number</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of atomic number:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">atomic_number</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;int&#39;&gt;</span>
 
-<span class="n">y</span> <span class="o">=</span> <span class="mf">3.14</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;float&#39;&gt;</span>
+<span class="c1"># Atomic mass of Hydrogen (float)</span>
+<span class="n">atomic_mass</span> <span class="o">=</span> <span class="mf">1.008</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of atomic mass:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">atomic_mass</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;float&#39;&gt;</span>
 
-<span class="n">z</span> <span class="o">=</span> <span class="s2">&quot;Hello, World!&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;str&#39;&gt;</span>
+<span class="c1"># Chemical formula for water (string)</span>
+<span class="n">chemical_formula</span> <span class="o">=</span> <span class="s2">&quot;H2O&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of chemical formula:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">chemical_formula</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;str&#39;&gt;</span>
 
-<span class="n">w</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;bool&#39;&gt;</span>
+<span class="c1"># Water is a compound (boolean)</span>
+<span class="n">is_compound</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of is_compound:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">is_compound</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;bool&#39;&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
-&lt;class &#39;float&#39;&gt;
-&lt;class &#39;str&#39;&gt;
-&lt;class &#39;bool&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of atomic number: &lt;class &#39;int&#39;&gt;
+Type of atomic mass: &lt;class &#39;float&#39;&gt;
+Type of chemical formula: &lt;class &#39;str&#39;&gt;
+Type of is_compound: &lt;class &#39;bool&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -507,9 +515,8 @@ True
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assigning values to variables</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mf">3.14</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
-<span class="n">is_student</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">20.18</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Neon&quot;</span>
 
 <span class="c1"># Arithmetic operators</span>
 <span class="n">summation</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
@@ -553,68 +560,79 @@ True
 <p>Let’s look at some examples of control flow statements in Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conditional statements</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conditional statements&quot;</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Positive number&quot;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Negative number&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conditional statements for pH values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conditional statements for pH values&quot;</span><span class="p">)</span>
+<span class="n">pH</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="k">if</span> <span class="n">pH</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Basic solution&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">pH</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Acidic solution&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Zero&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Neutral solution&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 
-<span class="c1"># Loop statements</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loop statements&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="c1"># Loop statements for listing first five elements</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loop statements for first five elements&quot;</span><span class="p">)</span>
+<span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Hydrogen&quot;</span><span class="p">,</span> <span class="s2">&quot;Helium&quot;</span><span class="p">,</span> <span class="s2">&quot;Lithium&quot;</span><span class="p">,</span> <span class="s2">&quot;Beryllium&quot;</span><span class="p">,</span> <span class="s2">&quot;Boron&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 
-<span class="c1"># Break and continue statements</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Break statements&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+<span class="c1"># Break statements in a reaction sequence</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Break statements in a reaction sequence&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>  <span class="c1"># Suppose a reaction is not favorable after a certain step</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reaction stopped at step&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
         <span class="k">break</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reaction step&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;completed&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continue statements&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+<span class="c1"># Continue statements in element listing</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continue statements in element listing&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>  <span class="c1"># Skipping elements at positions 3 and 7</span>
         <span class="k">continue</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Element with atomic number&quot;</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 
-<span class="c1"># Pass statement</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pass statement&quot;</span><span class="p">)</span>
+<span class="c1"># Pass statement in theoretical reactions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pass statement in theoretical reactions&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="c1"># Assume placeholder for future reaction conditions to be tested</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Conditional statements
-Positive number
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Conditional statements for pH values
+Neutral solution
 
-Loop statements
-0
-1
-2
-3
-4
+Loop statements for first five elements
+Hydrogen
+Helium
+Lithium
+Beryllium
+Boron
 
-Break statements
-0
-1
-2
+Break statements in a reaction sequence
+Reaction step 1 completed
+Reaction step 2 completed
+Reaction step 3 completed
+Reaction step 4 completed
+Reaction step 5 completed
+Reaction stopped at step 6
 
-Continue statements
-0
-1
-2
-4
+Continue statements in element listing
+Element with atomic number 1
+Element with atomic number 2
+Element with atomic number 3
+Element with atomic number 5
+Element with atomic number 6
+Element with atomic number 7
+Element with atomic number 9
+Element with atomic number 10
 
-Pass statement
+Pass statement in theoretical reactions
 </pre></div>
 </div>
 </div>
@@ -622,6 +640,155 @@ Pass statement
 </section>
 <section id="functions-and-modules">
 <h2>1.6: Functions and Modules<a class="headerlink" href="#functions-and-modules" title="Link to this heading">#</a></h2>
+<p>Functions are reusable blocks of code that perform a specific task. They help in organizing code and making it more modular. In Python, you can define a function using the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword followed by the function name and parameters.</p>
+<p>Modules are files that contain Python code. They are used to organize related functions, classes, and variables. You can import a module in your Python script using the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement.</p>
+<p>Let’s look at some examples of functions and modules in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to calculate molarity</span>
+<span class="k">def</span> <span class="nf">calculate_molarity</span><span class="p">(</span><span class="n">moles</span><span class="p">,</span> <span class="n">volume_liters</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">moles</span> <span class="o">/</span> <span class="n">volume_liters</span>
+
+<span class="c1"># Call the function</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Molarity of the solution:&quot;</span><span class="p">,</span> <span class="n">calculate_molarity</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
+
+<span class="c1"># Import a module for scientific calculations</span>
+<span class="kn">import</span> <span class="nn">scipy.constants</span>
+
+<span class="c1"># Use a function from the scipy.constants module to print the Avogadro constant</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Avogadro&#39;s constant:&quot;</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">Avogadro</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Molarity of the solution: 0.5 M
+Avogadro&#39;s constant: 6.02214076e+23
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-with-matplotlib">
+<h2>1.7: Plotting with Matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Link to this heading">#</a></h2>
+<p>Matplotlib is a popular plotting library for Python that provides a wide range of functions for creating different types of plots such as line plots, bar plots, scatter plots, histograms, and more. It is widely used in data visualization and scientific computing.</p>
+<p>To use Matplotlib, you need to import the <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> module. You can then use various functions provided by Matplotlib to create and customize plots.</p>
+<p>Let’s look at an example of plotting with Matplotlib:</p>
+<p>In this example, we import the <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> module and create a line plot using the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function. We then add labels and a title to the plot using the <code class="docutils literal notranslate"><span class="pre">xlabel()</span></code>, <code class="docutils literal notranslate"><span class="pre">ylabel()</span></code>, and <code class="docutils literal notranslate"><span class="pre">title()</span></code> functions. Finally, we display the plot using the <code class="docutils literal notranslate"><span class="pre">show()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create data: Atomic numbers and boiling points of some common elements (in Kelvin)</span>
+<span class="n">atomic_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>  <span class="c1"># Hydrogen, Helium, Lithium, Beryllium, Boron</span>
+<span class="n">boiling_points</span> <span class="o">=</span> <span class="p">[</span><span class="mf">20.28</span><span class="p">,</span> <span class="mf">4.22</span><span class="p">,</span> <span class="mi">1560</span><span class="p">,</span> <span class="mi">2742</span><span class="p">,</span> <span class="mi">4200</span><span class="p">]</span>  <span class="c1"># Boiling points in Kelvin</span>
+
+<span class="c1"># Create a line plot of boiling points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atomic_numbers</span><span class="p">,</span> <span class="n">boiling_points</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>  <span class="c1"># Added marker for clarity</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Atomic Number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Boiling Point (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boiling Points of Elements&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d5de350346c9e441e01a3506a475426fd2dc8a5ddc407065ccd8ec011154c142.png" src="_images/d5de350346c9e441e01a3506a475426fd2dc8a5ddc407065ccd8ec011154c142.png" />
+</div>
+</div>
+</section>
+<section id="numpy-and-pandas">
+<h2>1.8: NumPy and Pandas<a class="headerlink" href="#numpy-and-pandas" title="Link to this heading">#</a></h2>
+<p>NumPy is a powerful library for numerical computing in Python. It provides support for multidimensional arrays, mathematical functions, linear algebra operations, random number generation, and more. NumPy is widely used in scientific computing, data analysis, and machine learning.</p>
+<p>Pandas is a data manipulation library for Python that provides data structures such as Series and DataFrame to work with structured data. It is built on top of NumPy and provides functions for data cleaning, transformation, and analysis.</p>
+<p>Let’s look at some examples of NumPy and Pandas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Create a NumPy array for atomic masses</span>
+<span class="n">atomic_masses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.008</span><span class="p">,</span> <span class="mf">4.0026</span><span class="p">,</span> <span class="mf">6.94</span><span class="p">,</span> <span class="mf">9.0122</span><span class="p">,</span> <span class="mf">10.81</span><span class="p">])</span>  <span class="c1"># Hydrogen, Helium, Lithium, Beryllium, Boron</span>
+
+<span class="c1"># Create a Pandas Series for atomic numbers</span>
+<span class="n">atomic_numbers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;He&#39;</span><span class="p">,</span> <span class="s1">&#39;Li&#39;</span><span class="p">,</span> <span class="s1">&#39;Be&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+
+<span class="c1"># Create a Pandas DataFrame with element properties</span>
+<span class="n">element_properties</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Atomic Number&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;Atomic Mass&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.008</span><span class="p">,</span> <span class="mf">4.0026</span><span class="p">,</span> <span class="mf">6.94</span><span class="p">,</span> <span class="mf">9.0122</span><span class="p">,</span> <span class="mf">10.81</span><span class="p">],</span>
+    <span class="s1">&#39;Element&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Hydrogen&#39;</span><span class="p">,</span> <span class="s1">&#39;Helium&#39;</span><span class="p">,</span> <span class="s1">&#39;Lithium&#39;</span><span class="p">,</span> <span class="s1">&#39;Beryllium&#39;</span><span class="p">,</span> <span class="s1">&#39;Boron&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NumPy Array - Atomic Masses:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atomic_masses</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pandas Series - Atomic Numbers:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atomic_numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pandas DataFrame - Element Properties:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">element_properties</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NumPy Array - Atomic Masses:
+[ 1.008   4.0026  6.94    9.0122 10.81  ]
+
+Pandas Series - Atomic Numbers:
+H     1
+He    2
+Li    3
+Be    4
+B     5
+dtype: int64
+
+Pandas DataFrame - Element Properties:
+   Atomic Number  Atomic Mass    Element
+0              1       1.0080   Hydrogen
+1              2       4.0026     Helium
+2              3       6.9400    Lithium
+3              4       9.0122  Beryllium
+4              5      10.8100      Boron
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, we import the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code> modules and create a NumPy array, a Pandas Series, and a Pandas DataFrame. We then print these data structures to the console.</p>
+</section>
+<section id="input-and-output-operations">
+<h2>1.9: Input and Output Operations<a class="headerlink" href="#input-and-output-operations" title="Link to this heading">#</a></h2>
+<p>Input and output operations are used to interact with the user and read/write data from/to files. Python provides functions such as <code class="docutils literal notranslate"><span class="pre">print()</span></code>, <code class="docutils literal notranslate"><span class="pre">open()</span></code>, <code class="docutils literal notranslate"><span class="pre">read()</span></code>, <code class="docutils literal notranslate"><span class="pre">write()</span></code>, and more for input and output operations.</p>
+<p>Let’s look at some examples of input and output operations in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input and output operations</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Albert&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Writing to a file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reading from a file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, Albert!
+Hello, Albert!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion">
+<h2>1.10: Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this module, we introduced you to Python and its basic syntax. We covered various topics such as Python installation and setup, data types, variables and operators, control flow statements, functions and modules, input and output operations, and plotting with Matplotlib.</p>
 </section>
 </section>
 
@@ -686,6 +853,10 @@ Pass statement
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-operators">1.4: Variables and Operators</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-statements">1.5: Control Flow Statements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-modules">1.6: Functions and Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-with-matplotlib">1.7: Plotting with Matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-pandas">1.8: NumPy and Pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-output-operations">1.9: Input and Output Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">1.10: Conclusion</a></li>
 </ul>
   </nav></div>
 
