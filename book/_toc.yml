@@ -6,6 +6,7 @@ root: intro
 chapters:
 - file: week-01-intro-python
 - file: week-02-num-method
+- file: week-03-stats
 # - file: markdown
 # - file: notebooks
 # - file: markdown-notebooks

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Notebooks with MyST Markdown &#8212; Computational Problem Solving in the Chemical Sciences</title>
+    <title>Week 3: Statistics – Regression and Correlation &#8212; Computational Problem Solving in the Chemical Sciences</title>
   
   
   
@@ -57,9 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week-03-stats';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Week 2: Numerical Methods in Python" href="week-02-num-method.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,9 +178,10 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="week-01-intro-python.html">Week 1: Introduction to Python Computations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week-02-num-method.html">Week 2: Numerical Methods in Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 3: Statistics – Regression and Correlation</a></li>
 </ul>
 
     </div>
@@ -253,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmarkdown-notebooks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fweek-03-stats.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -283,7 +283,7 @@
       
       
       
-      <li><a href="_sources/markdown-notebooks.md" target="_blank"
+      <li><a href="_sources/week-03-stats.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +293,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -367,7 +367,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notebooks with MyST Markdown</h1>
+    <h1>Week 3: Statistics – Regression and Correlation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,9 +377,26 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-orders-of-reaction-and-linear-regression-analysis">Lecture 1: Orders of Reaction and Linear Regression Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-reaction-kinetics-and-orders-of-reaction">Introduction to Reaction Kinetics and Orders of Reaction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-determination-of-reaction-orders">Experimental Determination of Reaction Orders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-linear-regression-analysis">Introduction to Linear Regression Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-linear-regression-in-python">Implementing Linear Regression in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-determining-reaction-order-using-linear-regression">Hands-On Activity: Determining Reaction Order Using Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a-and-wrap-up">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-calibration-data-confidence-intervals-and-correlation-analysis">Lecture 2: Calibration Data, Confidence Intervals, and Correlation Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-calibration-data">Introduction to Calibration Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-for-calibration-curves">Linear Regression for Calibration Curves</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-confidence-intervals">Calculating Confidence Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-calibration-and-correlation-analysis">Hands-On Activity: Calibration and Correlation Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -391,50 +408,92 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notebooks-with-myst-markdown">
-<h1>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Link to this heading">#</a></h1>
-<p>Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-See <a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">the Notebooks with MyST Markdown documentation</a> for more detailed instructions.
-This page shows off a notebook written in MyST Markdown.</p>
-<section id="an-example-cell">
-<h2>An example cell<a class="headerlink" href="#an-example-cell" title="Link to this heading">#</a></h2>
-<p>With MyST Markdown, you can define code cells with a directive like so:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Jupyter Book uses <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">Jupytext</a> to convert text-based files to notebooks, and can support <a class="reference external" href="https://jupyterbook.org/file-types/jupytext.html">many other text-based notebook files</a>.</p>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-3-statistics-regression-and-correlation">
+<h1>Week 3: Statistics – Regression and Correlation<a class="headerlink" href="#week-3-statistics-regression-and-correlation" title="Link to this heading">#</a></h1>
+<section id="lecture-1-orders-of-reaction-and-linear-regression-analysis">
+<h2>Lecture 1: Orders of Reaction and Linear Regression Analysis<a class="headerlink" href="#lecture-1-orders-of-reaction-and-linear-regression-analysis" title="Link to this heading">#</a></h2>
+<section id="objective">
+<h3>Objective:<a class="headerlink" href="#objective" title="Link to this heading">#</a></h3>
+<p>To introduce the concept of reaction orders and teach linear regression analysis to determine reaction orders using Python.</p>
 </section>
-<section id="create-a-notebook-with-myst-markdown">
-<h2>Create a notebook with MyST Markdown<a class="headerlink" href="#create-a-notebook-with-myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST Markdown notebooks are defined by two things:</p>
-<ol class="arabic simple">
-<li><p>YAML metadata that is needed to understand if / how it should convert text files to notebooks (including information about the kernel needed).
-See the YAML at the top of this page for example.</p></li>
-<li><p>The presence of <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> directives, which will be executed with your book.</p></li>
-</ol>
-<p>That’s all that is needed to get started!</p>
+<section id="introduction-to-reaction-kinetics-and-orders-of-reaction">
+<h3>Introduction to Reaction Kinetics and Orders of Reaction<a class="headerlink" href="#introduction-to-reaction-kinetics-and-orders-of-reaction" title="Link to this heading">#</a></h3>
+<!-- Overview of reaction kinetics and the importance of understanding reaction rates
+Definition of reaction order and its significance in kinetics
+Examples of zero, first, and second-order reactions -->
 </section>
-<section id="quickly-add-yaml-metadata-for-myst-notebooks">
-<h2>Quickly add YAML metadata for MyST Notebooks<a class="headerlink" href="#quickly-add-yaml-metadata-for-myst-notebooks" title="Link to this heading">#</a></h2>
-<p>If you have a markdown file and you’d like to quickly add YAML metadata to it, so that Jupyter Book will treat it as a MyST Markdown Notebook, run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">markdownfile</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
+<section id="experimental-determination-of-reaction-orders">
+<h3>Experimental Determination of Reaction Orders<a class="headerlink" href="#experimental-determination-of-reaction-orders" title="Link to this heading">#</a></h3>
+<!-- Methods for determining reaction order from experimental data
+Use of initial rate method and integrated rate laws
+Example: Determining the order of a reaction from concentration vs. time data -->
+</section>
+<section id="introduction-to-linear-regression-analysis">
+<h3>Introduction to Linear Regression Analysis<a class="headerlink" href="#introduction-to-linear-regression-analysis" title="Link to this heading">#</a></h3>
+<!-- Basic concepts of linear regression and its application in data analysis
+Explanation of least squares method for fitting a linear model
+Importance of linear regression in analyzing chemical kinetics data -->
+</section>
+<section id="implementing-linear-regression-in-python">
+<h3>Implementing Linear Regression in Python<a class="headerlink" href="#implementing-linear-regression-in-python" title="Link to this heading">#</a></h3>
+<!-- Using Python's numpy and scipy.stats libraries for linear regression
+Example: Performing linear regression to determine the order of a reaction
+Hands-on coding demonstration with a Jupyter Notebook -->
+</section>
+<section id="hands-on-activity-determining-reaction-order-using-linear-regression">
+<h3>Hands-On Activity: Determining Reaction Order Using Linear Regression<a class="headerlink" href="#hands-on-activity-determining-reaction-order-using-linear-regression" title="Link to this heading">#</a></h3>
+<!-- Example problem: Analyzing concentration vs. time data to determine reaction order
+Students work through a similar problem with guidance
+Discussion of results and troubleshooting common issues -->
+</section>
+<section id="q-a-and-wrap-up">
+<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#q-a-and-wrap-up" title="Link to this heading">#</a></h3>
+<!-- Address any questions
+Summary of key concepts covered
+Brief overview of the next lecture topic -->
+</section>
+</section>
+<section id="lecture-2-calibration-data-confidence-intervals-and-correlation-analysis">
+<h2>Lecture 2: Calibration Data, Confidence Intervals, and Correlation Analysis<a class="headerlink" href="#lecture-2-calibration-data-confidence-intervals-and-correlation-analysis" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Objective:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>To teach students how to handle calibration data, calculate confidence intervals, and perform correlation analysis using Python.</p>
+</section>
+<section id="introduction-to-calibration-data">
+<h3>Introduction to Calibration Data<a class="headerlink" href="#introduction-to-calibration-data" title="Link to this heading">#</a></h3>
+<!-- Definition and importance of calibration in analytical chemistry
+Types of calibration methods (e.g., external standard, internal standard, standard addition)
+Example: Creating a calibration curve for a spectroscopic method -->
+</section>
+<section id="linear-regression-for-calibration-curves">
+<h3>Linear Regression for Calibration Curves<a class="headerlink" href="#linear-regression-for-calibration-curves" title="Link to this heading">#</a></h3>
+<!-- Using linear regression to fit calibration data
+Interpreting the slope, intercept, and R-squared value of the calibration curve
+Example: Generating a calibration curve and performing regression analysis in Python -->
+</section>
+<section id="calculating-confidence-intervals">
+<h3>Calculating Confidence Intervals<a class="headerlink" href="#calculating-confidence-intervals" title="Link to this heading">#</a></h3>
+<!-- Definition and significance of confidence intervals in statistical analysis
+Calculating confidence intervals for regression parameters (slope and intercept)
+Example: Computing confidence intervals for a calibration curve using Python -->
+</section>
+<section id="correlation-analysis">
+<h3>Correlation Analysis<a class="headerlink" href="#correlation-analysis" title="Link to this heading">#</a></h3>
+<!-- Definition and importance of correlation in data analysis
+Different types of correlation coefficients (e.g., Pearson, Spearman)
+Example: Calculating and interpreting correlation coefficients in Python -->
+</section>
+<section id="hands-on-activity-calibration-and-correlation-analysis">
+<h3>Hands-On Activity: Calibration and Correlation Analysis<a class="headerlink" href="#hands-on-activity-calibration-and-correlation-analysis" title="Link to this heading">#</a></h3>
+<!-- Example problem: Creating a calibration curve, performing linear regression, calculating confidence intervals, and analyzing correlation
+Students work through a similar problem with guidance
+Discussion of results and troubleshooting common issues -->
+</section>
+<section id="id2">
+<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<!-- Address any questions
+Summary of key concepts covered
+Brief overview of the next lecture topic --></section>
 </section>
 </section>
 
@@ -468,6 +527,15 @@ See the YAML at the top of this page for example.</p></li>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="week-02-num-method.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 2: Numerical Methods in Python</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -484,9 +552,26 @@ See the YAML at the top of this page for example.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-orders-of-reaction-and-linear-regression-analysis">Lecture 1: Orders of Reaction and Linear Regression Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-reaction-kinetics-and-orders-of-reaction">Introduction to Reaction Kinetics and Orders of Reaction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-determination-of-reaction-orders">Experimental Determination of Reaction Orders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-linear-regression-analysis">Introduction to Linear Regression Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-linear-regression-in-python">Implementing Linear Regression in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-determining-reaction-order-using-linear-regression">Hands-On Activity: Determining Reaction Order Using Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a-and-wrap-up">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-calibration-data-confidence-intervals-and-correlation-analysis">Lecture 2: Calibration Data, Confidence Intervals, and Correlation Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-calibration-data">Introduction to Calibration Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-for-calibration-curves">Linear Regression for Calibration Curves</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-confidence-intervals">Calculating Confidence Intervals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-calibration-and-correlation-analysis">Hands-On Activity: Calibration and Correlation Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
