@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Module 1: Introduction to Python Computations &#8212; Computational Problem Solving in the Chemical Sciences</title>
+    <title>Week 1: Introduction to Python Computations &#8212; Computational Problem Solving in the Chemical Sciences</title>
   
   
   
@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'week-01-intro-python';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Week 2: Numerical Methods in Python" href="week-02-num-method.html" />
     <link rel="prev" title="Welcome to Computational Problem Solving in the Chemical Sciences" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -179,7 +180,8 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Module 1: Introduction to Python Computations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 1: Introduction to Python Computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week-02-num-method.html">Week 2: Numerical Methods in Python</a></li>
 </ul>
 
     </div>
@@ -365,7 +367,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Module 1: Introduction to Python Computations</h1>
+    <h1>Week 1: Introduction to Python Computations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -375,16 +377,32 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-python">1.1: Introduction to Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-installation-and-setup">1.2: Python Installation and Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-data-types">1.3: Python Data Types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-operators">1.4: Variables and Operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-statements">1.5: Control Flow Statements</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-modules">1.6: Functions and Modules</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-with-matplotlib">1.7: Plotting with Matplotlib</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-pandas">1.8: NumPy and Pandas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-output-operations">1.9: Input and Output Operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">1.10: Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-introduction-to-python-and-computational-chemistry">Lecture 1: Introduction to Python and Computational Chemistry</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-python">Introduction to Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-setup-and-basic-syntax">Python Setup and Basic Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-writing-your-first-python-program">Hands-On Activity: Writing Your First Python Program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a-and-wrap-up">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-python-data-structures-and-control-flow">Lecture 2: Python Data Structures and Control Flow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-previous-lecture-and-introduction-to-data-structures">Recap of Previous Lecture and Introduction to Data Structures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures-in-detail">Data Structures in Detail</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-in-python">Control Flow in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-using-data-structures-and-control-flow">Hands-On Activity: Using Data Structures and Control Flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-3-functions-modules-and-scientific-libraries">Lecture 3: Functions, Modules, and Scientific Libraries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-previous-lecture-and-introduction-to-functions">Recap of Previous Lecture and Introduction to Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-functions-in-python">Writing Functions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-modules-and-packages">Using Modules and Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-using-scientific-libraries">Hands-On Activity: Using Scientific Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -396,399 +414,105 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="module-1-introduction-to-python-computations">
-<h1>Module 1: Introduction to Python Computations<a class="headerlink" href="#module-1-introduction-to-python-computations" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-1-introduction-to-python-computations">
+<h1>Week 1: Introduction to Python Computations<a class="headerlink" href="#week-1-introduction-to-python-computations" title="Link to this heading">#</a></h1>
+<section id="lecture-1-introduction-to-python-and-computational-chemistry">
+<h2>Lecture 1: Introduction to Python and Computational Chemistry<a class="headerlink" href="#lecture-1-introduction-to-python-and-computational-chemistry" title="Link to this heading">#</a></h2>
+<section id="objective">
+<h3>Objective:<a class="headerlink" href="#objective" title="Link to this heading">#</a></h3>
+<p>To introduce Python programming, its relevance in computational chemistry, and basic concepts of Python syntax and operations.</p>
+<!-- ### Introduction to the Course and Objectives
+Overview of course structure and expectations
+Introduction to computational chemistry and its significance -->
+</section>
 <section id="introduction-to-python">
-<h2>1.1: Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Link to this heading">#</a></h2>
-<p>Python is a high-level, interpreted, and general-purpose programming language. It was created by Guido van Rossum and released in 1991. Python is known for its simplicity and readability. It is widely used in various fields such as web development, data science, machine learning, artificial intelligence, and scientific computing.</p>
-<p>Python has a large standard library that provides a wide range of modules and packages for different tasks. It also has a vibrant community that contributes to the development of libraries and frameworks, making Python a popular choice for many programmers.</p>
-<p>In this module, we will introduce you to Python and its basic syntax. We will cover the following topics:</p>
-<ul class="simple">
-<li><p>Python installation and setup</p></li>
-<li><p>Python data types</p></li>
-<li><p>Variables and operators</p></li>
-<li><p>Control flow statements</p></li>
-<li><p>Functions and modules</p></li>
-<li><p>Input and output operations</p></li>
-</ul>
-<p>Let’s get started!</p>
+<h3>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Link to this heading">#</a></h3>
+<!-- Brief history and applications of Python
+Why Python is popular in scientific computing -->
 </section>
-<section id="python-installation-and-setup">
-<h2>1.2: Python Installation and Setup<a class="headerlink" href="#python-installation-and-setup" title="Link to this heading">#</a></h2>
-<p>Before you start writing Python code, you need to install Python on your system. Python is available for different operating systems such as Windows, macOS, and Linux. You can download the latest version of Python from the official website (<a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>).</p>
-<p>Once you have installed Python on your system, you can start writing Python code using an Integrated Development Environment (IDE) or a code editor. Some popular IDEs for Python development are:</p>
-<ul class="simple">
-<li><p>PyCharm</p></li>
-<li><p>Visual Studio Code</p></li>
-<li><p>Jupyter Notebook</p></li>
-<li><p>Spyder</p></li>
-<li><p>IDLE (Python’s Integrated Development and Learning Environment)</p></li>
-</ul>
-<p>You can choose any of these IDEs based on your preference and start writing Python code.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In this course, we will be using Visual Studio Code as the primary IDE for Python development. You can download Visual Studio Code from the official website (<a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>).</p>
-</div>
+<section id="python-setup-and-basic-syntax">
+<h3>Python Setup and Basic Syntax<a class="headerlink" href="#python-setup-and-basic-syntax" title="Link to this heading">#</a></h3>
+<!-- Installing Python and setting up the development environment (e.g., Anaconda, Jupyter Notebook)
+Basic syntax: variables, data types, and operators
+Writing and running a simple Python script -->
 </section>
-<section id="python-data-types">
-<h2>1.3: Python Data Types<a class="headerlink" href="#python-data-types" title="Link to this heading">#</a></h2>
-<p>Python has several built-in data types that are used to store and manipulate data. Some of the common data types in Python are:</p>
-<ul class="simple">
-<li><p>Integer (<code class="docutils literal notranslate"><span class="pre">int</span></code>): Represents whole numbers without any decimal point.</p></li>
-<li><p>Float (<code class="docutils literal notranslate"><span class="pre">float</span></code>): Represents real numbers with a decimal point.</p></li>
-<li><p>String (<code class="docutils literal notranslate"><span class="pre">str</span></code>): Represents a sequence of characters enclosed in single or double quotes.</p></li>
-<li><p>Boolean (<code class="docutils literal notranslate"><span class="pre">bool</span></code>): Represents a boolean value (<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p></li>
-</ul>
-<p>Let’s look at some examples of these data types in Python:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Atomic number (integer)</span>
-<span class="n">atomic_number</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Neon</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Atomic number of Neon:&quot;</span><span class="p">,</span> <span class="n">atomic_number</span><span class="p">)</span>
-
-<span class="c1"># Atomic mass (float)</span>
-<span class="n">atomic_mass</span> <span class="o">=</span> <span class="mf">20.18</span>  <span class="c1"># Neon</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Atomic mass of Neon:&quot;</span><span class="p">,</span> <span class="n">atomic_mass</span><span class="p">)</span>
-
-<span class="c1"># Chemical element (string)</span>
-<span class="n">element_name</span> <span class="o">=</span> <span class="s2">&quot;Neon&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Element name:&quot;</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
-
-<span class="c1"># Element is a gas at room temperature (boolean)</span>
-<span class="n">is_gas_at_room_temp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is Neon a gas at room temperature?&quot;</span><span class="p">,</span> <span class="n">is_gas_at_room_temp</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Atomic number of Neon: 10
-Atomic mass of Neon: 20.18
-Element name: Neon
-Is Neon a gas at room temperature? True
-</pre></div>
-</div>
-</div>
-</div>
-<p>In Python, you can use the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function to check the data type of a variable. For example:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Atomic number of Neon (integer)</span>
-<span class="n">atomic_number</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of atomic number:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">atomic_number</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;int&#39;&gt;</span>
-
-<span class="c1"># Atomic mass of Hydrogen (float)</span>
-<span class="n">atomic_mass</span> <span class="o">=</span> <span class="mf">1.008</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of atomic mass:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">atomic_mass</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;float&#39;&gt;</span>
-
-<span class="c1"># Chemical formula for water (string)</span>
-<span class="n">chemical_formula</span> <span class="o">=</span> <span class="s2">&quot;H2O&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of chemical formula:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">chemical_formula</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;str&#39;&gt;</span>
-
-<span class="c1"># Water is a compound (boolean)</span>
-<span class="n">is_compound</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of is_compound:&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">is_compound</span><span class="p">))</span>  <span class="c1"># Output: &lt;class &#39;bool&#39;&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type of atomic number: &lt;class &#39;int&#39;&gt;
-Type of atomic mass: &lt;class &#39;float&#39;&gt;
-Type of chemical formula: &lt;class &#39;str&#39;&gt;
-Type of is_compound: &lt;class &#39;bool&#39;&gt;
-</pre></div>
-</div>
-</div>
-</div>
+<section id="hands-on-activity-writing-your-first-python-program">
+<h3>Hands-On Activity: Writing Your First Python Program<a class="headerlink" href="#hands-on-activity-writing-your-first-python-program" title="Link to this heading">#</a></h3>
+<!-- Guided example: Writing a program to calculate the area of a circle
+Students try a similar exercise with instructor support -->
 </section>
-<section id="variables-and-operators">
-<h2>1.4: Variables and Operators<a class="headerlink" href="#variables-and-operators" title="Link to this heading">#</a></h2>
-<p>In Python, variables are used to store data values. You can assign a value to a variable using the assignment operator (<code class="docutils literal notranslate"><span class="pre">=</span></code>). Variables can store different types of data such as integers, floats, strings, and booleans.</p>
-<p>Python supports various operators that are used to perform arithmetic, comparison, logical, and assignment operations. Some of the common operators in Python are:</p>
-<ul class="simple">
-<li><p>Arithmetic operators: <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code>, <code class="docutils literal notranslate"><span class="pre">//</span></code>, <code class="docutils literal notranslate"><span class="pre">**</span></code></p></li>
-<li><p>Comparison operators: <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></li>
-<li><p>Logical operators: <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code></p></li>
-<li><p>Assignment operators: <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code>, <code class="docutils literal notranslate"><span class="pre">%=</span></code></p></li>
-</ul>
-<p>Let’s look at some examples of variables and operators in Python:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assigning values to variables</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mf">20.18</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Neon&quot;</span>
-
-<span class="c1"># Arithmetic operators</span>
-<span class="n">summation</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
-<span class="n">difference</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
-<span class="n">product</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
-<span class="n">quotient</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
-<span class="n">remainder</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="n">y</span>
-<span class="n">floor_division</span> <span class="o">=</span> <span class="n">x</span> <span class="o">//</span> <span class="n">y</span>
-<span class="n">power</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
-
-<span class="c1"># Comparison operators</span>
-<span class="n">is_equal</span> <span class="o">=</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span>
-<span class="n">is_not_equal</span> <span class="o">=</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span>
-<span class="n">is_greater</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span>
-<span class="n">is_less</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span>
-<span class="n">is_greater_equal</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span>
-<span class="n">is_less_equal</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span>
-
-<span class="c1"># Logical operators</span>
-<span class="n">and_result</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">or_result</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">not_result</span> <span class="o">=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># Assignment operators</span>
-<span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="n">y</span> <span class="o">-=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="q-a-and-wrap-up">
+<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#q-a-and-wrap-up" title="Link to this heading">#</a></h3>
+<!-- Address any questions
+Brief overview of the next lecture -->
 </section>
-<section id="control-flow-statements">
-<h2>1.5: Control Flow Statements<a class="headerlink" href="#control-flow-statements" title="Link to this heading">#</a></h2>
-<p>Control flow statements are used to control the flow of execution in a program. Python supports various control flow statements such as:</p>
-<ul class="simple">
-<li><p>Conditional statements (<code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code>): Used to execute different blocks of code based on certain conditions.</p></li>
-<li><p>Loop statements (<code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>): Used to iterate over a sequence of elements or execute a block of code repeatedly.</p></li>
-<li><p>Break and continue statements: Used to alter the flow of execution in loops.</p></li>
-<li><p>Pass statement: Used as a placeholder when no action is required.</p></li>
-</ul>
-<p>Let’s look at some examples of control flow statements in Python:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conditional statements for pH values</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conditional statements for pH values&quot;</span><span class="p">)</span>
-<span class="n">pH</span> <span class="o">=</span> <span class="mi">7</span>
-<span class="k">if</span> <span class="n">pH</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Basic solution&quot;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">pH</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Acidic solution&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Neutral solution&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">()</span>
-
-<span class="c1"># Loop statements for listing first five elements</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loop statements for first five elements&quot;</span><span class="p">)</span>
-<span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Hydrogen&quot;</span><span class="p">,</span> <span class="s2">&quot;Helium&quot;</span><span class="p">,</span> <span class="s2">&quot;Lithium&quot;</span><span class="p">,</span> <span class="s2">&quot;Beryllium&quot;</span><span class="p">,</span> <span class="s2">&quot;Boron&quot;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">()</span>
-
-<span class="c1"># Break statements in a reaction sequence</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Break statements in a reaction sequence&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>  <span class="c1"># Suppose a reaction is not favorable after a certain step</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reaction stopped at step&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-        <span class="k">break</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reaction step&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;completed&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">()</span>
-
-<span class="c1"># Continue statements in element listing</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continue statements in element listing&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>  <span class="c1"># Skipping elements at positions 3 and 7</span>
-        <span class="k">continue</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Element with atomic number&quot;</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">()</span>
-
-<span class="c1"># Pass statement in theoretical reactions</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pass statement in theoretical reactions&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="c1"># Assume placeholder for future reaction conditions to be tested</span>
-    <span class="k">pass</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Conditional statements for pH values
-Neutral solution
-
-Loop statements for first five elements
-Hydrogen
-Helium
-Lithium
-Beryllium
-Boron
-
-Break statements in a reaction sequence
-Reaction step 1 completed
-Reaction step 2 completed
-Reaction step 3 completed
-Reaction step 4 completed
-Reaction step 5 completed
-Reaction stopped at step 6
-
-Continue statements in element listing
-Element with atomic number 1
-Element with atomic number 2
-Element with atomic number 3
-Element with atomic number 5
-Element with atomic number 6
-Element with atomic number 7
-Element with atomic number 9
-Element with atomic number 10
-
-Pass statement in theoretical reactions
-</pre></div>
-</div>
-</div>
-</div>
 </section>
-<section id="functions-and-modules">
-<h2>1.6: Functions and Modules<a class="headerlink" href="#functions-and-modules" title="Link to this heading">#</a></h2>
-<p>Functions are reusable blocks of code that perform a specific task. They help in organizing code and making it more modular. In Python, you can define a function using the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword followed by the function name and parameters.</p>
-<p>Modules are files that contain Python code. They are used to organize related functions, classes, and variables. You can import a module in your Python script using the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement.</p>
-<p>Let’s look at some examples of functions and modules in Python:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to calculate molarity</span>
-<span class="k">def</span> <span class="nf">calculate_molarity</span><span class="p">(</span><span class="n">moles</span><span class="p">,</span> <span class="n">volume_liters</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">moles</span> <span class="o">/</span> <span class="n">volume_liters</span>
-
-<span class="c1"># Call the function</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Molarity of the solution:&quot;</span><span class="p">,</span> <span class="n">calculate_molarity</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
-
-<span class="c1"># Import a module for scientific calculations</span>
-<span class="kn">import</span> <span class="nn">scipy.constants</span>
-
-<span class="c1"># Use a function from the scipy.constants module to print the Avogadro constant</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Avogadro&#39;s constant:&quot;</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">Avogadro</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Molarity of the solution: 0.5 M
-Avogadro&#39;s constant: 6.02214076e+23
-</pre></div>
-</div>
-</div>
-</div>
+<section id="lecture-2-python-data-structures-and-control-flow">
+<h2>Lecture 2: Python Data Structures and Control Flow<a class="headerlink" href="#lecture-2-python-data-structures-and-control-flow" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Objective:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>To introduce Python data structures and control flow mechanisms essential for computational tasks in chemistry.</p>
 </section>
-<section id="plotting-with-matplotlib">
-<h2>1.7: Plotting with Matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Link to this heading">#</a></h2>
-<p>Matplotlib is a popular plotting library for Python that provides a wide range of functions for creating different types of plots such as line plots, bar plots, scatter plots, histograms, and more. It is widely used in data visualization and scientific computing.</p>
-<p>To use Matplotlib, you need to import the <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> module. You can then use various functions provided by Matplotlib to create and customize plots.</p>
-<p>Let’s look at an example of plotting with Matplotlib:</p>
-<p>In this example, we import the <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> module and create a line plot using the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function. We then add labels and a title to the plot using the <code class="docutils literal notranslate"><span class="pre">xlabel()</span></code>, <code class="docutils literal notranslate"><span class="pre">ylabel()</span></code>, and <code class="docutils literal notranslate"><span class="pre">title()</span></code> functions. Finally, we display the plot using the <code class="docutils literal notranslate"><span class="pre">show()</span></code> function.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># Create data: Atomic numbers and boiling points of some common elements (in Kelvin)</span>
-<span class="n">atomic_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>  <span class="c1"># Hydrogen, Helium, Lithium, Beryllium, Boron</span>
-<span class="n">boiling_points</span> <span class="o">=</span> <span class="p">[</span><span class="mf">20.28</span><span class="p">,</span> <span class="mf">4.22</span><span class="p">,</span> <span class="mi">1560</span><span class="p">,</span> <span class="mi">2742</span><span class="p">,</span> <span class="mi">4200</span><span class="p">]</span>  <span class="c1"># Boiling points in Kelvin</span>
-
-<span class="c1"># Create a line plot of boiling points</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atomic_numbers</span><span class="p">,</span> <span class="n">boiling_points</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>  <span class="c1"># Added marker for clarity</span>
-
-<span class="c1"># Add labels and title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Atomic Number&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Boiling Point (K)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boiling Points of Elements&#39;</span><span class="p">)</span>
-
-<span class="c1"># Display the plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/d5de350346c9e441e01a3506a475426fd2dc8a5ddc407065ccd8ec011154c142.png" src="_images/d5de350346c9e441e01a3506a475426fd2dc8a5ddc407065ccd8ec011154c142.png" />
-</div>
-</div>
+<section id="recap-of-previous-lecture-and-introduction-to-data-structures">
+<h3>Recap of Previous Lecture and Introduction to Data Structures<a class="headerlink" href="#recap-of-previous-lecture-and-introduction-to-data-structures" title="Link to this heading">#</a></h3>
+<!-- Quick review of key points from Lecture 1
+Introduction to lists, tuples, and dictionaries -->
 </section>
-<section id="numpy-and-pandas">
-<h2>1.8: NumPy and Pandas<a class="headerlink" href="#numpy-and-pandas" title="Link to this heading">#</a></h2>
-<p>NumPy is a powerful library for numerical computing in Python. It provides support for multidimensional arrays, mathematical functions, linear algebra operations, random number generation, and more. NumPy is widely used in scientific computing, data analysis, and machine learning.</p>
-<p>Pandas is a data manipulation library for Python that provides data structures such as Series and DataFrame to work with structured data. It is built on top of NumPy and provides functions for data cleaning, transformation, and analysis.</p>
-<p>Let’s look at some examples of NumPy and Pandas:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># Create a NumPy array for atomic masses</span>
-<span class="n">atomic_masses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.008</span><span class="p">,</span> <span class="mf">4.0026</span><span class="p">,</span> <span class="mf">6.94</span><span class="p">,</span> <span class="mf">9.0122</span><span class="p">,</span> <span class="mf">10.81</span><span class="p">])</span>  <span class="c1"># Hydrogen, Helium, Lithium, Beryllium, Boron</span>
-
-<span class="c1"># Create a Pandas Series for atomic numbers</span>
-<span class="n">atomic_numbers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;He&#39;</span><span class="p">,</span> <span class="s1">&#39;Li&#39;</span><span class="p">,</span> <span class="s1">&#39;Be&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
-
-<span class="c1"># Create a Pandas DataFrame with element properties</span>
-<span class="n">element_properties</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Atomic Number&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-    <span class="s1">&#39;Atomic Mass&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.008</span><span class="p">,</span> <span class="mf">4.0026</span><span class="p">,</span> <span class="mf">6.94</span><span class="p">,</span> <span class="mf">9.0122</span><span class="p">,</span> <span class="mf">10.81</span><span class="p">],</span>
-    <span class="s1">&#39;Element&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Hydrogen&#39;</span><span class="p">,</span> <span class="s1">&#39;Helium&#39;</span><span class="p">,</span> <span class="s1">&#39;Lithium&#39;</span><span class="p">,</span> <span class="s1">&#39;Beryllium&#39;</span><span class="p">,</span> <span class="s1">&#39;Boron&#39;</span><span class="p">]</span>
-<span class="p">})</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NumPy Array - Atomic Masses:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">atomic_masses</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pandas Series - Atomic Numbers:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">atomic_numbers</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pandas DataFrame - Element Properties:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">element_properties</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NumPy Array - Atomic Masses:
-[ 1.008   4.0026  6.94    9.0122 10.81  ]
-
-Pandas Series - Atomic Numbers:
-H     1
-He    2
-Li    3
-Be    4
-B     5
-dtype: int64
-
-Pandas DataFrame - Element Properties:
-   Atomic Number  Atomic Mass    Element
-0              1       1.0080   Hydrogen
-1              2       4.0026     Helium
-2              3       6.9400    Lithium
-3              4       9.0122  Beryllium
-4              5      10.8100      Boron
-</pre></div>
-</div>
-</div>
-</div>
-<p>In this example, we import the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code> modules and create a NumPy array, a Pandas Series, and a Pandas DataFrame. We then print these data structures to the console.</p>
+<section id="data-structures-in-detail">
+<h3>Data Structures in Detail<a class="headerlink" href="#data-structures-in-detail" title="Link to this heading">#</a></h3>
+<!-- Lists: creation, indexing, slicing, and methods
+Tuples: immutability and usage
+Dictionaries: key-value pairs and common methods -->
 </section>
-<section id="input-and-output-operations">
-<h2>1.9: Input and Output Operations<a class="headerlink" href="#input-and-output-operations" title="Link to this heading">#</a></h2>
-<p>Input and output operations are used to interact with the user and read/write data from/to files. Python provides functions such as <code class="docutils literal notranslate"><span class="pre">print()</span></code>, <code class="docutils literal notranslate"><span class="pre">open()</span></code>, <code class="docutils literal notranslate"><span class="pre">read()</span></code>, <code class="docutils literal notranslate"><span class="pre">write()</span></code>, and more for input and output operations.</p>
-<p>Let’s look at some examples of input and output operations in Python:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input and output operations</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Albert&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
-
-<span class="c1"># Writing to a file</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
-
-<span class="c1"># Reading from a file</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, Albert!
-Hello, Albert!
-</pre></div>
-</div>
-</div>
-</div>
+<section id="control-flow-in-python">
+<h3>Control Flow in Python<a class="headerlink" href="#control-flow-in-python" title="Link to this heading">#</a></h3>
+<!-- Conditional statements (if, elif, else)
+Loops: for and while loops
+List comprehensions -->
 </section>
-<section id="conclusion">
-<h2>1.10: Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
-<p>In this module, we introduced you to Python and its basic syntax. We covered various topics such as Python installation and setup, data types, variables and operators, control flow statements, functions and modules, input and output operations, and plotting with Matplotlib.</p>
+<section id="hands-on-activity-using-data-structures-and-control-flow">
+<h3>Hands-On Activity: Using Data Structures and Control Flow<a class="headerlink" href="#hands-on-activity-using-data-structures-and-control-flow" title="Link to this heading">#</a></h3>
+<!-- Example: Creating a dictionary to store molecular weights of elements and calculating the molecular weight of a compound
+Students practice with a similar exercise -->
+</section>
+<section id="id2">
+<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<!-- Address any questions
+Brief overview of the next lecture -->
+</section>
+</section>
+<section id="lecture-3-functions-modules-and-scientific-libraries">
+<h2>Lecture 3: Functions, Modules, and Scientific Libraries<a class="headerlink" href="#lecture-3-functions-modules-and-scientific-libraries" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>Objective:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>To teach students how to write functions, use modules, and leverage scientific libraries for chemical computations.</p>
+</section>
+<section id="recap-of-previous-lecture-and-introduction-to-functions">
+<h3>Recap of Previous Lecture and Introduction to Functions<a class="headerlink" href="#recap-of-previous-lecture-and-introduction-to-functions" title="Link to this heading">#</a></h3>
+<!-- Quick review of key points from Lecture 2
+Importance of functions in programming -->
+</section>
+<section id="writing-functions-in-python">
+<h3>Writing Functions in Python<a class="headerlink" href="#writing-functions-in-python" title="Link to this heading">#</a></h3>
+<!-- Defining and calling functions
+Function parameters and return values
+Lambda functions -->
+</section>
+<section id="using-modules-and-packages">
+<h3>Using Modules and Packages<a class="headerlink" href="#using-modules-and-packages" title="Link to this heading">#</a></h3>
+<!-- Importing standard libraries (e.g., math, sys)
+Installing and using third-party packages (e.g., numpy, scipy)
+Introduction to Jupyter Notebook for interactive coding -->
+</section>
+<section id="hands-on-activity-using-scientific-libraries">
+<h3>Hands-On Activity: Using Scientific Libraries<a class="headerlink" href="#hands-on-activity-using-scientific-libraries" title="Link to this heading">#</a></h3>
+<!-- Example: Using numpy for array operations and scipy for basic chemical computations
+Students practice with exercises such as solving a simple system of linear equations -->
+</section>
+<section id="id4">
+<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<!-- Address any questions
+Brief overview of Week 2 topics --></section>
 </section>
 </section>
 
@@ -831,6 +555,15 @@ Hello, Albert!
         <p class="prev-next-title">Welcome to Computational Problem Solving in the Chemical Sciences</p>
       </div>
     </a>
+    <a class="right-next"
+       href="week-02-num-method.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 2: Numerical Methods in Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -847,16 +580,32 @@ Hello, Albert!
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-python">1.1: Introduction to Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-installation-and-setup">1.2: Python Installation and Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-data-types">1.3: Python Data Types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-operators">1.4: Variables and Operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-statements">1.5: Control Flow Statements</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-and-modules">1.6: Functions and Modules</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-with-matplotlib">1.7: Plotting with Matplotlib</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-pandas">1.8: NumPy and Pandas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-output-operations">1.9: Input and Output Operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">1.10: Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-introduction-to-python-and-computational-chemistry">Lecture 1: Introduction to Python and Computational Chemistry</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-python">Introduction to Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-setup-and-basic-syntax">Python Setup and Basic Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-writing-your-first-python-program">Hands-On Activity: Writing Your First Python Program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a-and-wrap-up">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-python-data-structures-and-control-flow">Lecture 2: Python Data Structures and Control Flow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-previous-lecture-and-introduction-to-data-structures">Recap of Previous Lecture and Introduction to Data Structures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures-in-detail">Data Structures in Detail</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-in-python">Control Flow in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-using-data-structures-and-control-flow">Hands-On Activity: Using Data Structures and Control Flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-3-functions-modules-and-scientific-libraries">Lecture 3: Functions, Modules, and Scientific Libraries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-previous-lecture-and-introduction-to-functions">Recap of Previous Lecture and Introduction to Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-functions-in-python">Writing Functions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-modules-and-packages">Using Modules and Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-using-scientific-libraries">Hands-On Activity: Using Scientific Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

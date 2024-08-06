@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Module 2: Numerical Methods in Python &#8212; Computational Problem Solving in the Chemical Sciences</title>
+    <title>Week 2: Numerical Methods in Python &#8212; Computational Problem Solving in the Chemical Sciences</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'week-02-num-method';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Module 1: Introduction to Python Computations" href="week-01-intro-python.html" />
+    <link rel="prev" title="Week 1: Introduction to Python Computations" href="week-01-intro-python.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -179,8 +179,8 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="week-01-intro-python.html">Module 1: Introduction to Python Computations</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Module 2: Numerical Methods in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week-01-intro-python.html">Week 1: Introduction to Python Computations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 2: Numerical Methods in Python</a></li>
 </ul>
 
     </div>
@@ -366,7 +366,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Module 2: Numerical Methods in Python</h1>
+    <h1>Week 2: Numerical Methods in Python</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,11 +376,36 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods">Numerical Methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-reaction-equilibria-and-roots-of-equations">Chemical Reaction Equilibria and Roots of Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-chemical-reaction-equilibria-and-roots-of-equations">Lecture 1: Chemical Reaction Equilibria and Roots of Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-chemical-reaction-equilibria">Introduction to Chemical Reaction Equilibria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation-of-equilibrium-problems">Mathematical Formulation of Equilibrium Problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-finding-roots-of-equations">Numerical Methods for Finding Roots of Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-root-finding-methods-in-python">Implementing Root-Finding Methods in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-solving-a-chemical-equilibrium-problem">Hands-On Activity: Solving a Chemical Equilibrium Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a-and-wrap-up">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-chemical-bonding-and-numerical-integration">Lecture 2: Chemical Bonding and Numerical Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-chemical-bonding">Introduction to Chemical Bonding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-representation-of-potential-energy-surfaces">Mathematical Representation of Potential Energy Surfaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-methods">Numerical Integration Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-numerical-integration-in-python">Implementing Numerical Integration in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-numerical-integration-of-a-chemical-bonding-problem">Hands-On Activity: Numerical Integration of a Chemical Bonding Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-3-balancing-chemical-equations-and-systems-of-linear-algebraic-equations">Lecture 3: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-balancing-chemical-equations">Introduction to Balancing Chemical Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation-of-balancing-problems">Mathematical Formulation of Balancing Problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-solving-systems-of-linear-equations">Numerical Methods for Solving Systems of Linear Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-linear-algebraic-solutions-in-python">Implementing Linear Algebraic Solutions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-balancing-a-chemical-equation-using-python">Hands-On Activity: Balancing a Chemical Equation Using Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -392,54 +417,135 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="module-2-numerical-methods-in-python">
-<h1>Module 2: Numerical Methods in Python<a class="headerlink" href="#module-2-numerical-methods-in-python" title="Link to this heading">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>In this module, you will learn about numerical methods in Python. You will learn how to compute roots of equations, integrate functions, and solve systems of equations. You will also learn how to use the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">scipy</span></code> libraries to perform these tasks.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-2-numerical-methods-in-python">
+<h1>Week 2: Numerical Methods in Python<a class="headerlink" href="#week-2-numerical-methods-in-python" title="Link to this heading">#</a></h1>
+<section id="lecture-1-chemical-reaction-equilibria-and-roots-of-equations">
+<h2>Lecture 1: Chemical Reaction Equilibria and Roots of Equations<a class="headerlink" href="#lecture-1-chemical-reaction-equilibria-and-roots-of-equations" title="Link to this heading">#</a></h2>
+<section id="objective">
+<h3>Objective:<a class="headerlink" href="#objective" title="Link to this heading">#</a></h3>
+<p>To introduce numerical methods for solving chemical reaction equilibria and finding the roots of equations using Python.</p>
 </section>
-<section id="learning-objectives">
-<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library to perform numerical computations in Python.</p></li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> library to perform numerical computations in Python.</p></li>
-<li><p>Use numerical methods to solve equations.</p></li>
-<li><p>Use numerical methods to integrate functions.</p></li>
-<li><p>Use numerical methods to solve systems of equations.</p></li>
-</ul>
+<section id="introduction-to-chemical-reaction-equilibria">
+<h3>Introduction to Chemical Reaction Equilibria<a class="headerlink" href="#introduction-to-chemical-reaction-equilibria" title="Link to this heading">#</a></h3>
+<!-- Definition and significance of chemical reaction equilibria
+Overview of the law of mass action and equilibrium constants (K_eq)
+Examples of common chemical equilibria (e.g., acid-base reactions, solubility equilibria) -->
 </section>
-<section id="numerical-methods">
-<h2>Numerical Methods<a class="headerlink" href="#numerical-methods" title="Link to this heading">#</a></h2>
-<p>Numerical methods are techniques used to approximate solutions to mathematical problems that are difficult or impossible to solve exactly. These problems can arise in a variety of fields, including engineering, physics, and finance. Numerical methods are used to solve problems that involve continuous functions, such as finding the roots of an equation, integrating a function, or solving a system of equations.</p>
-<p>In this module, we will focus on three common numerical methods:</p>
-<ol class="arabic simple">
-<li><p>Root-finding methods: These methods are used to find the roots of an equation, which are the values of the variable that satisfy the equation. The most common root-finding method is the bisection method, which is used to find the root of a continuous function within a given interval.</p></li>
-<li><p>Integration methods: These methods are used to compute the definite integral of a function, which represents the area under the curve of the function. The most common integration method is the trapezoidal rule, which approximates the integral by dividing the interval into trapezoids.</p></li>
-<li><p>Linear algebra methods: These methods are used to solve systems of linear equations, which are equations in which the unknowns are linearly related to each other. The most common linear algebra method is Gaussian elimination, which is used to solve a system of linear equations by transforming the system into row-echelon form.</p></li>
-</ol>
-<p>In this module, we will learn how to use these numerical methods to solve problems in Python. We will use the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library to perform numerical computations and the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> library to access more advanced numerical methods.</p>
+<section id="mathematical-formulation-of-equilibrium-problems">
+<h3>Mathematical Formulation of Equilibrium Problems<a class="headerlink" href="#mathematical-formulation-of-equilibrium-problems" title="Link to this heading">#</a></h3>
+<!-- Writing equilibrium expressions
+Setting up equations for equilibrium concentrations
+Example: Equilibrium of a simple acid dissociation (HA ⇌ H+ + A-) -->
 </section>
-<section id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
-<p>To get started, you will need to install the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">scipy</span></code> libraries. You can install these libraries using the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>numpy
-pip<span class="w"> </span>install<span class="w"> </span>scipy
-</pre></div>
-</div>
-<p>Once you have installed the libraries, you can import them into your Python code using the following commands:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>In the following sections, we will learn how to use these libraries to perform numerical computations in Python.</p>
+<section id="numerical-methods-for-finding-roots-of-equations">
+<h3>Numerical Methods for Finding Roots of Equations<a class="headerlink" href="#numerical-methods-for-finding-roots-of-equations" title="Link to this heading">#</a></h3>
+<!-- Introduction to root-finding problems in numerical methods
+Overview of common root-finding algorithms: bisection method, Newton-Raphson method, and secant method
+Importance of numerical methods in solving non-linear equilibrium equations -->
 </section>
-<section id="chemical-reaction-equilibria-and-roots-of-equations">
-<h2>Chemical Reaction Equilibria and Roots of Equations<a class="headerlink" href="#chemical-reaction-equilibria-and-roots-of-equations" title="Link to this heading">#</a></h2>
-<p>In this section, we will learn how to use numerical methods to solve chemical reaction equilibria problems. Chemical reaction equilibria problems involve finding the equilibrium composition of a system of chemical reactions. The equilibrium composition is the composition of the system when the rates of the forward and reverse reactions are equal.</p>
+<section id="implementing-root-finding-methods-in-python">
+<h3>Implementing Root-Finding Methods in Python<a class="headerlink" href="#implementing-root-finding-methods-in-python" title="Link to this heading">#</a></h3>
+<!-- Using Python's scipy.optimize library for root-finding
+Example: Solving for equilibrium concentrations using the bisection method
+Example: Solving for equilibrium concentrations using the Newton-Raphson method
+Hands-on coding demonstration with a Jupyter Notebook -->
+</section>
+<section id="hands-on-activity-solving-a-chemical-equilibrium-problem">
+<h3>Hands-On Activity: Solving a Chemical Equilibrium Problem<a class="headerlink" href="#hands-on-activity-solving-a-chemical-equilibrium-problem" title="Link to this heading">#</a></h3>
+<!-- Example problem: Solving the equilibrium for a weak acid dissociation using numerical methods
+Students work through a similar problem with guidance
+Discussion of results and troubleshooting common issues -->
+</section>
+<section id="q-a-and-wrap-up">
+<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#q-a-and-wrap-up" title="Link to this heading">#</a></h3>
+<!-- Address any questions
+Summary of key concepts covered
+Brief overview of the next lecture topic -->
+</section>
+</section>
+<section id="lecture-2-chemical-bonding-and-numerical-integration">
+<h2>Lecture 2: Chemical Bonding and Numerical Integration<a class="headerlink" href="#lecture-2-chemical-bonding-and-numerical-integration" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Objective:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>To introduce numerical methods for understanding chemical bonding and performing numerical integration using Python.</p>
+</section>
+<section id="introduction-to-chemical-bonding">
+<h3>Introduction to Chemical Bonding<a class="headerlink" href="#introduction-to-chemical-bonding" title="Link to this heading">#</a></h3>
+<!-- Overview of chemical bonding theories (e.g., valence bond theory, molecular orbital theory)
+Importance of potential energy surfaces (PES) in understanding bonding
+Examples of chemical bonding in simple molecules (e.g., H2, O2) -->
+</section>
+<section id="mathematical-representation-of-potential-energy-surfaces">
+<h3>Mathematical Representation of Potential Energy Surfaces<a class="headerlink" href="#mathematical-representation-of-potential-energy-surfaces" title="Link to this heading">#</a></h3>
+<!-- Explanation of potential energy as a function of atomic positions
+Introduction to common PES models (e.g., Lennard-Jones potential, Morse potential)
+Example: Plotting the Morse potential for a diatomic molecule -->
+</section>
+<section id="numerical-integration-methods">
+<h3>Numerical Integration Methods<a class="headerlink" href="#numerical-integration-methods" title="Link to this heading">#</a></h3>
+<!-- Introduction to numerical integration and its applications in chemistry
+Overview of integration techniques: trapezoidal rule, Simpson's rule, and Gaussian quadrature
+Importance of numerical integration in calculating areas under curves, which relate to bonding energies -->
+</section>
+<section id="implementing-numerical-integration-in-python">
+<h3>Implementing Numerical Integration in Python<a class="headerlink" href="#implementing-numerical-integration-in-python" title="Link to this heading">#</a></h3>
+<!-- Using Python's scipy.integrate library for numerical integration
+Example: Integrating the Morse potential to find the bonding energy
+Hands-on coding demonstration with a Jupyter Notebook -->
+</section>
+<section id="hands-on-activity-numerical-integration-of-a-chemical-bonding-problem">
+<h3>Hands-On Activity: Numerical Integration of a Chemical Bonding Problem<a class="headerlink" href="#hands-on-activity-numerical-integration-of-a-chemical-bonding-problem" title="Link to this heading">#</a></h3>
+<!-- Example problem: Calculating the area under the potential energy curve for a given molecule using numerical integration
+Students work through a similar problem with guidance
+Discussion of results and troubleshooting common issues -->
+</section>
+<section id="id2">
+<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<!-- Address any questions
+Summary of key concepts covered
+Brief overview of the next lecture topic -->
+</section>
+</section>
+<section id="lecture-3-balancing-chemical-equations-and-systems-of-linear-algebraic-equations">
+<h2>Lecture 3: Balancing Chemical Equations and Systems of Linear Algebraic Equations<a class="headerlink" href="#lecture-3-balancing-chemical-equations-and-systems-of-linear-algebraic-equations" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>Objective:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>To introduce numerical methods for balancing chemical equations and solving systems of linear algebraic equations using Python.</p>
+</section>
+<section id="introduction-to-balancing-chemical-equations">
+<h3>Introduction to Balancing Chemical Equations<a class="headerlink" href="#introduction-to-balancing-chemical-equations" title="Link to this heading">#</a></h3>
+<!-- Importance of balanced chemical equations in stoichiometry and reaction predictions
+Basic principles and rules for balancing chemical equations
+Examples of simple chemical equations and their balancing -->
+</section>
+<section id="mathematical-formulation-of-balancing-problems">
+<h3>Mathematical Formulation of Balancing Problems<a class="headerlink" href="#mathematical-formulation-of-balancing-problems" title="Link to this heading">#</a></h3>
+<!-- Representing chemical equations as systems of linear equations
+Coefficient matrix and its role in balancing equations
+Example: Formulating the system of equations for a simple reaction (e.g., combustion of methane) -->
+</section>
+<section id="numerical-methods-for-solving-systems-of-linear-equations">
+<h3>Numerical Methods for Solving Systems of Linear Equations<a class="headerlink" href="#numerical-methods-for-solving-systems-of-linear-equations" title="Link to this heading">#</a></h3>
+<!-- Overview of methods for solving linear systems: Gaussian elimination, LU decomposition, and matrix inversion
+Importance of numerical methods in handling large and complex systems -->
+</section>
+<section id="implementing-linear-algebraic-solutions-in-python">
+<h3>Implementing Linear Algebraic Solutions in Python<a class="headerlink" href="#implementing-linear-algebraic-solutions-in-python" title="Link to this heading">#</a></h3>
+<!-- Introduction to Python's numpy library for linear algebra
+Example: Solving a system of linear equations using numpy.linalg.solve
+Hands-on coding demonstration with a Jupyter Notebook -->
+</section>
+<section id="hands-on-activity-balancing-a-chemical-equation-using-python">
+<h3>Hands-On Activity: Balancing a Chemical Equation Using Python<a class="headerlink" href="#hands-on-activity-balancing-a-chemical-equation-using-python" title="Link to this heading">#</a></h3>
+<!-- Example problem: Balancing the combustion reaction of a hydrocarbon
+Students work through a similar problem with guidance
+Discussion of results and troubleshooting common issues -->
+</section>
+<section id="id4">
+<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<!-- Address any questions
+Summary of key concepts covered
+Brief overview of the next lecture topic --></section>
 </section>
 </section>
 
@@ -479,7 +585,7 @@ pip<span class="w"> </span>install<span class="w"> </span>scipy
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Module 1: Introduction to Python Computations</p>
+        <p class="prev-next-title">Week 1: Introduction to Python Computations</p>
       </div>
     </a>
 </div>
@@ -498,11 +604,36 @@ pip<span class="w"> </span>install<span class="w"> </span>scipy
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods">Numerical Methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-reaction-equilibria-and-roots-of-equations">Chemical Reaction Equilibria and Roots of Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-chemical-reaction-equilibria-and-roots-of-equations">Lecture 1: Chemical Reaction Equilibria and Roots of Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-chemical-reaction-equilibria">Introduction to Chemical Reaction Equilibria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation-of-equilibrium-problems">Mathematical Formulation of Equilibrium Problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-finding-roots-of-equations">Numerical Methods for Finding Roots of Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-root-finding-methods-in-python">Implementing Root-Finding Methods in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-solving-a-chemical-equilibrium-problem">Hands-On Activity: Solving a Chemical Equilibrium Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a-and-wrap-up">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-chemical-bonding-and-numerical-integration">Lecture 2: Chemical Bonding and Numerical Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-chemical-bonding">Introduction to Chemical Bonding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-representation-of-potential-energy-surfaces">Mathematical Representation of Potential Energy Surfaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-methods">Numerical Integration Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-numerical-integration-in-python">Implementing Numerical Integration in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-numerical-integration-of-a-chemical-bonding-problem">Hands-On Activity: Numerical Integration of a Chemical Bonding Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-3-balancing-chemical-equations-and-systems-of-linear-algebraic-equations">Lecture 3: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Objective:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-balancing-chemical-equations">Introduction to Balancing Chemical Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation-of-balancing-problems">Mathematical Formulation of Balancing Problems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-solving-systems-of-linear-equations">Numerical Methods for Solving Systems of Linear Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-linear-algebraic-solutions-in-python">Implementing Linear Algebraic Solutions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-balancing-a-chemical-equation-using-python">Hands-On Activity: Balancing a Chemical Equation Using Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Q&amp;A and Wrap-Up</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
