@@ -57,9 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'week-02-num-method';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Week 3: Statistics – Regression and Correlation" href="week-03-stats.html" />
     <link rel="prev" title="Week 1: Introduction to Python Computations" href="week-01-intro-python.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -181,6 +184,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="week-01-intro-python.html">Week 1: Introduction to Python Computations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 2: Numerical Methods in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week-03-stats.html">Week 3: Statistics – Regression and Correlation</a></li>
 </ul>
 
     </div>
@@ -377,33 +381,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-chemical-reaction-equilibria-and-roots-of-equations">Lecture 1: Chemical Reaction Equilibria and Roots of Equations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-chemical-reaction-equilibria">Introduction to Chemical Reaction Equilibria</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation-of-equilibrium-problems">Mathematical Formulation of Equilibrium Problems</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-finding-roots-of-equations">Numerical Methods for Finding Roots of Equations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-root-finding-methods-in-python">Implementing Root-Finding Methods in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-chemical-reaction-equilibrium-via-numerical-method">Example: Chemical Reaction Equilibrium via Numerical Method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-solving-a-chemical-equilibrium-problem">Hands-On Activity: Solving a Chemical Equilibrium Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a-and-wrap-up">Q&amp;A and Wrap-Up</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-chemical-bonding-and-numerical-integration">Lecture 2: Chemical Bonding and Numerical Integration</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-chemical-bonding">Introduction to Chemical Bonding</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-representation-of-potential-energy-surfaces">Mathematical Representation of Potential Energy Surfaces</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-methods">Numerical Integration Methods</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-numerical-integration-in-python">Implementing Numerical Integration in Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-numerical-integration-of-a-chemical-bonding-problem">Hands-On Activity: Numerical Integration of a Chemical Bonding Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q&amp;A and Wrap-Up</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-3-balancing-chemical-equations-and-systems-of-linear-algebraic-equations">Lecture 3: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Objective:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-balancing-chemical-equations">Introduction to Balancing Chemical Equations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation-of-balancing-problems">Mathematical Formulation of Balancing Problems</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-solving-systems-of-linear-equations">Numerical Methods for Solving Systems of Linear Equations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-linear-algebraic-solutions-in-python">Implementing Linear Algebraic Solutions in Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-balancing-a-chemical-equation-using-python">Hands-On Activity: Balancing a Chemical Equation Using Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Q&amp;A and Wrap-Up</a></li>
 </ul>
 </li>
 </ul>
@@ -421,131 +404,249 @@ document.write(`
 <h1>Week 2: Numerical Methods in Python<a class="headerlink" href="#week-2-numerical-methods-in-python" title="Link to this heading">#</a></h1>
 <section id="lecture-1-chemical-reaction-equilibria-and-roots-of-equations">
 <h2>Lecture 1: Chemical Reaction Equilibria and Roots of Equations<a class="headerlink" href="#lecture-1-chemical-reaction-equilibria-and-roots-of-equations" title="Link to this heading">#</a></h2>
-<section id="objective">
-<h3>Objective:<a class="headerlink" href="#objective" title="Link to this heading">#</a></h3>
-<p>To introduce numerical methods for solving chemical reaction equilibria and finding the roots of equations using Python.</p>
-</section>
 <section id="introduction-to-chemical-reaction-equilibria">
 <h3>Introduction to Chemical Reaction Equilibria<a class="headerlink" href="#introduction-to-chemical-reaction-equilibria" title="Link to this heading">#</a></h3>
-<!-- Definition and significance of chemical reaction equilibria
-Overview of the law of mass action and equilibrium constants (K_eq)
-Examples of common chemical equilibria (e.g., acid-base reactions, solubility equilibria) -->
+<p>In chemical sciences, determining the equilibrium state of a reaction is crucial as it tells us the proportions of reactants and products when a reaction has reached a state where no further changes occur. This state is characterized by the minimization of the system’s free energy, typically the Gibbs free energy at constant temperature and pressure.</p>
+<p>Consider a classical chemical reaction such as water splitting into hydrogen and oxygen gas:</p>
+<div class="math notranslate nohighlight">
+\[
+2 \text{H}_2\text{O} \rightleftharpoons 2 \text{H}_2 + \text{O}_2
+\]</div>
+<p>At equilibrium, the reaction mixture conforms to the law of mass action, which relates the concentrations (or partial pressures) of the species to the equilibrium constant, <span class="math notranslate nohighlight">\(K_P\)</span>.</p>
 </section>
 <section id="mathematical-formulation-of-equilibrium-problems">
 <h3>Mathematical Formulation of Equilibrium Problems<a class="headerlink" href="#mathematical-formulation-of-equilibrium-problems" title="Link to this heading">#</a></h3>
-<!-- Writing equilibrium expressions
-Setting up equations for equilibrium concentrations
-Example: Equilibrium of a simple acid dissociation (HA ⇌ H+ + A-) -->
+<p>For a given reaction, the equilibrium constant <span class="math notranslate nohighlight">\(K_P\)</span> can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[
+K_P = \frac{(P_{\text{H}_2} / P^{\circ})^2)(P_{\text{O}_2} / P^{\circ})}{(P_{\text{H}_2\text{O}} / P^{\circ})^2}
+\]</div>
+<p>In the context of our example, starting with 2 moles of water vapor, the equilibrium concentrations can be formulated as follows using an ICE table:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Species</p></th>
+<th class="head"><p>Initial (mol)</p></th>
+<th class="head"><p>Change (mol)</p></th>
+<th class="head"><p>Equilibrium (mol)</p></th>
+<th class="head"><p>Partial Pressure (bar)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\text{H}_2\text{O}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-2x\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2 - 2x\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\((1 - x) P\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\text{H}_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2x\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2x\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(xP\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\text{O}_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(xP\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here, <span class="math notranslate nohighlight">\(x\)</span> represents the equilibrium progress of the reaction.</p>
 </section>
 <section id="numerical-methods-for-finding-roots-of-equations">
 <h3>Numerical Methods for Finding Roots of Equations<a class="headerlink" href="#numerical-methods-for-finding-roots-of-equations" title="Link to this heading">#</a></h3>
-<!-- Introduction to root-finding problems in numerical methods
-Overview of common root-finding algorithms: bisection method, Newton-Raphson method, and secant method
-Importance of numerical methods in solving non-linear equilibrium equations -->
+<p>Root-finding is a common numerical problem in chemical sciences, especially when dealing with non-linear equilibrium equations. Standard algorithms include:</p>
+<ul class="simple">
+<li><p><strong>Bisection Method</strong>: Iteratively narrows down the range where a root lies.</p></li>
+<li><p><strong>Newton-Raphson Method</strong>: Uses derivatives to converge to a root quickly.</p></li>
+<li><p><strong>Secant Method</strong>: An approximation of Newton-Raphson that doesn’t require the derivative.</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>In practice, these methods are implemented using numerical libraries, such as <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> in Python, which we will explore shortly.</p>
+</div>
 </section>
 <section id="implementing-root-finding-methods-in-python">
 <h3>Implementing Root-Finding Methods in Python<a class="headerlink" href="#implementing-root-finding-methods-in-python" title="Link to this heading">#</a></h3>
-<!-- Using Python's scipy.optimize library for root-finding
-Example: Solving for equilibrium concentrations using the bisection method
-Example: Solving for equilibrium concentrations using the Newton-Raphson method
-Hands-on coding demonstration with a Jupyter Notebook -->
+<p>Let’s start by solving a quadratic equation using both the quadratic formula and numerical methods. For instance, consider the equation:</p>
+<div class="math notranslate nohighlight">
+\[
+x^2 - 3x + 2 = 0
+\]</div>
+<p>Using the quadratic formula:</p>
+<div class="math notranslate nohighlight">
+\[
+x = \frac{3 \pm \sqrt{(-3)^2 - 4 \cdot 1 \cdot 2}}{2 \cdot 1} = 2, 1
+\]</div>
+<p>Now, let’s use Python’s <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> function to find these roots numerically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="c1"># Define the objective function</span>
+<span class="k">def</span> <span class="nf">quadratic_eq</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Perform the minimization</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">fun</span><span class="o">=</span><span class="n">quadratic_eq</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Should print a value close to 1 or 2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000000009
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Initial Guess Matters</p>
+<p>What do you think would happen if the initial guess was set to 2.1? Would it still find the same root?</p>
+</div>
+<p>Let’s check:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">fun</span><span class="o">=</span><span class="n">quadratic_eq</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Notice how it converges to a different root!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.000000381469727
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>The initial guess significantly impacts the result, especially for non-linear or multi-root equations.</p>
+</div>
+</section>
+<section id="example-chemical-reaction-equilibrium-via-numerical-method">
+<h3>Example: Chemical Reaction Equilibrium via Numerical Method<a class="headerlink" href="#example-chemical-reaction-equilibrium-via-numerical-method" title="Link to this heading">#</a></h3>
+<p>For the water-splitting reaction at 1000 K, where <span class="math notranslate nohighlight">\(K_P = 10.060\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">our_equation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">K_P</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">K_P</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">fun</span><span class="o">=</span><span class="n">our_equation</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">10.060</span><span class="p">,),</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.0f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># Should print approximately 76%</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Warning</p>
+<p>Always ensure the physical relevance of the solution. For example, <span class="math notranslate nohighlight">\(x\)</span> must be between 0 and 1 (0% to 100% progress), which can be enforced using bounds:</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">fun</span><span class="o">=</span><span class="n">our_equation</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">10.060</span><span class="p">,),</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.0f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># This constraint helps avoid unphysical results.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76%
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m3/5t_cnxn96vs1f6z07zkwy_k80000gn/T/ipykernel_50594/3060615363.py:1: OptimizeWarning: Initial guess is not within the specified bounds
+  result = minimize(
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="hands-on-activity-solving-a-chemical-equilibrium-problem">
 <h3>Hands-On Activity: Solving a Chemical Equilibrium Problem<a class="headerlink" href="#hands-on-activity-solving-a-chemical-equilibrium-problem" title="Link to this heading">#</a></h3>
-<!-- Example problem: Solving the equilibrium for a weak acid dissociation using numerical methods
-Students work through a similar problem with guidance
-Discussion of results and troubleshooting common issues -->
+<p>Now, let’s revisit the cubic equation:</p>
+<div class="math notranslate nohighlight">
+\[
+x^3 - 6x^2 + 11x - 6 = 0
+\]</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">minimize</span></code> function to find the roots with different initial guesses:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cubic_eq</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">11</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Low initial guess</span>
+<span class="n">low_root_guess</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">fun</span><span class="o">=</span><span class="n">cubic_eq</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">low_root_guess</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Should be close to 1</span>
+
+<span class="c1"># Medium initial guess</span>
+<span class="n">medium_root_guess</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">fun</span><span class="o">=</span><span class="n">cubic_eq</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="mf">1.9</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">medium_root_guess</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Should be close to 2</span>
+
+<span class="c1"># High initial guess</span>
+<span class="n">high_root_guess</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">fun</span><span class="o">=</span><span class="n">cubic_eq</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="mf">2.9</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
+    <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">high_root_guess</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Should be close to 3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000003051757815
+2.0000003433227533
+3.000000019073487
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercise</p>
+<p>Try different initial guesses and see how they impact the results. Reflect on how the method converges based on your guess.</p>
+</div>
 </section>
-<section id="q-a-and-wrap-up">
-<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#q-a-and-wrap-up" title="Link to this heading">#</a></h3>
-<!-- Address any questions
-Summary of key concepts covered
-Brief overview of the next lecture topic -->
-</section>
-</section>
-<section id="lecture-2-chemical-bonding-and-numerical-integration">
-<h2>Lecture 2: Chemical Bonding and Numerical Integration<a class="headerlink" href="#lecture-2-chemical-bonding-and-numerical-integration" title="Link to this heading">#</a></h2>
-<section id="id1">
-<h3>Objective:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>To introduce numerical methods for understanding chemical bonding and performing numerical integration using Python.</p>
-</section>
-<section id="introduction-to-chemical-bonding">
-<h3>Introduction to Chemical Bonding<a class="headerlink" href="#introduction-to-chemical-bonding" title="Link to this heading">#</a></h3>
-<!-- Overview of chemical bonding theories (e.g., valence bond theory, molecular orbital theory)
-Importance of potential energy surfaces (PES) in understanding bonding
-Examples of chemical bonding in simple molecules (e.g., H2, O2) -->
-</section>
-<section id="mathematical-representation-of-potential-energy-surfaces">
-<h3>Mathematical Representation of Potential Energy Surfaces<a class="headerlink" href="#mathematical-representation-of-potential-energy-surfaces" title="Link to this heading">#</a></h3>
-<!-- Explanation of potential energy as a function of atomic positions
-Introduction to common PES models (e.g., Lennard-Jones potential, Morse potential)
-Example: Plotting the Morse potential for a diatomic molecule -->
-</section>
-<section id="numerical-integration-methods">
-<h3>Numerical Integration Methods<a class="headerlink" href="#numerical-integration-methods" title="Link to this heading">#</a></h3>
-<!-- Introduction to numerical integration and its applications in chemistry
-Overview of integration techniques: trapezoidal rule, Simpson's rule, and Gaussian quadrature
-Importance of numerical integration in calculating areas under curves, which relate to bonding energies -->
-</section>
-<section id="implementing-numerical-integration-in-python">
-<h3>Implementing Numerical Integration in Python<a class="headerlink" href="#implementing-numerical-integration-in-python" title="Link to this heading">#</a></h3>
-<!-- Using Python's scipy.integrate library for numerical integration
-Example: Integrating the Morse potential to find the bonding energy
-Hands-on coding demonstration with a Jupyter Notebook -->
-</section>
-<section id="hands-on-activity-numerical-integration-of-a-chemical-bonding-problem">
-<h3>Hands-On Activity: Numerical Integration of a Chemical Bonding Problem<a class="headerlink" href="#hands-on-activity-numerical-integration-of-a-chemical-bonding-problem" title="Link to this heading">#</a></h3>
-<!-- Example problem: Calculating the area under the potential energy curve for a given molecule using numerical integration
-Students work through a similar problem with guidance
-Discussion of results and troubleshooting common issues -->
-</section>
-<section id="id2">
-<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<!-- Address any questions
-Summary of key concepts covered
-Brief overview of the next lecture topic -->
-</section>
-</section>
-<section id="lecture-3-balancing-chemical-equations-and-systems-of-linear-algebraic-equations">
-<h2>Lecture 3: Balancing Chemical Equations and Systems of Linear Algebraic Equations<a class="headerlink" href="#lecture-3-balancing-chemical-equations-and-systems-of-linear-algebraic-equations" title="Link to this heading">#</a></h2>
-<section id="id3">
-<h3>Objective:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>To introduce numerical methods for balancing chemical equations and solving systems of linear algebraic equations using Python.</p>
-</section>
-<section id="introduction-to-balancing-chemical-equations">
-<h3>Introduction to Balancing Chemical Equations<a class="headerlink" href="#introduction-to-balancing-chemical-equations" title="Link to this heading">#</a></h3>
-<!-- Importance of balanced chemical equations in stoichiometry and reaction predictions
-Basic principles and rules for balancing chemical equations
-Examples of simple chemical equations and their balancing -->
-</section>
-<section id="mathematical-formulation-of-balancing-problems">
-<h3>Mathematical Formulation of Balancing Problems<a class="headerlink" href="#mathematical-formulation-of-balancing-problems" title="Link to this heading">#</a></h3>
-<!-- Representing chemical equations as systems of linear equations
-Coefficient matrix and its role in balancing equations
-Example: Formulating the system of equations for a simple reaction (e.g., combustion of methane) -->
-</section>
-<section id="numerical-methods-for-solving-systems-of-linear-equations">
-<h3>Numerical Methods for Solving Systems of Linear Equations<a class="headerlink" href="#numerical-methods-for-solving-systems-of-linear-equations" title="Link to this heading">#</a></h3>
-<!-- Overview of methods for solving linear systems: Gaussian elimination, LU decomposition, and matrix inversion
-Importance of numerical methods in handling large and complex systems -->
-</section>
-<section id="implementing-linear-algebraic-solutions-in-python">
-<h3>Implementing Linear Algebraic Solutions in Python<a class="headerlink" href="#implementing-linear-algebraic-solutions-in-python" title="Link to this heading">#</a></h3>
-<!-- Introduction to Python's numpy library for linear algebra
-Example: Solving a system of linear equations using numpy.linalg.solve
-Hands-on coding demonstration with a Jupyter Notebook -->
-</section>
-<section id="hands-on-activity-balancing-a-chemical-equation-using-python">
-<h3>Hands-On Activity: Balancing a Chemical Equation Using Python<a class="headerlink" href="#hands-on-activity-balancing-a-chemical-equation-using-python" title="Link to this heading">#</a></h3>
-<!-- Example problem: Balancing the combustion reaction of a hydrocarbon
-Students work through a similar problem with guidance
-Discussion of results and troubleshooting common issues -->
-</section>
-<section id="id4">
-<h3>Q&amp;A and Wrap-Up<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<!-- Address any questions
-Summary of key concepts covered
-Brief overview of the next lecture topic --></section>
 </section>
 </section>
 
@@ -588,6 +689,15 @@ Brief overview of the next lecture topic --></section>
         <p class="prev-next-title">Week 1: Introduction to Python Computations</p>
       </div>
     </a>
+    <a class="right-next"
+       href="week-03-stats.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 3: Statistics – Regression and Correlation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -605,33 +715,12 @@ Brief overview of the next lecture topic --></section>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-chemical-reaction-equilibria-and-roots-of-equations">Lecture 1: Chemical Reaction Equilibria and Roots of Equations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-chemical-reaction-equilibria">Introduction to Chemical Reaction Equilibria</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation-of-equilibrium-problems">Mathematical Formulation of Equilibrium Problems</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-finding-roots-of-equations">Numerical Methods for Finding Roots of Equations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-root-finding-methods-in-python">Implementing Root-Finding Methods in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-chemical-reaction-equilibrium-via-numerical-method">Example: Chemical Reaction Equilibrium via Numerical Method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-solving-a-chemical-equilibrium-problem">Hands-On Activity: Solving a Chemical Equilibrium Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a-and-wrap-up">Q&amp;A and Wrap-Up</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-chemical-bonding-and-numerical-integration">Lecture 2: Chemical Bonding and Numerical Integration</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-chemical-bonding">Introduction to Chemical Bonding</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-representation-of-potential-energy-surfaces">Mathematical Representation of Potential Energy Surfaces</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-methods">Numerical Integration Methods</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-numerical-integration-in-python">Implementing Numerical Integration in Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-numerical-integration-of-a-chemical-bonding-problem">Hands-On Activity: Numerical Integration of a Chemical Bonding Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Q&amp;A and Wrap-Up</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-3-balancing-chemical-equations-and-systems-of-linear-algebraic-equations">Lecture 3: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Objective:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-balancing-chemical-equations">Introduction to Balancing Chemical Equations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation-of-balancing-problems">Mathematical Formulation of Balancing Problems</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-methods-for-solving-systems-of-linear-equations">Numerical Methods for Solving Systems of Linear Equations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-linear-algebraic-solutions-in-python">Implementing Linear Algebraic Solutions in Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-balancing-a-chemical-equation-using-python">Hands-On Activity: Balancing a Chemical Equation Using Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Q&amp;A and Wrap-Up</a></li>
 </ul>
 </li>
 </ul>
