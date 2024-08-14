@@ -389,6 +389,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-solving-a-chemical-equilibrium-problem">Hands-On Activity: Solving a Chemical Equilibrium Problem</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-chemical-bonding-and-numerical-integration">Lecture 2: Chemical Bonding and Numerical Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-integral">What is an Integral?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-put-this-to-the-test">Let Us Put This To the Test</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -585,7 +590,7 @@ x = \frac{3 \pm \sqrt{(-3)^2 - 4 \cdot 1 \cdot 2}}{2 \cdot 1} = 2, 1
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76%
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m3/5t_cnxn96vs1f6z07zkwy_k80000gn/T/ipykernel_50594/3060615363.py:1: OptimizeWarning: Initial guess is not within the specified bounds
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m3/5t_cnxn96vs1f6z07zkwy_k80000gn/T/ipykernel_53875/3060615363.py:1: OptimizeWarning: Initial guess is not within the specified bounds
   result = minimize(
 </pre></div>
 </div>
@@ -645,6 +650,78 @@ x^3 - 6x^2 + 11x - 6 = 0
 <div class="tip admonition">
 <p class="admonition-title">Exercise</p>
 <p>Try different initial guesses and see how they impact the results. Reflect on how the method converges based on your guess.</p>
+</div>
+</section>
+</section>
+<section id="lecture-2-chemical-bonding-and-numerical-integration">
+<h2>Lecture 2: Chemical Bonding and Numerical Integration<a class="headerlink" href="#lecture-2-chemical-bonding-and-numerical-integration" title="Link to this heading">#</a></h2>
+<p>The covalent bond is a cornerstone in the chemical sciences, dictating the chemical and physical properties of organic matter and also playing an important role in inorganic and solid-state/materials chemistry. The covalent bond is a quantum mechanical phenomenon, where electrons in atomic orbitals are shared between atoms, causing these atomic orbitals to hybridize and form molecular orbitals. The hybridization of atomic orbitals is primarily governed by the energetic similarity of the atomic orbitals involved and their spatial proximity and orientation. In quantum chemistry, the latter is quantified using the overlap integral, which takes the following form:</p>
+<div class="math notranslate nohighlight">
+\[
+S = \int_0^{\infty} \int_0^{\pi} \int_0^{2\pi} \psi_i(r, \theta, \phi) \psi_j(r, \theta, \phi) r^2 \sin(\theta) dr d\theta d\phi
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\psi_i\)</span> and <span class="math notranslate nohighlight">\(\psi_j\)</span> are the atomic orbitals of atoms <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, respectively. These atomic orbitals are written in spherical coordinates, where the volume element of integration is <span class="math notranslate nohighlight">\(r^2 \sin(\theta) dr d\theta d\phi\)</span>. We will come back to this, but first, let us discuss what an integral really is.</p>
+<section id="what-is-an-integral">
+<h3>What is an Integral?<a class="headerlink" href="#what-is-an-integral" title="Link to this heading">#</a></h3>
+<p>The formal definition of an (Riemann) integral is the limit of a sum of areas of rectangles under a curve. The integral of a function <span class="math notranslate nohighlight">\(f(x)\)</span> over an interval <span class="math notranslate nohighlight">\([a, b]\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_a^b f(x) dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i) \Delta x
+\]</div>
+<p>In other words, an integral is a sum with really small increments (as small as possible). Therefore, calculating an integral numerically amounts to computing the area of a series of rectangles along <span class="math notranslate nohighlight">\(x\)</span>, where the height of the rectangle is the function <span class="math notranslate nohighlight">\(y\)</span> value at that point. There are several methods to achieve an accurate value of the integral with the fewest number of computations, such as the trapezoidal rule, Simpson’s rule, and Gaussian quadrature. In this lecture, we will focus on the Riemann sum when we write our own integratrion codes and then move on to the trapezoidal rule, which is implemented in scipy and numpy.</p>
+</section>
+<section id="let-us-put-this-to-the-test">
+<h3>Let Us Put This To the Test<a class="headerlink" href="#let-us-put-this-to-the-test" title="Link to this heading">#</a></h3>
+<p>Let’s consider the function <span class="math notranslate nohighlight">\(f(x) = x^2\)</span> over the interval <span class="math notranslate nohighlight">\([0, 1]\)</span>. The integral of this function is:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^1 x^2 dx = (1/3) x^3 \Big|_0^1 = 1/3
+\]</div>
+<p>Now, let’s calculate this integral numerically using a Riemann sum with 10, 100, and 1000 rectangles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the function f(x) = x^2</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Define the Riemann sum function</span>
+<span class="k">def</span> <span class="nf">riemann_sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span>
+
+<span class="c1"># Interval [0, 1]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Number of rectangles</span>
+<span class="n">n_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+
+<span class="c1"># Prepare the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Visualization of Riemann Sums for f(x) = x^2&#39;</span><span class="p">)</span>
+
+<span class="c1"># Calculate and plot the Riemann sums</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">n_values</span><span class="p">):</span>
+    <span class="n">riemann_sum_value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">riemann_sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x) = x^2&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> Rectangles</span><span class="se">\n</span><span class="s1">Riemann Sum: </span><span class="si">{</span><span class="n">riemann_sum_value</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8291952919a9e3c9644754686befb0824a0d968f2efcfa4865ecb7a1d251bb9a.png" src="_images/8291952919a9e3c9644754686befb0824a0d968f2efcfa4865ecb7a1d251bb9a.png" />
+</div>
 </div>
 </section>
 </section>
@@ -721,6 +798,11 @@ x^3 - 6x^2 + 11x - 6 = 0
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-root-finding-methods-in-python">Implementing Root-Finding Methods in Python</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-chemical-reaction-equilibrium-via-numerical-method">Example: Chemical Reaction Equilibrium via Numerical Method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-solving-a-chemical-equilibrium-problem">Hands-On Activity: Solving a Chemical Equilibrium Problem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-2-chemical-bonding-and-numerical-integration">Lecture 2: Chemical Bonding and Numerical Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-integral">What is an Integral?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-put-this-to-the-test">Let Us Put This To the Test</a></li>
 </ul>
 </li>
 </ul>
