@@ -4,9 +4,10 @@
 format: jb-book
 root: intro
 chapters:
-- file: week-01-intro-python
-- file: week-02-num-method
-- file: week-03-stats
+# - file: week-01-intro-python
+- file: lecture-04-optimize
+- file: lecture-05-integrate
+- file: lecture-06-linalg
 # - file: markdown
 # - file: notebooks
 # - file: markdown-notebooks
