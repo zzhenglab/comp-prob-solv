@@ -8,6 +8,7 @@ chapters:
 - file: lecture-04-optimize
 - file: lecture-05-integrate
 - file: lecture-06-linalg
+- file: lecture-07-regression
 # - file: markdown
 # - file: notebooks
 # - file: markdown-notebooks
