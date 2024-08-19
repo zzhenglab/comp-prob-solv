@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Notebooks with MyST Markdown &#8212; Computational Problem Solving in the Chemical Sciences</title>
+    <title>Lecture 1: Introduction to Python for the Chemical Sciences &#8212; Computational Problem Solving in the Chemical Sciences</title>
   
   
   
@@ -57,9 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-01-introduction';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lecture 4: Chemical Reaction Equilibria and Roots of Equations" href="lecture-04-optimization.html" />
+    <link rel="prev" title="Welcome to Computational Problem Solving in the Chemical Sciences" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,11 +179,13 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-04-optimize.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-05-integrate.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-06-linalg.html">Lecture 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-07-regression.html">Lecture 7: Orders of Reaction and Linear Regression Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-08-calibration.html">Lecture 8: Calibration Data, Confidence Intervals, and Correlation Analysis</a></li>
 </ul>
 
     </div>
@@ -255,7 +257,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmarkdown-notebooks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture-01-introduction.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -285,7 +287,7 @@
       
       
       
-      <li><a href="_sources/markdown-notebooks.md" target="_blank"
+      <li><a href="_sources/lecture-01-introduction.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -295,7 +297,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -369,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notebooks with MyST Markdown</h1>
+    <h1>Lecture 1: Introduction to Python for the Chemical Sciences</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -379,9 +381,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-let-s-get-python">Step 1: Let’s Get Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-let-s-get-jupyter">Step 2: Let’s Get Jupyter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-let-s-get-started">Step 3: Let’s Get Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-math">Python Can Do Math</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -393,50 +398,43 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notebooks-with-myst-markdown">
-<h1>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Link to this heading">#</a></h1>
-<p>Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-See <a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">the Notebooks with MyST Markdown documentation</a> for more detailed instructions.
-This page shows off a notebook written in MyST Markdown.</p>
-<section id="an-example-cell">
-<h2>An example cell<a class="headerlink" href="#an-example-cell" title="Link to this heading">#</a></h2>
-<p>With MyST Markdown, you can define code cells with a directive like so:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Jupyter Book uses <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">Jupytext</a> to convert text-based files to notebooks, and can support <a class="reference external" href="https://jupyterbook.org/file-types/jupytext.html">many other text-based notebook files</a>.</p>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-1-introduction-to-python-for-the-chemical-sciences">
+<h1>Lecture 1: Introduction to Python for the Chemical Sciences<a class="headerlink" href="#lecture-1-introduction-to-python-for-the-chemical-sciences" title="Link to this heading">#</a></h1>
+<p>Welcome to “Computational Problem Solving in the Chemical Sciences”! This course is designed to introduce you to how you can solve problems in chemistry, chemical engineering, chemical physics, chemical biology, and more using the modern numerical tools. While we will focus our attention on Python, mainly for the reason that it is a coveted skill in the workforce these days, there are many other possible tools that you can use to solve problems in the chemical sciences. These include spreadsheets (like Excel and Google Sheets), software packages with graphical user interfaces (like Origin, Mathematica, and MATLAB), and other programming languages (like R, Julia, and C++). Additionally, as we proceed further into the course, we will also introduce you to how Python can be used to simulate matter. This will include Monte Carlo and molecular dynamics simulations, however, Python and other languages are routinely used for quantum chemistry calculations, and more.</p>
+<section id="step-1-let-s-get-python">
+<h2>Step 1: Let’s Get Python<a class="headerlink" href="#step-1-let-s-get-python" title="Link to this heading">#</a></h2>
+<p>The first thing you need to do is to install Python on your computer. You can do this by visiting the <a class="reference external" href="https://www.python.org/downloads/">Python website</a>. We recommend that you install Python 3.8 or later. If you are using a Mac or Linux computer, Python is already installed on your computer. You can check this by opening a terminal and typing <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">--version</span></code>. If you are using a Windows computer, you can open a command prompt and type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>. If you see a version number, then Python is already installed on your computer. If you see an error message, then you need to install Python.</p>
 </section>
-<section id="create-a-notebook-with-myst-markdown">
-<h2>Create a notebook with MyST Markdown<a class="headerlink" href="#create-a-notebook-with-myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST Markdown notebooks are defined by two things:</p>
-<ol class="arabic simple">
-<li><p>YAML metadata that is needed to understand if / how it should convert text files to notebooks (including information about the kernel needed).
-See the YAML at the top of this page for example.</p></li>
-<li><p>The presence of <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> directives, which will be executed with your book.</p></li>
-</ol>
-<p>That’s all that is needed to get started!</p>
+<section id="step-2-let-s-get-jupyter">
+<h2>Step 2: Let’s Get Jupyter<a class="headerlink" href="#step-2-let-s-get-jupyter" title="Link to this heading">#</a></h2>
+<p>The next thing you need to do is to install Jupyter on your computer. You can do this by opening a terminal or command prompt and typing <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">jupyter</span></code>. If you are using a Mac or Linux computer, you may need to type <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">jupyter</span></code>. If you are using a Windows computer, you can type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">jupyter</span></code>. Once you have installed Jupyter, you can start it by typing <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> in the terminal or command prompt. This will open a new tab in your web browser with the Jupyter interface.</p>
 </section>
-<section id="quickly-add-yaml-metadata-for-myst-notebooks">
-<h2>Quickly add YAML metadata for MyST Notebooks<a class="headerlink" href="#quickly-add-yaml-metadata-for-myst-notebooks" title="Link to this heading">#</a></h2>
-<p>If you have a markdown file and you’d like to quickly add YAML metadata to it, so that Jupyter Book will treat it as a MyST Markdown Notebook, run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">markdownfile</span><span class="o">.</span><span class="n">md</span>
+<section id="step-3-let-s-get-started">
+<h2>Step 3: Let’s Get Started<a class="headerlink" href="#step-3-let-s-get-started" title="Link to this heading">#</a></h2>
+<section id="python-can-do-math">
+<h3>Python Can Do Math<a class="headerlink" href="#python-can-do-math" title="Link to this heading">#</a></h3>
+<p>Python is a powerful programming language that can be used to solve a wide range of problems in the chemical sciences. One of the things that Python is really good at is math. You can use Python to perform all kinds of mathematical operations, from simple arithmetic to complex calculus. For example, you can use Python to add two numbers together:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
 </pre></div>
 </div>
+<p>This will return <code class="docutils literal notranslate"><span class="pre">4</span></code>, which is the sum of <code class="docutils literal notranslate"><span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code>. You can also use Python to multiply two numbers together:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>This will return <code class="docutils literal notranslate"><span class="pre">12</span></code>, which is the product of <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code>. You can use Python to perform all kinds of mathematical operations, including addition, subtraction, multiplication, division, exponentiation, and more. Python also has a number of built-in functions that you can use to perform more complex mathematical operations. For example, you can use the <code class="docutils literal notranslate"><span class="pre">math</span></code> module to calculate the square root of a number:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">math</span></code> module is a <strong>library</strong> of Python code that contains a collection of functions and constants for performing mathematical operations. You can use the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement to load the <code class="docutils literal notranslate"><span class="pre">math</span></code> module into your Python program, and then you can use the functions and constants in the <code class="docutils literal notranslate"><span class="pre">math</span></code> module by prefixing them with <code class="docutils literal notranslate"><span class="pre">math.</span></code>. For more information about the <code class="docutils literal notranslate"><span class="pre">math</span></code> module, you can read the <a class="reference external" href="https://docs.python.org/3/library/math.html">Python documentation</a>.</p>
+</div>
+</aside>
+<p>This will return <code class="docutils literal notranslate"><span class="pre">3.0</span></code>, which is the square root of <code class="docutils literal notranslate"><span class="pre">9</span></code>. You can use Python to perform all kinds of mathematical operations, from simple arithmetic to complex calculus. Python is a powerful programming language that can be used to solve a wide range of problems in the chemical sciences.</p>
+</section>
 </section>
 </section>
 
@@ -470,6 +468,24 @@ See the YAML at the top of this page for example.</p></li>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to Computational Problem Solving in the Chemical Sciences</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lecture-04-optimization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -486,9 +502,12 @@ See the YAML at the top of this page for example.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-let-s-get-python">Step 1: Let’s Get Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-let-s-get-jupyter">Step 2: Let’s Get Jupyter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-let-s-get-started">Step 3: Let’s Get Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-math">Python Can Do Math</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
