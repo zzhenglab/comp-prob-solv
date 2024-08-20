@@ -6,6 +6,7 @@ root: intro
 chapters:
 - file: lecture-01-introduction
 - file: lecture-02-packages
+- file: lecture-03-control
 - file: lecture-04-optimization
 - file: lecture-05-integration
 - file: lecture-06-linalg
