@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -184,6 +185,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Lecture 2: Key Python Packages and Their Main Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-03-control.html">Lecture 3: Control Structures in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-06-linalg.html">Lecture 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a></li>
@@ -290,7 +292,7 @@
       
       
       
-      <li><a href="_sources/lecture-01-introduction.ipynb" target="_blank"
+      <li><a href="_sources/lecture-01-introduction.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +302,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -384,10 +386,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-let-s-get-python">Step 1: Let’s Get Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-let-s-get-jupyter">Step 2: Let’s Get Jupyter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-let-s-get-started">Step 3: Let’s Get Started</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-math">Python Can Do Math</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-getting-python-installed">Step 1: Getting Python Installed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-installing-jupyter-notebook">Step 2: Installing Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-let-s-get-started-with-python">Step 3: Let’s Get Started with Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-and-mathematics">Python and Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-chemistry">Python Can Do Chemistry</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-graphing">Python Can Do Graphing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-more">Python Can Do More</a></li>
@@ -406,44 +409,101 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-1-introduction-to-python-for-the-chemical-sciences">
 <h1>Lecture 1: Introduction to Python for the Chemical Sciences<a class="headerlink" href="#lecture-1-introduction-to-python-for-the-chemical-sciences" title="Link to this heading">#</a></h1>
-<p>Welcome to “Computational Problem Solving in the Chemical Sciences”! This course is designed to introduce you to how you can solve problems in chemistry, chemical engineering, chemical physics, chemical biology, and more using the modern numerical tools. While we will focus our attention on Python, mainly for the reason that it is a coveted skill in the workforce these days, there are many other possible tools that you can use to solve problems in the chemical sciences. These include spreadsheets (like Excel and Google Sheets), software packages with graphical user interfaces (like Origin, Mathematica, and MATLAB), and other programming languages (like R, Julia, and C++). Additionally, as we proceed further into the course, we will also introduce you to how Python can be used to simulate matter. This will include Monte Carlo and molecular dynamics simulations, however, Python and other languages are routinely used for quantum chemistry calculations, and more.</p>
-<section id="step-1-let-s-get-python">
-<h2>Step 1: Let’s Get Python<a class="headerlink" href="#step-1-let-s-get-python" title="Link to this heading">#</a></h2>
-<p>The first thing you need to do is to install Python on your computer. You can do this by visiting the <a class="reference external" href="https://www.python.org/downloads/">Python website</a>. We recommend that you install Python 3.8 or later. If you are using a Mac or Linux computer, Python is already installed on your computer. You can check this by opening a terminal and typing</p>
+<p>Welcome to <strong>“Computational Problem Solving in the Chemical Sciences”!</strong> This course is designed to empower you with the skills to tackle a wide range of problems in chemistry, chemical engineering, chemical physics, chemical biology, and beyond, using modern numerical tools. While we will primarily focus on Python—a language highly valued in today’s workforce—it’s important to recognize that there are many other tools at your disposal for solving problems in the chemical sciences.</p>
+<p>These tools range from spreadsheet software like Excel and Google Sheets to specialized software packages with graphical user interfaces, such as Origin, Mathematica, and MATLAB. Additionally, other programming languages like R, Julia, and C++ are often employed for various scientific computing tasks.</p>
+<p>As we progress through the course, you’ll not only learn the fundamentals of Python but also how to apply it to simulate matter at different scales. This will include techniques like Monte Carlo and molecular dynamics simulations. We’ll also touch upon Python’s use in quantum chemistry calculations, demonstrating its versatility and power across diverse areas of research.</p>
+<p>By the end of this course, you’ll have a solid foundation in using Python to solve complex problems in the chemical sciences, preparing you for both academic research and industry applications.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this lecture, you should be able to:</p>
+<ul class="simple">
+<li><p>Install Python and Jupyter Notebook on your computer.</p></li>
+<li><p>Perform basic mathematical operations in Python.</p></li>
+<li><p>Use Python to solve chemical problems, such as calculating molar masses and the number of moles.</p></li>
+<li><p>Create basic plots using Python’s <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library.</p></li>
+</ul>
+</section>
+<section id="step-1-getting-python-installed">
+<h2>Step 1: Getting Python Installed<a class="headerlink" href="#step-1-getting-python-installed" title="Link to this heading">#</a></h2>
+<p>Before we dive into using Python, you’ll need to have it installed on your computer. Python is available across all major operating systems, and installation is straightforward. Here’s how you can get started:</p>
+<ol class="arabic">
+<li><p><strong>Download and Install Python:</strong></p>
+<ul class="simple">
+<li><p>Visit the official <a class="reference external" href="https://www.python.org/downloads/">Python website</a> and download the latest version of Python 3 (we recommend version 3.8 or later).</p></li>
+<li><p>Follow the installation instructions specific to your operating system.</p></li>
+</ul>
+</li>
+<li><p><strong>Check if Python is Already Installed:</strong></p>
+<ul>
+<li><p><strong>Mac and Linux Users:</strong> Python typically comes pre-installed. To check, open a terminal and type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>--version
 </pre></div>
 </div>
-<p>If you are using a Windows computer, you can open a command prompt and type</p>
+<p>If a version number appears, you’re all set. If not, you’ll need to install Python from the website above.</p>
+</li>
+<li><p><strong>Windows Users:</strong> Open a command prompt and type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version
 </pre></div>
 </div>
-<p>If you see a version number, then Python is already installed on your computer. If you see an error message, then you need to install Python.</p>
+<p>If you see a version number, Python is installed. If you get an error, you’ll need to install Python.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Windows-Specific Note:</strong></p>
+<ul class="simple">
+<li><p>During installation on Windows, make sure to check the box that says “Add Python to PATH.” This will make Python accessible from the command line.</p></li>
+</ul>
+</li>
+</ol>
+<p>Once Python is installed and verified, you’re ready to start coding!</p>
 </section>
-<section id="step-2-let-s-get-jupyter">
-<h2>Step 2: Let’s Get Jupyter<a class="headerlink" href="#step-2-let-s-get-jupyter" title="Link to this heading">#</a></h2>
-<p>The next thing you need to do is to install Jupyter on your computer. You can do this by opening a terminal or command prompt and typing</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyter
-</pre></div>
-</div>
-<p>If you are using a Mac or Linux computer, you may need to type</p>
+<section id="step-2-installing-jupyter-notebook">
+<h2>Step 2: Installing Jupyter Notebook<a class="headerlink" href="#step-2-installing-jupyter-notebook" title="Link to this heading">#</a></h2>
+<p>Next, you’ll need to install Jupyter Notebook, a powerful tool that allows you to create and share documents containing live code, equations, visualizations, and narrative text. Follow these steps to get Jupyter up and running on your computer:</p>
+<ol class="arabic">
+<li><p><strong>Install Jupyter Notebook:</strong></p>
+<ul>
+<li><p><strong>For Mac and Linux Users:</strong>
+Open a terminal and type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>jupyter
 </pre></div>
 </div>
-<p>If you are using a Windows computer, you can type</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">pip3</span></code> doesn’t work, try:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jupyter
+</pre></div>
+</div>
+</li>
+<li><p><strong>For Windows Users:</strong>
+Open a command prompt and type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jupyter
 </pre></div>
 </div>
-<p>Once you have installed Jupyter, you can start it by typing</p>
+<p>This command ensures that Jupyter is installed using the version of Python you have on your system.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Launching Jupyter Notebook:</strong></p>
+<ul>
+<li><p>After installation, you can start Jupyter Notebook by typing the following command in your terminal or command prompt:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
 </pre></div>
 </div>
-<p>in the terminal or command prompt. This will open a new tab in your web browser with the Jupyter interface.</p>
+</li>
+<li><p>This will automatically open a new tab in your default web browser, presenting the Jupyter interface. From here, you can create new notebooks, organize your projects, and start coding!</p></li>
+</ul>
+</li>
+</ol>
+<p>With Jupyter Notebook installed, you’re now ready to start exploring Python interactively!</p>
 </section>
-<section id="step-3-let-s-get-started">
-<h2>Step 3: Let’s Get Started<a class="headerlink" href="#step-3-let-s-get-started" title="Link to this heading">#</a></h2>
-<section id="python-can-do-math">
-<h3>Python Can Do Math<a class="headerlink" href="#python-can-do-math" title="Link to this heading">#</a></h3>
-<p>Python is a powerful programming language that can be used to solve a wide range of problems in the chemical sciences. One of the things that Python is really good at is math. You can use Python to perform all kinds of mathematical operations, from simple arithmetic to complex calculus. For example, you can use Python to add two numbers together:</p>
+<section id="step-3-let-s-get-started-with-python">
+<h2>Step 3: Let’s Get Started with Python<a class="headerlink" href="#step-3-let-s-get-started-with-python" title="Link to this heading">#</a></h2>
+<section id="python-and-mathematics">
+<h3>Python and Mathematics<a class="headerlink" href="#python-and-mathematics" title="Link to this heading">#</a></h3>
+<p>Python is a versatile programming language that excels at solving a wide range of problems in the chemical sciences, particularly when it comes to mathematical computations. Whether you’re performing simple arithmetic or tackling more advanced calculus, Python is equipped to handle it all.</p>
+<p>Let’s start with some basic math operations in Python:</p>
+<ul class="simple">
+<li><p><strong>Addition:</strong> You can add two numbers easily:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
@@ -456,7 +516,9 @@ document.write(`
 </div>
 </div>
 </div>
-<p>This will return <code class="docutils literal notranslate"><span class="pre">4</span></code>, which is the sum of <code class="docutils literal notranslate"><span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code>. You can also use Python to multiply two numbers together:</p>
+<ul class="simple">
+<li><p><strong>Multiplication:</strong> Multiplication is just as straightforward:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
@@ -469,7 +531,21 @@ document.write(`
 </div>
 </div>
 </div>
-<p>This will return <code class="docutils literal notranslate"><span class="pre">12</span></code>, which is the product of <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code>. You can use Python to perform all kinds of mathematical operations, including addition (<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code>), subtraction (<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code>), multiplication (<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code>), division (<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code>), exponentiation (for example, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">b</span></code> gives <span class="math notranslate nohighlight">\(a^b\)</span>), and more. Python also has a number of built-in functions that you can use to perform more complex mathematical operations. For example, you can use the <code class="docutils literal notranslate"><span class="pre">math</span></code> module to calculate the square root of a number:</p>
+<p>Python supports a variety of mathematical operations, including:</p>
+<ul class="simple">
+<li><p><strong>Subtraction:</strong> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code></p></li>
+<li><p><strong>Division:</strong> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code></p></li>
+<li><p><strong>Exponentiation:</strong> <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">b</span></code> (which gives <span class="math notranslate nohighlight">\(a^b\)</span>)</p></li>
+</ul>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">math</span></code> module is a built-in library in Python. To use it, you must first import it using the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement. Once imported, you can access various mathematical functions and constants by prefixing them with <code class="docutils literal notranslate"><span class="pre">math</span></code>. For more details, refer to the <a class="reference external" href="https://docs.python.org/3/library/math.html">Python documentation</a>.</p>
+</div>
+</aside>
+<p>But Python’s capabilities extend far beyond basic arithmetic. For example, to calculate the square root of a number, you can use the <code class="docutils literal notranslate"><span class="pre">math</span></code> module, which is a collection of functions and constants for performing mathematical operations.</p>
+<p>Here’s how you can use the <code class="docutils literal notranslate"><span class="pre">math</span></code> module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -483,31 +559,36 @@ document.write(`
 </div>
 </div>
 </div>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">math</span></code> module is a <strong>library</strong> of Python code that contains a collection of functions and constants for performing mathematical operations. You can use the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement to load the <code class="docutils literal notranslate"><span class="pre">math</span></code> module into your Python program, and then you can use the functions and constants in the <code class="docutils literal notranslate"><span class="pre">math</span></code> module by prefixing them with <code class="docutils literal notranslate"><span class="pre">math.</span></code>. For more information about the <code class="docutils literal notranslate"><span class="pre">math</span></code> module, you can read the <a class="reference external" href="https://docs.python.org/3/library/math.html">Python documentation</a>.</p>
+<p>In this example, you’ve also seen your first instance of importing a module in Python. The <code class="docutils literal notranslate"><span class="pre">import</span></code> statement allows you to bring additional functionality into your Python programs. In this case, by importing the <code class="docutils literal notranslate"><span class="pre">math</span></code> module, you gain access to a suite of mathematical tools that go beyond basic operations.</p>
+<p>Once imported, you can use any function from the module by prefixing it with <code class="docutils literal notranslate"><span class="pre">math</span></code>. For instance, <code class="docutils literal notranslate"><span class="pre">math.sqrt()</span></code> is the function to compute the square root.</p>
+<hr class="docutils" />
+<p>Let’s put this into practice with a couple of exercises:</p>
+<ol class="arabic">
+<li><p><strong>Exercise 1:</strong>
+Calculate the value of <span class="math notranslate nohighlight">\(2^3 + 4^2\)</span> using Python.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">You can use the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator for exponentiation.</p>
 </div>
-</aside>
-<p>This will return <code class="docutils literal notranslate"><span class="pre">3.0</span></code>, which is the square root of <code class="docutils literal notranslate"><span class="pre">9</span></code>. You can use Python to perform all kinds of mathematical operations, from simple arithmetic to complex calculus. Python is a powerful programming language that can be used to solve a wide range of problems in the chemical sciences.</p>
-<p>In this example, you saw your first instance of importing a module in Python. The <code class="docutils literal notranslate"><span class="pre">import</span></code> statement is used to load a module into your Python program. In this case, we loaded the <code class="docutils literal notranslate"><span class="pre">math</span></code> module, which is a library of Python code that contains a collection of functions and constants for performing mathematical operations. Once you have imported a module, you can use the functions and constants in the module by prefixing them with the module name and a dot (<code class="docutils literal notranslate"><span class="pre">.</span></code>). For example, we used the <code class="docutils literal notranslate"><span class="pre">math.sqrt()</span></code> function to calculate the square root of a number.</p>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Calculate the value of <span class="math notranslate nohighlight">\(2^3 + 4^2\)</span> using Python.</p>
+</details></li>
+<li><p><strong>Exercise 2:</strong>
+Calculate the value of <span class="math notranslate nohighlight">\(\sqrt{16} + \sqrt{25}\)</span> using Python.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Remember to use the <code class="docutils literal notranslate"><span class="pre">math.sqrt()</span></code> function for square roots.</p>
 </div>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Calculate the value of <span class="math notranslate nohighlight">\(\sqrt{16} + \sqrt{25}\)</span> using Python.</p>
-</div>
+</details></li>
+</ol>
 </section>
 <section id="python-can-do-chemistry">
 <h3>Python Can Do Chemistry<a class="headerlink" href="#python-can-do-chemistry" title="Link to this heading">#</a></h3>
-<p>Python is also a powerful programming language that can be used to solve problems in chemistry. You can use Python to perform all kinds of chemical calculations, from simple stoichiometry to complex quantum chemistry. For example, you can use Python to calculate the molar mass of a compound:</p>
+<p>Python is not just a powerful tool for mathematics; it can also be used to solve a wide range of problems in chemistry. Whether you’re performing basic stoichiometric calculations or inquiring into complex quantum chemistry, Python has you covered.</p>
+<p>For example, let’s calculate the molar mass of carbon dioxide (CO<span class="math notranslate nohighlight">\(_2\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the molar mass of carbon dioxide (CO2)</span>
-<span class="n">carbon_mass</span> <span class="o">=</span> <span class="mf">12.011</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">carbon_mass</span> <span class="o">=</span> <span class="mf">12.011</span>
 <span class="n">oxygen_mass</span> <span class="o">=</span> <span class="mf">16.00</span>
 <span class="n">molar_mass</span> <span class="o">=</span> <span class="n">carbon_mass</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">oxygen_mass</span>
 <span class="n">molar_mass</span>
@@ -520,7 +601,8 @@ document.write(`
 </div>
 </div>
 </div>
-<p>This will return <code class="docutils literal notranslate"><span class="pre">44.01</span></code>, which is the molar mass of carbon dioxide (CO<span class="math notranslate nohighlight">\(_2\)</span>). In this example, you saw your first instance of using variables in Python. A variable is a name that refers to a value. You can use variables to store values and perform calculations. In this case, we used variables to store the atomic masses of carbon (<code class="docutils literal notranslate"><span class="pre">carbon_mass</span></code>) and oxygen (<code class="docutils literal notranslate"><span class="pre">oxygen_mass</span></code>), and then we used those variables to calculate the molar mass of carbon dioxide (<code class="docutils literal notranslate"><span class="pre">molar_mass</span></code>). You can also use Python to calculate the number of moles of a compound:</p>
+<p>In this example, you’ve encountered your first use of variables in Python. A variable is simply a name that refers to a value. You can use variables to store values and perform calculations. In this case, we stored the atomic masses of carbon (<code class="docutils literal notranslate"><span class="pre">carbon_mass</span></code>) and oxygen (<code class="docutils literal notranslate"><span class="pre">oxygen_mass</span></code>) as variables, and then used these to calculate the molar mass of CO<span class="math notranslate nohighlight">\(_2\)</span>.</p>
+<p>Python can also help you determine the number of moles of a compound:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span> <span class="o">=</span> <span class="mf">10.0</span>
@@ -536,7 +618,8 @@ document.write(`
 </div>
 </div>
 </div>
-<p>This will return <code class="docutils literal notranslate"><span class="pre">0.227</span></code>, which is the number of moles of carbon dioxide (CO<span class="math notranslate nohighlight">\(_2\)</span>) in 10.0 grams of the compound. You can use Python to perform all kinds of chemical calculations, from simple stoichiometry to complex quantum chemistry. Each variable in Python carries a data type. In the above example, <code class="docutils literal notranslate"><span class="pre">mass</span></code> and <code class="docutils literal notranslate"><span class="pre">molar_mass</span></code> are of type <code class="docutils literal notranslate"><span class="pre">float</span></code>, which is a data type that represents real numbers. The result of the division operation is also of type <code class="docutils literal notranslate"><span class="pre">float</span></code>. Python has several built-in data types, including <code class="docutils literal notranslate"><span class="pre">int</span></code> (for integers), <code class="docutils literal notranslate"><span class="pre">float</span></code> (for real numbers), <code class="docutils literal notranslate"><span class="pre">str</span></code> (for strings), <code class="docutils literal notranslate"><span class="pre">bool</span></code> (for Boolean values), and more. You can determine the data type of a variable using the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function:</p>
+<p>As you can see, Python allows you to easily perform all kinds of chemical calculations. Each variable in Python has a data type, which determines the kind of data it can hold. In the above example, <code class="docutils literal notranslate"><span class="pre">mass</span></code> and <code class="docutils literal notranslate"><span class="pre">molar_mass</span></code> are of type <code class="docutils literal notranslate"><span class="pre">float</span></code>, meaning they represent real numbers. The result of the division operation (<code class="docutils literal notranslate"><span class="pre">moles</span></code>) is also a <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p>
+<p>You can determine the data type of any variable using the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span>
@@ -549,19 +632,36 @@ document.write(`
 </div>
 </div>
 </div>
-<p>This will return <code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'float'&gt;</span></code>, which indicates that <code class="docutils literal notranslate"><span class="pre">mass</span></code> is of type <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Calculate the molar mass of water (H<span class="math notranslate nohighlight">\(_2\)</span>O) using Python.</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>Exercise 1:</strong>
+Calculate the molar mass of water (H<span class="math notranslate nohighlight">\(_2\)</span>O) using Python.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Remember that the atomic masses of hydrogen and oxygen are approximately 1.008 and 16.00, respectively.</p>
 </div>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Calculate the number of moles of water (H<span class="math notranslate nohighlight">\(_2\)</span>O) in 100.0 grams of the compound using Python.</p>
+</details></li>
+<li><p><strong>Exercise 2:</strong>
+Calculate the number of moles of water (H<span class="math notranslate nohighlight">\(_2\)</span>O) in 100.0 grams of the compound using Python.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use the molar mass you calculated in the previous exercise.</p>
 </div>
+</details></li>
+</ol>
 </section>
 <section id="python-can-do-graphing">
 <h3>Python Can Do Graphing<a class="headerlink" href="#python-can-do-graphing" title="Link to this heading">#</a></h3>
-<p>Python is also a powerful programming language that can be used to create graphs and plots. You can use Python to visualize data, analyze trends, and communicate your results. For example, you can use Python to create a simple line plot:</p>
+<p>Python is also a powerful tool for creating graphs and plots, which are essential for visualizing data, analyzing trends, and effectively communicating your results. Let’s start with a simple example of a line plot:</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">$</span></code> symbols around the labels in the <code class="docutils literal notranslate"><span class="pre">xlabel()</span></code>, <code class="docutils literal notranslate"><span class="pre">ylabel()</span></code>, and <code class="docutils literal notranslate"><span class="pre">title()</span></code> functions are used to render the text in LaTeX format, which is commonly used for mathematical expressions. This allows you to include mathematical symbols and equations in your plots. For more information on LaTeX formatting, refer to the <a class="reference external" href="https://www.overleaf.com/learn/latex/Mathematical_expressions">Overleaf documentation</a>.</p>
+</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -571,36 +671,81 @@ document.write(`
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;y = x^2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$y = x^2$&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/39f8f31dfae92cdd00f25b2f876bd8b58c4a10036bcf2ed90a1fc0bd90c3bf11.png" src="_images/39f8f31dfae92cdd00f25b2f876bd8b58c4a10036bcf2ed90a1fc0bd90c3bf11.png" />
+<img alt="_images/6579940c207d6e9d110a29d97fcf35fc202d3f414c8fc1adb39c6ca378074dcc.png" src="_images/6579940c207d6e9d110a29d97fcf35fc202d3f414c8fc1adb39c6ca378074dcc.png" />
 </div>
 </div>
-<p>The first line has a syntax that you haven’t seen yet. This statement translates to “import the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module from the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library and give it the alias <code class="docutils literal notranslate"><span class="pre">plt</span></code>”. The <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module is a library of Python code that contains a collection of functions for creating graphs and plots. You can use the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module to create all kinds of graphs and plots, including line plots, scatter plots, bar plots, and more. In this example, we used the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function to create a line plot of the function <span class="math notranslate nohighlight">\(y = x^2\)</span>. We then used the <code class="docutils literal notranslate"><span class="pre">xlabel()</span></code>, <code class="docutils literal notranslate"><span class="pre">ylabel()</span></code>, and <code class="docutils literal notranslate"><span class="pre">title()</span></code> functions to add labels to the x-axis, y-axis, and title of the plot, respectively. Finally, we used the <code class="docutils literal notranslate"><span class="pre">show()</span></code> function to display the plot.</p>
-<p>You can use Python to create all kinds of graphs and plots, from simple line plots to complex 3D plots. Python has a number of libraries that you can use to create graphs and plots, including <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, and <code class="docutils literal notranslate"><span class="pre">plotly</span></code>. Each of these libraries has its own strengths and weaknesses, so you may need to experiment with different libraries to find the one that works best for your needs.</p>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Create a line plot of the function <span class="math notranslate nohighlight">\(y = x^3\)</span> for <span class="math notranslate nohighlight">\(x = 1, 2, 3, 4, 5\)</span> using Python.</p>
+<p>In the first line, we encounter a new syntax: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code>. This statement means, “import the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module from the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library and give it the alias <code class="docutils literal notranslate"><span class="pre">plt</span></code>.” The <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module is part of the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library, which is a powerful tool for creating a wide variety of graphs and plots.</p>
+<p>In this example, we use the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function to create a line plot of the function <span class="math notranslate nohighlight">\(y = x^2\)</span>. We then use <code class="docutils literal notranslate"><span class="pre">xlabel()</span></code>, <code class="docutils literal notranslate"><span class="pre">ylabel()</span></code>, and <code class="docutils literal notranslate"><span class="pre">title()</span></code> to label the x-axis, y-axis, and add a title to the plot, respectively. Finally, <code class="docutils literal notranslate"><span class="pre">show()</span></code> is used to display the plot.</p>
+<p>Python offers several libraries for creating graphs and plots, each with its own strengths and use cases:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>:</strong> Great for creating basic plots like line plots, scatter plots, and bar plots.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">seaborn</span></code>:</strong> Built on top of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, it offers enhanced statistical plotting and a more attractive default style.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">plotly</span></code>:</strong> Ideal for creating interactive and complex plots, including 3D plots.</p></li>
+</ul>
+<p>You might find yourself experimenting with different libraries to determine which one best fits your specific needs.</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>Exercise 1:</strong>
+Create a line plot of the function <span class="math notranslate nohighlight">\(y = x^3\)</span> for <span class="math notranslate nohighlight">\(x = 1, 2, 3, 4, 5\)</span> using Python.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Modify the <code class="docutils literal notranslate"><span class="pre">y</span></code> values to reflect the function <span class="math notranslate nohighlight">\(y = x^3\)</span>.</p>
 </div>
-<div class="admonition-exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Create a scatter plot of the function <span class="math notranslate nohighlight">\(y = x^2\)</span> for <span class="math notranslate nohighlight">\(x = 1, 2, 3, 4, 5\)</span> using Python.</p>
+</details></li>
+<li><p><strong>Exercise 2:</strong>
+Create a scatter plot of the function <span class="math notranslate nohighlight">\(y = x^2\)</span> for <span class="math notranslate nohighlight">\(x = 1, 2, 3, 4, 5\)</span> using Python.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use the <code class="docutils literal notranslate"><span class="pre">scatter()</span></code> function from <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> to create the scatter plot.</p>
 </div>
+</details></li>
+<li><p><strong>Challenge:</strong>
+Create a plot that shows both <span class="math notranslate nohighlight">\(y = x^2\)</span> and <span class="math notranslate nohighlight">\(y = x^3\)</span> on the same graph. Use different colors and add a legend to differentiate between the two lines.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">You can use the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function twice to plot both functions on the same graph. Use the <code class="docutils literal notranslate"><span class="pre">legend()</span></code> function to add a legend.</p>
+</div>
+</details></li>
+</ol>
 </section>
 <section id="python-can-do-more">
 <h3>Python Can Do More<a class="headerlink" href="#python-can-do-more" title="Link to this heading">#</a></h3>
-<p>As a taste of what lies beyond this course, Python can be used to solve a wide range of problems in the chemical sciences. You can use Python to</p>
+<p>Python’s versatility extends far beyond what we’ll cover in this course. As you continue your journey in the chemical sciences, you’ll find Python to be an invaluable tool for tackling a wide array of problems. Here’s a glimpse of what Python can help you achieve:</p>
 <ul class="simple">
-<li><p>Perform statistical analysis of data (using libraries like <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>)</p></li>
-<li><p>Simulate matter (using libraries like <code class="docutils literal notranslate"><span class="pre">ase</span></code>, <code class="docutils literal notranslate"><span class="pre">pyscf</span></code>, <code class="docutils literal notranslate"><span class="pre">quacc</span></code>, <code class="docutils literal notranslate"><span class="pre">pymatgen</span></code>, and <code class="docutils literal notranslate"><span class="pre">cantera</span></code>)</p></li>
-<li><p>And <a class="reference external" href="https://github.com/lmmentel/awesome-python-chemistry">more</a>!</p></li>
+<li><p><strong>Statistical Analysis of Data:</strong>
+Python can handle complex statistical analyses with ease, using powerful libraries such as:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>: For numerical operations and array processing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scipy</span></code>: For advanced scientific computations, including statistics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>: For data manipulation and analysis, particularly with tabular data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>: For statistical modeling and testing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>: For machine learning and predictive modeling.</p></li>
+</ul>
+</li>
+<li><p><strong>Simulating Matter:</strong>
+Python also excels in simulating matter, which is crucial for research in the chemical sciences. Key libraries include:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ase</span></code>: The Atomic Simulation Environment for setting up, manipulating, running, visualizing, and analyzing atomistic simulations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyscf</span></code>: For quantum chemistry and electronic structure calculations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">quacc</span></code>: An automated workflow engine for quantum chemistry and materials science.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pymatgen</span></code>: The Python Materials Genomics library, useful for materials analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cantera</span></code>: For thermodynamic, kinetic, and transport properties of chemical reactions.</p></li>
+</ul>
+</li>
+<li><p><strong>And Much More:</strong>
+The possibilities with Python are vast. For more resources and tools specifically tailored to chemistry, check out the <a class="reference external" href="https://github.com/lmmentel/awesome-python-chemistry">awesome-python-chemistry</a> repository.</p></li>
 </ul>
 </section>
 </section>
@@ -670,10 +815,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-let-s-get-python">Step 1: Let’s Get Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-let-s-get-jupyter">Step 2: Let’s Get Jupyter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-let-s-get-started">Step 3: Let’s Get Started</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-math">Python Can Do Math</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-getting-python-installed">Step 1: Getting Python Installed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-installing-jupyter-notebook">Step 2: Installing Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-let-s-get-started-with-python">Step 3: Let’s Get Started with Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-and-mathematics">Python and Mathematics</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-chemistry">Python Can Do Chemistry</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-graphing">Python Can Do Graphing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-can-do-more">Python Can Do More</a></li>
