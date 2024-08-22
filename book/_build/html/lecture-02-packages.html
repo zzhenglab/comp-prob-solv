@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lecture 2: Key Python Packages and Their Main Features &#8212; Computational Problem Solving in the Chemical Sciences</title>
+    <title>Lecture 2: Essential Python Packages for the Chemical Sciences &#8212; Computational Problem Solving in the Chemical Sciences</title>
   
   
   
@@ -182,7 +182,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture-01-introduction.html">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 2: Key Python Packages and Their Main Features</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 2: Essential Python Packages for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-03-control.html">Lecture 3: Control Structures in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
@@ -290,7 +290,7 @@
       
       
       
-      <li><a href="_sources/lecture-02-packages.ipynb" target="_blank"
+      <li><a href="_sources/lecture-02-packages.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +300,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -374,7 +374,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lecture 2: Key Python Packages and Their Main Features</h1>
+    <h1>Lecture 2: Essential Python Packages for the Chemical Sciences</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -384,27 +384,37 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">NumPy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays">NumPy Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-the-foundation-of-scientific-computing-in-python">NumPy: The Foundation of Scientific Computing in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-numpy">Key Features of NumPy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-numpy-arrays">Working with NumPy Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-using-arrays">Creating and Using Arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-and-vector-operations">Matrix and Vector Operations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-matrix-operations">Advanced Matrix Operations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-arrays-with-specific-properties">Generating Arrays with Specific Properties</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy">SciPy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Key Features</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Key Features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots">Scatter Plots</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-plots">Line Plots</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">Histograms</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-plots">Customizing Plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-a-powerful-tool-for-scientific-computing">SciPy: A Powerful Tool for Scientific Computing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-scipy">Key Features of SciPy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Key Features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series">Series</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-creating-publication-quality-visualizations">Matplotlib: Creating Publication-Quality Visualizations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-matplotlib">Key Features of Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-basic-plots-with-matplotlib">Creating Basic Plots with Matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots">Scatter Plots</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#line-plots">Line Plots</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">Histograms</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-your-plots">Customizing Your Plots</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-powerful-data-manipulation-in-python">Pandas: Powerful Data Manipulation in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-pandas">Key Features of Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-the-1d-data-structure">Series: The 1D Data Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe-the-2d-data-structure">DataFrame: The 2D Data Structure</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-and-writing-data">Reading and Writing Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-data">Filtering Data</a></li>
 </ul>
@@ -420,29 +430,43 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lecture-2-key-python-packages-and-their-main-features">
-<h1>Lecture 2: Key Python Packages and Their Main Features<a class="headerlink" href="#lecture-2-key-python-packages-and-their-main-features" title="Link to this heading">#</a></h1>
-<p>One of the reasons this course is based on Python is the rich library of packages available for the chemical sciences. While we cannot cover them all, we will introduce some of the most important ones. In this lecture, we will cover the following packages:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-2-essential-python-packages-for-the-chemical-sciences">
+<h1>Lecture 2: Essential Python Packages for the Chemical Sciences<a class="headerlink" href="#lecture-2-essential-python-packages-for-the-chemical-sciences" title="Link to this heading">#</a></h1>
+<p>One of the key strengths of Python is its extensive ecosystem of packages that cater to various scientific needs, including those in the chemical sciences. These packages extend Python’s capabilities, allowing you to perform complex calculations, analyze data, and visualize results with ease. While there are many packages available, in this lecture, we will focus on some of the most fundamental ones that you’ll be using frequently throughout this course:</p>
 <ul class="simple">
-<li><p>NumPy: numerical computing in Python</p></li>
-<li><p>SciPy: scientific computing in Python</p></li>
-<li><p>Matplotlib: plotting in Python</p></li>
-<li><p>Pandas: data manipulation in Python</p></li>
+<li><p><strong>NumPy:</strong> The foundation for numerical computing in Python. NumPy provides support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays efficiently.</p></li>
+<li><p><strong>SciPy:</strong> Built on top of NumPy, SciPy is a library used for scientific and technical computing. It includes modules for optimization, integration, interpolation, eigenvalue problems, and other advanced mathematical tasks.</p></li>
+<li><p><strong>Matplotlib:</strong> A powerful plotting library that enables you to create a wide variety of static, animated, and interactive visualizations. Matplotlib is particularly useful for generating publication-quality figures in both 2D and 3D.</p></li>
+<li><p><strong>Pandas:</strong> A versatile library for data manipulation and analysis. Pandas provides data structures like DataFrames, which allow you to work with structured data easily, making tasks such as data cleaning, transformation, and aggregation straightforward.</p></li>
 </ul>
-<section id="numpy">
-<h2>NumPy<a class="headerlink" href="#numpy" title="Link to this heading">#</a></h2>
-<p>NumPy is the fundamental package for scientific computing in Python. It provides support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays. NumPy is the foundation of many other packages in the scientific Python ecosystem, including SciPy, Matplotlib, and Pandas.</p>
-<section id="key-features">
-<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h3>
+<p>In this lecture, we will explore the core features of each of these packages, with practical examples to help you understand how they can be applied to solve problems in the chemical sciences.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this lecture, you should be able to:</p>
 <ul class="simple">
-<li><p>A powerful N-dimensional array object (e.g., vectors, matrices, etc.)</p></li>
-<li><p>Sophisticated (broadcasting) functions (e.g., element-wise operations)</p></li>
-<li><p>Useful linear algebra, Fourier transform, and random number capabilities</p></li>
+<li><p>Understand the core features and applications of NumPy, SciPy, Matplotlib, and Pandas.</p></li>
+<li><p>Perform basic numerical operations and matrix manipulations using NumPy.</p></li>
+<li><p>Create and customize plots using Matplotlib.</p></li>
+<li><p>Manipulate and analyze data using Pandas DataFrames.</p></li>
 </ul>
 </section>
-<section id="numpy-arrays">
-<h3>NumPy Arrays<a class="headerlink" href="#numpy-arrays" title="Link to this heading">#</a></h3>
-<p>NumPy arrays are the core data structure for NumPy. They are similar to Python lists but with additional features. Vectors play an important role in the chemical sciences, representing the three-dimensional positions and momenta of atoms, the orientation of electric dipoles, and the components of magnetic fields, to name a few examples. We can represent a three-dimensional vector as a NumPy array with three elements.</p>
+<section id="numpy-the-foundation-of-scientific-computing-in-python">
+<h2>NumPy: The Foundation of Scientific Computing in Python<a class="headerlink" href="#numpy-the-foundation-of-scientific-computing-in-python" title="Link to this heading">#</a></h2>
+<p>NumPy is the cornerstone of scientific computing in Python, providing essential support for large, multi-dimensional arrays and matrices. It also offers a suite of mathematical functions to operate on these arrays, making it indispensable for numerical tasks in the chemical sciences and beyond. Many other scientific libraries, including SciPy, Matplotlib, and Pandas, are built on top of NumPy.</p>
+<section id="key-features-of-numpy">
+<h3>Key Features of NumPy<a class="headerlink" href="#key-features-of-numpy" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>N-dimensional Array Object:</strong> NumPy’s array object (<code class="docutils literal notranslate"><span class="pre">ndarray</span></code>) is a versatile container for data. It can represent vectors, matrices, and higher-dimensional data structures, enabling efficient storage and manipulation of numerical data.</p></li>
+<li><p><strong>Broadcasting:</strong> Perform element-wise operations on arrays of different shapes in a flexible and efficient manner.</p></li>
+<li><p><strong>Linear Algebra, Fourier Transform, and Random Number Generation:</strong> NumPy includes a comprehensive suite of functions for these operations, which are critical in many scientific applications.</p></li>
+</ul>
+</section>
+<section id="working-with-numpy-arrays">
+<h3>Working with NumPy Arrays<a class="headerlink" href="#working-with-numpy-arrays" title="Link to this heading">#</a></h3>
+<p>NumPy arrays are the core data structure in NumPy. They are similar to Python lists but are more powerful and efficient, particularly for numerical computations. In the chemical sciences, vectors and matrices are ubiquitous, representing quantities such as atomic positions, molecular orientations, and magnetic field components.</p>
+<section id="creating-and-using-arrays">
+<h4>Creating and Using Arrays<a class="headerlink" href="#creating-and-using-arrays" title="Link to this heading">#</a></h4>
+<p>Vectors, which play a vital role in representing physical quantities in chemistry, can be created easily with NumPy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -460,7 +484,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Matrices are also a fundamental data structure in the chemical sciences, for example, to represent the Hamiltonian matrix of a molecule or a system of linears equations for balancing the stoichiometry of a chemical reaction (when doing so by hand is too arduous). We can represent a 2x2 matrix as a NumPy array with four elements.</p>
+<p>Matrices are equally important, used to represent systems of equations, Hamiltonians in quantum chemistry, and more. Here’s how you can create a 2x2 matrix:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a 2x2 matrix</span>
@@ -477,7 +501,20 @@ document.write(`
 </div>
 </div>
 </div>
-<p>In quantum chemistry, we often have to multiple matrices and vectors. NumPy provides convenience functions for these operations.</p>
+</section>
+<section id="matrix-and-vector-operations">
+<h4>Matrix and Vector Operations<a class="headerlink" href="#matrix-and-vector-operations" title="Link to this heading">#</a></h4>
+<p>Matrix and vector operations are fundamental in quantum chemistry and many other areas of chemical science. NumPy simplifies these operations:</p>
+<ul class="simple">
+<li><p><strong>Matrix-Vector Multiplication:</strong> This operation is common in quantum mechanics, where matrices represent operators and vectors represent states.</p></li>
+</ul>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="tip admonition">
+<p class="admonition-title">Best Practice</p>
+<p>Always comment your code to explain the purpose of each section, especially in complex scripts. This makes your code easier to understand and maintain.</p>
+</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a 2x2 matrix</span>
@@ -501,9 +538,11 @@ document.write(`
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Reminder</p>
-<p>For matrix multiplication, the resultant array’s shape is the product of the input arrays’ shapes. For example, if <code class="docutils literal notranslate"><span class="pre">A</span></code> is an array with shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> is an array with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">p)</span></code>, the shape of the resultant array <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">B</span></code> will be <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">p)</span></code>.</p>
+<p>For matrix multiplication, the shape of the resulting array is determined by the shapes of the input arrays. For example, if <code class="docutils literal notranslate"><span class="pre">A</span></code> has shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> has shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">p)</span></code>, then <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">A</span> <span class="pre">&#64;</span> <span class="pre">B</span></code> will have shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">p)</span></code>.</p>
 </div>
-<p>We also may want to compute the dot product of two vectors, which also finds applications in quantum chemistry, e.g., in the computation of orthonormality conditions.</p>
+<ul class="simple">
+<li><p><strong>Dot Product:</strong> The dot product is widely used in quantum chemistry, for example, in verifying the orthonormality of wavefunctions.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two 3D vectors</span>
@@ -523,7 +562,13 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Given the importance of matrices in quantum chemistry and any problem in chemical science that involves solving a set of linear equations, NumPy provides a variety of functions for matrix operations, such as computing the determinant, inverse, and eigenvalues.</p>
+</section>
+<section id="advanced-matrix-operations">
+<h4>Advanced Matrix Operations<a class="headerlink" href="#advanced-matrix-operations" title="Link to this heading">#</a></h4>
+<p>In quantum chemistry and other fields, solving linear systems, computing determinants, inverses, and eigenvalues are routine tasks. NumPy makes these operations straightforward:</p>
+<ul class="simple">
+<li><p><strong>Determinant, Inverse, and Eigenvalues:</strong></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a 2x2 matrix</span>
@@ -531,52 +576,44 @@ document.write(`
 
 <span class="c1"># Compute the determinant</span>
 <span class="n">det</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;det(M) = </span><span class="si">{</span><span class="n">det</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Create a 2x2 matrix</span>
-<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
 
 <span class="c1"># Compute the inverse</span>
 <span class="n">M_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;M_inv = </span><span class="si">{</span><span class="n">M_inv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Create a 2x2 matrix</span>
-<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;M_inv = </span><span class="se">\n</span><span class="si">{</span><span class="n">M_inv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Compute the eigenvalues</span>
 <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;eigenvalues = </span><span class="si">{</span><span class="n">eigenvalues</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>det(M) = -2.0000000000000004
-M_inv = [[-2.   1. ]
+M_inv = 
+[[-2.   1. ]
  [ 1.5 -0.5]]
 eigenvalues = [-0.37228132  5.37228132]
 </pre></div>
 </div>
 </div>
 </div>
-<p>NumPy also provides functions for generating arrays with specific properties, such as zeros, ones, and random numbers.</p>
+</section>
+<section id="generating-arrays-with-specific-properties">
+<h4>Generating Arrays with Specific Properties<a class="headerlink" href="#generating-arrays-with-specific-properties" title="Link to this heading">#</a></h4>
+<p>NumPy also provides convenient functions for creating arrays with predefined properties, such as arrays filled with zeros, ones, or random numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a 3x3 array of zeros</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
 <span class="c1"># Create a 3x3 array of ones</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
 <span class="c1"># Create a 3x3 array of random numbers</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -588,53 +625,67 @@ eigenvalues = [-0.37228132  5.37228132]
 [[1. 1. 1.]
  [1. 1. 1.]
  [1. 1. 1.]]
-[[0.21685433 0.23187699 0.64652381]
- [0.30538314 0.31339798 0.7379581 ]
- [0.06008477 0.11454762 0.8682954 ]]
+[[0.89949436 0.41388139 0.89542048]
+ [0.36705687 0.97174138 0.45494552]
+ [0.5045171  0.56516319 0.49481963]]
 </pre></div>
 </div>
 </div>
 </div>
-<div class="exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Create a 3x3 matrix with random integers between 0 and 9.</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>Exercise 1:</strong> Create a 3x3 matrix with random integers between 0 and 9.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use <code class="docutils literal notranslate"><span class="pre">np.random.randint()</span></code> to generate random integers.</p>
 </div>
-<div class="exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Create a 3x3 identity matrix.</p>
+</details></li>
+<li><p><strong>Exercise 2:</strong> Create a 3x3 identity matrix.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use <code class="docutils literal notranslate"><span class="pre">np.eye()</span></code> to create an identity matrix.</p>
 </div>
+</details></li>
+</ol>
 </section>
 </section>
-<section id="scipy">
-<h2>SciPy<a class="headerlink" href="#scipy" title="Link to this heading">#</a></h2>
-<p>We aren’t going to dive too much into SciPy in this lecture, but we will return to it periodically throughout this course as it provides us elegant solutions for complex codes. Ultimately, I think it’s important to learn how to build the codes from scratch before using SciPy, but it’s a great tool to have in your toolbox.</p>
-<section id="id1">
-<h3>Key Features<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+</section>
+<section id="scipy-a-powerful-tool-for-scientific-computing">
+<h2>SciPy: A Powerful Tool for Scientific Computing<a class="headerlink" href="#scipy-a-powerful-tool-for-scientific-computing" title="Link to this heading">#</a></h2>
+<p>While we won’t delve deeply into SciPy in this lecture, it’s a library we’ll return to periodically throughout this course. SciPy builds on the foundation provided by NumPy, offering elegant and efficient solutions for a variety of complex scientific and engineering problems. However, before relying heavily on SciPy, it’s important to understand the underlying principles by building some of these solutions from scratch. Once you have a solid foundation, SciPy will become an invaluable tool in your computational toolkit.</p>
+<section id="key-features-of-scipy">
+<h3>Key Features of SciPy<a class="headerlink" href="#key-features-of-scipy" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Optimization (e.g., finding the minimum of a function, see Lecture 4)</p></li>
-<li><p>Integration (e.g., computing definite integrals, see Lecture 5)</p></li>
-<li><p>Fourier Transforms (e.g., analyzing signals)</p></li>
-<li><p>And much <a class="reference external" href="https://docs.scipy.org/doc/scipy/index.html">more</a>!</p></li>
+<li><p><strong>Optimization:</strong> SciPy provides robust tools for optimization tasks, such as finding the minimum or maximum of a function. We’ll explore these capabilities in more detail in Lecture 4, where we’ll tackle problems like finding the roots of equations in chemical reaction equilibria.</p></li>
+<li><p><strong>Integration:</strong> Whether you need to compute definite integrals or solve differential equations, SciPy offers a range of integration techniques. We’ll cover this in Lecture 5, where you’ll learn how to apply these methods to problems such as calculating the overlap integral in chemical bonding.</p></li>
+<li><p><strong>Fourier Transforms:</strong> Fourier analysis is a critical tool in many scientific fields, including signal processing and spectroscopy. SciPy makes it easy to perform Fourier transforms, enabling you to analyze signals and decompose them into their constituent frequencies.</p></li>
+<li><p><strong>And Much More:</strong> SciPy is a vast library with modules covering topics like linear algebra, statistics, and image processing. As you progress through this course, you’ll find many opportunities to leverage SciPy’s capabilities. For a full overview of what SciPy offers, you can explore the <a class="reference external" href="https://docs.scipy.org/doc/scipy/index.html">official documentation</a>.</p></li>
 </ul>
 </section>
 </section>
-<section id="matplotlib">
-<h2>Matplotlib<a class="headerlink" href="#matplotlib" title="Link to this heading">#</a></h2>
-<p>Matplotlib is a plotting library for Python that produces publication-quality figures in a variety of formats and interactive environments across platforms. Matplotlib can be used to generate plots, histograms, power spectra, bar charts, error charts, scatterplots, etc., with just a few lines of code. As a starting point, I really like this “Anatomy of a Figure” graphic from the Matplotlib documentation: <a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html#parts-of-a-figure">Anatomy of a Figure</a>. A lot of what we’ll want to do in this course can be solved using this graphic as a reference.</p>
-<section id="id2">
-<h3>Key Features<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="matplotlib-creating-publication-quality-visualizations">
+<h2>Matplotlib: Creating Publication-Quality Visualizations<a class="headerlink" href="#matplotlib-creating-publication-quality-visualizations" title="Link to this heading">#</a></h2>
+<p>Matplotlib is a versatile plotting library in Python that allows you to create publication-quality figures across various formats and interactive environments. Whether you need simple plots or complex visualizations, Matplotlib has you covered. With just a few lines of code, you can generate plots, histograms, bar charts, scatterplots, and much more. As a starting point, I highly recommend checking out the “Anatomy of a Figure” graphic from the Matplotlib documentation: <a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html#parts-of-a-figure">Anatomy of a Figure</a>. This reference will be invaluable as we work through different plotting tasks in this course.</p>
+<section id="key-features-of-matplotlib">
+<h3>Key Features of Matplotlib<a class="headerlink" href="#key-features-of-matplotlib" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Create a wide range of plots, including line plots, scatter plots, histograms, bar charts, etc.</p></li>
-<li><p>Customize plots with a wide range of options, such as colors, line styles, and marker styles.</p></li>
-<li><p>Save plots in a variety of formats, such as PNG, PDF, and SVG.</p></li>
+<li><p><strong>Wide Range of Plot Types:</strong> Create various plots, including line plots, scatter plots, histograms, bar charts, and more.</p></li>
+<li><p><strong>Extensive Customization:</strong> Customize every aspect of your plots, from colors and line styles to markers and annotations.</p></li>
+<li><p><strong>Flexible Output Formats:</strong> Save your plots in multiple formats, such as PNG, PDF, and SVG, making it easy to include them in publications, presentations, and reports.</p></li>
 </ul>
 </section>
+<section id="creating-basic-plots-with-matplotlib">
+<h3>Creating Basic Plots with Matplotlib<a class="headerlink" href="#creating-basic-plots-with-matplotlib" title="Link to this heading">#</a></h3>
+<p>Let’s explore some of the most common plot types you’ll encounter in this course, starting with scatter plots, line plots, and histograms.</p>
 <section id="scatter-plots">
-<h3>Scatter Plots<a class="headerlink" href="#scatter-plots" title="Link to this heading">#</a></h3>
-<p>Scatter plots are a great way to visualize data points in two dimensions. We can use Matplotlib to create scatter plots of NumPy arrays.</p>
+<h4>Scatter Plots<a class="headerlink" href="#scatter-plots" title="Link to this heading">#</a></h4>
+<p>Scatter plots are ideal for visualizing relationships between two variables. Here’s how you can create a scatter plot using Matplotlib:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Create random data</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -642,104 +693,129 @@ eigenvalues = [-0.37228132  5.37228132]
 
 <span class="c1"># Create a scatter plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot of Random Data&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/106899271b4c0ec398bd3cd8fcee1d3e83c49f88395477bfb2322f7acacce899.png" src="_images/106899271b4c0ec398bd3cd8fcee1d3e83c49f88395477bfb2322f7acacce899.png" />
+<img alt="_images/79bf390fb1213213eb5bc5f722276b60044a44d7881519ca110500f835a0d03b.png" src="_images/79bf390fb1213213eb5bc5f722276b60044a44d7881519ca110500f835a0d03b.png" />
 </div>
 </div>
 </section>
 <section id="line-plots">
-<h3>Line Plots<a class="headerlink" href="#line-plots" title="Link to this heading">#</a></h3>
-<p>Line plots are another common way to visualize data. We can use Matplotlib to create line plots of NumPy arrays.</p>
+<h4>Line Plots<a class="headerlink" href="#line-plots" title="Link to this heading">#</a></h4>
+<p>Line plots are commonly used to visualize trends over a range of values. Here’s an example of how to create a simple line plot:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create random data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create data</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># Create a line plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Line Plot of Sine Function&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d7b1dfd43623832f398ffd74b2810799c50b300fc5d54249c209af02c22e64b9.png" src="_images/d7b1dfd43623832f398ffd74b2810799c50b300fc5d54249c209af02c22e64b9.png" />
+<img alt="_images/e5a6eaf825f66986fac38f096080e508216245a66c766d70af87e0e2e0b430ed.png" src="_images/e5a6eaf825f66986fac38f096080e508216245a66c766d70af87e0e2e0b430ed.png" />
 </div>
 </div>
 </section>
 <section id="histograms">
-<h3>Histograms<a class="headerlink" href="#histograms" title="Link to this heading">#</a></h3>
-<p>Histograms are useful for visualizing the distribution of data. We can use Matplotlib to create histograms of NumPy arrays.</p>
+<h4>Histograms<a class="headerlink" href="#histograms" title="Link to this heading">#</a></h4>
+<p>Histograms are useful for visualizing the distribution of data. They show how data is spread across different intervals, providing insights into its distribution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create random data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="c1"># Create a histogram</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Random Data&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b8ed91e23a3d662774806144e4c6df95612d12d904e9f1215513e8e8f5044c11.png" src="_images/b8ed91e23a3d662774806144e4c6df95612d12d904e9f1215513e8e8f5044c11.png" />
+<img alt="_images/6db4702e09440d5a89b6e741b001a658c169247e83f26d6fe8ff1cdbc47f649e.png" src="_images/6db4702e09440d5a89b6e741b001a658c169247e83f26d6fe8ff1cdbc47f649e.png" />
 </div>
 </div>
 </section>
-<section id="customizing-plots">
-<h3>Customizing Plots<a class="headerlink" href="#customizing-plots" title="Link to this heading">#</a></h3>
-<p>Matplotlib provides a wide range of options for customizing plots, such as changing the color, line style, and marker style.</p>
+</section>
+<section id="customizing-your-plots">
+<h3>Customizing Your Plots<a class="headerlink" href="#customizing-your-plots" title="Link to this heading">#</a></h3>
+<p>One of Matplotlib’s strengths is its ability to customize every aspect of a plot. This includes changing colors, line styles, marker styles, labels, titles, and more. Here’s an example that demonstrates these customization features:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create random data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create data</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<span class="c1"># Create a line plot with customizations</span>
+<span class="c1"># Create a customized line plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sine Function&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Customized Plot of Sine Function&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0d9e8b1af960ceda6cf33a5568953936c6ef8145b5d38a3b4da5765cf1f95341.png" src="_images/0d9e8b1af960ceda6cf33a5568953936c6ef8145b5d38a3b4da5765cf1f95341.png" />
+<img alt="_images/837113c810e739f981096563fb9790ce890313684c80cb7498149ab30250aa54.png" src="_images/837113c810e739f981096563fb9790ce890313684c80cb7498149ab30250aa54.png" />
 </div>
 </div>
-<div class="exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Create a scatter plot of random data with customizations (e.g., color, marker style, etc.).</p>
+<p>In this example, we’ve customized the plot by changing the line color to red, using a dashed line style, and adding circular markers. We also included a legend, labeled the axes, added a title, and enabled grid lines for better readability.</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>Exercise 1:</strong>
+Create a scatter plot of random data with customizations, such as changing the color, marker style, and adding labels.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use the <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">marker</span></code> parameters in <code class="docutils literal notranslate"><span class="pre">plt.scatter()</span></code>, and don’t forget to add labels with <code class="docutils literal notranslate"><span class="pre">plt.xlabel()</span></code> and <code class="docutils literal notranslate"><span class="pre">plt.ylabel()</span></code>.</p>
 </div>
-<div class="exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Create a histogram of random data with customizations (e.g., color, number of bins, etc.).</p>
+</details></li>
+<li><p><strong>Exercise 2:</strong>
+Create a histogram of random data with customizations, including changing the color, the number of bins, and adding titles and labels.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use the <code class="docutils literal notranslate"><span class="pre">bins</span></code> and <code class="docutils literal notranslate"><span class="pre">color</span></code> parameters in <code class="docutils literal notranslate"><span class="pre">plt.hist()</span></code> to customize your histogram.</p>
 </div>
+</details></li>
+</ol>
 </section>
 </section>
-<section id="pandas">
-<h2>Pandas<a class="headerlink" href="#pandas" title="Link to this heading">#</a></h2>
-<p>I like to think of Pandas as Excel on Python. In fact, you can read in Excel files using Pandas! Pandas is a powerful data manipulation library for Python that provides data structures and functions to work with structured data. It is built on top of NumPy and is particularly useful for working with tabular data, such as spreadsheets and databases.</p>
-<section id="id3">
-<h3>Key Features<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="pandas-powerful-data-manipulation-in-python">
+<h2>Pandas: Powerful Data Manipulation in Python<a class="headerlink" href="#pandas-powerful-data-manipulation-in-python" title="Link to this heading">#</a></h2>
+<p>Pandas is like Excel on steroids—think of it as Excel integrated into Python, with far greater flexibility and power. Pandas is a versatile library designed for data manipulation and analysis, providing structures and functions to handle structured data efficiently. It is built on top of NumPy and is particularly useful for working with tabular data, such as spreadsheets and databases.</p>
+<section id="key-features-of-pandas">
+<h3>Key Features of Pandas<a class="headerlink" href="#key-features-of-pandas" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Data structures for working with labeled data, such as Series (1D) and DataFrame (2D).</p></li>
-<li><p>Powerful functions for data manipulation, such as filtering, grouping, and merging.</p></li>
-<li><p>Tools for reading and writing data in a variety of formats, such as CSV, Excel, and SQL databases.</p></li>
+<li><p><strong>Flexible Data Structures:</strong> Work with labeled data using Pandas’ two primary data structures: <code class="docutils literal notranslate"><span class="pre">Series</span></code> (1D) and <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (2D). These structures allow you to easily manipulate and analyze data.</p></li>
+<li><p><strong>Powerful Data Manipulation:</strong> Perform complex operations such as filtering, grouping, merging, and aggregating data with ease.</p></li>
+<li><p><strong>Comprehensive I/O Capabilities:</strong> Pandas can read and write data in various formats, including CSV, Excel, and SQL databases, making it easy to integrate with other data sources.</p></li>
 </ul>
 </section>
-<section id="series">
-<h3>Series<a class="headerlink" href="#series" title="Link to this heading">#</a></h3>
-<p>A Series is a one-dimensional labeled array that can hold any data type (e.g., integers, strings, etc.). We can create a Series from a NumPy array.</p>
+<section id="series-the-1d-data-structure">
+<h3>Series: The 1D Data Structure<a class="headerlink" href="#series-the-1d-data-structure" title="Link to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">Series</span></code> in Pandas is a one-dimensional labeled array capable of holding any data type, such as integers, strings, or floating-point numbers. You can think of a <code class="docutils literal notranslate"><span class="pre">Series</span></code> as a single column in an Excel spreadsheet, with an index to label each row.</p>
+<p>Here’s how you can create a <code class="docutils literal notranslate"><span class="pre">Series</span></code> from a NumPy array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Create a Series from a NumPy array</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
@@ -749,21 +825,26 @@ eigenvalues = [-0.37228132  5.37228132]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.278849
-1    1.382932
-2   -0.043382
-3   -0.283186
-4    2.092342
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.477547
+1    1.238913
+2   -0.646766
+3   -0.112852
+4   -1.206100
 dtype: float64
 </pre></div>
 </div>
 </div>
 </div>
-<p>The first column in this series is the index, which is a unique identifier for each row. The second column is the data, which can be any data type. Note that, in Python, the index starts at 0. This is called a “zero-based index.”</p>
+<p>In this <code class="docutils literal notranslate"><span class="pre">Series</span></code>, the first column represents the index (similar to row numbers in Excel), and the second column holds the data.</p>
+<div class="important admonition">
+<p class="admonition-title">Important</p>
+<p>By default, Python uses zero-based indexing, so the first element in a NumPy array or Pandas DataFrame has an index of 0.</p>
+</div>
 </section>
-<section id="dataframe">
-<h3>DataFrame<a class="headerlink" href="#dataframe" title="Link to this heading">#</a></h3>
-<p>A DataFrame is a two-dimensional labeled data structure with columns of potentially different types. We can create a DataFrame from a dictionary of NumPy arrays.</p>
+<section id="dataframe-the-2d-data-structure">
+<h3>DataFrame: The 2D Data Structure<a class="headerlink" href="#dataframe-the-2d-data-structure" title="Link to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is a two-dimensional labeled data structure, similar to an Excel spreadsheet, where each column can contain different data types. <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> are the bread and butter of data manipulation in Pandas, allowing you to organize and manipulate data in powerful ways.</p>
+<p>Here’s how to create a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> from a dictionary of NumPy arrays:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a DataFrame from a dictionary of NumPy arrays</span>
@@ -780,20 +861,20 @@ dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          A         B
-0  0.094941  0.611467
-1  0.186256  0.582790
-2 -1.073995  0.028134
-3  0.189899  0.034517
-4  1.458397  0.256275
+0 -1.311567  0.245765
+1  0.445639  0.517850
+2  0.194757  0.658568
+3 -0.215004  0.554629
+4 -0.843069  0.841250
 </pre></div>
 </div>
 </div>
 </div>
-<p>Imagine that the index column and the top row are the indices in your Excel spreadsheet. The DataFrame can free you from the shackles of Excel and allow you to manipulate data in a more efficient and powerful way.</p>
+<p>In this <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, the index column functions like the row numbers in Excel, and each key in the dictionary becomes a column. The <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> provides the power to manipulate and analyze your data more efficiently than traditional spreadsheet software.</p>
 </section>
 <section id="reading-and-writing-data">
 <h3>Reading and Writing Data<a class="headerlink" href="#reading-and-writing-data" title="Link to this heading">#</a></h3>
-<p>Pandas provides functions for reading and writing data in a variety of formats, such as CSV, Excel, and SQL databases.</p>
+<p>Pandas provides functions for reading and writing data in a variety of formats, such as CSV, Excel, and SQL databases. For this example, you can download the <code class="docutils literal notranslate"><span class="pre">data.csv</span></code> file we’ll be using <a class="reference external" href="https://wustl.instructure.com/courses/141498/files/8299165/download?download_frd=1">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read data from a CSV file</span>
@@ -822,22 +903,30 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>This is a data set compiled as part of a paper from the Wexler group. It contains the element names and their cohesive energies (i.e., the energy required to separate the atoms in a solid to an infinite distance) in two different units of kJ/mol and eV/atom. You could also write this data to a CSV file using the <code class="docutils literal notranslate"><span class="pre">to_csv</span></code> method and setting the <code class="docutils literal notranslate"><span class="pre">index</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">False</span></code> (to avoid writing the index column).</p>
-<div class="exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Create a DataFrame from a dictionary of NumPy arrays and write it to a CSV file.</p>
+<p>This dataset includes information like element names and their cohesive energies (the energy required to separate atoms in a solid to infinite distances), stored in units of kJ/mol and eV/atom. Pandas also allows you to write this data to a CSV file using the <code class="docutils literal notranslate"><span class="pre">to_csv</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write the DataFrame to a CSV file</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="exercise admonition">
-<p class="admonition-title">Exercise</p>
-<p>Read data from a CSV file and create a DataFrame.</p>
 </div>
+</div>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">index=False</span></code> prevents the index from being written to the file, which is useful if you want a clean output.</p>
 </section>
 <section id="filtering-data">
 <h3>Filtering Data<a class="headerlink" href="#filtering-data" title="Link to this heading">#</a></h3>
-<p>Pandas provides functions for filtering data based on conditions. For example, we can filter the DataFrame to show only the rows where the cohesive energy is less than 100 kJ/mol but greater than 50 kJ/mol.</p>
+<p>One of Pandas’ strengths is its ability to filter data based on conditions. For example, you can filter a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> to display only the rows where the cohesive energy falls within a specific range:</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator is used for element-wise logical <code class="docutils literal notranslate"><span class="pre">AND</span></code> operations in Pandas. You can also use <code class="docutils literal notranslate"><span class="pre">|</span></code> for <code class="docutils literal notranslate"><span class="pre">OR</span></code> operations, <code class="docutils literal notranslate"><span class="pre">~</span></code> for <code class="docutils literal notranslate"><span class="pre">NOT</span></code> operations, <code class="docutils literal notranslate"><span class="pre">==</span></code> for equality, and parentheses for grouping conditions.</p>
+</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter rows where the cohesive energy is less than 100 kJ/mol but greater than 50 kJ/mol</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter rows where the cohesive energy is between 50 and 100 kJ/mol</span>
 <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Per Mole&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Per Mole&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">filtered_df</span><span class="p">)</span>
@@ -855,10 +944,31 @@ dtype: float64
 </div>
 </div>
 </div>
-<div class="tip admonition">
-<p class="admonition-title">Question</p>
-<p>Are you surprised to see these elements in the filtered data set?</p>
+<p>This filtering technique is incredibly useful when working with large datasets, allowing you to focus on subsets of data that meet specific criteria.</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>Exercise 1:</strong> Create a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> from a dictionary of NumPy arrays and write it to a CSV file.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use the <code class="docutils literal notranslate"><span class="pre">pd.DataFrame()</span></code> function to create the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, and <code class="docutils literal notranslate"><span class="pre">to_csv()</span></code> to save it to a file.</p>
 </div>
+</details></li>
+<li><p><strong>Exercise 2:</strong> Read data from a CSV file into a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, then filter the data based on a condition.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> to load the data and the filtering syntax shown above to filter the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+</div>
+</details></li>
+<li><p><strong>Exercise 3:</strong> Filter a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> based on a different condition. For example, try filtering for rows where the cohesive energy is greater than 150 kJ/mol.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Modify the filtering condition in the example provided.</p>
+</div>
+</details></li>
+</ol>
 </section>
 </section>
 </section>
@@ -927,27 +1037,37 @@ dtype: float64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">NumPy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays">NumPy Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-the-foundation-of-scientific-computing-in-python">NumPy: The Foundation of Scientific Computing in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-numpy">Key Features of NumPy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-numpy-arrays">Working with NumPy Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-using-arrays">Creating and Using Arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-and-vector-operations">Matrix and Vector Operations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-matrix-operations">Advanced Matrix Operations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-arrays-with-specific-properties">Generating Arrays with Specific Properties</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy">SciPy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Key Features</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Key Features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots">Scatter Plots</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-plots">Line Plots</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">Histograms</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-plots">Customizing Plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-a-powerful-tool-for-scientific-computing">SciPy: A Powerful Tool for Scientific Computing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-scipy">Key Features of SciPy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Key Features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series">Series</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-creating-publication-quality-visualizations">Matplotlib: Creating Publication-Quality Visualizations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-matplotlib">Key Features of Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-basic-plots-with-matplotlib">Creating Basic Plots with Matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots">Scatter Plots</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#line-plots">Line Plots</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">Histograms</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-your-plots">Customizing Your Plots</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-powerful-data-manipulation-in-python">Pandas: Powerful Data Manipulation in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-pandas">Key Features of Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-the-1d-data-structure">Series: The 1D Data Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe-the-2d-data-structure">DataFrame: The 2D Data Structure</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-and-writing-data">Reading and Writing Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-data">Filtering Data</a></li>
 </ul>
