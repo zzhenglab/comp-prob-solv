@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lecture 4: Chemical Reaction Equilibria and Roots of Equations" href="lecture-04-optimization.html" />
-    <link rel="prev" title="Lecture 2: Key Python Packages and Their Main Features" href="lecture-02-packages.html" />
+    <link rel="prev" title="Lecture 2: Essential Python Packages for the Chemical Sciences" href="lecture-02-packages.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,7 +182,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture-01-introduction.html">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Lecture 2: Key Python Packages and Their Main Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Lecture 2: Essential Python Packages for the Chemical Sciences</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 3: Control Structures in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
@@ -290,7 +290,7 @@
       
       
       
-      <li><a href="_sources/lecture-03-control.ipynb" target="_blank"
+      <li><a href="_sources/lecture-03-control.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +300,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -384,36 +384,49 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-control-structures">What Are Control Structures?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-control-structures-in-python">Key Control Structures in Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements">2. Conditional Statements</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statement">2.1 <code class="docutils literal notranslate"><span class="pre">if</span></code> statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-else-statement">2.2 <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-elif-else-statement">2.3 <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">2.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">2.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-elif-else-statement">2.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">3. Loops</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loop">3.1 <code class="docutils literal notranslate"><span class="pre">for</span></code> loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-loop">3.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-list">Looping Through a List</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-string">Looping Through a String</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehensions">List Comprehensions</a></li>
-</ul>
-</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-string">Looping Through a String</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-dictionary">Looping Through a Dictionary</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-numpy-array">Looping Through a NumPy Array</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-pandas-dataframe">Looping Through a Pandas DataFrame</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehensions">List Comprehensions</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loop">3.2 <code class="docutils literal notranslate"><span class="pre">while</span></code> loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-while-loop">3.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4. Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">4.1 Lambda Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-pandas">Using Lambda Functions with Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">Defining Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-default-parameter-values">Functions with Default Parameter Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">4.1 Lambda Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-higher-order-functions">Using Lambda Functions with Higher-Order Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-pandas">Using Lambda Functions with Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-using-functions">Best Practices for Using Functions</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-practice">Hands-on Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-check-if-a-number-is-even-or-odd">Exercise 1: Check if a Number is Even or Odd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-sum-of-all-numbers-in-a-list">Exercise 2: Sum of All Numbers in a List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-factorial-of-a-number">Exercise 3: Factorial of a Number</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-check-if-a-string-is-a-palindrome">Exercise 4: Check if a String is a Palindrome</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-find-the-maximum-and-minimum-elements-in-a-list">Exercise 5: Find the Maximum and Minimum Elements in a List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-exercises">Additional Exercises</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-practice">Hands-on Practice</a></li>
 </ul>
             </nav>
         </div>
@@ -429,31 +442,58 @@ document.write(`
 <h1>Lecture 3: Control Structures in Python<a class="headerlink" href="#lecture-3-control-structures-in-python" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>In this lecture, we will learn about control structures in Python. Control structures are used to control the flow of execution in a program. They allow us to execute certain blocks of code based on certain conditions.</p>
-<p>There are three main types of control structures in Python:</p>
+<p>In this lecture, we will explore one of the most crucial aspects of programming: control structures. Control structures are fundamental building blocks in Python, allowing you to control the flow of execution in your programs. By using these structures, you can make your code more dynamic, flexible, and responsive to different conditions and inputs.</p>
+<section id="what-are-control-structures">
+<h3>What Are Control Structures?<a class="headerlink" href="#what-are-control-structures" title="Link to this heading">#</a></h3>
+<p>Control structures dictate the order in which individual statements, instructions, or function calls are executed or evaluated. They enable you to:</p>
+<ul class="simple">
+<li><p>Execute specific blocks of code based on certain conditions.</p></li>
+<li><p>Repeat actions or processes efficiently.</p></li>
+<li><p>Organize code into reusable sections, making your programs more modular and easier to maintain.</p></li>
+</ul>
+</section>
+<section id="key-control-structures-in-python">
+<h3>Key Control Structures in Python<a class="headerlink" href="#key-control-structures-in-python" title="Link to this heading">#</a></h3>
+<p>In Python, there are three main types of control structures that we will cover in this lecture:</p>
 <ol class="arabic simple">
-<li><p>Conditional Statements</p></li>
-<li><p>Loops</p></li>
-<li><p>Functions</p></li>
+<li><p><strong>Conditional Statements:</strong> These allow you to execute code only when certain conditions are met. This is essential for making decisions in your programs.</p></li>
+<li><p><strong>Loops:</strong> Loops enable you to repeat a block of code multiple times, which is useful for tasks that require iteration, such as processing data sets or performing repetitive calculations.</p></li>
+<li><p><strong>Functions:</strong> Functions allow you to encapsulate code into reusable blocks. This not only makes your code more organized but also facilitates code reuse and reduces redundancy.</p></li>
 </ol>
+<p>By the end of this lecture, you’ll have a solid understanding of how to use these control structures to write more efficient and effective Python programs.</p>
+</section>
+</section>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this lecture, you will be able to:</p>
+<ul class="simple">
+<li><p>Understand and apply conditional statements to control the flow of execution in Python.</p></li>
+<li><p>Utilize loops to efficiently repeat tasks and process collections of data.</p></li>
+<li><p>Define and use functions to create reusable blocks of code.</p></li>
+</ul>
 </section>
 <section id="conditional-statements">
 <h2>2. Conditional Statements<a class="headerlink" href="#conditional-statements" title="Link to this heading">#</a></h2>
-<p>Conditional statements are used to execute certain blocks of code based on certain conditions. The most common conditional statements in Python are:</p>
+<p>Conditional statements are essential in programming as they allow you to control the flow of your code based on specific conditions. In Python, the most common conditional statements are:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">if</span></code> statement</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if</span></code> statement</strong></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement</strong></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement</strong></p></li>
 </ol>
-<section id="if-statement">
-<h3>2.1 <code class="docutils literal notranslate"><span class="pre">if</span></code> statement<a class="headerlink" href="#if-statement" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is used to execute a block of code if a certain condition is true. The syntax of the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is as follows:</p>
+<p>These structures enable your programs to make decisions and respond accordingly, making your code more dynamic and flexible.</p>
+<section id="the-if-statement">
+<h3>2.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement<a class="headerlink" href="#the-if-statement" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is the simplest form of a conditional statement. It allows you to execute a block of code only if a specific condition is true. The syntax is straightforward:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
     <span class="c1"># block of code</span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">condition</span></code> is an expression that evaluates to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. If the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the block of code inside the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is executed. If the condition is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the block of code is skipped.</p>
-<p>Let’s look at an example:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">condition</span></code>:</strong> This is an expression that evaluates to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">condition</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the block of code within the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is executed.</p></li>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">condition</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the code block is skipped.</p></li>
+</ul>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
@@ -469,22 +509,24 @@ document.write(`
 </div>
 </div>
 </div>
-<p>In this example, the condition <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">5</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code> because <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">10</span></code>, which is greater than <code class="docutils literal notranslate"><span class="pre">5</span></code>. Therefore, the block of code inside the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is executed.</p>
 </section>
-<section id="if-else-statement">
-<h3>2.2 <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement<a class="headerlink" href="#if-else-statement" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement is used to execute one block of code if a certain condition is true, and another block of code if the condition is false. The syntax of the <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement is as follows:</p>
+<section id="the-if-else-statement">
+<h3>2.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement<a class="headerlink" href="#the-if-else-statement" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement expands on the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement by providing an alternative block of code to execute if the condition is false. This allows you to handle both possibilities:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
-    <span class="c1"># block of code</span>
+    <span class="c1"># block of code for True condition</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="c1"># block of code</span>
+    <span class="c1"># block of code for False condition</span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">condition</span></code> is an expression that evaluates to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. If the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the block of code inside the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is executed. If the condition is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the block of code inside the <code class="docutils literal notranslate"><span class="pre">else</span></code> statement is executed.</p>
-<p>Let’s look at an example:</p>
+<ul class="simple">
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">condition</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the code inside the <code class="docutils literal notranslate"><span class="pre">if</span></code> block is executed.</p></li>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">condition</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the code inside the <code class="docutils literal notranslate"><span class="pre">else</span></code> block is executed.</p></li>
+</ul>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is greater than 5&quot;</span><span class="p">)</span>
@@ -494,29 +536,32 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is greater than 5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is less than or equal to 5
 </pre></div>
 </div>
 </div>
 </div>
-<p>In this example, the condition <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">5</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code> because <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">10</span></code>, which is greater than <code class="docutils literal notranslate"><span class="pre">5</span></code>. Therefore, the block of code inside the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is executed.</p>
 </section>
-<section id="if-elif-else-statement">
-<h3>2.3 <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement<a class="headerlink" href="#if-elif-else-statement" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement is used to execute one block of code if a certain condition is true, another block of code if another condition is true, and a default block of code if none of the conditions are true. The syntax of the <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement is as follows:</p>
+<section id="the-if-elif-else-statement">
+<h3>2.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement<a class="headerlink" href="#the-if-elif-else-statement" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement is a more complex conditional structure that allows you to check multiple conditions sequentially. This is useful when you need to execute different blocks of code based on different conditions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition1</span><span class="p">:</span>
-    <span class="c1"># block of code</span>
+    <span class="c1"># block of code for condition1</span>
 <span class="k">elif</span> <span class="n">condition2</span><span class="p">:</span>
-    <span class="c1"># block of code</span>
+    <span class="c1"># block of code for condition2</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="c1"># block of code</span>
+    <span class="c1"># block of code if no conditions are True</span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">condition1</span></code> and <code class="docutils literal notranslate"><span class="pre">condition2</span></code> are expressions that evaluate to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. If <code class="docutils literal notranslate"><span class="pre">condition1</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the block of code inside the first <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is executed. If <code class="docutils literal notranslate"><span class="pre">condition1</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> and <code class="docutils literal notranslate"><span class="pre">condition2</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the block of code inside the <code class="docutils literal notranslate"><span class="pre">elif</span></code> statement is executed. If both <code class="docutils literal notranslate"><span class="pre">condition1</span></code> and <code class="docutils literal notranslate"><span class="pre">condition2</span></code> are <code class="docutils literal notranslate"><span class="pre">False</span></code>, the block of code inside the <code class="docutils literal notranslate"><span class="pre">else</span></code> statement is executed.</p>
-<p>Let’s look at an example:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">if</span></code> block is executed if <code class="docutils literal notranslate"><span class="pre">condition1</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">condition1</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> but <code class="docutils literal notranslate"><span class="pre">condition2</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the <code class="docutils literal notranslate"><span class="pre">elif</span></code> block is executed.</p></li>
+<li><p>If none of the conditions are <code class="docutils literal notranslate"><span class="pre">True</span></code>, the <code class="docutils literal notranslate"><span class="pre">else</span></code> block is executed.</p></li>
+</ul>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is greater than 5&quot;</span><span class="p">)</span>
@@ -528,30 +573,33 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is greater than 5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is equal to 5
 </pre></div>
 </div>
 </div>
 </div>
-<p>In this example, the condition <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">5</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code> because <code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">10</span></code>, which is greater than <code class="docutils literal notranslate"><span class="pre">5</span></code>. Therefore, the block of code inside the first <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is executed.</p>
 </section>
 </section>
 <section id="loops">
 <h2>3. Loops<a class="headerlink" href="#loops" title="Link to this heading">#</a></h2>
-<p>Loops are used to execute a block of code multiple times. The most common types of loops in Python are:</p>
+<p>Loops are a fundamental concept in programming, allowing you to execute a block of code multiple times, which is especially useful when working with large datasets, repetitive tasks, or iterative processes. In Python, the two most common types of loops are:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">for</span></code> loop</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">while</span></code> loop</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">for</span></code> loop</strong></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop</strong></p></li>
 </ol>
-<section id="for-loop">
-<h3>3.1 <code class="docutils literal notranslate"><span class="pre">for</span></code> loop<a class="headerlink" href="#for-loop" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is used to iterate over a sequence of elements (such as a list, tuple, or string) and execute a block of code for each element. The syntax of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is as follows:</p>
+<section id="the-for-loop">
+<h3>3.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop<a class="headerlink" href="#the-for-loop" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is used to iterate over a sequence of elements, such as a list, tuple, string, or other iterable objects, and execute a block of code for each element. This makes it incredibly versatile for processing collections of data.</p>
+<p><strong>Syntax:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
     <span class="c1"># block of code</span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">element</span></code> is a variable that takes on the value of each element in the <code class="docutils literal notranslate"><span class="pre">sequence</span></code> one by one. The block of code inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is executed for each element in the <code class="docutils literal notranslate"><span class="pre">sequence</span></code>.</p>
-<p>Let’s look at an example:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">element</span></code>:</strong> A variable that takes on the value of each element in the <code class="docutils literal notranslate"><span class="pre">sequence</span></code> one by one.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sequence</span></code>:</strong> Any iterable object (e.g., list, tuple, string, range).</p></li>
+</ul>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -569,10 +617,10 @@ document.write(`
 </div>
 </div>
 </div>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">range(5)</span></code> function generates a sequence of numbers from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">4</span></code>. The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over this sequence, and the block of code inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop prints each number.</p>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">range(5)</span></code> generates a sequence of numbers from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">4</span></code>. The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over this sequence, printing each number.</p>
 <section id="looping-through-a-list">
 <h4>Looping Through a List<a class="headerlink" href="#looping-through-a-list" title="Link to this heading">#</a></h4>
-<p>You can also loop through a list using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. Here’s an example:</p>
+<p>Lists are one of the most common data structures in Python. You can easily loop through a list using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
@@ -590,11 +638,11 @@ cherry
 </div>
 </div>
 </div>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the list of fruits, and the block of code inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop prints each fruit.</p>
+<p>Here, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the list <code class="docutils literal notranslate"><span class="pre">fruits</span></code>, printing each fruit in the list.</p>
 </section>
 <section id="looping-through-a-string">
 <h4>Looping Through a String<a class="headerlink" href="#looping-through-a-string" title="Link to this heading">#</a></h4>
-<p>You can also loop through a string using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. Here’s an example:</p>
+<p>Strings are also iterable, allowing you to loop through each character individually:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s2">&quot;hello&quot;</span><span class="p">:</span>
@@ -612,34 +660,11 @@ o
 </div>
 </div>
 </div>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the characters in the string <code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;</span></code>, and the block of code inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop prints each character.</p>
-<section id="list-comprehensions">
-<h5>List Comprehensions<a class="headerlink" href="#list-comprehensions" title="Link to this heading">#</a></h5>
-<p>List comprehensions are a concise way to create lists in Python. They allow you to create a new list by applying an expression to each element in an existing list. The syntax of a list comprehension is as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">expression</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">old_list</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">expression</span></code> is an expression that is applied to each element in <code class="docutils literal notranslate"><span class="pre">old_list</span></code> to create a new element in <code class="docutils literal notranslate"><span class="pre">new_list</span></code>. Let’s look at an example:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">squares</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9, 16]
-</pre></div>
-</div>
-</div>
-</div>
-<p>In this example, the list comprehension <code class="docutils literal notranslate"><span class="pre">[x**2</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">range(5)]</span></code> creates a new list <code class="docutils literal notranslate"><span class="pre">squares</span></code> by squaring each element in the sequence <code class="docutils literal notranslate"><span class="pre">range(5)</span></code>.</p>
-</section>
+<p>This loop prints each character in the string <code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;</span></code> on a new line.</p>
 </section>
 <section id="looping-through-a-dictionary">
 <h4>Looping Through a Dictionary<a class="headerlink" href="#looping-through-a-dictionary" title="Link to this heading">#</a></h4>
-<p>A dictionary in Python is a collection of key-value pairs. You can loop through a dictionary using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. Here’s an example:</p>
+<p>Dictionaries are collections of key-value pairs, and you can loop through both the keys and values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">}</span>
@@ -657,11 +682,11 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the key-value pairs in the dictionary <code class="docutils literal notranslate"><span class="pre">person</span></code>, and the block of code inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop prints each key and value.</p>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over each key-value pair in the dictionary <code class="docutils literal notranslate"><span class="pre">person</span></code>, printing both the key and its corresponding value.</p>
 </section>
 <section id="looping-through-a-numpy-array">
 <h4>Looping Through a NumPy Array<a class="headerlink" href="#looping-through-a-numpy-array" title="Link to this heading">#</a></h4>
-<p>You can also loop through a NumPy array using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. Here’s an example:</p>
+<p>NumPy arrays are powerful structures for numerical computations. You can loop through them just like any other iterable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -683,11 +708,11 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the elements in the NumPy array <code class="docutils literal notranslate"><span class="pre">arr</span></code>, and the block of code inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop prints each element.</p>
+<p>This example shows how to iterate over each element in a NumPy array.</p>
 </section>
 <section id="looping-through-a-pandas-dataframe">
 <h4>Looping Through a Pandas DataFrame<a class="headerlink" href="#looping-through-a-pandas-dataframe" title="Link to this heading">#</a></h4>
-<p>You can also loop through a Pandas DataFrame using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. Here’s an example:</p>
+<p>Pandas DataFrames are used for handling tabular data. You can loop through each row of a DataFrame using <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -708,18 +733,52 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop iterates over the rows in the Pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>, and the block of code inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop prints the index, name, and age of each row.</p>
+<p>Here, the loop iterates over each row in the DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>, printing the index, name, and age for each row.</p>
+</section>
+<section id="list-comprehensions">
+<h4>List Comprehensions<a class="headerlink" href="#list-comprehensions" title="Link to this heading">#</a></h4>
+<p>List comprehensions provide a concise way to create lists by applying an expression to each element in an existing iterable. This is an elegant and Pythonic way to create new lists from existing data.</p>
+<p><strong>Syntax:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">expression</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">old_list</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Example:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squares</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9, 16]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, the list comprehension <code class="docutils literal notranslate"><span class="pre">[x**2</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">range(5)]</span></code> creates a new list <code class="docutils literal notranslate"><span class="pre">squares</span></code> by squaring each element in the range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
 </section>
 </section>
-<section id="while-loop">
-<h3>3.2 <code class="docutils literal notranslate"><span class="pre">while</span></code> loop<a class="headerlink" href="#while-loop" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop is used to execute a block of code as long as a certain condition is true. The syntax of the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop is as follows:</p>
+<section id="the-while-loop">
+<h3>3.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop<a class="headerlink" href="#the-while-loop" title="Link to this heading">#</a></h3>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition-infinite-loops admonition">
+<p class="admonition-title">Infinite Loops</p>
+<p>An infinite loop is a loop that never terminates. It can occur when the loop condition is always <code class="docutils literal notranslate"><span class="pre">True</span></code>, causing the loop to run indefinitely. To avoid infinite loops, ensure that the loop condition eventually becomes <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
+</aside>
+<p>The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop is used to execute a block of code as long as a specified condition is true. This type of loop is particularly useful when the number of iterations is not predetermined, but depends on a condition.</p>
+<p><strong>Syntax:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span><span class="p">:</span>
     <span class="c1"># block of code</span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">condition</span></code> is an expression that evaluates to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. The block of code inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop is executed as long as the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>. If the condition is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the loop is terminated.</p>
-<p>Let’s look at an example:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">condition</span></code>:</strong> An expression that evaluates to either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>The code block inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop continues to execute as long as the <code class="docutils literal notranslate"><span class="pre">condition</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -740,19 +799,26 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> is initialized to <code class="docutils literal notranslate"><span class="pre">0</span></code>. The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop executes the block of code as long as <code class="docutils literal notranslate"><span class="pre">i</span></code> is less than <code class="docutils literal notranslate"><span class="pre">5</span></code>. The block of code prints the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> and increments <code class="docutils literal notranslate"><span class="pre">i</span></code> by <code class="docutils literal notranslate"><span class="pre">1</span></code> in each iteration.</p>
+<p>In this example, the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> is initialized to <code class="docutils literal notranslate"><span class="pre">0</span></code>. The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop executes the block of code repeatedly, printing the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> and then incrementing <code class="docutils literal notranslate"><span class="pre">i</span></code> by <code class="docutils literal notranslate"><span class="pre">1</span></code> on each iteration, until <code class="docutils literal notranslate"><span class="pre">i</span></code> reaches <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p>
 </section>
 </section>
 <section id="functions">
 <h2>4. Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
-<p>Functions are used to group a block of code that performs a specific task. Functions are defined using the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword, followed by the function name and a set of parentheses. The syntax of a function definition is as follows:</p>
+<p>Functions are a core component of Python programming, allowing you to encapsulate a block of code that performs a specific task. This modular approach helps make your code more organized, reusable, and easier to maintain. Functions in Python are defined using the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword, followed by the function name and a set of parentheses.</p>
+<section id="defining-functions">
+<h3>Defining Functions<a class="headerlink" href="#defining-functions" title="Link to this heading">#</a></h3>
+<p>The basic syntax for defining a function is as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
     <span class="c1"># block of code</span>
     <span class="k">return</span> <span class="n">value</span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">function_name</span></code> is the name of the function, and <code class="docutils literal notranslate"><span class="pre">parameters</span></code> is a list of input parameters that the function takes. The block of code inside the function is executed when the function is called. The <code class="docutils literal notranslate"><span class="pre">return</span></code> statement is used to return a value from the function.</p>
-<p>Let’s look at an example:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">function_name</span></code>:</strong> This is the name you give to your function, which should be descriptive of what the function does.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">parameters</span></code>:</strong> These are the inputs to the function. You can include multiple parameters, or none at all.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">value</span></code>:</strong> The <code class="docutils literal notranslate"><span class="pre">return</span></code> statement is optional and is used to send back a value from the function to the caller. If you don’t use <code class="docutils literal notranslate"><span class="pre">return</span></code>, the function will return <code class="docutils literal notranslate"><span class="pre">None</span></code> by default.</p></li>
+</ul>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -769,8 +835,12 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, we define a function <code class="docutils literal notranslate"><span class="pre">add</span></code> that takes two input parameters <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> and returns their sum. We call the function with the arguments <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>, and the result is stored in the variable <code class="docutils literal notranslate"><span class="pre">result</span></code>.</p>
-<p>Functions can also have default values for their parameters. If a parameter has a default value, it is optional to provide a value for that parameter when calling the function. Let’s look at an example:</p>
+<p>In this example, we define a function <code class="docutils literal notranslate"><span class="pre">add</span></code> that takes two parameters, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, and returns their sum. When we call <code class="docutils literal notranslate"><span class="pre">add(3,</span> <span class="pre">5)</span></code>, the function returns <code class="docutils literal notranslate"><span class="pre">8</span></code>, which is then printed.</p>
+</section>
+<section id="functions-with-default-parameter-values">
+<h3>Functions with Default Parameter Values<a class="headerlink" href="#functions-with-default-parameter-values" title="Link to this heading">#</a></h3>
+<p>Functions can also have default values for their parameters, making some arguments optional when the function is called.</p>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">):</span>
@@ -787,14 +857,16 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, we define a function <code class="docutils literal notranslate"><span class="pre">greet</span></code> that takes an input parameter <code class="docutils literal notranslate"><span class="pre">name</span></code> with a default value of <code class="docutils literal notranslate"><span class="pre">&quot;Alice&quot;</span></code>. If no value is provided for <code class="docutils literal notranslate"><span class="pre">name</span></code> when calling the function, it defaults to <code class="docutils literal notranslate"><span class="pre">&quot;Alice&quot;</span></code>. We call the function without providing a value for <code class="docutils literal notranslate"><span class="pre">name</span></code>, and the result is stored in the variable <code class="docutils literal notranslate"><span class="pre">message</span></code>.</p>
+<p>In this example, the function <code class="docutils literal notranslate"><span class="pre">greet</span></code> has a default parameter <code class="docutils literal notranslate"><span class="pre">name=&quot;Alice&quot;</span></code>. When the function is called without providing an argument for <code class="docutils literal notranslate"><span class="pre">name</span></code>, it defaults to <code class="docutils literal notranslate"><span class="pre">&quot;Alice&quot;</span></code>, and the message “Hello, Alice” is printed.</p>
+</section>
 <section id="lambda-functions">
 <h3>4.1 Lambda Functions<a class="headerlink" href="#lambda-functions" title="Link to this heading">#</a></h3>
-<p>Lambda functions are small anonymous functions that can have any number of arguments, but can only have one expression. Lambda functions are defined using the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> keyword, followed by the list of arguments and the expression. The syntax of a lambda function is as follows:</p>
+<p>Lambda functions are small, anonymous functions that are defined using the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> keyword. Unlike regular functions defined with <code class="docutils literal notranslate"><span class="pre">def</span></code>, lambda functions can have any number of arguments but only one expression. They are often used for short, simple operations that are not reused elsewhere in your code.</p>
+<p><strong>Syntax:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="n">arguments</span><span class="p">:</span> <span class="n">expression</span>
 </pre></div>
 </div>
-<p>Lambda functions are often used as arguments to higher-order functions, such as <code class="docutils literal notranslate"><span class="pre">map()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code>, and <code class="docutils literal notranslate"><span class="pre">reduce()</span></code>. Let’s look at an example:</p>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
@@ -810,10 +882,33 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, we define a lambda function <code class="docutils literal notranslate"><span class="pre">add</span></code> that takes two arguments <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> and returns their sum. We call the lambda function with the arguments <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>, and the result is stored in the variable <code class="docutils literal notranslate"><span class="pre">result</span></code>.</p>
+<p>Here, we define a lambda function <code class="docutils literal notranslate"><span class="pre">add</span></code> that takes two arguments, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, and returns their sum. The lambda function behaves like a regular function but is written in a more compact form.</p>
+</section>
+<section id="using-lambda-functions-with-higher-order-functions">
+<h3>Using Lambda Functions with Higher-Order Functions<a class="headerlink" href="#using-lambda-functions-with-higher-order-functions" title="Link to this heading">#</a></h3>
+<p>Lambda functions are frequently used as arguments to higher-order functions like <code class="docutils literal notranslate"><span class="pre">map()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code>, and <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> because of their concise syntax.</p>
+<p><strong>Example with <code class="docutils literal notranslate"><span class="pre">map()</span></code>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">squares</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">squares</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">map()</span></code> applies the lambda function <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">x**2</span></code> to each element of the <code class="docutils literal notranslate"><span class="pre">numbers</span></code> list, producing a list of squares.</p>
+</section>
 <section id="using-lambda-functions-with-pandas">
-<h4>Using Lambda Functions with Pandas<a class="headerlink" href="#using-lambda-functions-with-pandas" title="Link to this heading">#</a></h4>
-<p>Lambda functions are often used with Pandas to apply a function to each element in a column of a DataFrame. Let’s look at an example:</p>
+<h3>Using Lambda Functions with Pandas<a class="headerlink" href="#using-lambda-functions-with-pandas" title="Link to this heading">#</a></h3>
+<p>Lambda functions are also commonly used in Pandas to apply operations across elements in a DataFrame. This is particularly useful for creating new columns or transforming data.</p>
+<p><strong>Example:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -836,59 +931,128 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, we define a Pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code> with columns <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">age</span></code>. We use the <code class="docutils literal notranslate"><span class="pre">apply()</span></code> method to apply a lambda function that squares each element in the <code class="docutils literal notranslate"><span class="pre">age</span></code> column. The result is stored in a new column <code class="docutils literal notranslate"><span class="pre">age_squared</span></code>.</p>
+<p>In this example, a Pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code> is created with columns <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">age</span></code>. The <code class="docutils literal notranslate"><span class="pre">apply()</span></code> method is used to apply a lambda function that squares each element in the <code class="docutils literal notranslate"><span class="pre">age</span></code> column. The result is stored in a new column, <code class="docutils literal notranslate"><span class="pre">age_squared</span></code>.</p>
 </section>
+<section id="best-practices-for-using-functions">
+<h3>Best Practices for Using Functions<a class="headerlink" href="#best-practices-for-using-functions" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Use Descriptive Names:</strong> Function names should clearly describe what the function does.</p></li>
+<li><p><strong>Keep Functions Small and Focused:</strong> A function should do one thing and do it well. If your function is getting too long, consider breaking it up into smaller functions.</p></li>
+<li><p><strong>Document Your Functions:</strong> Use docstrings to explain what your function does, what parameters it takes, and what it returns.</p></li>
+</ol>
+<p><strong>Example of a Well-Documented Function:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_area</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the area of a circle given its radius.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    radius (float): The radius of the circle.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    float: The area of the circle.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mf">3.14159</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>In this example, the function <code class="docutils literal notranslate"><span class="pre">calculate_area</span></code> is well-documented with a docstring that explains what the function does, its parameters, and its return value.</p>
 </section>
 </section>
 <section id="hands-on-practice">
 <h2>Hands-on Practice<a class="headerlink" href="#hands-on-practice" title="Link to this heading">#</a></h2>
-<p>Now that you have learned about control structures in Python, it’s time to practice what you have learned. Here are a few exercises to help you get started:</p>
-<div class="tip admonition">
+<p>Now that you’ve learned about control structures in Python, it’s time to put your knowledge into practice. Below are a series of exercises designed to help reinforce the concepts you’ve covered. Each exercise includes a hint to guide you if you need a little help getting started.</p>
+<section id="exercise-1-check-if-a-number-is-even-or-odd">
+<h3>Exercise 1: Check if a Number is Even or Odd<a class="headerlink" href="#exercise-1-check-if-a-number-is-even-or-odd" title="Link to this heading">#</a></h3>
+<div class="exercise admonition">
 <p class="admonition-title">Exercise 1</p>
-<p>Write a Python program to check if a number is even or odd.</p>
+<p>Write a Python program to check whether a given number is even or odd.</p>
+</div>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Use the modulo operator <code class="docutils literal notranslate"><span class="pre">%</span></code> to check if a number is divisible by <code class="docutils literal notranslate"><span class="pre">2</span></code>. The modulo operator returns the remainder of the division.</p>
+<p class="sd-card-text">Use the modulo operator <code class="docutils literal notranslate"><span class="pre">%</span></code> to check if the number is divisible by <code class="docutils literal notranslate"><span class="pre">2</span></code>. If <code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">%</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">0</span></code>, the number is even; otherwise, it’s odd.</p>
 </div>
-</details></div>
-<div class="tip admonition">
+</details></section>
+<section id="exercise-2-sum-of-all-numbers-in-a-list">
+<h3>Exercise 2: Sum of All Numbers in a List<a class="headerlink" href="#exercise-2-sum-of-all-numbers-in-a-list" title="Link to this heading">#</a></h3>
+<div class="exercise admonition">
 <p class="admonition-title">Exercise 2</p>
-<p>Write a Python program to find the sum of all numbers in a list.</p>
+<p>Write a Python program to find the sum of all the numbers in a list.</p>
+</div>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to iterate over the elements in the list and keep track of the sum in a variable.</p>
+<p class="sd-card-text">Use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to iterate over the elements in the list and accumulate the sum in a variable.</p>
 </div>
-</details></div>
-<div class="tip admonition">
+</details></section>
+<section id="exercise-3-factorial-of-a-number">
+<h3>Exercise 3: Factorial of a Number<a class="headerlink" href="#exercise-3-factorial-of-a-number" title="Link to this heading">#</a></h3>
+<div class="exercise admonition">
 <p class="admonition-title">Exercise 3</p>
-<p>Write a Python program to find the factorial of a number.</p>
+<p>Write a Python program to calculate the factorial of a given number.</p>
+</div>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to iterate over the numbers from <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">n</span></code> and multiply them together to calculate the factorial.</p>
+<p class="sd-card-text">Use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to iterate from <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">n</span></code>, multiplying the numbers together to calculate the factorial.</p>
 </div>
-</details></div>
-<div class="tip admonition">
+</details></section>
+<section id="exercise-4-check-if-a-string-is-a-palindrome">
+<h3>Exercise 4: Check if a String is a Palindrome<a class="headerlink" href="#exercise-4-check-if-a-string-is-a-palindrome" title="Link to this heading">#</a></h3>
+<div class="exercise admonition">
 <p class="admonition-title">Exercise 4</p>
-<p>Write a Python program to check if a string is a palindrome.</p>
+<p>Write a Python program to check if a given string is a palindrome.</p>
+</div>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward. Use string slicing to reverse the string and compare it with the original string.</p>
+<p class="sd-card-text">A palindrome reads the same forward and backward. Use string slicing to reverse the string and compare it to the original.</p>
 </div>
-</details></div>
-<div class="tip admonition">
+</details></section>
+<section id="exercise-5-find-the-maximum-and-minimum-elements-in-a-list">
+<h3>Exercise 5: Find the Maximum and Minimum Elements in a List<a class="headerlink" href="#exercise-5-find-the-maximum-and-minimum-elements-in-a-list" title="Link to this heading">#</a></h3>
+<div class="exercise admonition">
 <p class="admonition-title">Exercise 5</p>
 <p>Write a Python program to find the maximum and minimum elements in a list.</p>
+</div>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Use the <code class="docutils literal notranslate"><span class="pre">max()</span></code> and <code class="docutils literal notranslate"><span class="pre">min()</span></code> functions to find the maximum and minimum elements in a list.</p>
+<p class="sd-card-text">Use the built-in <code class="docutils literal notranslate"><span class="pre">max()</span></code> and <code class="docutils literal notranslate"><span class="pre">min()</span></code> functions to find the maximum and minimum values in the list.</p>
 </div>
-</details></div>
-<p>Feel free to explore more exercises and practice your Python skills. Good luck!</p>
+</details></section>
+<hr class="docutils" />
+<section id="additional-exercises">
+<h3>Additional Exercises<a class="headerlink" href="#additional-exercises" title="Link to this heading">#</a></h3>
+<p>If you’re looking to challenge yourself further, here are a few more exercises to practice your Python skills:</p>
+<ol class="arabic">
+<li><p><strong>Exercise 6: Count the Number of Vowels in a String</strong><br />
+Write a Python program to count the number of vowels (<code class="docutils literal notranslate"><span class="pre">a,</span> <span class="pre">e,</span> <span class="pre">i,</span> <span class="pre">o,</span> <span class="pre">u</span></code>) in a given string.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to iterate over each character in the string and check if it’s a vowel using the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator.</p>
+</div>
+</details></li>
+<li><p><strong>Exercise 7: Merge Two Lists and Remove Duplicates</strong><br />
+Write a Python program to merge two lists and remove any duplicate elements.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Combine the lists using the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator, then convert the result to a <code class="docutils literal notranslate"><span class="pre">set</span></code> to remove duplicates before converting it back to a list.</p>
+</div>
+</details></li>
+<li><p><strong>Exercise 8: Generate Fibonacci Sequence</strong><br />
+Write a Python program to generate the first <code class="docutils literal notranslate"><span class="pre">n</span></code> numbers of the Fibonacci sequence.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Hint</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop or a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to generate the sequence, starting with <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>, and adding the last two numbers to get the next number.</p>
+</div>
+</details></li>
+</ol>
+<hr class="docutils" />
+<p>Feel free to explore these exercises further, and don’t hesitate to experiment with your own ideas. The more you practice, the more confident you’ll become in your Python programming skills. Good luck!</p>
+</section>
 </section>
 </section>
 
@@ -928,7 +1092,7 @@ city New York
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lecture 2: Key Python Packages and Their Main Features</p>
+        <p class="prev-next-title">Lecture 2: Essential Python Packages for the Chemical Sciences</p>
       </div>
     </a>
     <a class="right-next"
@@ -956,36 +1120,49 @@ city New York
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-control-structures">What Are Control Structures?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-control-structures-in-python">Key Control Structures in Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements">2. Conditional Statements</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statement">2.1 <code class="docutils literal notranslate"><span class="pre">if</span></code> statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-else-statement">2.2 <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-elif-else-statement">2.3 <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">2.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">2.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-elif-else-statement">2.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">3. Loops</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loop">3.1 <code class="docutils literal notranslate"><span class="pre">for</span></code> loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-loop">3.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-list">Looping Through a List</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-string">Looping Through a String</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehensions">List Comprehensions</a></li>
-</ul>
-</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-string">Looping Through a String</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-dictionary">Looping Through a Dictionary</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-numpy-array">Looping Through a NumPy Array</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-pandas-dataframe">Looping Through a Pandas DataFrame</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehensions">List Comprehensions</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loop">3.2 <code class="docutils literal notranslate"><span class="pre">while</span></code> loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-while-loop">3.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4. Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">4.1 Lambda Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-pandas">Using Lambda Functions with Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">Defining Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-default-parameter-values">Functions with Default Parameter Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">4.1 Lambda Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-higher-order-functions">Using Lambda Functions with Higher-Order Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-pandas">Using Lambda Functions with Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-using-functions">Best Practices for Using Functions</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-practice">Hands-on Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-check-if-a-number-is-even-or-odd">Exercise 1: Check if a Number is Even or Odd</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-sum-of-all-numbers-in-a-list">Exercise 2: Sum of All Numbers in a List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-factorial-of-a-number">Exercise 3: Factorial of a Number</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-check-if-a-string-is-a-palindrome">Exercise 4: Check if a String is a Palindrome</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-find-the-maximum-and-minimum-elements-in-a-list">Exercise 5: Find the Maximum and Minimum Elements in a List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-exercises">Additional Exercises</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-practice">Hands-on Practice</a></li>
 </ul>
   </nav></div>
 
