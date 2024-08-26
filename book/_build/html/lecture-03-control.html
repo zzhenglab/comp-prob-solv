@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
@@ -61,7 +61,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-03-control';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 4: Chemical Reaction Equilibria and Roots of Equations" href="lecture-04-optimization.html" />
     <link rel="prev" title="Lecture 2: Essential Python Packages for the Chemical Sciences" href="lecture-02-packages.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,11 +183,6 @@
 <li class="toctree-l1"><a class="reference internal" href="lecture-01-introduction.html">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Lecture 2: Essential Python Packages for the Chemical Sciences</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 3: Control Structures in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-06-linalg.html">Lecture 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-07-regression.html">Lecture 7: Orders of Reaction and Linear Regression Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-08-calibration.html">Lecture 8: Calibration Data, Confidence Intervals, and Correlation Analysis</a></li>
 </ul>
 
     </div>
@@ -384,20 +378,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-control-structures">What Are Control Structures?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-control-structures-in-python">Key Control Structures in Python</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements">2. Conditional Statements</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">2.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">2.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-elif-else-statement">2.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-1-conditional-statements">Section 1: Conditional Statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">1.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-elif-else-statement">1.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">3. Loops</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-loop">3.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-2-loops">Section 2: Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-loop">2.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-list">Looping Through a List</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-string">Looping Through a String</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-dictionary">Looping Through a Dictionary</a></li>
@@ -406,19 +400,19 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehensions">List Comprehensions</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-while-loop">3.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-while-loop">2.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4. Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">Defining Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-default-parameter-values">Functions with Default Parameter Values</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">4.1 Lambda Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-higher-order-functions">Using Lambda Functions with Higher-Order Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-pandas">Using Lambda Functions with Pandas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-using-functions">Best Practices for Using Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-3-functions">Section 3: Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">3.1 Defining Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-default-parameter-values">3.2 Functions with Default Parameter Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">3.3 Lambda Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-higher-order-functions">3.4 Using Lambda Functions with Higher-Order Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-pandas">3.5 Using Lambda Functions with Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-using-functions">3.6 Best Practices for Using Functions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-practice">Hands-on Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-4-hands-on-practice">Section 4: Hands-on Practice</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-check-if-a-number-is-even-or-odd">Exercise 1: Check if a Number is Even or Odd</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-sum-of-all-numbers-in-a-list">Exercise 2: Sum of All Numbers in a List</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-factorial-of-a-number">Exercise 3: Factorial of a Number</a></li>
@@ -441,7 +435,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-3-control-structures-in-python">
 <h1>Lecture 3: Control Structures in Python<a class="headerlink" href="#lecture-3-control-structures-in-python" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In this lecture, we will explore one of the most crucial aspects of programming: control structures. Control structures are fundamental building blocks in Python, allowing you to control the flow of execution in your programs. By using these structures, you can make your code more dynamic, flexible, and responsive to different conditions and inputs.</p>
 <section id="what-are-control-structures">
 <h3>What Are Control Structures?<a class="headerlink" href="#what-are-control-structures" title="Link to this heading">#</a></h3>
@@ -460,7 +454,6 @@ document.write(`
 <li><p><strong>Loops:</strong> Loops enable you to repeat a block of code multiple times, which is useful for tasks that require iteration, such as processing data sets or performing repetitive calculations.</p></li>
 <li><p><strong>Functions:</strong> Functions allow you to encapsulate code into reusable blocks. This not only makes your code more organized but also facilitates code reuse and reduces redundancy.</p></li>
 </ol>
-<p>By the end of this lecture, you’ll have a solid understanding of how to use these control structures to write more efficient and effective Python programs.</p>
 </section>
 </section>
 <section id="learning-objectives">
@@ -472,8 +465,9 @@ document.write(`
 <li><p>Define and use functions to create reusable blocks of code.</p></li>
 </ul>
 </section>
-<section id="conditional-statements">
-<h2>2. Conditional Statements<a class="headerlink" href="#conditional-statements" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="section-1-conditional-statements">
+<h2>Section 1: Conditional Statements<a class="headerlink" href="#section-1-conditional-statements" title="Link to this heading">#</a></h2>
 <p>Conditional statements are essential in programming as they allow you to control the flow of your code based on specific conditions. In Python, the most common conditional statements are:</p>
 <ol class="arabic simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">if</span></code> statement</strong></p></li>
@@ -482,7 +476,7 @@ document.write(`
 </ol>
 <p>These structures enable your programs to make decisions and respond accordingly, making your code more dynamic and flexible.</p>
 <section id="the-if-statement">
-<h3>2.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement<a class="headerlink" href="#the-if-statement" title="Link to this heading">#</a></h3>
+<h3>1.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement<a class="headerlink" href="#the-if-statement" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is the simplest form of a conditional statement. It allows you to execute a block of code only if a specific condition is true. The syntax is straightforward:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
     <span class="c1"># block of code</span>
@@ -511,7 +505,7 @@ document.write(`
 </div>
 </section>
 <section id="the-if-else-statement">
-<h3>2.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement<a class="headerlink" href="#the-if-else-statement" title="Link to this heading">#</a></h3>
+<h3>1.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement<a class="headerlink" href="#the-if-else-statement" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> statement expands on the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement by providing an alternative block of code to execute if the condition is false. This allows you to handle both possibilities:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
     <span class="c1"># block of code for True condition</span>
@@ -543,7 +537,7 @@ document.write(`
 </div>
 </section>
 <section id="the-if-elif-else-statement">
-<h3>2.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement<a class="headerlink" href="#the-if-elif-else-statement" title="Link to this heading">#</a></h3>
+<h3>1.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement<a class="headerlink" href="#the-if-elif-else-statement" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> statement is a more complex conditional structure that allows you to check multiple conditions sequentially. This is useful when you need to execute different blocks of code based on different conditions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition1</span><span class="p">:</span>
     <span class="c1"># block of code for condition1</span>
@@ -580,15 +574,16 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="loops">
-<h2>3. Loops<a class="headerlink" href="#loops" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="section-2-loops">
+<h2>Section 2: Loops<a class="headerlink" href="#section-2-loops" title="Link to this heading">#</a></h2>
 <p>Loops are a fundamental concept in programming, allowing you to execute a block of code multiple times, which is especially useful when working with large datasets, repetitive tasks, or iterative processes. In Python, the two most common types of loops are:</p>
 <ol class="arabic simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">for</span></code> loop</strong></p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">while</span></code> loop</strong></p></li>
 </ol>
 <section id="the-for-loop">
-<h3>3.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop<a class="headerlink" href="#the-for-loop" title="Link to this heading">#</a></h3>
+<h3>2.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop<a class="headerlink" href="#the-for-loop" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is used to iterate over a sequence of elements, such as a list, tuple, string, or other iterable objects, and execute a block of code for each element. This makes it incredibly versatile for processing collections of data.</p>
 <p><strong>Syntax:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
@@ -760,7 +755,7 @@ city New York
 </section>
 </section>
 <section id="the-while-loop">
-<h3>3.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop<a class="headerlink" href="#the-while-loop" title="Link to this heading">#</a></h3>
+<h3>2.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop<a class="headerlink" href="#the-while-loop" title="Link to this heading">#</a></h3>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="admonition-infinite-loops admonition">
@@ -802,11 +797,12 @@ city New York
 <p>In this example, the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> is initialized to <code class="docutils literal notranslate"><span class="pre">0</span></code>. The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop executes the block of code repeatedly, printing the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> and then incrementing <code class="docutils literal notranslate"><span class="pre">i</span></code> by <code class="docutils literal notranslate"><span class="pre">1</span></code> on each iteration, until <code class="docutils literal notranslate"><span class="pre">i</span></code> reaches <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p>
 </section>
 </section>
-<section id="functions">
-<h2>4. Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="section-3-functions">
+<h2>Section 3: Functions<a class="headerlink" href="#section-3-functions" title="Link to this heading">#</a></h2>
 <p>Functions are a core component of Python programming, allowing you to encapsulate a block of code that performs a specific task. This modular approach helps make your code more organized, reusable, and easier to maintain. Functions in Python are defined using the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword, followed by the function name and a set of parentheses.</p>
 <section id="defining-functions">
-<h3>Defining Functions<a class="headerlink" href="#defining-functions" title="Link to this heading">#</a></h3>
+<h3>3.1 Defining Functions<a class="headerlink" href="#defining-functions" title="Link to this heading">#</a></h3>
 <p>The basic syntax for defining a function is as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
     <span class="c1"># block of code</span>
@@ -838,7 +834,7 @@ city New York
 <p>In this example, we define a function <code class="docutils literal notranslate"><span class="pre">add</span></code> that takes two parameters, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, and returns their sum. When we call <code class="docutils literal notranslate"><span class="pre">add(3,</span> <span class="pre">5)</span></code>, the function returns <code class="docutils literal notranslate"><span class="pre">8</span></code>, which is then printed.</p>
 </section>
 <section id="functions-with-default-parameter-values">
-<h3>Functions with Default Parameter Values<a class="headerlink" href="#functions-with-default-parameter-values" title="Link to this heading">#</a></h3>
+<h3>3.2 Functions with Default Parameter Values<a class="headerlink" href="#functions-with-default-parameter-values" title="Link to this heading">#</a></h3>
 <p>Functions can also have default values for their parameters, making some arguments optional when the function is called.</p>
 <p><strong>Example:</strong></p>
 <div class="cell docutils container">
@@ -860,7 +856,7 @@ city New York
 <p>In this example, the function <code class="docutils literal notranslate"><span class="pre">greet</span></code> has a default parameter <code class="docutils literal notranslate"><span class="pre">name=&quot;Alice&quot;</span></code>. When the function is called without providing an argument for <code class="docutils literal notranslate"><span class="pre">name</span></code>, it defaults to <code class="docutils literal notranslate"><span class="pre">&quot;Alice&quot;</span></code>, and the message “Hello, Alice” is printed.</p>
 </section>
 <section id="lambda-functions">
-<h3>4.1 Lambda Functions<a class="headerlink" href="#lambda-functions" title="Link to this heading">#</a></h3>
+<h3>3.3 Lambda Functions<a class="headerlink" href="#lambda-functions" title="Link to this heading">#</a></h3>
 <p>Lambda functions are small, anonymous functions that are defined using the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> keyword. Unlike regular functions defined with <code class="docutils literal notranslate"><span class="pre">def</span></code>, lambda functions can have any number of arguments but only one expression. They are often used for short, simple operations that are not reused elsewhere in your code.</p>
 <p><strong>Syntax:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="n">arguments</span><span class="p">:</span> <span class="n">expression</span>
@@ -885,7 +881,7 @@ city New York
 <p>Here, we define a lambda function <code class="docutils literal notranslate"><span class="pre">add</span></code> that takes two arguments, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, and returns their sum. The lambda function behaves like a regular function but is written in a more compact form.</p>
 </section>
 <section id="using-lambda-functions-with-higher-order-functions">
-<h3>Using Lambda Functions with Higher-Order Functions<a class="headerlink" href="#using-lambda-functions-with-higher-order-functions" title="Link to this heading">#</a></h3>
+<h3>3.4 Using Lambda Functions with Higher-Order Functions<a class="headerlink" href="#using-lambda-functions-with-higher-order-functions" title="Link to this heading">#</a></h3>
 <p>Lambda functions are frequently used as arguments to higher-order functions like <code class="docutils literal notranslate"><span class="pre">map()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code>, and <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> because of their concise syntax.</p>
 <p><strong>Example with <code class="docutils literal notranslate"><span class="pre">map()</span></code>:</strong></p>
 <div class="cell docutils container">
@@ -906,7 +902,7 @@ city New York
 <p>In this example, <code class="docutils literal notranslate"><span class="pre">map()</span></code> applies the lambda function <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">x**2</span></code> to each element of the <code class="docutils literal notranslate"><span class="pre">numbers</span></code> list, producing a list of squares.</p>
 </section>
 <section id="using-lambda-functions-with-pandas">
-<h3>Using Lambda Functions with Pandas<a class="headerlink" href="#using-lambda-functions-with-pandas" title="Link to this heading">#</a></h3>
+<h3>3.5 Using Lambda Functions with Pandas<a class="headerlink" href="#using-lambda-functions-with-pandas" title="Link to this heading">#</a></h3>
 <p>Lambda functions are also commonly used in Pandas to apply operations across elements in a DataFrame. This is particularly useful for creating new columns or transforming data.</p>
 <p><strong>Example:</strong></p>
 <div class="cell docutils container">
@@ -934,7 +930,7 @@ city New York
 <p>In this example, a Pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code> is created with columns <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">age</span></code>. The <code class="docutils literal notranslate"><span class="pre">apply()</span></code> method is used to apply a lambda function that squares each element in the <code class="docutils literal notranslate"><span class="pre">age</span></code> column. The result is stored in a new column, <code class="docutils literal notranslate"><span class="pre">age_squared</span></code>.</p>
 </section>
 <section id="best-practices-for-using-functions">
-<h3>Best Practices for Using Functions<a class="headerlink" href="#best-practices-for-using-functions" title="Link to this heading">#</a></h3>
+<h3>3.6 Best Practices for Using Functions<a class="headerlink" href="#best-practices-for-using-functions" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Use Descriptive Names:</strong> Function names should clearly describe what the function does.</p></li>
 <li><p><strong>Keep Functions Small and Focused:</strong> A function should do one thing and do it well. If your function is getting too long, consider breaking it up into smaller functions.</p></li>
@@ -957,8 +953,9 @@ city New York
 <p>In this example, the function <code class="docutils literal notranslate"><span class="pre">calculate_area</span></code> is well-documented with a docstring that explains what the function does, its parameters, and its return value.</p>
 </section>
 </section>
-<section id="hands-on-practice">
-<h2>Hands-on Practice<a class="headerlink" href="#hands-on-practice" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="section-4-hands-on-practice">
+<h2>Section 4: Hands-on Practice<a class="headerlink" href="#section-4-hands-on-practice" title="Link to this heading">#</a></h2>
 <p>Now that you’ve learned about control structures in Python, it’s time to put your knowledge into practice. Below are a series of exercises designed to help reinforce the concepts you’ve covered. Each exercise includes a hint to guide you if you need a little help getting started.</p>
 <section id="exercise-1-check-if-a-number-is-even-or-odd">
 <h3>Exercise 1: Check if a Number is Even or Odd<a class="headerlink" href="#exercise-1-check-if-a-number-is-even-or-odd" title="Link to this heading">#</a></h3>
@@ -1095,15 +1092,6 @@ Write a Python program to generate the first <code class="docutils literal notra
         <p class="prev-next-title">Lecture 2: Essential Python Packages for the Chemical Sciences</p>
       </div>
     </a>
-    <a class="right-next"
-       href="lecture-04-optimization.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -1120,20 +1108,20 @@ Write a Python program to generate the first <code class="docutils literal notra
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-control-structures">What Are Control Structures?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-control-structures-in-python">Key Control Structures in Python</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements">2. Conditional Statements</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">2.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">2.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-elif-else-statement">2.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-1-conditional-statements">Section 1: Conditional Statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-statement">1.1 The <code class="docutils literal notranslate"><span class="pre">if</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-else-statement">1.2 The <code class="docutils literal notranslate"><span class="pre">if-else</span></code> Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-if-elif-else-statement">1.3 The <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> Statement</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">3. Loops</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-loop">3.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-2-loops">Section 2: Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-loop">2.1 The <code class="docutils literal notranslate"><span class="pre">for</span></code> Loop</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-list">Looping Through a List</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-string">Looping Through a String</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-through-a-dictionary">Looping Through a Dictionary</a></li>
@@ -1142,19 +1130,19 @@ Write a Python program to generate the first <code class="docutils literal notra
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#list-comprehensions">List Comprehensions</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-while-loop">3.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-while-loop">2.2 The <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4. Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">Defining Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-default-parameter-values">Functions with Default Parameter Values</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">4.1 Lambda Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-higher-order-functions">Using Lambda Functions with Higher-Order Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-pandas">Using Lambda Functions with Pandas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-using-functions">Best Practices for Using Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-3-functions">Section 3: Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">3.1 Defining Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-default-parameter-values">3.2 Functions with Default Parameter Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-functions">3.3 Lambda Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-higher-order-functions">3.4 Using Lambda Functions with Higher-Order Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-lambda-functions-with-pandas">3.5 Using Lambda Functions with Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-for-using-functions">3.6 Best Practices for Using Functions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-practice">Hands-on Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-4-hands-on-practice">Section 4: Hands-on Practice</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-check-if-a-number-is-even-or-odd">Exercise 1: Check if a Number is Even or Odd</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-sum-of-all-numbers-in-a-list">Exercise 2: Sum of All Numbers in a List</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-factorial-of-a-number">Exercise 3: Factorial of a Number</a></li>

@@ -34,17 +34,19 @@ By the end of this lecture, you should be able to:
 - Create and customize plots using Matplotlib.
 - Manipulate and analyze data using Pandas DataFrames.
 
-## NumPy: The Foundation of Scientific Computing in Python
+---
+
+## Section 1: NumPy - The Foundation of Scientific Computing in Python
 
 NumPy is the cornerstone of scientific computing in Python, providing essential support for large, multi-dimensional arrays and matrices. It also offers a suite of mathematical functions to operate on these arrays, making it indispensable for numerical tasks in the chemical sciences and beyond. Many other scientific libraries, including SciPy, Matplotlib, and Pandas, are built on top of NumPy.
 
-### Key Features of NumPy
+### 1.1 Key Features of NumPy
 
 - **N-dimensional Array Object:** NumPy’s array object (`ndarray`) is a versatile container for data. It can represent vectors, matrices, and higher-dimensional data structures, enabling efficient storage and manipulation of numerical data.
 - **Broadcasting:** Perform element-wise operations on arrays of different shapes in a flexible and efficient manner.
 - **Linear Algebra, Fourier Transform, and Random Number Generation:** NumPy includes a comprehensive suite of functions for these operations, which are critical in many scientific applications.
 
-### Working with NumPy Arrays
+### 1.2 Working with NumPy Arrays
 
 NumPy arrays are the core data structure in NumPy. They are similar to Python lists but are more powerful and efficient, particularly for numerical computations. In the chemical sciences, vectors and matrices are ubiquitous, representing quantities such as atomic positions, molecular orientations, and magnetic field components.
 
@@ -157,23 +159,29 @@ print(A)
 
 ---
 
-1. **Exercise 1:** Create a 3x3 matrix with random integers between 0 and 9.
+### 1.3 Practice Exercises
+
+1. **Exercise 1:**
+   Create a 3x3 matrix with random integers between 0 and 9.
 
    ```{dropdown} Hint
    Use `np.random.randint()` to generate random integers.
    ```
 
-2. **Exercise 2:** Create a 3x3 identity matrix.
+2. **Exercise 2:**
+   Create a 3x3 identity matrix.
 
    ```{dropdown} Hint
    Use `np.eye()` to create an identity matrix.
    ```
 
-## SciPy: A Powerful Tool for Scientific Computing
+---
+
+## Section 2: SciPy - A Powerful Tool for Scientific Computing
 
 While we won't delve deeply into SciPy in this lecture, it's a library we'll return to periodically throughout this course. SciPy builds on the foundation provided by NumPy, offering elegant and efficient solutions for a variety of complex scientific and engineering problems. However, before relying heavily on SciPy, it's important to understand the underlying principles by building some of these solutions from scratch. Once you have a solid foundation, SciPy will become an invaluable tool in your computational toolkit.
 
-### Key Features of SciPy
+### 2.1 Key Features of SciPy
 
 - **Optimization:** SciPy provides robust tools for optimization tasks, such as finding the minimum or maximum of a function. We’ll explore these capabilities in more detail in Lecture 4, where we'll tackle problems like finding the roots of equations in chemical reaction equilibria.
 
@@ -183,17 +191,19 @@ While we won't delve deeply into SciPy in this lecture, it's a library we'll ret
 
 - **And Much More:** SciPy is a vast library with modules covering topics like linear algebra, statistics, and image processing. As you progress through this course, you'll find many opportunities to leverage SciPy’s capabilities. For a full overview of what SciPy offers, you can explore the [official documentation](https://docs.scipy.org/doc/scipy/index.html).
 
-## Matplotlib: Creating Publication-Quality Visualizations
+---
+
+## Section 3: Matplotlib - Creating Publication-Quality Visualizations
 
 Matplotlib is a versatile plotting library in Python that allows you to create publication-quality figures across various formats and interactive environments. Whether you need simple plots or complex visualizations, Matplotlib has you covered. With just a few lines of code, you can generate plots, histograms, bar charts, scatterplots, and much more. As a starting point, I highly recommend checking out the "Anatomy of a Figure" graphic from the Matplotlib documentation: [Anatomy of a Figure](https://matplotlib.org/stable/users/explain/quick_start.html#parts-of-a-figure). This reference will be invaluable as we work through different plotting tasks in this course.
 
-### Key Features of Matplotlib
+### 3.1 Key Features of Matplotlib
 
 - **Wide Range of Plot Types:** Create various plots, including line plots, scatter plots, histograms, bar charts, and more.
 - **Extensive Customization:** Customize every aspect of your plots, from colors and line styles to markers and annotations.
 - **Flexible Output Formats:** Save your plots in multiple formats, such as PNG, PDF, and SVG, making it easy to include them in publications, presentations, and reports.
 
-### Creating Basic Plots with Matplotlib
+### 3.2 Creating Basic Plots with Matplotlib
 
 Let’s explore some of the most common plot types you’ll encounter in this course, starting with scatter plots, line plots, and histograms.
 
@@ -250,7 +260,7 @@ plt.title('Histogram of Random Data')
 plt.show()
 ```
 
-### Customizing Your Plots
+### 3.3 Customizing Your Plots
 
 One of Matplotlib’s strengths is its ability to customize every aspect of a plot. This includes changing colors, line styles, marker styles, labels, titles, and more. Here’s an example that demonstrates these customization features:
 
@@ -273,6 +283,8 @@ In this example, we’ve customized the plot by changing the line color to red, 
 
 ---
 
+### 3.4 Practice Exercises
+
 1. **Exercise 1:**
    Create a scatter plot of random data with customizations, such as changing the color, marker style, and adding labels.
 
@@ -287,17 +299,19 @@ In this example, we’ve customized the plot by changing the line color to red, 
    Use the `bins` and `color` parameters in `plt.hist()` to customize your histogram.
    ```
 
-## Pandas: Powerful Data Manipulation in Python
+---
+
+## Section 4: Pandas - Powerful Data Manipulation in Python
 
 Pandas is like Excel on steroids—think of it as Excel integrated into Python, with far greater flexibility and power. Pandas is a versatile library designed for data manipulation and analysis, providing structures and functions to handle structured data efficiently. It is built on top of NumPy and is particularly useful for working with tabular data, such as spreadsheets and databases.
 
-### Key Features of Pandas
+### 4.1 Key Features of Pandas
 
 - **Flexible Data Structures:** Work with labeled data using Pandas’ two primary data structures: `Series` (1D) and `DataFrame` (2D). These structures allow you to easily manipulate and analyze data.
 - **Powerful Data Manipulation:** Perform complex operations such as filtering, grouping, merging, and aggregating data with ease.
 - **Comprehensive I/O Capabilities:** Pandas can read and write data in various formats, including CSV, Excel, and SQL databases, making it easy to integrate with other data sources.
 
-### Series: The 1D Data Structure
+### 4.2 Series: The 1D Data Structure
 
 A `Series` in Pandas is a one-dimensional labeled array capable of holding any data type, such as integers, strings, or floating-point numbers. You can think of a `Series` as a single column in an Excel spreadsheet, with an index to label each row.
 
@@ -320,7 +334,7 @@ In this `Series`, the first column represents the index (similar to row numbers 
 By default, Python uses zero-based indexing, so the first element in a NumPy array or Pandas DataFrame has an index of 0.
 ```
 
-### DataFrame: The 2D Data Structure
+### 4.3 DataFrame: The 2D Data Structure
 
 A `DataFrame` is a two-dimensional labeled data structure, similar to an Excel spreadsheet, where each column can contain different data types. `DataFrames` are the bread and butter of data manipulation in Pandas, allowing you to organize and manipulate data in powerful ways.
 
@@ -340,7 +354,7 @@ print(df)
 
 In this `DataFrame`, the index column functions like the row numbers in Excel, and each key in the dictionary becomes a column. The `DataFrame` provides the power to manipulate and analyze your data more efficiently than traditional spreadsheet software.
 
-### Reading and Writing Data
+### 4.4 Reading and Writing Data
 
 Pandas provides functions for reading and writing data in a variety of formats, such as CSV, Excel, and SQL databases. For this example, you can download the `data.csv` file we'll be using [here](https://wustl.instructure.com/courses/141498/files/8299165/download?download_frd=1).
 
@@ -360,7 +374,7 @@ df.to_csv('output.csv', index=False)
 
 Setting `index=False` prevents the index from being written to the file, which is useful if you want a clean output.
 
-### Filtering Data
+### 4.5 Filtering Data
 
 One of Pandas’ strengths is its ability to filter data based on conditions. For example, you can filter a `DataFrame` to display only the rows where the cohesive energy falls within a specific range:
 
@@ -381,20 +395,29 @@ This filtering technique is incredibly useful when working with large datasets, 
 
 ---
 
-1. **Exercise 1:** Create a `DataFrame` from a dictionary of NumPy arrays and write it to a CSV file.
+### 4.6 Practice Exercises
+
+1. **Exercise 1:**
+   Create a `DataFrame` from a dictionary of NumPy arrays and write it to a CSV file.
 
    ```{dropdown} Hint
    Use the `pd.DataFrame()` function to create the `DataFrame`, and `to_csv()` to save it to a file.
    ```
 
-2. **Exercise 2:** Read data from a CSV file into a `DataFrame`, then filter the data based on a condition.
+2. **Exercise 2:**
+   Read data from a CSV file into a `DataFrame`, then filter the data based on a condition.
 
    ```{dropdown} Hint
    Use `pd.read_csv()` to load the data and the filtering syntax shown above to filter the `DataFrame`.
    ```
 
-3. **Exercise 3:** Filter a `DataFrame` based on a different condition. For example, try filtering for rows where the cohesive energy is greater than 150 kJ/mol.
+3. **Exercise 3:**
+   Filter a `DataFrame` based on a different condition. For example, try filtering for rows where the cohesive energy is greater than 150 kJ/mol.
 
    ```{dropdown} Hint
    Modify the filtering condition in the example provided.
    ```
+
+---
+
+This concludes our second lecture. As you practice using these essential Python packages, you'll gain confidence in applying them to solve complex problems in the chemical sciences. The skills you develop here will serve as a strong foundation for your computational work, both in this course and beyond.

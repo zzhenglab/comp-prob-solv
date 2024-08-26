@@ -13,7 +13,7 @@ kernelspec:
 
 # Lecture 3: Control Structures in Python
 
-## 1. Introduction
+## Introduction
 
 In this lecture, we will explore one of the most crucial aspects of programming: control structures. Control structures are fundamental building blocks in Python, allowing you to control the flow of execution in your programs. By using these structures, you can make your code more dynamic, flexible, and responsive to different conditions and inputs.
 
@@ -35,8 +35,6 @@ In Python, there are three main types of control structures that we will cover i
 
 3. **Functions:** Functions allow you to encapsulate code into reusable blocks. This not only makes your code more organized but also facilitates code reuse and reduces redundancy.
 
-By the end of this lecture, you'll have a solid understanding of how to use these control structures to write more efficient and effective Python programs.
-
 ## Learning Objectives
 
 By the end of this lecture, you will be able to:
@@ -45,7 +43,9 @@ By the end of this lecture, you will be able to:
 - Utilize loops to efficiently repeat tasks and process collections of data.
 - Define and use functions to create reusable blocks of code.
 
-## 2. Conditional Statements
+---
+
+## Section 1: Conditional Statements
 
 Conditional statements are essential in programming as they allow you to control the flow of your code based on specific conditions. In Python, the most common conditional statements are:
 
@@ -55,7 +55,7 @@ Conditional statements are essential in programming as they allow you to control
 
 These structures enable your programs to make decisions and respond accordingly, making your code more dynamic and flexible.
 
-### 2.1 The `if` Statement
+### 1.1 The `if` Statement
 
 The `if` statement is the simplest form of a conditional statement. It allows you to execute a block of code only if a specific condition is true. The syntax is straightforward:
 
@@ -77,7 +77,7 @@ if x > 5:
     print("x is greater than 5")
 ```
 
-### 2.2 The `if-else` Statement
+### 1.2 The `if-else` Statement
 
 The `if-else` statement expands on the `if` statement by providing an alternative block of code to execute if the condition is false. This allows you to handle both possibilities:
 
@@ -102,7 +102,7 @@ else:
     print("x is less than or equal to 5")
 ```
 
-### 2.3 The `if-elif-else` Statement
+### 1.3 The `if-elif-else` Statement
 
 The `if-elif-else` statement is a more complex conditional structure that allows you to check multiple conditions sequentially. This is useful when you need to execute different blocks of code based on different conditions:
 
@@ -132,14 +132,16 @@ else:
     print("x is equal to 5")
 ```
 
-## 3. Loops
+---
+
+## Section 2: Loops
 
 Loops are a fundamental concept in programming, allowing you to execute a block of code multiple times, which is especially useful when working with large datasets, repetitive tasks, or iterative processes. In Python, the two most common types of loops are:
 
 1. **`for` loop**
 2. **`while` loop**
 
-### 3.1 The `for` Loop
+### 2.1 The `for` Loop
 
 The `for` loop is used to iterate over a sequence of elements, such as a list, tuple, string, or other iterable objects, and execute a block of code for each element. This makes it incredibly versatile for processing collections of data.
 
@@ -249,7 +251,7 @@ print(squares)
 
 In this example, the list comprehension `[x**2 for x in range(5)]` creates a new list `squares` by squaring each element in the range from `0` to `4`.
 
-### 3.2 The `while` Loop
+### 2.2 The `while` Loop
 
 ````{margin}
 ```{admonition} Infinite Loops
@@ -281,11 +283,13 @@ while i < 5:
 
 In this example, the variable `i` is initialized to `0`. The `while` loop executes the block of code repeatedly, printing the value of `i` and then incrementing `i` by `1` on each iteration, until `i` reaches `5`.
 
-## 4. Functions
+---
+
+## Section 3: Functions
 
 Functions are a core component of Python programming, allowing you to encapsulate a block of code that performs a specific task. This modular approach helps make your code more organized, reusable, and easier to maintain. Functions in Python are defined using the `def` keyword, followed by the function name and a set of parentheses.
 
-### Defining Functions
+### 3.1 Defining Functions
 
 The basic syntax for defining a function is as follows:
 
@@ -311,7 +315,7 @@ print(result)
 
 In this example, we define a function `add` that takes two parameters, `x` and `y`, and returns their sum. When we call `add(3, 5)`, the function returns `8`, which is then printed.
 
-### Functions with Default Parameter Values
+### 3.2 Functions with Default Parameter Values
 
 Functions can also have default values for their parameters, making some arguments optional when the function is called.
 
@@ -327,7 +331,7 @@ print(message)
 
 In this example, the function `greet` has a default parameter `name="Alice"`. When the function is called without providing an argument for `name`, it defaults to `"Alice"`, and the message "Hello, Alice" is printed.
 
-### 4.1 Lambda Functions
+### 3.3 Lambda Functions
 
 Lambda functions are small, anonymous functions that are defined using the `lambda` keyword. Unlike regular functions defined with `def`, lambda functions can have any number of arguments but only one expression. They are often used for short, simple operations that are not reused elsewhere in your code.
 
@@ -348,7 +352,7 @@ print(result)
 
 Here, we define a lambda function `add` that takes two arguments, `x` and `y`, and returns their sum. The lambda function behaves like a regular function but is written in a more compact form.
 
-### Using Lambda Functions with Higher-Order Functions
+### 3.4 Using Lambda Functions with Higher-Order Functions
 
 Lambda functions are frequently used as arguments to higher-order functions like `map()`, `filter()`, and `reduce()` because of their concise syntax.
 
@@ -363,7 +367,7 @@ print(squares)
 
 In this example, `map()` applies the lambda function `lambda x: x**2` to each element of the `numbers` list, producing a list of squares.
 
-### Using Lambda Functions with Pandas
+### 3.5 Using Lambda Functions with Pandas
 
 Lambda functions are also commonly used in Pandas to apply operations across elements in a DataFrame. This is particularly useful for creating new columns or transforming data.
 
@@ -382,7 +386,7 @@ print(df)
 
 In this example, a Pandas DataFrame `df` is created with columns `name` and `age`. The `apply()` method is used to apply a lambda function that squares each element in the `age` column. The result is stored in a new column, `age_squared`.
 
-### Best Practices for Using Functions
+### 3.6 Best Practices for Using Functions
 
 1. **Use Descriptive Names:** Function names should clearly describe what the function does.
 2. **Keep Functions Small and Focused:** A function should do one thing and do it well. If your function is getting too long, consider breaking it up into smaller functions.
@@ -406,7 +410,9 @@ def calculate_area(radius):
 
 In this example, the function `calculate_area` is well-documented with a docstring that explains what the function does, its parameters, and its return value.
 
-## Hands-on Practice
+---
+
+## Section 4: Hands-on Practice
 
 Now that you've learned about control structures in Python, it's time to put your knowledge into practice. Below are a series of exercises designed to help reinforce the concepts you've covered. Each exercise includes a hint to guide you if you need a little help getting started.
 

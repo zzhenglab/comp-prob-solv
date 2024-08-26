@@ -13,11 +13,11 @@ kernelspec:
 
 # Lecture 1: Introduction to Python for the Chemical Sciences
 
-Welcome to **"Computational Problem Solving in the Chemical Sciences"!** This course is designed to empower you with the skills to tackle a wide range of problems in chemistry, chemical engineering, chemical physics, chemical biology, and beyond, using modern numerical tools. While we will primarily focus on Python—a language highly valued in today's workforce—it's important to recognize that there are many other tools at your disposal for solving problems in the chemical sciences.
+Welcome to **Computational Problem Solving in the Chemical Sciences!** This course is designed to equip you with the skills to tackle a wide range of problems in chemistry, chemical engineering, chemical physics, chemical biology, and beyond, using modern numerical tools. While we will primarily focus on Python—a language highly valued in today's workforce—it's important to recognize that there are many other tools at your disposal for solving problems in the chemical sciences.
 
 These tools range from spreadsheet software like Excel and Google Sheets to specialized software packages with graphical user interfaces, such as Origin, Mathematica, and MATLAB. Additionally, other programming languages like R, Julia, and C++ are often employed for various scientific computing tasks.
 
-As we progress through the course, you'll not only learn the fundamentals of Python but also how to apply it to simulate matter at different scales. This will include techniques like Monte Carlo and molecular dynamics simulations. We'll also touch upon Python's use in quantum chemistry calculations, demonstrating its versatility and power across diverse areas of research.
+As we progress through the course, you'll not only learn the fundamentals of Python but also how to apply it to simulate matter at different scales, including techniques like Monte Carlo and molecular dynamics simulations. We'll also touch upon Python's use in quantum chemistry calculations, demonstrating its versatility and power across diverse areas of research.
 
 By the end of this course, you'll have a solid foundation in using Python to solve complex problems in the chemical sciences, preparing you for both academic research and industry applications.
 
@@ -30,76 +30,86 @@ By the end of this lecture, you should be able to:
 - Use Python to solve chemical problems, such as calculating molar masses and the number of moles.
 - Create basic plots using Python's `matplotlib` library.
 
+---
+
 ## Step 1: Getting Python Installed
 
 Before we dive into using Python, you'll need to have it installed on your computer. Python is available across all major operating systems, and installation is straightforward. Here's how you can get started:
 
-1. **Download and Install Python:**
-   - Visit the official [Python website](https://www.python.org/downloads/) and download the latest version of Python 3 (we recommend version 3.8 or later).
-   - Follow the installation instructions specific to your operating system.
+### 1.1 Download and Install Python
 
-2. **Check if Python is Already Installed:**
-   - **Mac and Linux Users:** Python typically comes pre-installed. To check, open a terminal and type:
+- Visit the official [Python website](https://www.python.org/downloads/) and download the latest version of Python 3 (we recommend version 3.8 or later).
+- Follow the installation instructions specific to your operating system.
 
-     ```bash
-     python3 --version
-     ```
+### 1.2 Check if Python is Already Installed
 
-     If a version number appears, you're all set. If not, you'll need to install Python from the website above.
-   - **Windows Users:** Open a command prompt and type:
+- **Mac and Linux Users:** Python typically comes pre-installed. To check, open a terminal and type:
 
-     ```bash
-     python --version
-     ```
+```bash
+python3 --version
+```
 
-     If you see a version number, Python is installed. If you get an error, you'll need to install Python.
+If a version number appears, you're all set. If not, you'll need to install Python from the website above.
 
-3. **Windows-Specific Note:**
-   - During installation on Windows, make sure to check the box that says "Add Python to PATH." This will make Python accessible from the command line.
+- **Windows Users:** Open a command prompt and type:
+
+```bash
+python --version
+```
+
+If you see a version number, Python is installed. If you get an error, you'll need to install Python.
+
+### 1.3 Windows-Specific Note
+
+- During installation on Windows, make sure to check the box that says "Add Python to PATH." This will make Python accessible from the command line.
 
 Once Python is installed and verified, you're ready to start coding!
 
+---
+
 ## Step 2: Installing Jupyter Notebook
 
-Next, you'll need to install Jupyter Notebook, a powerful tool that allows you to create and share documents containing live code, equations, visualizations, and narrative text. Follow these steps to get Jupyter up and running on your computer:
+Next, you'll need to install Jupyter Notebook, a powerful tool that allows you to create and share documents containing live code, equations, visualizations, and narrative text.
 
-1. **Install Jupyter Notebook:**
-   - **For Mac and Linux Users:**
-     Open a terminal and type:
+### 2.1 Install Jupyter Notebook
 
-     ```bash
-     pip3 install jupyter
-     ```
+- **For Mac and Linux Users:** Open a terminal and type:
 
-     If `pip3` doesn't work, try:
+```bash
+pip3 install jupyter
+```
 
-     ```bash
-     python3 -m pip install jupyter
-     ```
+If `pip3` doesn't work, try:
 
-   - **For Windows Users:**
-     Open a command prompt and type:
+```bash
+python3 -m pip install jupyter
+```
 
-     ```bash
-     python -m pip install jupyter
-     ```
+- **For Windows Users:** Open a command prompt and type:
 
-     This command ensures that Jupyter is installed using the version of Python you have on your system.
+```bash
+python -m pip install jupyter
+```
 
-2. **Launching Jupyter Notebook:**
-   - After installation, you can start Jupyter Notebook by typing the following command in your terminal or command prompt:
+This command ensures that Jupyter is installed using the version of Python you have on your system.
 
-     ```bash
-     jupyter notebook
-     ```
+### 2.2 Launching Jupyter Notebook
 
-   - This will automatically open a new tab in your default web browser, presenting the Jupyter interface. From here, you can create new notebooks, organize your projects, and start coding!
+- After installation, you can start Jupyter Notebook by typing the following command in your terminal or command prompt:
+
+```bash
+jupyter notebook
+```
+
+- This will automatically open a new tab in your default web browser, presenting the Jupyter interface. From here, you can create new notebooks, organize your projects, and start coding!
 
 With Jupyter Notebook installed, you're now ready to start exploring Python interactively!
 
+---
+
 ## Step 3: Let's Get Started with Python
 
-### Python and Mathematics
+### 3.1 Python and Mathematics
 
 Python is a versatile programming language that excels at solving a wide range of problems in the chemical sciences, particularly when it comes to mathematical computations. Whether you're performing simple arithmetic or tackling more advanced calculus, Python is equipped to handle it all.
 
@@ -129,20 +139,20 @@ The `math` module is a built-in library in Python. To use it, you must first imp
 ```
 ````
 
-But Python's capabilities extend far beyond basic arithmetic. For example, to calculate the square root of a number, you can use the `math` module, which is a collection of functions and constants for performing mathematical operations.
-
-Here’s how you can use the `math` module:
+Python's capabilities extend far beyond basic arithmetic. For example, to calculate the square root of a number, you can use the `math` module:
 
 ```{code-cell} ipython3
 import math
 math.sqrt(9)
 ```
 
-In this example, you’ve also seen your first instance of importing a module in Python. The `import` statement allows you to bring additional functionality into your Python programs. In this case, by importing the `math` module, you gain access to a suite of mathematical tools that go beyond basic operations.
+In this example, you’ve seen your first instance of importing a module in Python. The `import` statement allows you to bring additional functionality into your Python programs. In this case, by importing the `math` module, you gain access to a suite of mathematical tools that go beyond basic operations.
 
 Once imported, you can use any function from the module by prefixing it with `math`. For instance, `math.sqrt()` is the function to compute the square root.
 
 ---
+
+### 3.2 Practice Exercises
 
 Let’s put this into practice with a couple of exercises:
 
@@ -160,9 +170,11 @@ Let’s put this into practice with a couple of exercises:
    Remember to use the `math.sqrt()` function for square roots.
    ```
 
-### Python Can Do Chemistry
+---
 
-Python is not just a powerful tool for mathematics; it can also be used to solve a wide range of problems in chemistry. Whether you're performing basic stoichiometric calculations or inquiring into complex quantum chemistry, Python has you covered.
+### 3.3 Python Can Do Chemistry
+
+Python is not just a powerful tool for mathematics; it can also be used to solve a wide range of problems in chemistry. Whether you're performing basic stoichiometric calculations or exploring complex quantum chemistry, Python has you covered.
 
 For example, let’s calculate the molar mass of carbon dioxide (CO$_2$):
 
@@ -194,6 +206,8 @@ type(mass)
 
 ---
 
+### 3.4 Practice Exercises
+
 1. **Exercise 1:**
    Calculate the molar mass of water (H$_2$O) using Python.
 
@@ -208,7 +222,9 @@ type(mass)
    Use the molar mass you calculated in the previous exercise.
    ```
 
-### Python Can Do Graphing
+---
+
+### 3.5 Python Can Do Graphing
 
 Python is also a powerful tool for creating graphs and plots, which are essential for visualizing data, analyzing trends, and effectively communicating your results. Let's start with a simple example of a line plot:
 
@@ -247,6 +263,8 @@ You might find yourself experimenting with different libraries to determine whic
 
 ---
 
+### 3.6 Practice Exercises
+
 1. **Exercise 1:**
    Create a line plot of the function $y = x^3$ for $x = 1, 2, 3, 4, 5$ using Python.
 
@@ -268,7 +286,9 @@ You might find yourself experimenting with different libraries to determine whic
    You can use the `plot()` function twice to plot both functions on the same graph. Use the `legend()` function to add a legend.
    ```
 
-### Python Can Do More
+---
+
+### 3.7 Python Can Do More
 
 Python's versatility extends far beyond what we'll cover in this course. As you continue your journey in the chemical sciences, you'll find Python to be an invaluable tool for tackling a wide array of problems. Here’s a glimpse of what Python can help you achieve:
 
@@ -290,3 +310,7 @@ Python's versatility extends far beyond what we'll cover in this course. As you 
 
 - **And Much More:**
   The possibilities with Python are vast. For more resources and tools specifically tailored to chemistry, check out the [awesome-python-chemistry](https://github.com/lmmentel/awesome-python-chemistry) repository.
+
+---
+
+This concludes our first lecture. As you move forward, practice is key to mastering Python's powerful capabilities. Don't hesitate to experiment with the code, try out the exercises, and explore additional resources to deepen your understanding. Welcome to the world of computational problem-solving in the chemical sciences!
