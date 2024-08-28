@@ -226,7 +226,19 @@ type(mass)
 
 ### 3.5 Python Can Do Graphing
 
-Python is also a powerful tool for creating graphs and plots, which are essential for visualizing data, analyzing trends, and effectively communicating your results. Let's start with a simple example of a line plot:
+Before we start creating plots, you'll need to ensure that Matplotlib is installed on your computer. Matplotlib is a popular plotting library in Python that you'll be using frequently for data visualization. To install Matplotlib, open your terminal or command prompt and type the following command:
+
+```bash
+pip install matplotlib
+```
+
+If you're using a Jupyter Notebook, you can install Matplotlib directly within the notebook by running:
+
+```ipython3
+!pip install matplotlib
+```
+
+Once Matplotlib is installed, you're ready to start creating plots in Python. Let's start with a simple example of a line plot:
 
 ````{margin}
 ```{note}

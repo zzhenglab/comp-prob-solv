@@ -48,7 +48,30 @@ NumPy is the cornerstone of scientific computing in Python, providing essential 
 
 ### 1.2 Working with NumPy Arrays
 
+````{margin}
+```{admonition} Python Lists
+:class: note
+A Python list is an ordered collection of items, which can be of any data type. Lists are created using square brackets, e.g., `my_list = [1, 2, 3]`, and are versatile for storing and manipulating sequences of elements. Lists are indexed, meaning each element can be accessed by its position, starting from 0.
+```
+````
+
 NumPy arrays are the core data structure in NumPy. They are similar to Python lists but are more powerful and efficient, particularly for numerical computations. In the chemical sciences, vectors and matrices are ubiquitous, representing quantities such as atomic positions, molecular orientations, and magnetic field components.
+
+#### Installing NumPy
+
+Before you can start using NumPy, you need to ensure it is installed on your system. You can install NumPy by running the following command in your terminal or command prompt:
+
+```bash
+pip install numpy
+```
+
+If you're working within a Jupyter Notebook, you can also install NumPy directly by running:
+
+```ipython3
+!pip install numpy
+```
+
+Once NumPy is installed, you're ready to start creating and working with arrays in Python.
 
 #### Creating and Using Arrays
 
@@ -60,7 +83,11 @@ import numpy as np
 # Create a 3D vector
 v = np.array([1, 2, 3])
 
+# Print the vector
 print(v)
+
+# Print the type of v to confirm it's a NumPy array
+print(type(v))
 ```
 
 Matrices are equally important, used to represent systems of equations, Hamiltonians in quantum chemistry, and more. Here’s how you can create a 2x2 matrix:

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
@@ -383,6 +383,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-1-numpy-the-foundation-of-scientific-computing-in-python">Section 1: NumPy - The Foundation of Scientific Computing in Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-numpy">1.1 Key Features of NumPy</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-numpy-arrays">1.2 Working with NumPy Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-numpy">Installing NumPy</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-using-arrays">Creating and Using Arrays</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-and-vector-operations">Matrix and Vector Operations</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-matrix-operations">Advanced Matrix Operations</a></li>
@@ -462,7 +463,26 @@ document.write(`
 </section>
 <section id="working-with-numpy-arrays">
 <h3>1.2 Working with NumPy Arrays<a class="headerlink" href="#working-with-numpy-arrays" title="Link to this heading">#</a></h3>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="note admonition">
+<p class="admonition-title">Python Lists</p>
+<p>A Python list is an ordered collection of items, which can be of any data type. Lists are created using square brackets, e.g., <code class="docutils literal notranslate"><span class="pre">my_list</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code>, and are versatile for storing and manipulating sequences of elements. Lists are indexed, meaning each element can be accessed by its position, starting from 0.</p>
+</div>
+</aside>
 <p>NumPy arrays are the core data structure in NumPy. They are similar to Python lists but are more powerful and efficient, particularly for numerical computations. In the chemical sciences, vectors and matrices are ubiquitous, representing quantities such as atomic positions, molecular orientations, and magnetic field components.</p>
+<section id="installing-numpy">
+<h4>Installing NumPy<a class="headerlink" href="#installing-numpy" title="Link to this heading">#</a></h4>
+<p>Before you can start using NumPy, you need to ensure it is installed on your system. You can install NumPy by running the following command in your terminal or command prompt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+</pre></div>
+</div>
+<p>If you’re working within a Jupyter Notebook, you can also install NumPy directly by running:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+</pre></div>
+</div>
+<p>Once NumPy is installed, you’re ready to start creating and working with arrays in Python.</p>
+</section>
 <section id="creating-and-using-arrays">
 <h4>Creating and Using Arrays<a class="headerlink" href="#creating-and-using-arrays" title="Link to this heading">#</a></h4>
 <p>Vectors, which play a vital role in representing physical quantities in chemistry, can be created easily with NumPy:</p>
@@ -473,12 +493,17 @@ document.write(`
 <span class="c1"># Create a 3D vector</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
+<span class="c1"># Print the vector</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="c1"># Print the type of v to confirm it&#39;s a NumPy array</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 2 3]
+&lt;class &#39;numpy.ndarray&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -624,9 +649,9 @@ eigenvalues = [-0.37228132  5.37228132]
 [[1. 1. 1.]
  [1. 1. 1.]
  [1. 1. 1.]]
-[[0.92578833 0.33026915 0.11574968]
- [0.12357159 0.41263254 0.74366638]
- [0.08468586 0.36330421 0.21459876]]
+[[0.17855413 0.29978765 0.52695194]
+ [0.07069651 0.78252123 0.96641313]
+ [0.25685736 0.4256142  0.64448507]]
 </pre></div>
 </div>
 </div>
@@ -707,7 +732,7 @@ Create a 3x3 identity matrix.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e6573fec6f42b4a8ea85343ce3fec9a02d50a37c898ddcee12837acf25cf3c69.png" src="_images/e6573fec6f42b4a8ea85343ce3fec9a02d50a37c898ddcee12837acf25cf3c69.png" />
+<img alt="_images/6299bb99daa635c84f2f0d8c1bb9b7818b9820559785ba12ad144afcc2dfbe66.png" src="_images/6299bb99daa635c84f2f0d8c1bb9b7818b9820559785ba12ad144afcc2dfbe66.png" />
 </div>
 </div>
 </section>
@@ -752,7 +777,7 @@ Create a 3x3 identity matrix.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5e8425a2980b1af807f4ab91032ac4c987462d35e7d70fcd37452ef9d89012bf.png" src="_images/5e8425a2980b1af807f4ab91032ac4c987462d35e7d70fcd37452ef9d89012bf.png" />
+<img alt="_images/4e4544f3c332cd8ba3043927260dc6c6fdb176a07a4f24e10aaa0666f60d7af4.png" src="_images/4e4544f3c332cd8ba3043927260dc6c6fdb176a07a4f24e10aaa0666f60d7af4.png" />
 </div>
 </div>
 </section>
@@ -835,11 +860,11 @@ Create a histogram of random data with customizations, including changing the co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.640340
-1    1.288791
-2    0.440513
-3    0.429932
-4   -0.575324
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   -0.151212
+1   -1.234381
+2    0.074532
+3   -0.051520
+4    0.453202
 dtype: float64
 </pre></div>
 </div>
@@ -871,11 +896,11 @@ dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          A         B
-0 -0.821785  0.884707
-1 -0.851055  0.373919
-2 -0.843290  0.649707
-3  0.734481  0.044403
-4 -0.558357  0.460471
+0  1.823132  0.703219
+1  0.350110  0.291939
+2 -0.435078  0.468024
+3 -1.723356  0.530054
+4  0.763835  0.246372
 </pre></div>
 </div>
 </div>
@@ -1059,6 +1084,7 @@ Filter a <code class="docutils literal notranslate"><span class="pre">DataFrame<
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#section-1-numpy-the-foundation-of-scientific-computing-in-python">Section 1: NumPy - The Foundation of Scientific Computing in Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-numpy">1.1 Key Features of NumPy</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-numpy-arrays">1.2 Working with NumPy Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-numpy">Installing NumPy</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-and-using-arrays">Creating and Using Arrays</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-and-vector-operations">Matrix and Vector Operations</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-matrix-operations">Advanced Matrix Operations</a></li>
