@@ -190,6 +190,13 @@ This loop prints each character in the string `"hello"` on a new line.
 
 #### Looping Through a Dictionary
 
+````{margin}
+```{admonition} Lists vs. Dictionaries
+- **Lists** (`[]`): Ordered collections of items. Access elements by their position (index), e.g., `my_list[0]`.
+- **Dictionaries** (`{}`): Unordered collections of key-value pairs. Access elements by their key, e.g., `my_dict['key']`. Keys must be unique.
+```
+````
+
 Dictionaries are collections of key-value pairs, and you can loop through both the keys and values:
 
 ```{code-cell} ipython3
@@ -232,6 +239,11 @@ for index, row in df.iterrows():
 
 Here, the loop iterates over each row in the DataFrame `df`, printing the index, name, and age for each row.
 
+```{admonition} Note
+:class: note
+When we use syntax like `df.iterrows()`, we're calling a **method** of the DataFrame object `df`. A method is like a function but is tied to an object (in this case, the DataFrame). The dot notation (`df.method_name()`) is used to call methods that perform specific actions on the object. So, `iterrows()` is a method of a DataFrame that returns an iterator over its rows, allowing you to loop through each row.
+```
+
 #### List Comprehensions
 
 List comprehensions provide a concise way to create lists by applying an expression to each element in an existing iterable. This is an elegant and Pythonic way to create new lists from existing data.
@@ -249,7 +261,7 @@ squares = [x**2 for x in range(5)]
 print(squares)
 ```
 
-In this example, the list comprehension `[x**2 for x in range(5)]` creates a new list `squares` by squaring each element in the range from `0` to `4`.
+In this example, the list comprehension `[x**2 for x in range(5)]` creates a new list object, which is then assigned to the variable `squares`, containing the squares of each element in the range from `0` to `4`.
 
 ### 2.2 The `while` Loop
 
@@ -282,6 +294,15 @@ while i < 5:
 ```
 
 In this example, the variable `i` is initialized to `0`. The `while` loop executes the block of code repeatedly, printing the value of `i` and then incrementing `i` by `1` on each iteration, until `i` reaches `5`.
+
+```{admonition} Exercise
+:class: tip
+1. **What happens if you move `i = 0` inside the `while` loop block?**  
+   Try moving the line `i = 0` inside the `while` loop. What do you expect will happen, and why?
+   
+2. **What happens if you forget to include `i += 1` inside the loop?**  
+   What do you think will occur if you remove the line `i += 1` from the loop? Explain your reasoning and try running the code to see what happens.
+```
 
 ---
 
@@ -352,9 +373,16 @@ print(result)
 
 Here, we define a lambda function `add` that takes two arguments, `x` and `y`, and returns their sum. The lambda function behaves like a regular function but is written in a more compact form.
 
+**Note:** `add` refers to the function itself, while `add(3, 5)` refers to the result of calling the function with the arguments `3` and `5`. In this case, `add(3, 5)` evaluates to `8`.
+
 ### 3.4 Using Lambda Functions with Higher-Order Functions
 
 Lambda functions are frequently used as arguments to higher-order functions like `map()`, `filter()`, and `reduce()` because of their concise syntax.
+
+**Syntax of `map()`:**  
+`map(function, iterable)`
+
+Here, `function` is the operation to apply, and `iterable` is the collection of items that the function will be applied to.
 
 **Example with `map()`:**
 
@@ -500,4 +528,4 @@ If you're looking to challenge yourself further, here are a few more exercises t
 
 ---
 
-Feel free to explore these exercises further, and don’t hesitate to experiment with your own ideas. The more you practice, the more confident you’ll become in your Python programming skills. Good luck!
+Feel free to explore these exercises further, and don’t hesitate to experiment with your own ideas. If you have any questions or need clarification, feel free to discuss them in the Slack channel. The more you practice, the more confident you’ll become in your Python programming skills. Good luck!
