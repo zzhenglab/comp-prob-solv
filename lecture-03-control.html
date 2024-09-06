@@ -659,6 +659,16 @@ o
 </section>
 <section id="looping-through-a-dictionary">
 <h4>Looping Through a Dictionary<a class="headerlink" href="#looping-through-a-dictionary" title="Link to this heading">#</a></h4>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition-lists-vs-dictionaries admonition">
+<p class="admonition-title">Lists vs. Dictionaries</p>
+<ul class="simple">
+<li><p><strong>Lists</strong> (<code class="docutils literal notranslate"><span class="pre">[]</span></code>): Ordered collections of items. Access elements by their position (index), e.g., <code class="docutils literal notranslate"><span class="pre">my_list[0]</span></code>.</p></li>
+<li><p><strong>Dictionaries</strong> (<code class="docutils literal notranslate"><span class="pre">{}</span></code>): Unordered collections of key-value pairs. Access elements by their key, e.g., <code class="docutils literal notranslate"><span class="pre">my_dict['key']</span></code>. Keys must be unique.</p></li>
+</ul>
+</div>
+</aside>
 <p>Dictionaries are collections of key-value pairs, and you can loop through both the keys and values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -729,6 +739,10 @@ city New York
 </div>
 </div>
 <p>Here, the loop iterates over each row in the DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code>, printing the index, name, and age for each row.</p>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>When we use syntax like <code class="docutils literal notranslate"><span class="pre">df.iterrows()</span></code>, we’re calling a <strong>method</strong> of the DataFrame object <code class="docutils literal notranslate"><span class="pre">df</span></code>. A method is like a function but is tied to an object (in this case, the DataFrame). The dot notation (<code class="docutils literal notranslate"><span class="pre">df.method_name()</span></code>) is used to call methods that perform specific actions on the object. So, <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code> is a method of a DataFrame that returns an iterator over its rows, allowing you to loop through each row.</p>
+</div>
 </section>
 <section id="list-comprehensions">
 <h4>List Comprehensions<a class="headerlink" href="#list-comprehensions" title="Link to this heading">#</a></h4>
@@ -751,7 +765,7 @@ city New York
 </div>
 </div>
 </div>
-<p>In this example, the list comprehension <code class="docutils literal notranslate"><span class="pre">[x**2</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">range(5)]</span></code> creates a new list <code class="docutils literal notranslate"><span class="pre">squares</span></code> by squaring each element in the range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
+<p>In this example, the list comprehension <code class="docutils literal notranslate"><span class="pre">[x**2</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">range(5)]</span></code> creates a new list object, which is then assigned to the variable <code class="docutils literal notranslate"><span class="pre">squares</span></code>, containing the squares of each element in the range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
 </section>
 </section>
 <section id="the-while-loop">
@@ -795,6 +809,15 @@ city New York
 </div>
 </div>
 <p>In this example, the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> is initialized to <code class="docutils literal notranslate"><span class="pre">0</span></code>. The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop executes the block of code repeatedly, printing the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> and then incrementing <code class="docutils literal notranslate"><span class="pre">i</span></code> by <code class="docutils literal notranslate"><span class="pre">1</span></code> on each iteration, until <code class="docutils literal notranslate"><span class="pre">i</span></code> reaches <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Exercise</p>
+<ol class="arabic simple">
+<li><p><strong>What happens if you move <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">0</span></code> inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop block?</strong><br />
+Try moving the line <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">0</span></code> inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. What do you expect will happen, and why?</p></li>
+<li><p><strong>What happens if you forget to include <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">+=</span> <span class="pre">1</span></code> inside the loop?</strong><br />
+What do you think will occur if you remove the line <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">+=</span> <span class="pre">1</span></code> from the loop? Explain your reasoning and try running the code to see what happens.</p></li>
+</ol>
+</div>
 </section>
 </section>
 <hr class="docutils" />
@@ -879,10 +902,14 @@ city New York
 </div>
 </div>
 <p>Here, we define a lambda function <code class="docutils literal notranslate"><span class="pre">add</span></code> that takes two arguments, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, and returns their sum. The lambda function behaves like a regular function but is written in a more compact form.</p>
+<p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">add</span></code> refers to the function itself, while <code class="docutils literal notranslate"><span class="pre">add(3,</span> <span class="pre">5)</span></code> refers to the result of calling the function with the arguments <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>. In this case, <code class="docutils literal notranslate"><span class="pre">add(3,</span> <span class="pre">5)</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">8</span></code>.</p>
 </section>
 <section id="using-lambda-functions-with-higher-order-functions">
 <h3>3.4 Using Lambda Functions with Higher-Order Functions<a class="headerlink" href="#using-lambda-functions-with-higher-order-functions" title="Link to this heading">#</a></h3>
 <p>Lambda functions are frequently used as arguments to higher-order functions like <code class="docutils literal notranslate"><span class="pre">map()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code>, and <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> because of their concise syntax.</p>
+<p><strong>Syntax of <code class="docutils literal notranslate"><span class="pre">map()</span></code>:</strong><br />
+<code class="docutils literal notranslate"><span class="pre">map(function,</span> <span class="pre">iterable)</span></code></p>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">function</span></code> is the operation to apply, and <code class="docutils literal notranslate"><span class="pre">iterable</span></code> is the collection of items that the function will be applied to.</p>
 <p><strong>Example with <code class="docutils literal notranslate"><span class="pre">map()</span></code>:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1048,7 +1075,7 @@ Write a Python program to generate the first <code class="docutils literal notra
 </details></li>
 </ol>
 <hr class="docutils" />
-<p>Feel free to explore these exercises further, and don’t hesitate to experiment with your own ideas. The more you practice, the more confident you’ll become in your Python programming skills. Good luck!</p>
+<p>Feel free to explore these exercises further, and don’t hesitate to experiment with your own ideas. If you have any questions or need clarification, feel free to discuss them in the Slack channel. The more you practice, the more confident you’ll become in your Python programming skills. Good luck!</p>
 </section>
 </section>
 </section>
