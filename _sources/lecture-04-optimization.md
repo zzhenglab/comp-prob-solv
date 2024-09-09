@@ -185,7 +185,7 @@ The initial guess plays a crucial role in determining which root is found, espec
 
 ## Example: Chemical Reaction Equilibrium via Numerical Method
 
-Let's use `scipy.optimize.minimize` to determine the equilibrium extent of the water-splitting reaction at 1000 K and 1 bar, where the equilibrium constant is $K_P = 10.060$. We aim to find the value of $x$, the reaction progress, that satisfies the equilibrium condition.
+Let's use `scipy.optimize.minimize` to determine the equilibrium extent of the water-splitting reaction at 4000 K and 1 bar, where the equilibrium constant is $K_P = 1.22 \times 10^{-2}$. We aim to find the value of $x$, the reaction progress, that satisfies the equilibrium condition.
 
 ### Step 1: Formulating the Equilibrium Equation
 
@@ -204,13 +204,13 @@ $$
 Simplifying this expression, we obtain:
 
 $$
-K_P = \frac{4x^3}{(2 - 2x)^2}
+K_P = \frac{4x^3}{(2 - 2x)^2 (2 + x)}
 $$
 
 Where $P = P^{\circ} = 1$ bar. The equilibrium equation to be minimized is:
 
 $$
-(2 - 2x)^2 K_P - 4x^3 = 0
+(2 - 2x)^2 (2 + x) K_P - 4x^3 = 0
 $$
 
 ### Step 2: Minimizing the Equilibrium Equation
@@ -219,7 +219,7 @@ First, we define the objective function representing the equilibrium equation to
 
 ```{code-cell} ipython3
 def objective_function(x, K_P):
-    equilibrium_equation = (2 - 2 * x) ** 2 * K_P - 4 * x ** 3
+    equilibrium_equation = (2 - 2 * x) ** 2 * (2 + x) * K_P - 4 * x ** 3
     return abs(equilibrium_equation)
 ```
 
@@ -230,7 +230,7 @@ Before proceeding with the minimization, let's visualize the objective function 
 x_values = np.linspace(0, 1, 400)
 
 # Plot the function
-plt.plot(x_values, objective_function(x_values, 10.060), label=r"$|(2 - 2x)^2 K_P - 4x^3|$")
+plt.plot(x_values, objective_function(x_values, 1.22E-02), label=r"$|(2 - 2x)^2 (2 + x) K_P - 4x^3|$")
 plt.axhline(0, color='gray', linestyle='--')  # x-axis
 
 # Format and display the plot
@@ -254,7 +254,7 @@ Now, let's use `scipy.optimize.minimize` to find the equilibrium extent of the r
 result = minimize(
     fun=objective_function,
     x0=0,
-    args=(10.060,),
+    args=(1.22E-02,),
     method="Nelder-Mead",
     tol=1e-6
 )
@@ -273,7 +273,7 @@ Always check that the solution is physically meaningful. For instance, in this c
 result = minimize(
     fun=objective_function,
     x0=2,  # Initial guess outside the expected range
-    args=(10.060,),
+    args=(1.22E-02,),
     method="Nelder-Mead",
     tol=1e-6,
     bounds=[(0, 1)]
