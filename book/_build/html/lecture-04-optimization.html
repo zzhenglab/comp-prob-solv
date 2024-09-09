@@ -622,7 +622,7 @@ x = \frac{3 \pm \sqrt{(-3)^2 - 4 \cdot 1 \cdot 2}}{2 \cdot 1} = 2, 1
 </section>
 <section id="example-chemical-reaction-equilibrium-via-numerical-method">
 <h2>Example: Chemical Reaction Equilibrium via Numerical Method<a class="headerlink" href="#example-chemical-reaction-equilibrium-via-numerical-method" title="Link to this heading">#</a></h2>
-<p>Let’s use <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> to determine the equilibrium extent of the water-splitting reaction at 1000 K and 1 bar, where the equilibrium constant is <span class="math notranslate nohighlight">\(K_P = 10.060\)</span>. We aim to find the value of <span class="math notranslate nohighlight">\(x\)</span>, the reaction progress, that satisfies the equilibrium condition.</p>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> to determine the equilibrium extent of the water-splitting reaction at 4000 K and 1 bar, where the equilibrium constant is <span class="math notranslate nohighlight">\(K_P = 1.22 \times 10^{-2}\)</span>. We aim to find the value of <span class="math notranslate nohighlight">\(x\)</span>, the reaction progress, that satisfies the equilibrium condition.</p>
 <section id="step-1-formulating-the-equilibrium-equation">
 <h3>Step 1: Formulating the Equilibrium Equation<a class="headerlink" href="#step-1-formulating-the-equilibrium-equation" title="Link to this heading">#</a></h3>
 <p>The equilibrium equation for the reaction is given by:</p>
@@ -638,12 +638,12 @@ K_P = \frac{\left(\frac{2x}{2 + x}\frac{P}{P^{\circ}}\right)^2 \left(\frac{x}{2 
 <p>Simplifying this expression, we obtain:</p>
 <div class="math notranslate nohighlight">
 \[
-K_P = \frac{4x^3}{(2 - 2x)^2}
+K_P = \frac{4x^3}{(2 - 2x)^2 (2 + x)}
 \]</div>
 <p>Where <span class="math notranslate nohighlight">\(P = P^{\circ} = 1\)</span> bar. The equilibrium equation to be minimized is:</p>
 <div class="math notranslate nohighlight">
 \[
-(2 - 2x)^2 K_P - 4x^3 = 0
+(2 - 2x)^2 (2 + x) K_P - 4x^3 = 0
 \]</div>
 </section>
 <section id="step-2-minimizing-the-equilibrium-equation">
@@ -652,7 +652,7 @@ K_P = \frac{4x^3}{(2 - 2x)^2}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">K_P</span><span class="p">):</span>
-    <span class="n">equilibrium_equation</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">K_P</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+    <span class="n">equilibrium_equation</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">K_P</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
     <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">equilibrium_equation</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -665,7 +665,7 @@ K_P = \frac{4x^3}{(2 - 2x)^2}
 <span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
 
 <span class="c1"># Plot the function</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="mf">10.060</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$|(2 - 2x)^2 K_P - 4x^3|$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="mf">1.22E-02</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$|(2 - 2x)^2 (2 + x) K_P - 4x^3|$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>  <span class="c1"># x-axis</span>
 
 <span class="c1"># Format and display the plot</span>
@@ -679,7 +679,7 @@ K_P = \frac{4x^3}{(2 - 2x)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ca32ee1c272eabd843df5ff0fa345c7434e8f522858c06066e8d1e8fc7cf35b1.png" src="_images/ca32ee1c272eabd843df5ff0fa345c7434e8f522858c06066e8d1e8fc7cf35b1.png" />
+<img alt="_images/c5dbb17a5dd1e419c78b3e91dcb4ee36614e177cd3fd5ef6e38c6d8c91b861fe.png" src="_images/c5dbb17a5dd1e419c78b3e91dcb4ee36614e177cd3fd5ef6e38c6d8c91b861fe.png" />
 </div>
 </div>
 <div class="warning admonition">
@@ -693,7 +693,7 @@ K_P = \frac{4x^3}{(2 - 2x)^2}
 <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
     <span class="n">fun</span><span class="o">=</span><span class="n">objective_function</span><span class="p">,</span>
     <span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">10.060</span><span class="p">,),</span>
+    <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">1.22E-02</span><span class="p">,),</span>
     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
     <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
 <span class="p">)</span>
@@ -703,7 +703,7 @@ K_P = \frac{4x^3}{(2 - 2x)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>78%
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25%
 </pre></div>
 </div>
 </div>
@@ -718,7 +718,7 @@ K_P = \frac{4x^3}{(2 - 2x)^2}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
     <span class="n">fun</span><span class="o">=</span><span class="n">objective_function</span><span class="p">,</span>
     <span class="n">x0</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Initial guess outside the expected range</span>
-    <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">10.060</span><span class="p">,),</span>
+    <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">1.22E-02</span><span class="p">,),</span>
     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span>
     <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
     <span class="n">bounds</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
@@ -729,10 +729,10 @@ K_P = \frac{4x^3}{(2 - 2x)^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>78%
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25%
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/n9/q030dl3x6qgfqffys4wc7d4c0000gn/T/ipykernel_14625/2224677478.py:1: OptimizeWarning: Initial guess is not within the specified bounds
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m3/5t_cnxn96vs1f6z07zkwy_k80000gn/T/ipykernel_17136/1733916972.py:1: OptimizeWarning: Initial guess is not within the specified bounds
   result = minimize(
 </pre></div>
 </div>
