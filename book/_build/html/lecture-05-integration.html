@@ -397,7 +397,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-overlap-of-two-he-1-1s-orbitals">Hands-On Activity: Overlap of Two He<sup>+1</sup> 1s Orbitals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-overlap-of-two-he-1s-orbitals">Hands-On Activity: Overlap of Two He 1s Orbitals</a></li>
 </ul>
             </nav>
         </div>
@@ -553,7 +553,7 @@ S = \int_0^{\infty} \int_0^{\pi} \int_0^{2\pi} \psi_i^*(r, \theta, \phi) \psi_j(
 <p>Now, let’s calculate the overlap integral of two hydrogen 1s orbitals, which are given by:</p>
 <div class="math notranslate nohighlight">
 \[
-\psi_{1s} = \left( \frac{1}{\pi a_0^3} \right)^{1/2} e^{-r/a_0}
+\psi_{1s} = \frac{1}{\sqrt{\pi}} \left( \frac{1}{a_0} \right)^{3/2} e^{-r / a_0}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(a_0\)</span> is the Bohr radius, which is approximately 0.529 Å. This integral is tough to solve in spherical coordinates, but we can convert it to Cartesian coordinates and use numerical integration. Recall that <span class="math notranslate nohighlight">\(r\)</span> is related to <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> as:</p>
 <div class="math notranslate nohighlight">
@@ -563,7 +563,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p>Therefore, we can rewrite the hydrogen 1s orbital in Cartesian coordinates as:</p>
 <div class="math notranslate nohighlight">
 \[
-\psi_{1s} = \left( \frac{1}{\pi a_0^3} \right)^{1/2} e^{-\sqrt{x^2 + y^2 + z^2}/a_0}
+\psi_{1s} = \frac{1}{\sqrt{\pi}} \left( \frac{1}{a_0} \right)^{3/2} e^{-\sqrt{x^2 + y^2 + z^2} / a_0}
 \]</div>
 </section>
 <section id="computing-the-overlap-integral">
@@ -874,22 +874,17 @@ S = \left( 1 + R + \frac{R^2}{3} \right) e^{-R}
 <p>The plot shows that the overlap integral decreases as the separation distance between the two hydrogen atoms increases. The analytical solution, the Riemann sum, and the trapezoidal rule all give consistent results, with the trapezoidal rule being the most accurate. The analytical solution provides a reference for the accuracy of the numerical methods.</p>
 </section>
 </section>
-<section id="hands-on-activity-overlap-of-two-he-1-1s-orbitals">
-<h2>Hands-On Activity: Overlap of Two He<sup>+1</sup> 1s Orbitals<a class="headerlink" href="#hands-on-activity-overlap-of-two-he-1-1s-orbitals" title="Link to this heading">#</a></h2>
-<p>Now, let’s calculate the overlap integral of two He<sup>+1</sup> 1s orbitals, which are given by:</p>
+<section id="hands-on-activity-overlap-of-two-he-1s-orbitals">
+<h2>Hands-On Activity: Overlap of Two He 1s Orbitals<a class="headerlink" href="#hands-on-activity-overlap-of-two-he-1s-orbitals" title="Link to this heading">#</a></h2>
+<p>Now, let’s calculate the overlap integral of two He 1s orbitals, which are given by:</p>
 <div class="math notranslate nohighlight">
 \[
-\psi_{1s} = \left( \frac{2}{\pi a_0^3} \right)^{1/2} e^{-r/a_0}
+\psi_{1s} = \frac{1}{\sqrt{\pi}} \left( \frac{2}{a_0} \right)^{3/2} e^{-2r / a_0}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(a_0\)</span> is the Bohr radius, which is approximately 0.529 Å. The exact result is given by:</p>
-<div class="math notranslate nohighlight">
-\[
-S = \left( 1 + \frac{Zr}{a_0} + \frac{1}{3} \left( \frac{Zr}{a_0} \right)^2 \right) e^{-Zr/a_0}
-\]</div>
-<p>Use your new chops to solve for the overlap.</p>
+<p>where <span class="math notranslate nohighlight">\(a_0\)</span> is the Bohr radius, which is approximately 0.529 Å.</p>
 <div class="warning admonition">
 <p class="admonition-title">Wait!</p>
-<p>Do you think the overlap integral will decay more slowly or more rapidly for He<sup>+1</sup> compared to H? Do particles become more or less localized as the charge increases? In other words, do particles become more classical or more quantum mechanical as the size of the nucleus increases?</p>
+<p>Do you think the overlap integral will decay more slowly or more rapidly for He compared to H? Do particles become more or less localized as the charge increases? In other words, do particles become more classical or more quantum mechanical as the size of the nucleus increases?</p>
 </div>
 </section>
 </section>
@@ -964,7 +959,7 @@ S = \left( 1 + \frac{Zr}{a_0} + \frac{1}{3} \left( \frac{Zr}{a_0} \right)^2 \rig
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-overlap-of-two-he-1-1s-orbitals">Hands-On Activity: Overlap of Two He<sup>+1</sup> 1s Orbitals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-overlap-of-two-he-1s-orbitals">Hands-On Activity: Overlap of Two He 1s Orbitals</a></li>
 </ul>
   </nav></div>
 
