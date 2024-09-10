@@ -1,0 +1,85 @@
+Traceback (most recent call last):
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+
+# Separation values between the two hydrogen atoms in atomic units (Bohr radii)
+R_values = np.linspace(0.1, 5, 10)
+
+# Function to compute analytical overlap integral in atomic units
+def analytical_overlap_integral(R):
+    """
+    Computes the analytical overlap integral in atomic units.
+
+    Parameters:
+    R (float): Separation distance between the centers of the two atomic orbitals in atomic units.
+
+    Returns:
+    float: The analytical overlap integral.
+    """
+    return (1 + R + R**2 / 3) * np.exp(-R)
+
+# Initialize an empty DataFrame with the appropriate columns
+df = pd.DataFrame(columns=["Separation (a0)", "Riemann (Numerical)", "Trapezoidal (Numerical)", "Analytical"])
+
+# Iterate over the separation values and compute the overlap integrals
+for R in R_values:
+    # Compute numerical and analytical overlaps
+    S_riemann = overlap_integral(N=100, grid_range=7, separation=R)
+    S_trapezoidal = overlap_integral_trapezoid(N=100, grid_range=7, separation=R)
+    S_analytical = analytical_overlap_integral(R)
+
+    # Create a dictionary for the current row
+    row_data = {
+        "Separation (a0)": R,
+        "Riemann (Numerical)": S_riemann,
+        "Trapezoidal (Numerical)": S_trapezoidal,
+        "Analytical": S_analytical
+    }
+
+    # Append the new row to the DataFrame
+    df = df.append(row_data, ignore_index=True)
+
+# Display the final DataFrame with formatted values
+print(df)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/var/folders/n9/q030dl3x6qgfqffys4wc7d4c0000gn/T/ipykernel_45602/3331481689.py[0m in [0;36m?[0;34m()[0m
+[1;32m     34[0m         [0;34m"Analytical"[0m[0;34m:[0m [0mS_analytical[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     35[0m     [0;34m}[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     36[0m [0;34m[0m[0m
+[1;32m     37[0m     [0;31m# Append the new row to the DataFrame[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 38[0;31m     [0mdf[0m [0;34m=[0m [0mdf[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mrow_data[0m[0;34m,[0m [0mignore_index[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     39[0m [0;34m[0m[0m
+[1;32m     40[0m [0;31m# Display the final DataFrame with formatted values[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     41[0m [0mprint[0m[0;34m([0m[0mdf[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/pandas/core/generic.py[0m in [0;36m?[0;34m(self, name)[0m
+[1;32m   6295[0m             [0;32mand[0m [0mname[0m [0;32mnot[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_accessors[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6296[0m             [0;32mand[0m [0mself[0m[0;34m.[0m[0m_info_axis[0m[0;34m.[0m[0m_can_hold_identifiers_and_holds_name[0m[0;34m([0m[0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6297[0m         [0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6298[0m             [0;32mreturn[0m [0mself[0m[0;34m[[0m[0mname[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 6299[0;31m         [0;32mreturn[0m [0mobject[0m[0;34m.[0m[0m__getattribute__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mAttributeError[0m: 'DataFrame' object has no attribute 'append'
+

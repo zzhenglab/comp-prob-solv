@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-05-integration';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lecture 4: Chemical Reaction Equilibria and Roots of Equations" href="lecture-04-optimization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -182,11 +181,12 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture-01-introduction.html">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Lecture 2: Essential Python Packages for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-03-control.html">Lecture 3: Control Structures in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
 </ul>
 
     </div>
@@ -382,11 +382,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-integral">What is an Integral?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-put-this-to-the-test">Let Us Put This To the Test</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-do-another-example">Let Us Do Another Example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-overlap-integral-of-two-h-1s-orbitals">Calculating the Overlap Integral of Two H 1s Orbitals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-numerical-integration">Hands-On Activity: Numerical Integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-vs-numerical-integration">Analytical vs. Numerical Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-integral">What Is an Integral?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-integration">Analytical Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration">Numerical Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetry-and-integration">Symmetry and Integration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-overlap-integral-of-two-h-1s-orbitals">Calculating the Overlap Integral of Two H 1s Orbitals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hydrogen-1s-orbital">The Hydrogen 1s Orbital</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-overlap-integral">Computing the Overlap Integral</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-using-a-riemann-sum">Numerical Integration Using a Riemann Sum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-using-the-trapezoidal-rule">Numerical Integration Using the Trapezoidal Rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-overlap-of-two-he-1-1s-orbitals">Hands-On Activity: Overlap of Two He<sup>+1</sup> 1s Orbitals</a></li>
 </ul>
             </nav>
         </div>
@@ -400,29 +411,34 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-5-chemical-bonding-and-numerical-integration">
 <h1>Lecture 5: Chemical Bonding and Numerical Integration<a class="headerlink" href="#lecture-5-chemical-bonding-and-numerical-integration" title="Link to this heading">#</a></h1>
-<p>The covalent bond is a cornerstone in the chemical sciences, dictating the chemical and physical properties of organic matter and also playing an important role in inorganic and solid-state/materials chemistry. The covalent bond is a quantum mechanical phenomenon, where electrons in atomic orbitals are shared between atoms, causing these atomic orbitals to hybridize and form molecular orbitals. The hybridization of atomic orbitals is primarily governed by the energetic similarity of the atomic orbitals involved and their spatial proximity and orientation. In quantum chemistry, the latter is quantified using the overlap integral, which takes the following form:</p>
+<p>The covalent bond plays a central role in the chemical sciences, dictating the chemical and physical properties of organic matter. It also plays an important role in inorganic, solid-state, and materials chemistry. The covalent bond is a quantum mechanical phenomenon where electrons in atomic orbitals are shared between atoms, causing these atomic orbitals to hybridize and form molecular orbitals. The hybridization of atomic orbitals is primarily governed by the energetic similarity of the atomic orbitals involved and their spatial proximity and orientation. In quantum chemistry, the latter is quantified using the overlap integral, which takes the following form:</p>
 <div class="math notranslate nohighlight">
 \[
 S = \int_0^{\infty} \int_0^{\pi} \int_0^{2\pi} \psi_i^*(r, \theta, \phi) \psi_j(r, \theta, \phi) r^2 \sin(\theta) dr d\theta d\phi
 \]</div>
-<p>Here, <span class="math notranslate nohighlight">\(\psi_i\)</span> and <span class="math notranslate nohighlight">\(\psi_j\)</span> are the atomic orbitals of atoms <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, respectively. These atomic orbitals are written in spherical coordinates, where the volume element of integration is <span class="math notranslate nohighlight">\(r^2 \sin(\theta) dr d\theta d\phi\)</span>. We will come back to this, but first, let us discuss what an integral really is.</p>
+<p>Here, <span class="math notranslate nohighlight">\(\psi_i\)</span> and <span class="math notranslate nohighlight">\(\psi_j\)</span> are the atomic orbitals of atoms <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, respectively. These atomic orbitals are written in spherical coordinates, where the volume element of integration is <span class="math notranslate nohighlight">\(r^2 \sin(\theta) dr d\theta d\phi\)</span>. We will come back to this, but first, let us discuss what an integral is.</p>
+<section id="analytical-vs-numerical-integration">
+<h2>Analytical vs. Numerical Integration<a class="headerlink" href="#analytical-vs-numerical-integration" title="Link to this heading">#</a></h2>
 <section id="what-is-an-integral">
-<h2>What is an Integral?<a class="headerlink" href="#what-is-an-integral" title="Link to this heading">#</a></h2>
-<p>The formal definition of an (Riemann) integral is the limit of a sum of areas of rectangles under a curve. The integral of a function <span class="math notranslate nohighlight">\(f(x)\)</span> over an interval <span class="math notranslate nohighlight">\([a, b]\)</span> is given by:</p>
+<h3>What Is an Integral?<a class="headerlink" href="#what-is-an-integral" title="Link to this heading">#</a></h3>
+<p>The formal definition of a <em>Riemann integral</em> is the limit of the sum of areas of rectangles under a curve. The integral of a function <span class="math notranslate nohighlight">\(f(x)\)</span> over an interval <span class="math notranslate nohighlight">\([a, b]\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[
 \int_a^b f(x) dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i) \Delta x
 \]</div>
-<p>In other words, an integral is a sum with really small increments (as small as possible). Therefore, calculating an integral numerically amounts to computing the area of a series of rectangles along <span class="math notranslate nohighlight">\(x\)</span>, where the height of the rectangle is the function <span class="math notranslate nohighlight">\(y\)</span> value at that point. There are several methods to achieve an accurate value of the integral with the fewest number of computations, such as the trapezoidal rule, Simpson’s rule, and Gaussian quadrature. In this lecture, we will focus on the Riemann sum when we write our own integratrion codes and then move on to the trapezoidal rule, which is implemented in scipy and numpy.</p>
+<p>In other words, an integral is a sum with really small increments (<em>i.e.</em>, as small as possible). Therefore, calculating an integral numerically amounts to computing the area of a series of rectangles along <span class="math notranslate nohighlight">\(x\)</span>, where the height of the rectangle is the function <span class="math notranslate nohighlight">\(y\)</span> value at that point. There are several methods to achieve an accurate value of the integral with the fewest number of computations, such as the trapezoidal rule, Simpson’s rule, and Gaussian quadrature. In this lecture, we will focus on the Riemann sum when we write our integration codes and then move on to the trapezoidal rule implemented in Scipy and NumPy.</p>
 </section>
-<section id="let-us-put-this-to-the-test">
-<h2>Let Us Put This To the Test<a class="headerlink" href="#let-us-put-this-to-the-test" title="Link to this heading">#</a></h2>
+<section id="analytical-integration">
+<h3>Analytical Integration<a class="headerlink" href="#analytical-integration" title="Link to this heading">#</a></h3>
 <p>Let’s consider the function <span class="math notranslate nohighlight">\(f(x) = x^2\)</span> over the interval <span class="math notranslate nohighlight">\([0, 1]\)</span>. The integral of this function is:</p>
 <div class="math notranslate nohighlight">
 \[
 \int_0^1 x^2 dx = (1/3) x^3 \Big|_0^1 = 1/3
 \]</div>
-<p>Now, let’s calculate this integral numerically using a Riemann sum with 10, 100, and 1000 rectangles.</p>
+</section>
+<section id="numerical-integration">
+<h3>Numerical Integration<a class="headerlink" href="#numerical-integration" title="Link to this heading">#</a></h3>
+<p>Let’s calculate this integral numerically using a Riemann sum with 10, 100, and 1000 rectangles.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -433,10 +449,22 @@ S = \int_0^{\infty} \int_0^{\pi} \int_0^{2\pi} \psi_i^*(r, \theta, \phi) \psi_j(
     <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 
 <span class="c1"># Define the Riemann sum function</span>
-<span class="k">def</span> <span class="nf">riemann_sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">riemann_sum</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the Riemann sum of a function over a given interval.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    g (function): The function to integrate.</span>
+<span class="sd">    a (float): The start of the interval.</span>
+<span class="sd">    b (float): The end of the interval.</span>
+<span class="sd">    n (int): The number of subdivisions.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    tuple: The Riemann sum, the x-values used for the sum, and the width of each subdivision (dx).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span>
 
 <span class="c1"># Interval [0, 1]</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
@@ -446,43 +474,39 @@ S = \int_0^{\infty} \int_0^{\pi} \int_0^{2\pi} \psi_i^*(r, \theta, \phi) \psi_j(
 <span class="n">n_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
 
 <span class="c1"># Prepare the plot</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Visualization of Riemann Sums for f(x) = x^2&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># 3 subplots side by side</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Visualization of Riemann Sums for $f(x) = x^2$&quot;</span><span class="p">)</span>
 
 <span class="c1"># Calculate and plot the Riemann sums</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">n_values</span><span class="p">):</span>
     <span class="n">riemann_sum_value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">riemann_sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x) = x^2&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> Rectangles</span><span class="se">\n</span><span class="s1">Riemann Sum: </span><span class="si">{</span><span class="n">riemann_sum_value</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)),</span> <span class="s2">&quot;r-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$f(x) = x^2$&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> Rectangles</span><span class="se">\n</span><span class="s2">Riemann Sum: </span><span class="si">{</span><span class="n">riemann_sum_value</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$f(x)$&quot;</span><span class="p">)</span>
     <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
+<span class="c1"># Format and display the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8291952919a9e3c9644754686befb0824a0d968f2efcfa4865ecb7a1d251bb9a.png" src="_images/8291952919a9e3c9644754686befb0824a0d968f2efcfa4865ecb7a1d251bb9a.png" />
+<img alt="_images/ffb49b9b17f35b098b7e8f614ed02a01b93c92510cbd10cdbab1064fbf19bc1b.png" src="_images/ffb49b9b17f35b098b7e8f614ed02a01b93c92510cbd10cdbab1064fbf19bc1b.png" />
 </div>
 </div>
-<p>So easy a caveman can do it!</p>
+<p>As expected from the definition of an integral, the Riemann sum converges to the exact value of the integral as the number of rectangles increases.</p>
 </section>
-<section id="let-us-do-another-example">
-<h2>Let Us Do Another Example<a class="headerlink" href="#let-us-do-another-example" title="Link to this heading">#</a></h2>
-<p>Now, let’s consider the function <span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span> over the interval <span class="math notranslate nohighlight">\([-\pi, \pi]\)</span>. Let us calculate this integral numerically using the trapezoidal rule, which sums a series of trapezoids under the curve, instead of rectangles. The trapezoidal rule is given by:</p>
-<div class="math notranslate nohighlight">
-\[
-\int_a^b f(x) dx \approx \frac{h}{2} \left[ f(a) + 2 \sum_{i=1}^{n-1} f(x_i) + f(b) \right]
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(h = (b - a) / n\)</span> is the width of each trapezoid. Let’s calculate this integral numerically using the Riemann sum with 10, 100, and 1000 rectangles and the trapezoidal rule with 10, 100, and 1000 trapezoids.</p>
+<section id="symmetry-and-integration">
+<h3>Symmetry and Integration<a class="headerlink" href="#symmetry-and-integration" title="Link to this heading">#</a></h3>
+<p>Now, let’s consider the function <span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span> over the interval <span class="math notranslate nohighlight">\([-\pi, \pi]\)</span>. Let’s calculate this integral numerically using a Riemann sum with 10, 100, and 1000 rectangles.</p>
 <div class="warning admonition">
 <p class="admonition-title">Wait!</p>
 <p>Before we proceed, can you guess the value of this integral? What can you say about the symmetry of the sine function around the center of the interval of integration?</p>
 </div>
-<p>OK, now that we have a guess, let’s calculate the integral and compare the results.</p>
+<p>Now that we have a guess, let’s calculate the integral and compare the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interval [-pi, pi]</span>
@@ -499,35 +523,39 @@ S = \int_0^{\infty} \int_0^{\pi} \int_0^{2\pi} \psi_i^*(r, \theta, \phi) \psi_j(
 <span class="c1"># Calculate and plot the Riemann sums</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">n_values</span><span class="p">):</span>
     <span class="n">riemann_sum_value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">riemann_sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x) = sin(x)&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> Rectangles</span><span class="se">\n</span><span class="s1">Riemann Sum: </span><span class="si">{</span><span class="n">riemann_sum_value</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)),</span> <span class="s2">&quot;r-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$f(x) = \sin(x)$&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> Rectangles</span><span class="se">\n</span><span class="s2">Riemann Sum: </span><span class="si">{</span><span class="n">riemann_sum_value</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$f(x)$&quot;</span><span class="p">)</span>
     <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
+<span class="c1"># Format and display the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fdd52c1d89e46c8455f7b30cdf1fc2bcffd0002995fe9f3a832dc13afde3d5d1.png" src="_images/fdd52c1d89e46c8455f7b30cdf1fc2bcffd0002995fe9f3a832dc13afde3d5d1.png" />
+<img alt="_images/b94db30fae46b6db120724e52cbf5224e1d462b0f38152910b122efb89a93870.png" src="_images/b94db30fae46b6db120724e52cbf5224e1d462b0f38152910b122efb89a93870.png" />
 </div>
 </div>
 <div class="note admonition">
 <p class="admonition-title">Note</p>
-<p>Before integrating, always check the symmetry of your function about the center of the integration range. If it is symmetric like the sine function, then you can get away without having to compute the integral. This type of intuition can prove really useful in the chemical sciences.</p>
+<p>Before integrating, always check the symmetry of the function about the center of the integration range. You can avoid computing the integral if it is symmetric, like the sine function. This type of intuition can prove useful in the chemical sciences.</p>
 </div>
+</section>
 </section>
 <section id="calculating-the-overlap-integral-of-two-h-1s-orbitals">
 <h2>Calculating the Overlap Integral of Two H 1s Orbitals<a class="headerlink" href="#calculating-the-overlap-integral-of-two-h-1s-orbitals" title="Link to this heading">#</a></h2>
+<section id="the-hydrogen-1s-orbital">
+<h3>The Hydrogen 1s Orbital<a class="headerlink" href="#the-hydrogen-1s-orbital" title="Link to this heading">#</a></h3>
 <p>Now, let’s calculate the overlap integral of two hydrogen 1s orbitals, which are given by:</p>
 <div class="math notranslate nohighlight">
 \[
 \psi_{1s} = \left( \frac{1}{\pi a_0^3} \right)^{1/2} e^{-r/a_0}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(a_0\)</span> is the Bohr radius, which is approximately 0.529 Å. So, it turns out this integral is pretty tough to solve in spherical coordinates, but we can convert it to Cartesian coordinates and use numerical integration to solve it. Recall that <span class="math notranslate nohighlight">\(r\)</span> is related to <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> as:</p>
+<p>where <span class="math notranslate nohighlight">\(a_0\)</span> is the Bohr radius, which is approximately 0.529 Å. This integral is tough to solve in spherical coordinates, but we can convert it to Cartesian coordinates and use numerical integration. Recall that <span class="math notranslate nohighlight">\(r\)</span> is related to <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> as:</p>
 <div class="math notranslate nohighlight">
 \[
 r = \sqrt{x^2 + y^2 + z^2}
@@ -537,157 +565,317 @@ r = \sqrt{x^2 + y^2 + z^2}
 \[
 \psi_{1s} = \left( \frac{1}{\pi a_0^3} \right)^{1/2} e^{-\sqrt{x^2 + y^2 + z^2}/a_0}
 \]</div>
-<p>To determine the total overlap of the hydrogen 1s orbitals of two electrons, we need to integrate over all possible space where those orbitals can overlap, which is from <span class="math notranslate nohighlight">\(-\infty\)</span> to <span class="math notranslate nohighlight">\(\infty\)</span> in all three dimensions. For two hydrogen atoms, one at the origin and the other at a distance <span class="math notranslate nohighlight">\(a_0\)</span> along the <span class="math notranslate nohighlight">\(x\)</span>-axis, the overlap integral is given by:</p>
+</section>
+<section id="computing-the-overlap-integral">
+<h3>Computing the Overlap Integral<a class="headerlink" href="#computing-the-overlap-integral" title="Link to this heading">#</a></h3>
+<p>To determine the total overlap of the hydrogen 1s orbitals of two electrons, we need to integrate over all possible space where those orbitals can overlap, from <span class="math notranslate nohighlight">\(-\infty\)</span> to <span class="math notranslate nohighlight">\(\infty\)</span> in all three dimensions. For two hydrogen atoms separated by a distance of <span class="math notranslate nohighlight">\(1.4 a_0\)</span> along the <span class="math notranslate nohighlight">\(x\)</span>-axis, the overlap integral is given by:</p>
 <div class="math notranslate nohighlight">
 \[
-S = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \psi_{1s}^*(x, y, z) \psi_{1s}(x - a_0, y, z) dx dy dz
+S = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \psi_{1s}^*(x + 0.7 a_0, y, z) \psi_{1s}(x - 0.7 a_0, y, z) dx dy dz
 \]</div>
-<p>OK, so what do we have to do to solve this integral. First, we need to define the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> ranges over which we will integrate. Then, we need to define the function we are integrating. Finally, we need to integrate the function over the ranges we defined. Let’s do this now.</p>
+</section>
+<section id="numerical-integration-using-a-riemann-sum">
+<h3>Numerical Integration Using a Riemann Sum<a class="headerlink" href="#numerical-integration-using-a-riemann-sum" title="Link to this heading">#</a></h3>
+<p>OK, so what do we have to do to compute this integral? First, we must define the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> ranges over which we will integrate. Then, we need to define the function we are integrating. Finally, we need to integrate the function over the ranges we defined. Let’s do this now.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">overlap_integral</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">grid_range</span><span class="p">,</span> <span class="n">separation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the overlap integral using the Riemann sum with a uniform grid.</span>
 
-<span class="c1"># Constants</span>
-<span class="n">a0</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Bohr radius</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Number of points in each dimension</span>
-<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">a0</span>  <span class="c1"># Limits for x</span>
-<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">a0</span>  <span class="c1"># Limits for y</span>
-<span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">a0</span>  <span class="c1"># Limits for z</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    N (int): Number of grid points along each axis.</span>
+<span class="sd">    grid_range (float): The range for x, y, z in Bohr radii.</span>
+<span class="sd">    separation (float): Separation distance between the centers of the two atomic orbitals.</span>
 
-<span class="c1"># Create grid points</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">    float: The computed overlap integral.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<span class="c1"># Calculate step sizes</span>
-<span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
-<span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
-<span class="n">dz</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_max</span> <span class="o">-</span> <span class="n">z_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="c1"># Create grid points and calculate step size</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">grid_range</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">grid_range</span> <span class="o">/</span> <span class="n">N</span>
 
-<span class="c1"># Initialize the sum for the Riemann sum</span>
-<span class="n">S_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1"># Create 3D grids for x, y, and z</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
 
-<span class="c1"># Perform the Riemann sum</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-            <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">a0</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-            <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">a0</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-            <span class="n">integrand_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">)</span> <span class="o">/</span> <span class="n">a0</span><span class="p">)</span>
-            <span class="n">S_sum</span> <span class="o">+=</span> <span class="n">integrand_value</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">dz</span>
+    <span class="c1"># Compute the distances r1 and r2</span>
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">X</span> <span class="o">+</span> <span class="n">separation</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Y</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">X</span> <span class="o">-</span> <span class="n">separation</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Y</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># Apply the normalization factor</span>
-<span class="n">normalization_factor</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">a0</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">S</span> <span class="o">=</span> <span class="n">normalization_factor</span> <span class="o">*</span> <span class="n">S_sum</span>
+    <span class="c1"># Compute the integrand for all points in the grid</span>
+    <span class="n">integrand_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">))</span>
 
-<span class="c1"># Output the result</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The value of the overlap integral S using the Riemann sum is approximately: </span><span class="si">{</span><span class="n">S</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Apply the Riemann sum</span>
+    <span class="n">S_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">integrand_value</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">3</span>
+
+    <span class="c1"># Apply the normalization factor</span>
+    <span class="n">normalization_factor</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">normalization_factor</span> <span class="o">*</span> <span class="n">S_sum</span>
+
+    <span class="k">return</span> <span class="n">S</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">overlap_integral</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">separation</span><span class="o">=</span><span class="mf">1.4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overlap integral S using the Riemann sum is approximately: </span><span class="si">{</span><span class="n">S</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The value of the overlap integral S using the Riemann sum is approximately: 0.916888
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overlap integral S using the Riemann sum is approximately: 0.800392
 </pre></div>
 </div>
 </div>
 </div>
-<p>It turns out that you can solve this integral analytically using an elliptical coordinate system, however, we will just compare our numerical solution to the analytical solution to make sure that what we’ve done is correct. To benchmark our numerical solution, we will compute the overlap integral as a function of the separation between the two hydrogen atoms. This can be achieved as follows:</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Vectorized</strong> refers to a method of performing operations on entire arrays or collections of data simultaneously, rather than applying the operation element by element in a loop. In NumPy, vectorization allows you to write cleaner and more efficient code by taking advantage of optimized low-level operations.</p>
+</div>
+</aside>
+<p>The above code computes the overlap integral of two hydrogen 1s orbitals using a Riemann sum with a uniform grid. The function <code class="docutils literal notranslate"><span class="pre">overlap_integral</span></code> takes three arguments: <code class="docutils literal notranslate"><span class="pre">N</span></code>, <code class="docutils literal notranslate"><span class="pre">grid_range</span></code>, and <code class="docutils literal notranslate"><span class="pre">separation</span></code>. The <code class="docutils literal notranslate"><span class="pre">N</span></code> argument specifies the number of grid points along each axis, while the <code class="docutils literal notranslate"><span class="pre">grid_range</span></code> argument specifies the range for <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> in Bohr radii. The <code class="docutils literal notranslate"><span class="pre">separation</span></code> argument specifies the separation distance between the centers of the two atomic orbitals. The function returns the computed overlap integral. The code uses NumPy’s vectorized operations to compute the overlap integral efficiently.</p>
+</section>
+<section id="numerical-integration-using-the-trapezoidal-rule">
+<h3>Numerical Integration Using the Trapezoidal Rule<a class="headerlink" href="#numerical-integration-using-the-trapezoidal-rule" title="Link to this heading">#</a></h3>
+<p>The trapezoidal rule is a numerical integration method that approximates the integral of a function by dividing the interval into small trapezoids. The area of each trapezoid is calculated and summed to approximate the integral. The trapezoidal rule is more accurate than the Riemann sum because it approximates the function with straight lines instead of rectangles. The trapezoidal rule can be applied to multidimensional integrals by applying the rule along each axis. The trapezoidal rule is implemented in the <code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code> function, which computes the integral of a function using the trapezoidal rule. Let’s rewrite the overlap integral function using the trapezoidal rule.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">trapezoid</span>
 
-<span class="c1"># Constants</span>
-<span class="n">a0</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Bohr radius</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Number of points in each dimension</span>
-<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">a0</span>  <span class="c1"># Limits for x</span>
-<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">a0</span>  <span class="c1"># Limits for y</span>
-<span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">a0</span>  <span class="c1"># Limits for z</span>
-<span class="n">R_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">a0</span><span class="p">,</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">a0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Separation values</span>
+<span class="k">def</span> <span class="nf">overlap_integral_trapezoid</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">separation</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the overlap integral using the trapezoidal rule with a uniform grid.</span>
 
-<span class="c1"># Create grid points</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    N (int): Number of grid points along each axis.</span>
+<span class="sd">    grid_range (float): The range for x, y, z in Bohr radii.</span>
+<span class="sd">    separation (float): Separation distance between the centers of the two atomic orbitals.</span>
 
-<span class="c1"># Calculate step sizes</span>
-<span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">dz</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_max</span> <span class="o">-</span> <span class="n">z_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">    float: The computed overlap integral.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<span class="c1"># Function to compute numerical overlap integral using trapezoidal rule</span>
-<span class="k">def</span> <span class="nf">overlap_integral</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
-    <span class="n">S_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-                <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">R</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-                <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-                <span class="n">weight</span> <span class="o">=</span> <span class="mf">1.0</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                    <span class="n">weight</span> <span class="o">*=</span> <span class="mf">0.5</span>
-                <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">==</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                    <span class="n">weight</span> <span class="o">*=</span> <span class="mf">0.5</span>
-                <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">k</span> <span class="o">==</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                    <span class="n">weight</span> <span class="o">*=</span> <span class="mf">0.5</span>
-                <span class="n">integrand_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">)</span> <span class="o">/</span> <span class="n">a0</span><span class="p">)</span>
-                <span class="n">S_sum</span> <span class="o">+=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">integrand_value</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">dz</span>
+    <span class="c1"># Create grid points and calculate step size</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">grid_range</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">grid_range</span> <span class="o">/</span> <span class="n">N</span>
 
-    <span class="n">normalization_factor</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">a0</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">normalization_factor</span> <span class="o">*</span> <span class="n">S_sum</span>
+    <span class="c1"># Create 3D grids for x, y, and z</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Compute the distances r1 and r2</span>
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">X</span> <span class="o">+</span> <span class="n">separation</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Y</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">X</span> <span class="o">-</span> <span class="n">separation</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Y</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Compute the integrand for all points in the grid</span>
+    <span class="n">integrand_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">))</span>
+
+    <span class="c1"># Apply the trapezoidal rule along each axis</span>
+    <span class="n">integral_x</span> <span class="o">=</span> <span class="n">trapezoid</span><span class="p">(</span><span class="n">integrand_value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">integral_y</span> <span class="o">=</span> <span class="n">trapezoid</span><span class="p">(</span><span class="n">integral_x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">S_sum</span> <span class="o">=</span> <span class="n">trapezoid</span><span class="p">(</span><span class="n">integral_y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Apply the normalization factor</span>
+    <span class="n">normalization_factor</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">normalization_factor</span> <span class="o">*</span> <span class="n">S_sum</span>
+
+    <span class="k">return</span> <span class="n">S</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">S_trapezoid</span> <span class="o">=</span> <span class="n">overlap_integral_trapezoid</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">separation</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overlap integral S using the trapezoidal rule is approximately: </span><span class="si">{</span><span class="n">S_trapezoid</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overlap integral S using the trapezoidal rule is approximately: 0.925286
+</pre></div>
+</div>
+</div>
+</div>
+<p>The trapezoidal rule gives a different result than the Riemann sum because it approximates the function with straight lines instead of rectangles. Ultimately, the trapezoidal rule is more accurate than the Riemann sum because it approximates the function more closely. How can we verify that the trapezoidal rule is more accurate than the Riemann sum? We can compare the results of the two methods to an analytical solution.</p>
+</section>
+<section id="analytical-solution">
+<h3>Analytical Solution<a class="headerlink" href="#analytical-solution" title="Link to this heading">#</a></h3>
+<p>The analytical solution to the overlap integral of two hydrogen 1s orbitals separated by a distance <span class="math notranslate nohighlight">\(R\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+S = \left( 1 + R + \frac{R^2}{3} \right) e^{-R}
+\]</div>
+<p>Let’s compute the overlap integral using the analytical solution and compare it with the results obtained using the Riemann sum and the trapezoidal rule.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Separation values between the two hydrogen atoms in Bohr radii</span>
+<span class="n">R_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># Function to compute analytical overlap integral</span>
 <span class="k">def</span> <span class="nf">analytical_overlap_integral</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">R</span> <span class="o">/</span> <span class="n">a0</span> <span class="o">+</span> <span class="n">R</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">a0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">R</span> <span class="o">/</span> <span class="n">a0</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the analytical overlap integral.</span>
 
-<span class="c1"># Compute numerical and analytical overlap integrals for different separations</span>
-<span class="n">numerical_results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    R (float): Separation distance between the centers of the two atomic orbitals in Bohr radii.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    float: The analytical overlap integral.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">R</span> <span class="o">+</span> <span class="n">R</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="p">)</span>
+
+<span class="c1"># Lists to store the results</span>
 <span class="n">analytical_results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">riemann_results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">trapezoidal_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Compute the overlap integral for different separation values</span>
 <span class="k">for</span> <span class="n">R</span> <span class="ow">in</span> <span class="n">R_values</span><span class="p">:</span>
-    <span class="n">S_numerical</span> <span class="o">=</span> <span class="n">overlap_integral</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
     <span class="n">S_analytical</span> <span class="o">=</span> <span class="n">analytical_overlap_integral</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
-    <span class="n">numerical_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S_numerical</span><span class="p">)</span>
+    <span class="n">S_riemann</span> <span class="o">=</span> <span class="n">overlap_integral</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">separation</span><span class="o">=</span><span class="n">R</span><span class="p">)</span>
+    <span class="n">S_trapezoidal</span> <span class="o">=</span> <span class="n">overlap_integral_trapezoid</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">grid_range</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">separation</span><span class="o">=</span><span class="n">R</span><span class="p">)</span>
     <span class="n">analytical_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S_analytical</span><span class="p">)</span>
+    <span class="n">riemann_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S_riemann</span><span class="p">)</span>
+    <span class="n">trapezoidal_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S_trapezoidal</span><span class="p">)</span>
 
-<span class="c1"># Output the results</span>
-<span class="k">for</span> <span class="n">R</span><span class="p">,</span> <span class="n">S_numerical</span><span class="p">,</span> <span class="n">S_analytical</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">R_values</span><span class="p">,</span> <span class="n">numerical_results</span><span class="p">,</span> <span class="n">analytical_results</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Separation: </span><span class="si">{</span><span class="n">R</span><span class="o">/</span><span class="n">a0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> a0 | Numerical: </span><span class="si">{</span><span class="n">S_numerical</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> | Analytical: </span><span class="si">{</span><span class="n">S_analytical</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Create a DataFrame to display the results</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Separation (Bohr radii)&quot;</span><span class="p">:</span> <span class="n">R_values</span><span class="p">,</span>
+    <span class="s2">&quot;Riemann Sum&quot;</span><span class="p">:</span> <span class="n">riemann_results</span><span class="p">,</span>
+    <span class="s2">&quot;Trapezoidal Rule&quot;</span><span class="p">:</span> <span class="n">trapezoidal_results</span><span class="p">,</span>
+    <span class="s2">&quot;Analytical&quot;</span><span class="p">:</span> <span class="n">analytical_results</span>
+<span class="p">})</span>
 
-<span class="c1"># Plot the results</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Display the results</span>
+<span class="n">results_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_values</span> <span class="o">/</span> <span class="n">a0</span><span class="p">,</span> <span class="n">numerical_results</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Numerical&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_values</span> <span class="o">/</span> <span class="n">a0</span><span class="p">,</span> <span class="n">analytical_results</span><span class="p">,</span> <span class="s1">&#39;x-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analytical&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Separation (R / a0)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Overlap Integral S&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Numerical and Analytical Overlap Integrals&#39;</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Separation (Bohr radii)</th>
+      <th>Riemann Sum</th>
+      <th>Trapezoidal Rule</th>
+      <th>Analytical</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.5</td>
+      <td>1.031785</td>
+      <td>0.960320</td>
+      <td>0.960340</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>0.916888</td>
+      <td>0.858367</td>
+      <td>0.858385</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.5</td>
+      <td>0.769971</td>
+      <td>0.725154</td>
+      <td>0.725173</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.0</td>
+      <td>0.619271</td>
+      <td>0.586435</td>
+      <td>0.586453</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.5</td>
+      <td>0.481598</td>
+      <td>0.458290</td>
+      <td>0.458308</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>3.0</td>
+      <td>0.364650</td>
+      <td>0.348493</td>
+      <td>0.348509</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>3.5</td>
+      <td>0.270172</td>
+      <td>0.259179</td>
+      <td>0.259194</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>4.0</td>
+      <td>0.196617</td>
+      <td>0.189247</td>
+      <td>0.189262</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4.5</td>
+      <td>0.140951</td>
+      <td>0.136072</td>
+      <td>0.136085</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>5.0</td>
+      <td>0.099762</td>
+      <td>0.096565</td>
+      <td>0.096577</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The trapezoidal rule is more accurate than the Riemann sum for all separation values. Let’s visualize the results to see how the overlap integral changes with the separation distance between the two hydrogen atoms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_values</span><span class="p">,</span> <span class="n">analytical_results</span><span class="p">,</span> <span class="s2">&quot;ro-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Analytical&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_values</span><span class="p">,</span> <span class="n">riemann_results</span><span class="p">,</span> <span class="s2">&quot;bs-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Riemann Sum&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_values</span><span class="p">,</span> <span class="n">trapezoidal_results</span><span class="p">,</span> <span class="s2">&quot;g^-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Trapezoidal Rule&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Separation (Bohr radii)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Overlap Integral&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Overlap Integral of Two Hydrogen 1s Orbitals&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Separation: 0.10 a0 | Numerical: 0.998318 | Analytical: 0.998337
-Separation: 0.64 a0 | Numerical: 0.935911 | Analytical: 0.935931
-Separation: 1.19 a0 | Numerical: 0.810121 | Analytical: 0.810141
-Separation: 1.73 a0 | Numerical: 0.659902 | Analytical: 0.659921
-Separation: 2.28 a0 | Numerical: 0.513279 | Analytical: 0.513297
-Separation: 2.82 a0 | Numerical: 0.385206 | Analytical: 0.385223
-Separation: 3.37 a0 | Numerical: 0.281017 | Analytical: 0.281032
-Separation: 3.91 a0 | Numerical: 0.200369 | Analytical: 0.200383
-Separation: 4.46 a0 | Numerical: 0.140199 | Analytical: 0.140213
-Separation: 5.00 a0 | Numerical: 0.096565 | Analytical: 0.096577
-</pre></div>
-</div>
-<img alt="_images/de6452983df876b73d12abc289d8ae1ccb15d93af4425dc5191af4cec47a3210.png" src="_images/de6452983df876b73d12abc289d8ae1ccb15d93af4425dc5191af4cec47a3210.png" />
+<img alt="_images/45572b3b8bf163f87fe97bc4c749190b9fd761c70909d3c90a24ee75ae008ea5.png" src="_images/45572b3b8bf163f87fe97bc4c749190b9fd761c70909d3c90a24ee75ae008ea5.png" />
 </div>
 </div>
-<p>That’s pretty awesome right! Are you starting to see the power of numerical methods in chemistry? In a way, Python provides a practical lens through which we can view various mathematical aspects in chemical science.</p>
+<p>The plot shows that the overlap integral decreases as the separation distance between the two hydrogen atoms increases. The analytical solution, the Riemann sum, and the trapezoidal rule all give consistent results, with the trapezoidal rule being the most accurate. The analytical solution provides a reference for the accuracy of the numerical methods.</p>
 </section>
-<section id="hands-on-activity-numerical-integration">
-<h2>Hands-On Activity: Numerical Integration<a class="headerlink" href="#hands-on-activity-numerical-integration" title="Link to this heading">#</a></h2>
+</section>
+<section id="hands-on-activity-overlap-of-two-he-1-1s-orbitals">
+<h2>Hands-On Activity: Overlap of Two He<sup>+1</sup> 1s Orbitals<a class="headerlink" href="#hands-on-activity-overlap-of-two-he-1-1s-orbitals" title="Link to this heading">#</a></h2>
 <p>Now, let’s calculate the overlap integral of two He<sup>+1</sup> 1s orbitals, which are given by:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -736,6 +924,15 @@ S = \left( 1 + \frac{Zr}{a_0} + \frac{1}{3} \left( \frac{Zr}{a_0} \right)^2 \rig
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture-04-optimization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -752,11 +949,22 @@ S = \left( 1 + \frac{Zr}{a_0} + \frac{1}{3} \left( \frac{Zr}{a_0} \right)^2 \rig
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-integral">What is an Integral?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-put-this-to-the-test">Let Us Put This To the Test</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-do-another-example">Let Us Do Another Example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-overlap-integral-of-two-h-1s-orbitals">Calculating the Overlap Integral of Two H 1s Orbitals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-numerical-integration">Hands-On Activity: Numerical Integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-vs-numerical-integration">Analytical vs. Numerical Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-integral">What Is an Integral?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-integration">Analytical Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration">Numerical Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetry-and-integration">Symmetry and Integration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-overlap-integral-of-two-h-1s-orbitals">Calculating the Overlap Integral of Two H 1s Orbitals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hydrogen-1s-orbital">The Hydrogen 1s Orbital</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-overlap-integral">Computing the Overlap Integral</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-using-a-riemann-sum">Numerical Integration Using a Riemann Sum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-using-the-trapezoidal-rule">Numerical Integration Using the Trapezoidal Rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activity-overlap-of-two-he-1-1s-orbitals">Hands-On Activity: Overlap of Two He<sup>+1</sup> 1s Orbitals</a></li>
 </ul>
   </nav></div>
 

@@ -13,25 +13,27 @@ kernelspec:
 
 # Lecture 5: Chemical Bonding and Numerical Integration
 
-The covalent bond is a cornerstone in the chemical sciences, dictating the chemical and physical properties of organic matter and also playing an important role in inorganic and solid-state/materials chemistry. The covalent bond is a quantum mechanical phenomenon, where electrons in atomic orbitals are shared between atoms, causing these atomic orbitals to hybridize and form molecular orbitals. The hybridization of atomic orbitals is primarily governed by the energetic similarity of the atomic orbitals involved and their spatial proximity and orientation. In quantum chemistry, the latter is quantified using the overlap integral, which takes the following form:
+The covalent bond plays a central role in the chemical sciences, dictating the chemical and physical properties of organic matter. It also plays an important role in inorganic, solid-state, and materials chemistry. The covalent bond is a quantum mechanical phenomenon where electrons in atomic orbitals are shared between atoms, causing these atomic orbitals to hybridize and form molecular orbitals. The hybridization of atomic orbitals is primarily governed by the energetic similarity of the atomic orbitals involved and their spatial proximity and orientation. In quantum chemistry, the latter is quantified using the overlap integral, which takes the following form:
 
 $$
 S = \int_0^{\infty} \int_0^{\pi} \int_0^{2\pi} \psi_i^*(r, \theta, \phi) \psi_j(r, \theta, \phi) r^2 \sin(\theta) dr d\theta d\phi
 $$
 
-Here, $\psi_i$ and $\psi_j$ are the atomic orbitals of atoms $i$ and $j$, respectively. These atomic orbitals are written in spherical coordinates, where the volume element of integration is $r^2 \sin(\theta) dr d\theta d\phi$. We will come back to this, but first, let us discuss what an integral really is.
+Here, $\psi_i$ and $\psi_j$ are the atomic orbitals of atoms $i$ and $j$, respectively. These atomic orbitals are written in spherical coordinates, where the volume element of integration is $r^2 \sin(\theta) dr d\theta d\phi$. We will come back to this, but first, let us discuss what an integral is.
 
-### What is an Integral?
+## Analytical vs. Numerical Integration
 
-The formal definition of an (Riemann) integral is the limit of a sum of areas of rectangles under a curve. The integral of a function $f(x)$ over an interval $[a, b]$ is given by:
+### What Is an Integral?
+
+The formal definition of a *Riemann integral* is the limit of the sum of areas of rectangles under a curve. The integral of a function $f(x)$ over an interval $[a, b]$ is given by:
 
 $$
 \int_a^b f(x) dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i) \Delta x
 $$
 
-In other words, an integral is a sum with really small increments (as small as possible). Therefore, calculating an integral numerically amounts to computing the area of a series of rectangles along $x$, where the height of the rectangle is the function $y$ value at that point. There are several methods to achieve an accurate value of the integral with the fewest number of computations, such as the trapezoidal rule, Simpson's rule, and Gaussian quadrature. In this lecture, we will focus on the Riemann sum when we write our own integratrion codes and then move on to the trapezoidal rule, which is implemented in scipy and numpy.
+In other words, an integral is a sum with really small increments (*i.e.*, as small as possible). Therefore, calculating an integral numerically amounts to computing the area of a series of rectangles along $x$, where the height of the rectangle is the function $y$ value at that point. There are several methods to achieve an accurate value of the integral with the fewest number of computations, such as the trapezoidal rule, Simpson's rule, and Gaussian quadrature. In this lecture, we will focus on the Riemann sum when we write our integration codes and then move on to the trapezoidal rule implemented in Scipy and NumPy.
 
-### Let Us Put This To the Test
+### Analytical Integration
 
 Let's consider the function $f(x) = x^2$ over the interval $[0, 1]$. The integral of this function is:
 
@@ -39,7 +41,9 @@ $$
 \int_0^1 x^2 dx = (1/3) x^3 \Big|_0^1 = 1/3
 $$
 
-Now, let's calculate this integral numerically using a Riemann sum with 10, 100, and 1000 rectangles.
+### Numerical Integration
+
+Let's calculate this integral numerically using a Riemann sum with 10, 100, and 1000 rectangles.
 
 ```{code-cell} ipython3
 import numpy as np
@@ -50,10 +54,22 @@ def f(x):
     return x**2
 
 # Define the Riemann sum function
-def riemann_sum(f, a, b, n):
+def riemann_sum(g, a, b, n):
+    """
+    Computes the Riemann sum of a function over a given interval.
+
+    Parameters:
+    g (function): The function to integrate.
+    a (float): The start of the interval.
+    b (float): The end of the interval.
+    n (int): The number of subdivisions.
+
+    Returns:
+    tuple: The Riemann sum, the x-values used for the sum, and the width of each subdivision (dx).
+    """
     x = np.linspace(a, b, n, endpoint=False)
     dx = (b - a) / n
-    return np.sum(f(x) * dx), x, dx
+    return np.sum(g(x) * dx), x, dx
 
 # Interval [0, 1]
 a = 0
@@ -63,41 +79,36 @@ b = 1
 n_values = [10, 100, 1000]
 
 # Prepare the plot
-fig, axs = plt.subplots(1, 3, figsize=(18, 5))
-fig.suptitle('Visualization of Riemann Sums for f(x) = x^2')
+fig, axs = plt.subplots(1, 3, figsize=(18, 5))  # 3 subplots side by side
+fig.suptitle("Visualization of Riemann Sums for $f(x) = x^2$")
 
 # Calculate and plot the Riemann sums
 for i, n in enumerate(n_values):
     riemann_sum_value, x, dx = riemann_sum(f, a, b, n)
-    axs[i].bar(x, f(x), width=dx, align='edge', alpha=0.6, edgecolor='black')
-    axs[i].plot(np.linspace(a, b, 1000), f(np.linspace(a, b, 1000)), 'r-', label='f(x) = x^2')
-    axs[i].set_title(f'{n} Rectangles\nRiemann Sum: {riemann_sum_value:.6f}')
-    axs[i].set_xlabel('x')
-    axs[i].set_ylabel('f(x)')
+    axs[i].bar(x, f(x), width=dx, align="edge", alpha=0.6, edgecolor="black")
+    axs[i].plot(np.linspace(a, b, 1000), f(np.linspace(a, b, 1000)), "r-", label="$f(x) = x^2$")
+    axs[i].set_title(f"{n} Rectangles\nRiemann Sum: {riemann_sum_value:.6f}")
+    axs[i].set_xlabel("$x$")
+    axs[i].set_ylabel("$f(x)$")
     axs[i].legend()
 
+# Format and display the plot
 plt.tight_layout()
 plt.show()
 ```
 
-So easy a caveman can do it!
+As expected from the definition of an integral, the Riemann sum converges to the exact value of the integral as the number of rectangles increases.
 
-### Let Us Do Another Example
+### Symmetry and Integration
 
-Now, let's consider the function $f(x) = \sin(x)$ over the interval $[-\pi, \pi]$. Let us calculate this integral numerically using the trapezoidal rule, which sums a series of trapezoids under the curve, instead of rectangles. The trapezoidal rule is given by:
-
-$$
-\int_a^b f(x) dx \approx \frac{h}{2} \left[ f(a) + 2 \sum_{i=1}^{n-1} f(x_i) + f(b) \right]
-$$
-
-where $h = (b - a) / n$ is the width of each trapezoid. Let's calculate this integral numerically using the Riemann sum with 10, 100, and 1000 rectangles and the trapezoidal rule with 10, 100, and 1000 trapezoids.
+Now, let's consider the function $f(x) = \sin(x)$ over the interval $[-\pi, \pi]$. Let's calculate this integral numerically using a Riemann sum with 10, 100, and 1000 rectangles.
 
 ```{admonition} Wait!
 :class: warning
 Before we proceed, can you guess the value of this integral? What can you say about the symmetry of the sine function around the center of the interval of integration?
 ```
 
-OK, now that we have a guess, let's calculate the integral and compare the results.
+Now that we have a guess, let's calculate the integral and compare the results.
 
 ```{code-cell} ipython3
 # Interval [-pi, pi]
@@ -114,23 +125,26 @@ fig, axs = plt.subplots(1, 3, figsize=(18, 5))
 # Calculate and plot the Riemann sums
 for i, n in enumerate(n_values):
     riemann_sum_value, x, dx = riemann_sum(f, a, b, n)
-    axs[i].bar(x, f(x), width=dx, align='edge', alpha=0.6, edgecolor='black')
-    axs[i].plot(np.linspace(a, b, 1000), f(np.linspace(a, b, 1000)), 'r-', label='f(x) = sin(x)')
-    axs[i].set_title(f'{n} Rectangles\nRiemann Sum: {riemann_sum_value:.6f}')
-    axs[i].set_xlabel('x')
-    axs[i].set_ylabel('f(x)')
+    axs[i].bar(x, f(x), width=dx, align="edge", alpha=0.6, edgecolor="black")
+    axs[i].plot(np.linspace(a, b, 1000), f(np.linspace(a, b, 1000)), "r-", label=r"$f(x) = \sin(x)$")
+    axs[i].set_title(f"{n} Rectangles\nRiemann Sum: {riemann_sum_value:.6f}")
+    axs[i].set_xlabel("$x$")
+    axs[i].set_ylabel("$f(x)$")
     axs[i].legend()
 
+# Format and display the plot
 plt.tight_layout()
 plt.show()
 ```
 
 ```{admonition} Note
 :class: note
-Before integrating, always check the symmetry of your function about the center of the integration range. If it is symmetric like the sine function, then you can get away without having to compute the integral. This type of intuition can prove really useful in the chemical sciences.
+Before integrating, always check the symmetry of the function about the center of the integration range. You can avoid computing the integral if it is symmetric, like the sine function. This type of intuition can prove useful in the chemical sciences.
 ```
 
-### Calculating the Overlap Integral of Two H 1s Orbitals
+## Calculating the Overlap Integral of Two H 1s Orbitals
+
+### The Hydrogen 1s Orbital
 
 Now, let's calculate the overlap integral of two hydrogen 1s orbitals, which are given by:
 
@@ -138,7 +152,7 @@ $$
 \psi_{1s} = \left( \frac{1}{\pi a_0^3} \right)^{1/2} e^{-r/a_0}
 $$
 
-where $a_0$ is the Bohr radius, which is approximately 0.529 Å. So, it turns out this integral is pretty tough to solve in spherical coordinates, but we can convert it to Cartesian coordinates and use numerical integration to solve it. Recall that $r$ is related to $x$, $y$, and $z$ as:
+where $a_0$ is the Bohr radius, which is approximately 0.529 Å. This integral is tough to solve in spherical coordinates, but we can convert it to Cartesian coordinates and use numerical integration. Recall that $r$ is related to $x$, $y$, and $z$ as:
 
 $$
 r = \sqrt{x^2 + y^2 + z^2}
@@ -150,133 +164,194 @@ $$
 \psi_{1s} = \left( \frac{1}{\pi a_0^3} \right)^{1/2} e^{-\sqrt{x^2 + y^2 + z^2}/a_0}
 $$
 
-To determine the total overlap of the hydrogen 1s orbitals of two electrons, we need to integrate over all possible space where those orbitals can overlap, which is from $-\infty$ to $\infty$ in all three dimensions. For two hydrogen atoms, one at the origin and the other at a distance $a_0$ along the $x$-axis, the overlap integral is given by:
+### Computing the Overlap Integral
+
+To determine the total overlap of the hydrogen 1s orbitals of two electrons, we need to integrate over all possible space where those orbitals can overlap, from $-\infty$ to $\infty$ in all three dimensions. For two hydrogen atoms separated by a distance of $1.4 a_0$ along the $x$-axis, the overlap integral is given by:
 
 $$
-S = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \psi_{1s}^*(x, y, z) \psi_{1s}(x - a_0, y, z) dx dy dz
+S = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \psi_{1s}^*(x + 0.7 a_0, y, z) \psi_{1s}(x - 0.7 a_0, y, z) dx dy dz
 $$
 
-OK, so what do we have to do to solve this integral. First, we need to define the $x$, $y$, and $z$ ranges over which we will integrate. Then, we need to define the function we are integrating. Finally, we need to integrate the function over the ranges we defined. Let's do this now.
+### Numerical Integration Using a Riemann Sum
+
+OK, so what do we have to do to compute this integral? First, we must define the $x$, $y$, and $z$ ranges over which we will integrate. Then, we need to define the function we are integrating. Finally, we need to integrate the function over the ranges we defined. Let's do this now.
 
 ```{code-cell} ipython3
-import numpy as np
+def overlap_integral(N, grid_range, separation):
+    """
+    Computes the overlap integral using the Riemann sum with a uniform grid.
 
-# Constants
-a0 = 1.0  # Bohr radius
-N = 100  # Number of points in each dimension
-x_min, x_max = 0, 7 * a0  # Limits for x
-y_min, y_max = 0, 7 * a0  # Limits for y
-z_min, z_max = 0, 7 * a0  # Limits for z
+    Parameters:
+    N (int): Number of grid points along each axis.
+    grid_range (float): The range for x, y, z in Bohr radii.
+    separation (float): Separation distance between the centers of the two atomic orbitals.
 
-# Create grid points
-x = np.linspace(x_min, x_max, N)
-y = np.linspace(y_min, y_max, N)
-z = np.linspace(z_min, z_max, N)
+    Returns:
+    float: The computed overlap integral.
+    """
 
-# Calculate step sizes
-dx = (x_max - x_min) / N
-dy = (y_max - y_min) / N
-dz = (z_max - z_min) / N
+    # Create grid points and calculate step size
+    x = np.linspace(0, grid_range, N)
+    dx = grid_range / N
 
-# Initialize the sum for the Riemann sum
-S_sum = 0.0
+    # Create 3D grids for x, y, and z
+    X, Y, Z = np.meshgrid(x, x, x, indexing='ij')
 
-# Perform the Riemann sum
-for i in range(N):
-    for j in range(N):
-        for k in range(N):
-            r1 = np.sqrt((x[i] + a0 / 2) ** 2 + y[j] ** 2 + z[k] ** 2)
-            r2 = np.sqrt((x[i] - a0 / 2) ** 2 + y[j] ** 2 + z[k] ** 2)
-            integrand_value = np.exp(-(r1 + r2) / a0)
-            S_sum += integrand_value * dx * dy * dz
+    # Compute the distances r1 and r2
+    r1 = np.sqrt((X + separation / 2) ** 2 + Y ** 2 + Z ** 2)
+    r2 = np.sqrt((X - separation / 2) ** 2 + Y ** 2 + Z ** 2)
 
-# Apply the normalization factor
-normalization_factor = 8 / (np.pi * a0**3)
-S = normalization_factor * S_sum
+    # Compute the integrand for all points in the grid
+    integrand_value = np.exp(-(r1 + r2))
 
-# Output the result
-print(f"The value of the overlap integral S using the Riemann sum is approximately: {S:.6f}")
+    # Apply the Riemann sum
+    S_sum = np.sum(integrand_value) * dx**3
+
+    # Apply the normalization factor
+    normalization_factor = 8 / np.pi
+    S = normalization_factor * S_sum
+
+    return S
+
+# Example usage
+S = overlap_integral(N=100, grid_range=7, separation=1.4)
+print(f"Overlap integral S using the Riemann sum is approximately: {S:.6f}")
 ```
 
-It turns out that you can solve this integral analytically using an elliptical coordinate system, however, we will just compare our numerical solution to the analytical solution to make sure that what we've done is correct. To benchmark our numerical solution, we will compute the overlap integral as a function of the separation between the two hydrogen atoms. This can be achieved as follows:
+````{margin}
+```{note}
+**Vectorized** refers to a method of performing operations on entire arrays or collections of data simultaneously, rather than applying the operation element by element in a loop. In NumPy, vectorization allows you to write cleaner and more efficient code by taking advantage of optimized low-level operations.
+```
+````
+
+The above code computes the overlap integral of two hydrogen 1s orbitals using a Riemann sum with a uniform grid. The function `overlap_integral` takes three arguments: `N`, `grid_range`, and `separation`. The `N` argument specifies the number of grid points along each axis, while the `grid_range` argument specifies the range for $x$, $y$, and $z$ in Bohr radii. The `separation` argument specifies the separation distance between the centers of the two atomic orbitals. The function returns the computed overlap integral. The code uses NumPy's vectorized operations to compute the overlap integral efficiently.
+
+### Numerical Integration Using the Trapezoidal Rule
+
+The trapezoidal rule is a numerical integration method that approximates the integral of a function by dividing the interval into small trapezoids. The area of each trapezoid is calculated and summed to approximate the integral. The trapezoidal rule is more accurate than the Riemann sum because it approximates the function with straight lines instead of rectangles. The trapezoidal rule can be applied to multidimensional integrals by applying the rule along each axis. The trapezoidal rule is implemented in the `scipy.integrate.trapezoid` function, which computes the integral of a function using the trapezoidal rule. Let's rewrite the overlap integral function using the trapezoidal rule.
 
 ```{code-cell} ipython3
-import numpy as np
-from scipy.special import erf
+from scipy.integrate import trapezoid
 
-# Constants
-a0 = 1.0  # Bohr radius
-N = 100  # Number of points in each dimension
-x_min, x_max = 0, 7 * a0  # Limits for x
-y_min, y_max = 0, 7 * a0  # Limits for y
-z_min, z_max = 0, 7 * a0  # Limits for z
-R_values = np.linspace(0.1 * a0, 5 * a0, 10)  # Separation values
+def overlap_integral_trapezoid(N=100, grid_range=7, separation=0.7):
+    """
+    Computes the overlap integral using the trapezoidal rule with a uniform grid.
 
-# Create grid points
-x = np.linspace(x_min, x_max, N)
-y = np.linspace(y_min, y_max, N)
-z = np.linspace(z_min, z_max, N)
+    Parameters:
+    N (int): Number of grid points along each axis.
+    grid_range (float): The range for x, y, z in Bohr radii.
+    separation (float): Separation distance between the centers of the two atomic orbitals.
 
-# Calculate step sizes
-dx = (x_max - x_min) / (N - 1)
-dy = (y_max - y_min) / (N - 1)
-dz = (z_max - z_min) / (N - 1)
+    Returns:
+    float: The computed overlap integral.
+    """
 
-# Function to compute numerical overlap integral using trapezoidal rule
-def overlap_integral(R):
-    S_sum = 0.0
-    for i in range(N):
-        for j in range(N):
-            for k in range(N):
-                r1 = np.sqrt((x[i] + R / 2) ** 2 + y[j] ** 2 + z[k] ** 2)
-                r2 = np.sqrt((x[i] - R / 2) ** 2 + y[j] ** 2 + z[k] ** 2)
-                weight = 1.0
-                if i == 0 or i == N-1:
-                    weight *= 0.5
-                if j == 0 or j == N-1:
-                    weight *= 0.5
-                if k == 0 or k == N-1:
-                    weight *= 0.5
-                integrand_value = np.exp(-(r1 + r2) / a0)
-                S_sum += weight * integrand_value * dx * dy * dz
+    # Create grid points and calculate step size
+    x = np.linspace(0, grid_range, N)
+    dx = grid_range / N
 
-    normalization_factor = 8 / (np.pi * a0**3)
-    return normalization_factor * S_sum
+    # Create 3D grids for x, y, and z
+    X, Y, Z = np.meshgrid(x, x, x, indexing='ij')
+
+    # Compute the distances r1 and r2
+    r1 = np.sqrt((X + separation / 2) ** 2 + Y ** 2 + Z ** 2)
+    r2 = np.sqrt((X - separation / 2) ** 2 + Y ** 2 + Z ** 2)
+
+    # Compute the integrand for all points in the grid
+    integrand_value = np.exp(-(r1 + r2))
+
+    # Apply the trapezoidal rule along each axis
+    integral_x = trapezoid(integrand_value, x, axis=0)
+    integral_y = trapezoid(integral_x, x, axis=0)
+    S_sum = trapezoid(integral_y, x, axis=0)
+
+    # Apply the normalization factor
+    normalization_factor = 8 / np.pi
+    S = normalization_factor * S_sum
+
+    return S
+
+# Example usage
+S_trapezoid = overlap_integral_trapezoid(N=100, grid_range=7, separation=0.7)
+print(f"Overlap integral S using the trapezoidal rule is approximately: {S_trapezoid:.6f}")
+```
+
+The trapezoidal rule gives a different result than the Riemann sum because it approximates the function with straight lines instead of rectangles. Ultimately, the trapezoidal rule is more accurate than the Riemann sum because it approximates the function more closely. How can we verify that the trapezoidal rule is more accurate than the Riemann sum? We can compare the results of the two methods to an analytical solution.
+
+### Analytical Solution
+
+The analytical solution to the overlap integral of two hydrogen 1s orbitals separated by a distance $R$ is given by:
+
+$$
+S = \left( 1 + R + \frac{R^2}{3} \right) e^{-R}
+$$
+
+Let's compute the overlap integral using the analytical solution and compare it with the results obtained using the Riemann sum and the trapezoidal rule.
+
+```{code-cell} ipython3
+import pandas as pd
+
+# Separation values between the two hydrogen atoms in Bohr radii
+R_values = np.linspace(0.5, 5, 10)
 
 # Function to compute analytical overlap integral
 def analytical_overlap_integral(R):
-    return (1 + R / a0 + R**2 / (3 * a0**2)) * np.exp(-R / a0)
+    """
+    Computes the analytical overlap integral.
 
-# Compute numerical and analytical overlap integrals for different separations
-numerical_results = []
+    Parameters:
+    R (float): Separation distance between the centers of the two atomic orbitals in Bohr radii.
+
+    Returns:
+    float: The analytical overlap integral.
+    """
+    return (1 + R + R**2 / 3) * np.exp(-R)
+
+# Lists to store the results
 analytical_results = []
+riemann_results = []
+trapezoidal_results = []
+
+# Compute the overlap integral for different separation values
 for R in R_values:
-    S_numerical = overlap_integral(R)
     S_analytical = analytical_overlap_integral(R)
-    numerical_results.append(S_numerical)
+    S_riemann = overlap_integral(N=100, grid_range=7, separation=R)
+    S_trapezoidal = overlap_integral_trapezoid(N=100, grid_range=7, separation=R)
     analytical_results.append(S_analytical)
+    riemann_results.append(S_riemann)
+    trapezoidal_results.append(S_trapezoidal)
 
-# Output the results
-for R, S_numerical, S_analytical in zip(R_values, numerical_results, analytical_results):
-    print(f"Separation: {R/a0:.2f} a0 | Numerical: {S_numerical:.6f} | Analytical: {S_analytical:.6f}")
+# Create a DataFrame to display the results
+results_df = pd.DataFrame({
+    "Separation (Bohr radii)": R_values,
+    "Riemann Sum": riemann_results,
+    "Trapezoidal Rule": trapezoidal_results,
+    "Analytical": analytical_results
+})
 
+# Display the results
+results_df
+```
+
+The trapezoidal rule is more accurate than the Riemann sum for all separation values. Let's visualize the results to see how the overlap integral changes with the separation distance between the two hydrogen atoms.
+
+```{code-cell} ipython3
 # Plot the results
-import matplotlib.pyplot as plt
-
-plt.plot(R_values / a0, numerical_results, 'o-', label='Numerical')
-plt.plot(R_values / a0, analytical_results, 'x-', label='Analytical')
-plt.xlabel('Separation (R / a0)')
-plt.ylabel('Overlap Integral S')
-plt.title('Numerical and Analytical Overlap Integrals')
+plt.figure(figsize=(10, 6))
+plt.plot(R_values, analytical_results, "ro-", label="Analytical")
+plt.plot(R_values, riemann_results, "bs-", label="Riemann Sum")
+plt.plot(R_values, trapezoidal_results, "g^-", label="Trapezoidal Rule")
+plt.xlabel("Separation (Bohr radii)")
+plt.ylabel("Overlap Integral")
+plt.title("Overlap Integral of Two Hydrogen 1s Orbitals")
 plt.legend()
-plt.grid()
-
+plt.grid(True)
 plt.show()
 ```
 
-That's pretty awesome right! Are you starting to see the power of numerical methods in chemistry? In a way, Python provides a practical lens through which we can view various mathematical aspects in chemical science.
+The plot shows that the overlap integral decreases as the separation distance between the two hydrogen atoms increases. The analytical solution, the Riemann sum, and the trapezoidal rule all give consistent results, with the trapezoidal rule being the most accurate. The analytical solution provides a reference for the accuracy of the numerical methods.
 
-### Hands-On Activity: Numerical Integration
+## Hands-On Activity: Overlap of Two He<sup>+1</sup> 1s Orbitals
 
 Now, let's calculate the overlap integral of two He<sup>+1</sup> 1s orbitals, which are given by:
 
