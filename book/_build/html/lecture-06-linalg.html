@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-06-linalg';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lecture 5: Chemical Bonding and Numerical Integration" href="lecture-05-integration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -182,12 +181,13 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture-01-introduction.html">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Lecture 2: Essential Python Packages for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-03-control.html">Lecture 3: Control Structures in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a></li>
 </ul>
 
     </div>
@@ -383,10 +383,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balancing-chemical-equations">Balancing Chemical Equations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#systems-of-linear-algebraic-equations">Systems of Linear Algebraic Equations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-system-of-equations">Solving the System of Equations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-reduction-of-tin-iv-oxide-by-hydrogen">Example: Reduction of Tin(IV) Oxide by Hydrogen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-system-of-equations">Solving the System of Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-import-the-necessary-libraries">Step 1: Import the Necessary Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-define-the-coefficient-matrix-mathbf-a">Step 2: Define the Coefficient Matrix, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-compute-the-null-space">Step 3: Compute the Null Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-normalize-and-convert-to-integer-coefficients">Step 4: Normalize and Convert to Integer Coefficients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-the-balanced-chemical-equation">Step 5: The Balanced Chemical Equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-reduction-of-tin-iv-oxide-by-hydrogen">Example: Reduction of Tin(IV) Oxide by Hydrogen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balancing-the-equation-by-hand">Balancing the Equation by Hand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-equation-using-python">Solving the Equation Using Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -400,16 +414,25 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-6-balancing-chemical-equations-and-systems-of-linear-algebraic-equations">
 <h1>Lecture 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations<a class="headerlink" href="#lecture-6-balancing-chemical-equations-and-systems-of-linear-algebraic-equations" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this lecture, you should be able to:</p>
+<ol class="arabic simple">
+<li><p><strong>Balance chemical equations</strong> using algebraic methods and matrix representation.</p></li>
+<li><p><strong>Solve systems of linear equations</strong> for stoichiometric coefficients using Python and NumPy.</p></li>
+<li><p><strong>Apply the null space method</strong> to find balanced coefficients for chemical reactions.</p></li>
+<li><p><strong>Interpret and generalize solutions</strong> to balance hydrocarbon combustion reactions and other chemical equations.</p></li>
+</ol>
+</section>
 <section id="balancing-chemical-equations">
 <h2>Balancing Chemical Equations<a class="headerlink" href="#balancing-chemical-equations" title="Link to this heading">#</a></h2>
-<p>One of the first things we’re trained to do in the chemical sciences is to balance the stoichiometric coefficients of the reactants and products in a chemical equation so that no mass is lost. For example, consider the combustion of an methane in the presence of oxygen.</p>
+<p>In the chemical sciences, one of the foundational skills is <strong>balancing chemical equations</strong> to ensure that no mass is lost or created, as dictated by the law of conservation of mass. This process ensures that the number of atoms of each element is the same on both sides of the reaction.</p>
+<p>Consider the combustion of methane in oxygen:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-a \text{CH}_4(g) + b \text{O}_2(g) &amp;\rightarrow c \text{CO}_2(g) + d \text{H}_2\text{O}(g) \\
-\end{align*}
-\end{split}\]</div>
-<p>The game that we are taught to play is to determine the values of <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> that make the number of atoms of each element the same on both sides of the equation. To do this, we can make a table where the two columns are for reactants (left) and products (right) and each row is for a different element. For the combustion of methane, the table looks like this:</p>
+\[
+a \text{CH}_4(g) + b \text{O}_2(g) \rightarrow c \text{CO}_2(g) + d \text{H}_2\text{O}(g)
+\]</div>
+<p>The goal is to determine the stoichiometric coefficients <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> that balance the equation. We can do this systematically by ensuring the number of each type of atom is equal on both sides of the reaction. A useful approach is to create a table that tracks the number of atoms in the reactants and products for each element:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
@@ -433,7 +456,7 @@ a \text{CH}_4(g) + b \text{O}_2(g) &amp;\rightarrow c \text{CO}_2(g) + d \text{H
 </tbody>
 </table>
 </div>
-<p>From the table, we can clearly see that <span class="math notranslate nohighlight">\(a\)</span> has to be equal to <span class="math notranslate nohighlight">\(c\)</span> in order for the reaction to be balanced. So, we can write the table as:</p>
+<p>From this table, we can see the relationships between the variables. First, we know that for carbon to balance, <span class="math notranslate nohighlight">\(a = c\)</span>, since there is one carbon atom in both methane and carbon dioxide. Substituting this into the table gives:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
@@ -457,7 +480,7 @@ a \text{CH}_4(g) + b \text{O}_2(g) &amp;\rightarrow c \text{CO}_2(g) + d \text{H
 </tbody>
 </table>
 </div>
-<p>OK, the next step is to notice that <span class="math notranslate nohighlight">\(4a = 2d\)</span> so <span class="math notranslate nohighlight">\(d = 2a\)</span>. We can substitute this into the last row of the table to get:</p>
+<p>Next, we balance hydrogen. Since there are 4 hydrogen atoms in methane, and each water molecule contains 2 hydrogen atoms, we know that <span class="math notranslate nohighlight">\(4a = 2d\)</span>, which simplifies to <span class="math notranslate nohighlight">\(d = 2a\)</span>. Updating the table:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
@@ -476,47 +499,39 @@ a \text{CH}_4(g) + b \text{O}_2(g) &amp;\rightarrow c \text{CO}_2(g) + d \text{H
 </tr>
 <tr class="row-even"><td><p>O</p></td>
 <td><p><span class="math notranslate nohighlight">\(2b\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(2a + 2a\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2a + 2a = 4a\)</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Finally, we can see that <span class="math notranslate nohighlight">\(2b = 4a\)</span> so <span class="math notranslate nohighlight">\(b = 2a\)</span>. Substituting this into the last row of the table gives:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Element</p></th>
-<th class="head"><p>Reactants</p></th>
-<th class="head"><p>Products</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>C</p></td>
-<td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p>H</p></td>
-<td><p><span class="math notranslate nohighlight">\(4a\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(4a\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p>O</p></td>
-<td><p><span class="math notranslate nohighlight">\(4a\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(4a\)</span></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>So, the balanced equation is:</p>
+<p>Finally, we balance oxygen. We have <span class="math notranslate nohighlight">\(2b\)</span> oxygen atoms on the reactant side and <span class="math notranslate nohighlight">\(4a\)</span> on the product side, so <span class="math notranslate nohighlight">\(2b = 4a\)</span>, meaning <span class="math notranslate nohighlight">\(b = 2a\)</span>.</p>
+<p>Now, substituting these values into the chemical equation, with <span class="math notranslate nohighlight">\(a = 1\)</span> for simplicity, we get:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{CH}_4(g) + 2\text{O}_2(g) &amp;\rightarrow \text{CO}_2(g) + 2\text{H}_2\text{O}(g) \\
-\end{align*}
-\end{split}\]</div>
-<p>Maybe that was unnecessarily difficult, as I’m sure many of you were able to see precisely what those values were before we started. But, the point is that we can solve linear equations to balance chemical equations.</p>
+\[
+\text{CH}_4(g) + 2 \text{O}_2(g) \rightarrow \text{CO}_2(g) + 2 \text{H}_2\text{O}(g)
+\]</div>
+<p>Thus, the balanced chemical equation for the combustion of methane is:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{CH}_4(g) + 2 \text{O}_2(g) \rightarrow \text{CO}_2(g) + 2 \text{H}_2\text{O}(g)
+\]</div>
+<p>This systematic approach shows that we can think of balancing chemical equations as solving a set of linear equations for the stoichiometric coefficients.</p>
 </section>
 <section id="systems-of-linear-algebraic-equations">
 <h2>Systems of Linear Algebraic Equations<a class="headerlink" href="#systems-of-linear-algebraic-equations" title="Link to this heading">#</a></h2>
-<p>Going back even further, you may remember that if we have a system of linear algegraic equations and the same number of equations as unknowns, we can solve for the unknowns. Let’s recast our combustion problem in terms of a system of linear algebraic equations. We have:</p>
+<p>Balancing chemical equations can be thought of as solving a system of linear algebraic equations. If we have the same number of equations as unknowns, we can solve for the unknowns using linear algebra techniques. Let’s revisit the methane combustion problem and express it as a system of equations.</p>
+<p>For the balanced reaction:</p>
+<div class="math notranslate nohighlight">
+\[
+a \text{CH}_4(g) + b \text{O}_2(g) \rightarrow c \text{CO}_2(g) + d \text{H}_2\text{O}(g)
+\]</div>
+<p>We can write the following set of equations based on the element balances:</p>
+<ol class="arabic simple">
+<li><p><strong>Carbon balance</strong>: <span class="math notranslate nohighlight">\(a - c = 0\)</span> (since there is one carbon atom in both methane and carbon dioxide)</p></li>
+<li><p><strong>Hydrogen balance</strong>: <span class="math notranslate nohighlight">\(4a - 2d = 0\)</span> (4 hydrogen atoms in methane, 2 per water molecule)</p></li>
+<li><p><strong>Oxygen balance</strong>: <span class="math notranslate nohighlight">\(2b - 2c - d = 0\)</span> (2 oxygen atoms in each oxygen molecule, balancing with oxygen in carbon dioxide and water)</p></li>
+</ol>
+<p>This system of equations can be expressed as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -525,7 +540,7 @@ a - c &amp;= 0 \\
 2b - 2c - d &amp;= 0 \\
 \end{align*}
 \end{split}\]</div>
-<p>This can be written in matrix form as:</p>
+<p>Next, we can write this in <strong>matrix form</strong> as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -548,27 +563,37 @@ d \\
 \end{bmatrix}
 \end{align*}
 \end{split}\]</div>
-<p>Or, more simply as:</p>
+<p>Here, the matrix on the left represents the coefficients of the unknowns <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span>, and the vector on the right is the zero vector because we are balancing the equation.</p>
+<p>More concisely, this can be written as:</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{align*}
-\mathbf{A}\mathbf{x} &amp;= \mathbf{0}
-\end{align*}
+\mathbf{A} \mathbf{x} = \mathbf{0}
 \]</div>
-<p>Where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the matrix of coefficients, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is the vector of unknowns, and <span class="math notranslate nohighlight">\(\mathbf{0}\)</span> is the zero vector. We can solve this system of equations by finding the null space of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. The null space is the set of all vectors that send <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to <span class="math notranslate nohighlight">\(\mathbf{0}\)</span>. In other words, it is the set of all vectors that satisfy the system of equations.</p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the matrix of coefficients</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is the vector of unknowns <span class="math notranslate nohighlight">\([a, b, c, d]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{0}\)</span> is the zero vector.</p></li>
+</ul>
 </section>
 <section id="solving-the-system-of-equations">
 <h2>Solving the System of Equations<a class="headerlink" href="#solving-the-system-of-equations" title="Link to this heading">#</a></h2>
-<p>Let’s solve the system of equations for the combustion of methane using Python. We’ll use the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library to do this.</p>
-<p>First, we need to import the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library.</p>
+<p>Now, let’s apply what we’ve learned to solve the combustion of methane using Python. We’ll employ the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library for matrix operations and the <code class="docutils literal notranslate"><span class="pre">scipy.linalg.null_space</span></code> function to solve the system by finding the null space of the coefficient matrix.</p>
+<section id="step-1-import-the-necessary-libraries">
+<h3>Step 1: Import the Necessary Libraries<a class="headerlink" href="#step-1-import-the-necessary-libraries" title="Link to this heading">#</a></h3>
+<p>We’ll first import the libraries needed for our computation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">null_space</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Next, we’ll define the matrix of coefficients, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+</section>
+<section id="step-2-define-the-coefficient-matrix-mathbf-a">
+<h3>Step 2: Define the Coefficient Matrix, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span><a class="headerlink" href="#step-2-define-the-coefficient-matrix-mathbf-a" title="Link to this heading">#</a></h3>
+<p>Next, we define the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, which represents the coefficients of the unknowns <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> in the system of equations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
@@ -578,24 +603,28 @@ d \\
 </div>
 </div>
 </div>
-<p>Now, we can find the null space of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<p>This matrix corresponds to the carbon, hydrogen, and oxygen balances, respectively, for the combustion reaction.</p>
+</section>
+<section id="step-3-compute-the-null-space">
+<h3>Step 3: Compute the Null Space<a class="headerlink" href="#step-3-compute-the-null-space" title="Link to this heading">#</a></h3>
+<p>To solve for the stoichiometric coefficients, we find the null space of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. This will provide the ratios between <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> that satisfy the system of linear equations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">null_space</span>
-
-<span class="c1"># Calculate the null space of matrix A</span>
-<span class="n">null_space</span> <span class="o">=</span> <span class="n">null_space</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the null space of matrix A</span>
+<span class="n">null_vec</span> <span class="o">=</span> <span class="n">null_space</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Finally, we can print the solution.</p>
+<p>The result is a vector of relative coefficients. However, we need to convert these into the smallest possible integer values to balance the equation correctly.</p>
+</section>
+<section id="step-4-normalize-and-convert-to-integer-coefficients">
+<h3>Step 4: Normalize and Convert to Integer Coefficients<a class="headerlink" href="#step-4-normalize-and-convert-to-integer-coefficients" title="Link to this heading">#</a></h3>
+<p>We can normalize the null space vector by dividing by its smallest positive value and then round to obtain integer coefficients:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the null space solution to integer coefficients by multiplying</span>
-<span class="c1"># and normalizing to the smallest integers</span>
-<span class="n">coefficients</span> <span class="o">=</span> <span class="n">null_space</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">coefficients</span> <span class="o">=</span> <span class="n">coefficients</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">coefficients</span><span class="p">[</span><span class="n">coefficients</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalize the coefficients to the smallest integer values</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">null_vec</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">null_vec</span><span class="p">[</span><span class="n">null_vec</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">coefficients</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
 <span class="n">coefficients</span>
@@ -608,44 +637,145 @@ d \\
 </div>
 </div>
 </div>
-<p>This is the same solution we found earlier. The balanced equation is:</p>
+<p>The resulting coefficients correspond to the stoichiometric coefficients for the reaction:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a = 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(b = 2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c = 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d = 2\)</span></p></li>
+</ul>
+</section>
+<section id="step-5-the-balanced-chemical-equation">
+<h3>Step 5: The Balanced Chemical Equation<a class="headerlink" href="#step-5-the-balanced-chemical-equation" title="Link to this heading">#</a></h3>
+<p>The balanced chemical equation for the combustion of methane is:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{CH}_4(g) + 2\text{O}_2(g) &amp;\rightarrow \text{CO}_2(g) + 2\text{H}_2\text{O}(g) \\
-\end{align*}
-\end{split}\]</div>
+\[
+\text{CH}_4(g) + 2\text{O}_2(g) \rightarrow \text{CO}_2(g) + 2\text{H}_2\text{O}(g)
+\]</div>
+<p>This method can be generalized to balance any chemical equation using matrix algebra and Python.</p>
+<hr class="docutils" />
 <div class="tip admonition">
-<p class="admonition-title">Note</p>
-<p>There’s actually a general equation for the stoichiometric coefficients for the combustion of alkanes. For the combustion of an alkane with <span class="math notranslate nohighlight">\(n\)</span> carbons, the balanced equation is:</p>
+<p class="admonition-title">General Case for Hydrocarbon Combustion</p>
+<p>For the combustion of any alkane, the general form for balancing the equation is:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{C}_n\text{H}_{2n+2}(g) + (3n+1)\text{O}_2(g) &amp;\rightarrow n\text{CO}_2(g) + (n+1)\text{H}_2\text{O}(g) \\
-\end{align*}
-\end{split}\]</div>
-<p>There’s also a general function for any hydrocarbon, saturated or unsaturated. It is:</p>
+\[
+\text{C}_n\text{H}_{2n+2}(g) + (3n+1)\text{O}_2(g) \rightarrow n\text{CO}_2(g) + (n+1)\text{H}_2\text{O}(g)
+\]</div>
+<p>More generally, for any hydrocarbon (saturated or unsaturated), the formula for the stoichiometric coefficients is:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{C}_x\text{H}_y + \left(x + \frac{y}{4}\right)\text{O}_2 &amp;\rightarrow x\text{CO}_2 + \frac{y}{2}\text{H}_2\text{O} \\
-\end{align*}
-\end{split}\]</div>
+\[
+\text{C}_x\text{H}_y + \left(x + \frac{y}{4}\right)\text{O}_2 \rightarrow x\text{CO}_2 + \frac{y}{2}\text{H}_2\text{O}
+\]</div>
 </div>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<p>In this section, we demonstrated how to solve the combustion reaction of methane by representing it as a system of linear equations. By using Python, we computed the null space of the coefficient matrix and found the stoichiometric coefficients needed to balance the equation. This same approach can be extended to balance more complex chemical reactions.</p>
+</section>
 </section>
 <section id="example-reduction-of-tin-iv-oxide-by-hydrogen">
 <h2>Example: Reduction of Tin(IV) Oxide by Hydrogen<a class="headerlink" href="#example-reduction-of-tin-iv-oxide-by-hydrogen" title="Link to this heading">#</a></h2>
-<p>Let’s consider the reduction of tin(IV) oxide by hydrogen to form tin and water.</p>
+<p>Next, let’s explore the reduction of tin(IV) oxide by hydrogen to produce tin and water. The unbalanced chemical equation for this reaction is:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{SnO}_2(s) + \text{H}_2(g) &amp;\rightarrow \text{Sn}(s) + \text{H}_2\text{O}(g) \\
-\end{align*}
-\end{split}\]</div>
-<div class="warning admonition">
-<p class="admonition-title">Wait a Minute!</p>
-<p>Can you try to do this by hand before you do it in Python?</p>
+\[
+\text{SnO}_2(s) + \text{H}_2(g) \rightarrow \text{Sn}(s) + \text{H}_2\text{O}(g)
+\]</div>
+<section id="balancing-the-equation-by-hand">
+<h3>Balancing the Equation by Hand<a class="headerlink" href="#balancing-the-equation-by-hand" title="Link to this heading">#</a></h3>
+<p>Before we jump into solving this problem using Python, take a moment to try balancing this equation manually. Start by creating a table that tracks the number of atoms of each element on both sides of the reaction.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head"><p>Reactants</p></th>
+<th class="head"><p>Products</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sn</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>O</p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>H</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<p>From this, you can see that the oxygen atoms are not balanced. We have 2 oxygen atoms on the left (from SnO₂) and only 1 oxygen atom on the right (in H₂O). Therefore, we’ll need to add a coefficient of 2 to the water molecule on the product side.</p>
+<div class="math notranslate nohighlight">
+\[
+\text{SnO}_2(s) + \text{H}_2(g) \rightarrow \text{Sn}(s) + 2\text{H}_2\text{O}(g)
+\]</div>
+<p>Now, check the hydrogen atoms. We now have 4 hydrogen atoms on the right side (from 2 H₂O molecules), so we need 2 H₂ molecules on the left side to balance the hydrogen.</p>
+<p>The balanced equation is:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{SnO}_2(s) + 2\text{H}_2(g) \rightarrow \text{Sn}(s) + 2\text{H}_2\text{O}(g)
+\]</div>
+<div class="warning admonition">
+<p class="admonition-title">Take a Moment</p>
+<p>Did you try balancing the equation by hand? Understanding the manual process will help you see how Python can automate and streamline this process.</p>
+</div>
+</section>
+<section id="solving-the-equation-using-python">
+<h3>Solving the Equation Using Python<a class="headerlink" href="#solving-the-equation-using-python" title="Link to this heading">#</a></h3>
+<p>Once you’ve manually balanced the equation, let’s confirm the result using Python. By writing the system of equations for the element balances, we can solve for the stoichiometric coefficients using matrix algebra.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">null_space</span>
+
+<span class="c1"># Define the matrix of coefficients</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>   <span class="c1"># Sn balance</span>
+              <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>   <span class="c1"># O balance</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]])</span>  <span class="c1"># H balance</span>
+
+<span class="c1"># Compute the null space of the matrix A</span>
+<span class="n">null_vec</span> <span class="o">=</span> <span class="n">null_space</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Normalize and convert to integer coefficients</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">null_vec</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">coefficients</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">coefficients</span><span class="p">[</span><span class="n">coefficients</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Output the coefficients</span>
+<span class="n">coefficients</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 1, 2])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This gives us the same result: <span class="math notranslate nohighlight">\(1\)</span> SnO₂ reacts with <span class="math notranslate nohighlight">\(2\)</span> H₂ to produce <span class="math notranslate nohighlight">\(1\)</span> Sn and <span class="math notranslate nohighlight">\(2\)</span> H₂O.</p>
+</section>
+<hr class="docutils" />
+<section id="recap">
+<h3>Recap<a class="headerlink" href="#recap" title="Link to this heading">#</a></h3>
+<p>In this example, we manually balanced the reduction of tin(IV) oxide by hydrogen and confirmed our result using Python. You can apply this process to more complex reactions where balancing by hand might be more challenging.</p>
+<p>By leveraging matrix algebra and Python, we can efficiently balance chemical equations, saving time and ensuring accuracy, especially for reactions involving multiple reactants and products.</p>
+<!-- ## Example: Reduction of Tin(IV) Oxide by Hydrogen
+
+Let's consider the reduction of tin(IV) oxide by hydrogen to form tin and water.
+
+$$
+\begin{align*}
+\text{SnO}_2(s) + \text{H}_2(g) &\rightarrow \text{Sn}(s) + \text{H}_2\text{O}(g) \\
+\end{align*}
+$$
+
+```{admonition} Wait a Minute!
+:class: warning
+Can you try to do this by hand before you do it in Python?
+``` --></section>
 </section>
 </section>
 
@@ -679,6 +809,15 @@ d \\
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture-05-integration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 5: Chemical Bonding and Numerical Integration</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -695,10 +834,24 @@ d \\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balancing-chemical-equations">Balancing Chemical Equations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#systems-of-linear-algebraic-equations">Systems of Linear Algebraic Equations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-system-of-equations">Solving the System of Equations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-reduction-of-tin-iv-oxide-by-hydrogen">Example: Reduction of Tin(IV) Oxide by Hydrogen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-system-of-equations">Solving the System of Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-import-the-necessary-libraries">Step 1: Import the Necessary Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-define-the-coefficient-matrix-mathbf-a">Step 2: Define the Coefficient Matrix, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-compute-the-null-space">Step 3: Compute the Null Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-normalize-and-convert-to-integer-coefficients">Step 4: Normalize and Convert to Integer Coefficients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-the-balanced-chemical-equation">Step 5: The Balanced Chemical Equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-reduction-of-tin-iv-oxide-by-hydrogen">Example: Reduction of Tin(IV) Oxide by Hydrogen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balancing-the-equation-by-hand">Balancing the Equation by Hand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-equation-using-python">Solving the Equation Using Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

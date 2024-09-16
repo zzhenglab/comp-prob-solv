@@ -9,6 +9,6 @@ chapters:
 - file: lecture-03-control
 - file: lecture-04-optimization
 - file: lecture-05-integration
-# - file: lecture-06-linalg
+- file: lecture-06-linalg
 # - file: lecture-07-regression
 # - file: lecture-08-calibration

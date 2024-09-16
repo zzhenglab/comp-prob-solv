@@ -13,61 +13,82 @@ kernelspec:
 
 # Lecture 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations
 
-### Balancing Chemical Equations
+## Learning Objectives
 
-One of the first things we're trained to do in the chemical sciences is to balance the stoichiometric coefficients of the reactants and products in a chemical equation so that no mass is lost. For example, consider the combustion of an methane in the presence of oxygen.
+By the end of this lecture, you should be able to:
 
-$$
-\begin{align*}
-a \text{CH}_4(g) + b \text{O}_2(g) &\rightarrow c \text{CO}_2(g) + d \text{H}_2\text{O}(g) \\
-\end{align*}
-$$
+1. **Balance chemical equations** using algebraic methods and matrix representation.
+2. **Solve systems of linear equations** for stoichiometric coefficients using Python and NumPy.
+3. **Apply the null space method** to find balanced coefficients for chemical reactions.
+4. **Interpret and generalize solutions** to balance hydrocarbon combustion reactions and other chemical equations.
 
-The game that we are taught to play is to determine the values of $a$, $b$, $c$, and $d$ that make the number of atoms of each element the same on both sides of the equation. To do this, we can make a table where the two columns are for reactants (left) and products (right) and each row is for a different element. For the combustion of methane, the table looks like this:
+## Balancing Chemical Equations
 
-| Element | Reactants | Products |
-|---------|-----------|----------|
-| C       | $a$       | $c$      |
-| H       | $4a$      | $2d$     |
-| O       | $2b$      | $2c + d$ |
+In the chemical sciences, one of the foundational skills is **balancing chemical equations** to ensure that no mass is lost or created, as dictated by the law of conservation of mass. This process ensures that the number of atoms of each element is the same on both sides of the reaction.
 
-From the table, we can clearly see that $a$ has to be equal to $c$ in order for the reaction to be balanced. So, we can write the table as:
-
-| Element | Reactants | Products |
-|---------|-----------|----------|
-| C       | $a$       | $a$      |
-| H       | $4a$      | $2d$     |
-| O       | $2b$      | $2a + d$ |
-
-OK, the next step is to notice that $4a = 2d$ so $d = 2a$. We can substitute this into the last row of the table to get:
-
-| Element | Reactants | Products |
-|---------|-----------|----------|
-| C       | $a$       | $a$      |
-| H       | $4a$      | $4a$     |
-| O       | $2b$      | $2a + 2a$ |
-
-Finally, we can see that $2b = 4a$ so $b = 2a$. Substituting this into the last row of the table gives:
-
-| Element | Reactants | Products |
-|---------|-----------|----------|
-| C       | $a$       | $a$      |
-| H       | $4a$      | $4a$     |
-| O       | $4a$      | $4a$     |
-
-So, the balanced equation is:
+Consider the combustion of methane in oxygen:
 
 $$
-\begin{align*}
-\text{CH}_4(g) + 2\text{O}_2(g) &\rightarrow \text{CO}_2(g) + 2\text{H}_2\text{O}(g) \\
-\end{align*}
+a \text{CH}_4(g) + b \text{O}_2(g) \rightarrow c \text{CO}_2(g) + d \text{H}_2\text{O}(g)
 $$
 
-Maybe that was unnecessarily difficult, as I'm sure many of you were able to see precisely what those values were before we started. But, the point is that we can solve linear equations to balance chemical equations.
+The goal is to determine the stoichiometric coefficients $a$, $b$, $c$, and $d$ that balance the equation. We can do this systematically by ensuring the number of each type of atom is equal on both sides of the reaction. A useful approach is to create a table that tracks the number of atoms in the reactants and products for each element:
 
-### Systems of Linear Algebraic Equations
+| Element | Reactants       | Products         |
+|---------|-----------------|------------------|
+| C       | $a$             | $c$              |
+| H       | $4a$            | $2d$             |
+| O       | $2b$            | $2c + d$         |
 
-Going back even further, you may remember that if we have a system of linear algegraic equations and the same number of equations as unknowns, we can solve for the unknowns. Let's recast our combustion problem in terms of a system of linear algebraic equations. We have:
+From this table, we can see the relationships between the variables. First, we know that for carbon to balance, $a = c$, since there is one carbon atom in both methane and carbon dioxide. Substituting this into the table gives:
+
+| Element | Reactants       | Products         |
+|---------|-----------------|------------------|
+| C       | $a$             | $a$              |
+| H       | $4a$            | $2d$             |
+| O       | $2b$            | $2a + d$         |
+
+Next, we balance hydrogen. Since there are 4 hydrogen atoms in methane, and each water molecule contains 2 hydrogen atoms, we know that $4a = 2d$, which simplifies to $d = 2a$. Updating the table:
+
+| Element | Reactants       | Products         |
+|---------|-----------------|------------------|
+| C       | $a$             | $a$              |
+| H       | $4a$            | $4a$             |
+| O       | $2b$            | $2a + 2a = 4a$   |
+
+Finally, we balance oxygen. We have $2b$ oxygen atoms on the reactant side and $4a$ on the product side, so $2b = 4a$, meaning $b = 2a$.
+
+Now, substituting these values into the chemical equation, with $a = 1$ for simplicity, we get:
+
+$$
+\text{CH}_4(g) + 2 \text{O}_2(g) \rightarrow \text{CO}_2(g) + 2 \text{H}_2\text{O}(g)
+$$
+
+Thus, the balanced chemical equation for the combustion of methane is:
+
+$$
+\text{CH}_4(g) + 2 \text{O}_2(g) \rightarrow \text{CO}_2(g) + 2 \text{H}_2\text{O}(g)
+$$
+
+This systematic approach shows that we can think of balancing chemical equations as solving a set of linear equations for the stoichiometric coefficients.
+
+## Systems of Linear Algebraic Equations
+
+Balancing chemical equations can be thought of as solving a system of linear algebraic equations. If we have the same number of equations as unknowns, we can solve for the unknowns using linear algebra techniques. Let’s revisit the methane combustion problem and express it as a system of equations.
+
+For the balanced reaction:
+
+$$
+a \text{CH}_4(g) + b \text{O}_2(g) \rightarrow c \text{CO}_2(g) + d \text{H}_2\text{O}(g)
+$$
+
+We can write the following set of equations based on the element balances:
+
+1. **Carbon balance**: $a - c = 0$ (since there is one carbon atom in both methane and carbon dioxide)
+2. **Hydrogen balance**: $4a - 2d = 0$ (4 hydrogen atoms in methane, 2 per water molecule)
+3. **Oxygen balance**: $2b - 2c - d = 0$ (2 oxygen atoms in each oxygen molecule, balancing with oxygen in carbon dioxide and water)
+
+This system of equations can be expressed as:
 
 $$
 \begin{align*}
@@ -77,7 +98,7 @@ a - c &= 0 \\
 \end{align*}
 $$
 
-This can be written in matrix form as:
+Next, we can write this in **matrix form** as:
 
 $$
 \begin{align*}
@@ -101,27 +122,36 @@ d \\
 \end{align*}
 $$
 
-Or, more simply as:
+Here, the matrix on the left represents the coefficients of the unknowns $a$, $b$, $c$, and $d$, and the vector on the right is the zero vector because we are balancing the equation.
+
+More concisely, this can be written as:
 
 $$
-\begin{align*}
-\mathbf{A}\mathbf{x} &= \mathbf{0}
-\end{align*}
+\mathbf{A} \mathbf{x} = \mathbf{0}
 $$
 
-Where $\mathbf{A}$ is the matrix of coefficients, $\mathbf{x}$ is the vector of unknowns, and $\mathbf{0}$ is the zero vector. We can solve this system of equations by finding the null space of $\mathbf{A}$. The null space is the set of all vectors that send $\mathbf{A}$ to $\mathbf{0}$. In other words, it is the set of all vectors that satisfy the system of equations.
+Where:
 
-### Solving the System of Equations
+- $\mathbf{A}$ is the matrix of coefficients
+- $\mathbf{x}$ is the vector of unknowns $[a, b, c, d]$
+- $\mathbf{0}$ is the zero vector.
 
-Let's solve the system of equations for the combustion of methane using Python. We'll use the `numpy` library to do this.
+## Solving the System of Equations
 
-First, we need to import the `numpy` library.
+Now, let's apply what we’ve learned to solve the combustion of methane using Python. We’ll employ the `numpy` library for matrix operations and the `scipy.linalg.null_space` function to solve the system by finding the null space of the coefficient matrix.
+
+### Step 1: Import the Necessary Libraries
+
+We'll first import the libraries needed for our computation.
 
 ```{code-cell} ipython3
 import numpy as np
+from scipy.linalg import null_space
 ```
 
-Next, we'll define the matrix of coefficients, $\mathbf{A}$.
+### Step 2: Define the Coefficient Matrix, $\mathbf{A}$
+
+Next, we define the matrix $\mathbf{A}$, which represents the coefficients of the unknowns $a$, $b$, $c$, and $d$ in the system of equations:
 
 ```{code-cell} ipython3
 A = np.array([[1, 0, -1, 0],
@@ -129,55 +159,144 @@ A = np.array([[1, 0, -1, 0],
               [0, 2, -2, -1]])
 ```
 
-Now, we can find the null space of $\mathbf{A}$.
+This matrix corresponds to the carbon, hydrogen, and oxygen balances, respectively, for the combustion reaction.
+
+### Step 3: Compute the Null Space
+
+To solve for the stoichiometric coefficients, we find the null space of matrix $\mathbf{A}$. This will provide the ratios between $a$, $b$, $c$, and $d$ that satisfy the system of linear equations:
 
 ```{code-cell} ipython3
-from scipy.linalg import null_space
-
 # Calculate the null space of matrix A
-null_space = null_space(A)
+null_vec = null_space(A)
 ```
 
-Finally, we can print the solution.
+The result is a vector of relative coefficients. However, we need to convert these into the smallest possible integer values to balance the equation correctly.
+
+### Step 4: Normalize and Convert to Integer Coefficients
+
+We can normalize the null space vector by dividing by its smallest positive value and then round to obtain integer coefficients:
 
 ```{code-cell} ipython3
-# Convert the null space solution to integer coefficients by multiplying
-# and normalizing to the smallest integers
-coefficients = null_space[:, 0]
-coefficients = coefficients / np.min(coefficients[coefficients > 0])
+# Normalize the coefficients to the smallest integer values
+coefficients = null_vec[:, 0] / np.min(null_vec[null_vec > 0])
 coefficients = np.round(coefficients).astype(int)
 
 coefficients
 ```
 
-This is the same solution we found earlier. The balanced equation is:
+The resulting coefficients correspond to the stoichiometric coefficients for the reaction:
+
+- $a = 1$
+- $b = 2$
+- $c = 1$
+- $d = 2$
+
+### Step 5: The Balanced Chemical Equation
+
+The balanced chemical equation for the combustion of methane is:
 
 $$
-\begin{align*}
-\text{CH}_4(g) + 2\text{O}_2(g) &\rightarrow \text{CO}_2(g) + 2\text{H}_2\text{O}(g) \\
-\end{align*}
+\text{CH}_4(g) + 2\text{O}_2(g) \rightarrow \text{CO}_2(g) + 2\text{H}_2\text{O}(g)
 $$
 
-```{admonition} Note
+This method can be generalized to balance any chemical equation using matrix algebra and Python.
+
+---
+
+```{admonition} General Case for Hydrocarbon Combustion
 :class: tip
-There's actually a general equation for the stoichiometric coefficients for the combustion of alkanes. For the combustion of an alkane with $n$ carbons, the balanced equation is:
+For the combustion of any alkane, the general form for balancing the equation is:
 
 $$
-\begin{align*}
-\text{C}_n\text{H}_{2n+2}(g) + (3n+1)\text{O}_2(g) &\rightarrow n\text{CO}_2(g) + (n+1)\text{H}_2\text{O}(g) \\
-\end{align*}
+\text{C}_n\text{H}_{2n+2}(g) + (3n+1)\text{O}_2(g) \rightarrow n\text{CO}_2(g) + (n+1)\text{H}_2\text{O}(g)
 $$
 
-There's also a general function for any hydrocarbon, saturated or unsaturated. It is:
+More generally, for any hydrocarbon (saturated or unsaturated), the formula for the stoichiometric coefficients is:
 
 $$
-\begin{align*}
-\text{C}_x\text{H}_y + \left(x + \frac{y}{4}\right)\text{O}_2 &\rightarrow x\text{CO}_2 + \frac{y}{2}\text{H}_2\text{O} \\
-\end{align*}
+\text{C}_x\text{H}_y + \left(x + \frac{y}{4}\right)\text{O}_2 \rightarrow x\text{CO}_2 + \frac{y}{2}\text{H}_2\text{O}
 $$
 ```
 
-### Example: Reduction of Tin(IV) Oxide by Hydrogen
+---
+
+### Summary
+
+In this section, we demonstrated how to solve the combustion reaction of methane by representing it as a system of linear equations. By using Python, we computed the null space of the coefficient matrix and found the stoichiometric coefficients needed to balance the equation. This same approach can be extended to balance more complex chemical reactions.
+
+## Example: Reduction of Tin(IV) Oxide by Hydrogen
+
+Next, let’s explore the reduction of tin(IV) oxide by hydrogen to produce tin and water. The unbalanced chemical equation for this reaction is:
+
+$$
+\text{SnO}_2(s) + \text{H}_2(g) \rightarrow \text{Sn}(s) + \text{H}_2\text{O}(g)
+$$
+
+### Balancing the Equation by Hand
+
+Before we jump into solving this problem using Python, take a moment to try balancing this equation manually. Start by creating a table that tracks the number of atoms of each element on both sides of the reaction.
+
+| Element | Reactants | Products |
+|---------|-----------|----------|
+| Sn      | 1         | 1        |
+| O       | 2         | 1        |
+| H       | 2         | 2        |
+
+From this, you can see that the oxygen atoms are not balanced. We have 2 oxygen atoms on the left (from SnO₂) and only 1 oxygen atom on the right (in H₂O). Therefore, we’ll need to add a coefficient of 2 to the water molecule on the product side.
+
+$$
+\text{SnO}_2(s) + \text{H}_2(g) \rightarrow \text{Sn}(s) + 2\text{H}_2\text{O}(g)
+$$
+
+Now, check the hydrogen atoms. We now have 4 hydrogen atoms on the right side (from 2 H₂O molecules), so we need 2 H₂ molecules on the left side to balance the hydrogen.
+
+The balanced equation is:
+
+$$
+\text{SnO}_2(s) + 2\text{H}_2(g) \rightarrow \text{Sn}(s) + 2\text{H}_2\text{O}(g)
+$$
+
+```{admonition} Take a Moment
+:class: warning
+Did you try balancing the equation by hand? Understanding the manual process will help you see how Python can automate and streamline this process.
+```
+
+### Solving the Equation Using Python
+
+Once you’ve manually balanced the equation, let’s confirm the result using Python. By writing the system of equations for the element balances, we can solve for the stoichiometric coefficients using matrix algebra.
+
+```{code-cell} ipython3
+import numpy as np
+from scipy.linalg import null_space
+
+# Define the matrix of coefficients
+A = np.array([[1, 0, -1, 0],   # Sn balance
+              [2, 0, 0, -1],   # O balance
+              [0, 2, 0, -2]])  # H balance
+
+# Compute the null space of the matrix A
+null_vec = null_space(A)
+
+# Normalize and convert to integer coefficients
+coefficients = null_vec[:, 0]
+coefficients = coefficients / np.min(coefficients[coefficients > 0])
+coefficients = np.round(coefficients).astype(int)
+
+# Output the coefficients
+coefficients
+```
+
+This gives us the same result: $1$ SnO₂ reacts with $2$ H₂ to produce $1$ Sn and $2$ H₂O.
+
+---
+
+### Recap
+
+In this example, we manually balanced the reduction of tin(IV) oxide by hydrogen and confirmed our result using Python. You can apply this process to more complex reactions where balancing by hand might be more challenging.
+
+By leveraging matrix algebra and Python, we can efficiently balance chemical equations, saving time and ensuring accuracy, especially for reactions involving multiple reactants and products.
+
+<!-- ## Example: Reduction of Tin(IV) Oxide by Hydrogen
 
 Let's consider the reduction of tin(IV) oxide by hydrogen to form tin and water.
 
@@ -190,8 +309,4 @@ $$
 ```{admonition} Wait a Minute!
 :class: warning
 Can you try to do this by hand before you do it in Python?
-```
-
-```{code-cell} ipython3
-
-```
+``` -->
