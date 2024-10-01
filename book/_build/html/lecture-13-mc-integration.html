@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Computational Problem Solving in the Chemical Sciences</title>
+    <title>Lecture 13: Monte Carlo Integration &#8212; Computational Problem Solving in the Chemical Sciences</title>
   
   
   
@@ -58,9 +58,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-13-mc-integration';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lecture 12: The Monte Carlo Method" href="lecture-12-monte-carlo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,7 +181,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture-01-introduction.html">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Lecture 2: Essential Python Packages for the Chemical Sciences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-03-control.html">Lecture 3: Control Structures in Python</a></li>
@@ -193,6 +194,7 @@
 <li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Lecture 10: Statistical Thermodynamics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Lecture 11: Ensembles and Ergodicity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Lecture 12: The Monte Carlo Method</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 13: Monte Carlo Integration</a></li>
 </ul>
 
     </div>
@@ -378,7 +380,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Lecture 13: Monte Carlo Integration</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -387,9 +389,10 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-deterministic-numerical-integration">Review: Deterministic Numerical Integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-advantages-of-monte-carlo-integration">Key Advantages of Monte Carlo Integration</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -400,7 +403,28 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-13-monte-carlo-integration">
+<h1>Lecture 13: Monte Carlo Integration<a class="headerlink" href="#lecture-13-monte-carlo-integration" title="Link to this heading">#</a></h1>
+<p>In Lecture 5, we explored numerical integration methods such as Riemann sums and the trapezoidal rule, which are <strong>deterministic</strong> approaches. These methods subdivide the integration range into small intervals, using structured grids to approximate the area under the curve. However, as the dimensionality of the problem increases, these methods become computationally expensive due to the “curse of dimensionality.”</p>
+<p>Today, we will shift our focus to <strong>Monte Carlo integration</strong>, a <strong>stochastic</strong> method for numerical integration that is particularly powerful for high-dimensional integrals and problems where deterministic methods are inefficient.</p>
+<section id="review-deterministic-numerical-integration">
+<h2>Review: Deterministic Numerical Integration<a class="headerlink" href="#review-deterministic-numerical-integration" title="Link to this heading">#</a></h2>
+<p>Previously, we computed integrals using structured approaches:</p>
+<ol class="arabic simple">
+<li><p><strong>Riemann Sum:</strong> We divided the interval of integration into small rectangles and approximated the area under the curve. The accuracy increased as the number of subdivisions grew.</p></li>
+<li><p><strong>Trapezoidal Rule:</strong> This method improved accuracy by approximating the function with straight-line segments instead of rectangles. We used the trapezoidal rule to compute both 1D and multidimensional integrals, such as the overlap integral of hydrogen 1s orbitals.</p></li>
+<li><p><strong>Scaling Issues in High Dimensions:</strong> For both methods, the number of function evaluations grows exponentially with the number of dimensions (i.e., <span class="math notranslate nohighlight">\(\mathcal{O}(n^d)\)</span> for a <span class="math notranslate nohighlight">\(d\)</span>-dimensional integral). This makes these methods impractical for problems in quantum chemistry and statistical mechanics, where we may need to integrate over many dimensions.</p></li>
+</ol>
+</section>
+<section id="key-advantages-of-monte-carlo-integration">
+<h2>Key Advantages of Monte Carlo Integration<a class="headerlink" href="#key-advantages-of-monte-carlo-integration" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Dimensional Independence</strong>: Unlike deterministic methods, the error in Monte Carlo integration does not scale exponentially with the number of dimensions. Instead, the error scales as <span class="math notranslate nohighlight">\(\mathcal{O}(1/\sqrt{N})\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the number of random samples, independent of the number of dimensions.</p></li>
+<li><p><strong>Handling Complex Domains</strong>: Monte Carlo integration can handle integrals over complex or irregular domains, where structured grids might be inefficient or infeasible.</p></li>
+</ol>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -431,6 +455,15 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture-12-monte-carlo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 12: The Monte Carlo Method</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -446,9 +479,10 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-deterministic-numerical-integration">Review: Deterministic Numerical Integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-advantages-of-monte-carlo-integration">Key Advantages of Monte Carlo Integration</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

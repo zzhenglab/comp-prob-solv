@@ -16,3 +16,4 @@ chapters:
 - file: lecture-10-stat-thermo
 - file: lecture-11-ensembles
 - file: lecture-12-monte-carlo
+- file: lecture-13-mc-integration
