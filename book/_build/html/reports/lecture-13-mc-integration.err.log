@@ -1,0 +1,105 @@
+Traceback (most recent call last):
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from IPython.display import display, HTML
+
+def psi_1s(x, y, z):
+    """
+    Calculate the value of the 1s orbital of hydrogen at a given point.
+
+    Parameters
+    ----------
+    x : float
+        The x-coordinate of the point.
+    y : float
+        The y-coordinate of the point.
+    z : float
+        The z-coordinate of the point.
+
+    Returns
+    -------
+    float
+        The value of the 1s orbital at the given point.
+    """
+    r = np.sqrt(x**2 + y**2 + z**2)
+    value = (1 / (np.sqrt(np.pi))) * np.exp(-r)
+    return value
+
+# Set the random seed for reproducibility
+np.random.seed(42)
+
+# Set the number of points to sample
+n_points_list = [10, 100, 1000, 10000, 100000, 1000000]
+
+# Set the integration limits
+a = 0
+b = 7
+
+# Create a DataFrame to store the results
+integral_df = pd.DataFrame(columns=["n_points", "integral", "variance"])
+
+# Loop over the number of points to sample
+for n_points in n_points_list:
+    x = np.random.uniform(a, b, n_points)
+    y = np.random.uniform(a, b, n_points)
+    z = np.random.uniform(a, b, n_points)
+    integrand = psi_1s(x + 0.5, y, z) * psi_1s(x - 0.5, y, z)
+    integral = 8 * np.mean(integrand)
+    variance = 8 * np.var(integrand)
+    integral_df = integral_df.append(
+        {"n_points": n_points, "integral": integral, "variance": variance},
+        ignore_index=True
+    )
+
+# Plot the results
+plt.figure(figsize=(8, 6))
+plt.errorbar(integral_df["n_points"], integral_df["integral"], yerr=np.sqrt(integral_df["variance"]), fmt="o-")
+plt.xscale("log")
+plt.xlabel("Number of Points")
+plt.ylabel("Integral")
+plt.title("Overlap Integral of Two H 1s Orbitals")
+plt.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/var/folders/n9/q030dl3x6qgfqffys4wc7d4c0000gn/T/ipykernel_99004/2304533417.py[0m in [0;36m?[0;34m()[0m
+[1;32m     45[0m     [0mz[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mrandom[0m[0;34m.[0m[0muniform[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m,[0m [0mn_points[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     46[0m     [0mintegrand[0m [0;34m=[0m [0mpsi_1s[0m[0;34m([0m[0mx[0m [0;34m+[0m [0;36m0.5[0m[0;34m,[0m [0my[0m[0;34m,[0m [0mz[0m[0;34m)[0m [0;34m*[0m [0mpsi_1s[0m[0;34m([0m[0mx[0m [0;34m-[0m [0;36m0.5[0m[0;34m,[0m [0my[0m[0;34m,[0m [0mz[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     47[0m     [0mintegral[0m [0;34m=[0m [0;36m8[0m [0;34m*[0m [0mnp[0m[0;34m.[0m[0mmean[0m[0;34m([0m[0mintegrand[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     48[0m     [0mvariance[0m [0;34m=[0m [0;36m8[0m [0;34m*[0m [0mnp[0m[0;34m.[0m[0mvar[0m[0;34m([0m[0mintegrand[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 49[0;31m     integral_df = integral_df.append(
+[0m[1;32m     50[0m         [0;34m{[0m[0;34m"n_points"[0m[0;34m:[0m [0mn_points[0m[0;34m,[0m [0;34m"integral"[0m[0;34m:[0m [0mintegral[0m[0;34m,[0m [0;34m"variance"[0m[0;34m:[0m [0mvariance[0m[0;34m}[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     51[0m         [0mignore_index[0m[0;34m=[0m[0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     52[0m     [0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/pandas/core/generic.py[0m in [0;36m?[0;34m(self, name)[0m
+[1;32m   6295[0m             [0;32mand[0m [0mname[0m [0;32mnot[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_accessors[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6296[0m             [0;32mand[0m [0mself[0m[0;34m.[0m[0m_info_axis[0m[0;34m.[0m[0m_can_hold_identifiers_and_holds_name[0m[0;34m([0m[0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6297[0m         [0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6298[0m             [0;32mreturn[0m [0mself[0m[0;34m[[0m[0mname[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 6299[0;31m         [0;32mreturn[0m [0mobject[0m[0;34m.[0m[0m__getattribute__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mAttributeError[0m: 'DataFrame' object has no attribute 'append'
+
