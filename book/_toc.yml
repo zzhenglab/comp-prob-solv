@@ -17,3 +17,4 @@ chapters:
 - file: lecture-11-ensembles
 - file: lecture-12-monte-carlo
 - file: lecture-13-mc-integration
+- file: lecture-14-metropolis
