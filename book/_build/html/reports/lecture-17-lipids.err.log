@@ -1,0 +1,97 @@
+Traceback (most recent call last):
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def lipid_monolayer_potential(positions, n_lipids, b_head_head, b_head_tail, b_tail_tail, k_bond, r_inf, k_bend, r_c, w_c):
+    """
+    Compute the total potential for a lipid monolayer.
+
+    Parameters
+    ----------
+    positions : array_like
+        Particle positions for the lipid monolayer.
+    n_lipids : int
+        Number of lipids in the monolayer.
+    b_head_head : float
+        Sum of the hard-core radii for head-head interactions.
+    b_head_tail : float
+        Sum of the hard-core radii for head-tail interactions.
+    b_tail_tail : float
+        Sum of the hard-core radii for tail-tail interactions.
+    k_bond : float
+        Bond stiffness.
+    r_inf : float
+        Divergence distance.
+    k_bend : float
+        Bending stiffness.
+    r_c : float
+        Cutoff distance for attractive potential.
+    w_c : float
+        Attractive range.
+
+    Returns
+    -------
+    potential : float
+        Total potential for the lipid monolayer.
+    """
+    lipid_positions = positions.reshape((n_lipids, 3, 2))
+    n_particles = n_lipids * 3
+
+    # Compute V_rep for all particle pairs
+    V_rep = 0
+    for i in range(n_particles):
+        for j in range(i + 1, n_particles):
+            r = np.linalg.norm(lipid_positions[i] - lipid_positions[j])
+
+            # Determine the particle types
+            if i % 3 == 0 and j % 3 == 0:
+                b = b_head_head
+            elif i % 3 == 0 or j % 3 == 0:
+                b = b_head_tail
+            else:
+                b = b_tail_tail
+
+            V_rep += repulsive_potential(r, b)
+
+    # Compute V_bond for bonded particles
+    V_bond = 0
+    for i in range(n_lipids):
+        head, tail1, tail2 = lipid_positions[i]
+        print(head, tail1, tail2)
+
+lipid_monolayer_potential(lipid_positions.flatten(), n_lipids, b_head_head, b_head_tail, b_tail_tail, k_bond, r_inf, k_bend, r_c, w_c)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mIndexError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[10], line 58[0m
+[1;32m     55[0m         head, tail1, tail2 [38;5;241m=[39m lipid_positions[i]
+[1;32m     56[0m         [38;5;28mprint[39m(head, tail1, tail2)
+[0;32m---> 58[0m [43mlipid_monolayer_potential[49m[43m([49m[43mlipid_positions[49m[38;5;241;43m.[39;49m[43mflatten[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[43mn_lipids[49m[43m,[49m[43m [49m[43mb_head_head[49m[43m,[49m[43m [49m[43mb_head_tail[49m[43m,[49m[43m [49m[43mb_tail_tail[49m[43m,[49m[43m [49m[43mk_bond[49m[43m,[49m[43m [49m[43mr_inf[49m[43m,[49m[43m [49m[43mk_bend[49m[43m,[49m[43m [49m[43mr_c[49m[43m,[49m[43m [49m[43mw_c[49m[43m)[49m
+
+Cell [0;32mIn[10], line 40[0m, in [0;36mlipid_monolayer_potential[0;34m(positions, n_lipids, b_head_head, b_head_tail, b_tail_tail, k_bond, r_inf, k_bend, r_c, w_c)[0m
+[1;32m     38[0m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m(n_particles):
+[1;32m     39[0m     [38;5;28;01mfor[39;00m j [38;5;129;01min[39;00m [38;5;28mrange[39m(i [38;5;241m+[39m [38;5;241m1[39m, n_particles):
+[0;32m---> 40[0m         r [38;5;241m=[39m np[38;5;241m.[39mlinalg[38;5;241m.[39mnorm(lipid_positions[i] [38;5;241m-[39m [43mlipid_positions[49m[43m[[49m[43mj[49m[43m][49m)
+[1;32m     42[0m         [38;5;66;03m# Determine the particle types[39;00m
+[1;32m     43[0m         [38;5;28;01mif[39;00m i [38;5;241m%[39m [38;5;241m3[39m [38;5;241m==[39m [38;5;241m0[39m [38;5;129;01mand[39;00m j [38;5;241m%[39m [38;5;241m3[39m [38;5;241m==[39m [38;5;241m0[39m:
+
+[0;31mIndexError[0m: index 10 is out of bounds for axis 0 with size 10
+
