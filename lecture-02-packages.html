@@ -194,6 +194,11 @@
 <li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Lecture 11: Ensembles and Ergodicity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Lecture 12: The Monte Carlo Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Lecture 13: Monte Carlo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Lecture 14: A Basic Monte Carlo Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Lecture 15: Nanoparticle Shape and Simulated Annealing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Lecture 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Lecture 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Lecture 18: Introduction to Project 1: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
 </ul>
 
     </div>
@@ -659,9 +664,9 @@ eigenvalues = [-0.37228132  5.37228132]
 [[1. 1. 1.]
  [1. 1. 1.]
  [1. 1. 1.]]
-[[0.38020829 0.21567557 0.80942245]
- [0.64521477 0.95713798 0.25298782]
- [0.42812882 0.40446243 0.79382746]]
+[[0.54445861 0.74080792 0.94093989]
+ [0.00189169 0.07722415 0.51145732]
+ [0.18499263 0.06097679 0.19381219]]
 </pre></div>
 </div>
 </div>
@@ -742,7 +747,7 @@ Create a 3x3 identity matrix.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3813eb41bfc0b094fb0deeaf223a3589ba8299ceeb1f77815e9aef63ea3780bd.png" src="_images/3813eb41bfc0b094fb0deeaf223a3589ba8299ceeb1f77815e9aef63ea3780bd.png" />
+<img alt="_images/a5ffdd948ab8f9628ae26b2d416ebd99b9454edb8a83ca765076fa903b0bfd95.png" src="_images/a5ffdd948ab8f9628ae26b2d416ebd99b9454edb8a83ca765076fa903b0bfd95.png" />
 </div>
 </div>
 </section>
@@ -787,7 +792,7 @@ Create a 3x3 identity matrix.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/26b6cd7c500fe8ffc2e502b476e09ebc4148f22520a235ae40ea139cd0caa0aa.png" src="_images/26b6cd7c500fe8ffc2e502b476e09ebc4148f22520a235ae40ea139cd0caa0aa.png" />
+<img alt="_images/afdd3af4e706ec33c4d4f01c8d6b3042534fc3d0bdbd99698f1c6c4ba100e70c.png" src="_images/afdd3af4e706ec33c4d4f01c8d6b3042534fc3d0bdbd99698f1c6c4ba100e70c.png" />
 </div>
 </div>
 </section>
@@ -870,11 +875,11 @@ Create a histogram of random data with customizations, including changing the co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2.804001
-1   -0.258769
-2    1.045537
-3    0.985343
-4   -0.646079
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   -0.231752
+1    0.281163
+2   -0.926110
+3   -0.623194
+4    0.588479
 dtype: float64
 </pre></div>
 </div>
@@ -906,11 +911,11 @@ dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          A         B
-0 -0.661308  0.093195
-1  0.009564  0.094149
-2  0.444864  0.048416
-3 -0.797464  0.281626
-4 -0.059068  0.607767
+0  2.309414  0.694430
+1 -0.671326  0.515353
+2 -1.005650  0.102987
+3 -0.084647  0.952898
+4  0.639877  0.712845
 </pre></div>
 </div>
 </div>
