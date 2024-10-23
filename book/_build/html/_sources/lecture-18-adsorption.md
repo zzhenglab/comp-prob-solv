@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 18: Introduction to Project 1: Monte Carlo Simulations of Adsorption on Surfaces
+# Lecture 18: Monte Carlo Simulations of Adsorption on Surfaces
 
 ## Learning Objectives
 
@@ -170,16 +170,6 @@ plt.show()
 ```
 
 The figure above shows the same sorbent system as before, but now with interactions between the sorbent particles represented by red arrows. In a mean-field model, these interactions are replaced by a constant mean-field interaction energy.
-
-<!-- Exact enumeration -->
-
-<!-- Using the same approach as in Lecture 11 for the ideal sorbent, we can calculate the coverage of the surface by the sorbent particles in the presence of mean-field interactions. The coverage is given by
-
-$$
-\theta = \frac{e^{-\beta (\epsilon_{\rm int} - \mu)}}{1 + e^{-\beta (\epsilon_{\rm int} - \mu)}}
-$$
-
-where $\epsilon_{\rm int}$ is the mean-field interaction energy between the sorbent particles. -->
 
 ## Grand Canonical Monte Carlo Simulations
 
