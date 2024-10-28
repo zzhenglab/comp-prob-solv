@@ -1,0 +1,154 @@
+Traceback (most recent call last):
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+import ipywidgets as widgets
+from ipywidgets import interact
+from scipy.constants import physical_constants
+from scipy.constants import k
+
+def maxwell_boltzmann_distribution(m_amu, T_K):
+    m = m_amu * physical_constants['atomic mass constant'][0]  # Convert mass from amu to kg
+    k = 1.380649e-23  # Boltzmann constant in J/K
+    v = np.linspace(0, 2000, 1000)  # Speed in m/s
+    f_v = 4 * np.pi * (m / (2 * np.pi * k * T_K))**(3/2) * v**2 * np.exp(-m * v**2 / (2 * k * T_K))
+    plt.figure(figsize=(10, 6))
+    plt.plot(v, f_v)
+    plt.xlabel('Speed (m/s)')
+    plt.ylabel('Probability Density')
+    plt.title('Maxwell-Boltzmann Distribution')
+    plt.grid(True)
+    plt.show()
+
+## Example: Macroscopic Dynamics of a Golf Ball
+
+In this example, we will simulate the trajectory of a golf ball of [mass 0.04593 kg](https://www.usga.org/equipment-standards/equipment-rules-2019/equipment-rules/equipment-rules.html#!ruletype=er&section=rule&partnum=4&rulenum=3) and [radius 0.02134 m](https://www.usga.org/equipment-standards/equipment-rules-2019/equipment-rules/equipment-rules.html#!ruletype=er&section=rule&partnum=4&rulenum=4) using the equations of motion. The golf ball is launched with an [initial speed of 77.65 m/s](https://www.pgatour.com/stats/detail/02402) at an [angle of 10.22 degrees](https://www.pgatour.com/stats/detail/02404) with the horizontal. We will take into account the effects of drag and lift forces on the golf ball. The drag force is given by
+
+$$
+F_d = \frac{1}{2} \rho v^2 C_d A
+$$
+
+where $\rho$ is the air density ([1.205 kg/m$^3$ at 20 °C and 1 atm](https://www.wolframalpha.com/input?i=air+density)), $v$ is the speed of the golf ball, $C_d$ is the drag coefficient ([~0.25 for a hexagonally dimpled ball](https://doi.org/10.1017/S0001925900007617) with a [spin rate of ~2,526.3 rpm](https://www.pgatour.com/stats/detail/02405) and an initial speed of ~77.65 m/s), and $A$ is the cross-sectional area of the golf ball ($\pi r^2$). The lift force is given by
+
+$$
+F_l = \frac{1}{2} \rho v^2 C_l A
+$$
+
+where $C_l$ is the lift coefficient ([~0.15 for a hexagonally dimpled ball](https://doi.org/10.1017/S0001925900007617) with a spin rate of ~2,526.3 rpm and an initial speed of ~77.65 m/s). The equations of motion for the golf ball are given by
+
+$$
+\begin{aligned}
+\frac{dv_x}{dt} &= -\frac{F_d}{m} \frac{v_x}{v} - \frac{F_l}{m} \frac{v_y}{v} \\
+\frac{dv_y}{dt} &= -\frac{F_d}{m} \frac{v_y}{v} + \frac{F_l}{m} \frac{v_x}{v} - g
+\end{aligned}
+$$
+
+where $v = \sqrt{v_x^2 + v_y^2}$ is the speed of the golf ball, $g$ is the acceleration due to gravity, and $m$ is the mass of the golf ball. We will solve these equations numerically to simulate the trajectory of the golf ball.
+
+```{code-cell} ipython3
+import numpy as np
+from scipy.integrate import solve_ivp
+import matplotlib.pyplot as plt
+
+# Physical constants
+m = 0.04593          # Mass of golf ball in kg
+r = 0.02134          # Radius in meters (diameter is 42.67 mm)
+A = np.pi * r**2     # Cross-sectional area in m^2
+C_d = 0.25           # Drag coefficient for a sphere
+C_l = 0.15           # Lift coefficient
+rho = 1.225          # Air density in kg/m^3
+g = 9.81             # Acceleration due to gravity in m/s^2
+
+# Initial conditions
+v0 = 77.65                   # Initial speed in m/s
+theta = np.deg2rad(10.22)    # Launch angle in radians
+x0 = 0.0                     # Initial horizontal position
+y0 = 0.0                     # Initial vertical position
+v0x = v0 * np.cos(theta)     # Initial horizontal velocity
+v0y = v0 * np.sin(theta)     # Initial vertical velocity
+
+# Define the ODE system
+def golf_ball_ode(t, y):
+    x, y_pos, vx, vy = y
+    v = np.hypot(vx, vy)
+    # Drag force
+    F_d = 0.5 * rho * v**2 * C_d * A
+    F_dx = -F_d * (vx / v)
+    F_dy = -F_d * (vy / v)
+    # Lift force
+    F_l = 0.5 * rho * v**2 * C_l * A
+    F_lx = F_l * (-vy / v)
+    F_ly = F_l * (vx / v)
+    # Net forces
+    Fx = F_dx + F_lx
+    Fy = F_dy + F_ly - m * g
+    # Accelerations
+    ax = Fx / m
+    ay = Fy / m
+    return [vx, vy, ax, ay]
+
+# Event function to stop integration when the ball hits the ground
+def hit_ground(t, y):
+    return y[1]  # Vertical position
+
+hit_ground.terminal = True    # Stop the integration
+hit_ground.direction = -1     # Only detect zeros when the function is decreasing
+
+# Time span for the simulation
+t_span = (0, 10)                   # Simulate for 10 seconds
+t_eval = np.linspace(0, 10, 1000)  # Time points where solution is computed
+
+# Initial state vector
+y_initial = [x0, y0, v0x, v0y]
+
+# Solve the ODE
+solution = solve_ivp(
+    golf_ball_ode,
+    t_span,
+    y_initial,
+    t_eval=t_eval,
+    events=hit_ground,
+    rtol=1e-8,
+    atol=1e-10
+)
+
+# Extract the solution
+x = solution.y[0]
+y_pos = solution.y[1]
+
+# Plotting the trajectory
+plt.figure(figsize=(10, 6))
+plt.plot(x, y_pos, label='Trajectory with Drag and Lift')
+plt.xlabel('Horizontal Distance (m)')
+plt.ylabel('Vertical Distance (m)')
+plt.title('Trajectory of a Golf Ball')
+plt.legend()
+plt.grid(True)
+plt.show()
+------------------
+
+
+[0;36m  Cell [0;32mIn[1], line 23[0;36m[0m
+[0;31m    In this example, we will simulate the trajectory of a golf ball of [mass 0.04593 kg](https://www.usga.org/equipment-standards/equipment-rules-2019/equipment-rules/equipment-rules.html#!ruletype=er&section=rule&partnum=4&rulenum=3) and [radius 0.02134 m](https://www.usga.org/equipment-standards/equipment-rules-2019/equipment-rules/equipment-rules.html#!ruletype=er&section=rule&partnum=4&rulenum=4) using the equations of motion. The golf ball is launched with an [initial speed of 77.65 m/s](https://www.pgatour.com/stats/detail/02402) at an [angle of 10.22 degrees](https://www.pgatour.com/stats/detail/02404) with the horizontal. We will take into account the effects of drag and lift forces on the golf ball. The drag force is given by[0m
+[0m       ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+
