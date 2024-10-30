@@ -1,0 +1,72 @@
+Traceback (most recent call last):
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Lennard-Jones potential energy function
+def U(r, epsilon=1.0, sigma=1.0):
+    return 4 * epsilon * ((sigma / r)**12 - (sigma / r)**6)
+
+# Lennard-Jones force magnitude function
+def F(r, epsilon=1.0, sigma=1.0):
+    return 24 * epsilon * ((2 * (sigma / r)**12) - ((sigma / r)**6)) / r
+
+# Distance between the particles
+r = np.linspace(0.8, 2.5, 100)
+
+# Avoid division by zero
+r = r[r != 0]
+
+# Plot the potential energy and force as functions of distance
+fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+
+# Potential Energy Plot
+axs[0].plot(r, U(r))
+axs[0].set_xlabel('Distance ($r/\\sigma$)')
+axs[0].set_ylabel('Potential Energy $U(r)/\\epsilon$')
+axs[0].set_title('Lennard-Jones Potential')
+axs[0].axvline(2**(1/6), color='gray', linestyle='--')
+axs[0].annotate('$r_{\\rm min}/\\sigma$', xy=(2**(1/6) + 0.05, 0, fontsize=12)
+axs[0].set_ylim(-2, 2)
+
+# Force Plot
+axs[1].plot(r, F(r))
+axs[1].set_xlabel('Distance ($r/\\sigma$)')
+axs[1].set_ylabel('Force Magnitude $F(r)\\sigma/\\epsilon$')
+axs[1].set_title('Force Between Particles')
+# axs[1].axvline(2**(1/6), color='gray', linestyle='--')
+# axs[1].annotate('$r_{\\rm min}/\\sigma$', xy=(2**(1/6) + 0.05, np.max(F(r)) * 0.5), fontsize=12)
+# axs[1].axhline(0, color='gray', linestyle='--')
+# axs[1].text(0.85, np.max(F(r)) * 0.1, '$F > 0$ (Repulsive)', va='bottom')
+# axs[1].text(0.85, np.min(F(r)) * 0.1, '$F < 0$ (Attractive)', va='top')
+axs[1].set_ylim(-3, 3)
+
+plt.tight_layout()
+plt.show()
+------------------
+
+
+[0;36m  Cell [0;32mIn[1], line 27[0;36m[0m
+[0;31m    axs[0].annotate('$r_{\\rm min}/\\sigma$', xy=(2**(1/6) + 0.05, 0, fontsize=12)[0m
+[0m                                                                      ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+
+
