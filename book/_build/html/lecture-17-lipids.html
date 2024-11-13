@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -37,10 +39,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -67,6 +70,7 @@
     <link rel="prev" title="Lecture 16: Technical Details: Boundary Conditions, Truncation of Interactions, Etc." href="lecture-16-tech-details.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -82,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -102,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -110,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -127,7 +119,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -157,21 +150,17 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Problem Solving in the Chemical Sciences - Home"/>`);</script>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -202,6 +191,10 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Lecture 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Lecture 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Lecture 20: Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
 </ul>
 
     </div>
@@ -356,24 +349,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -527,7 +512,7 @@ V_{\mathrm{rep}}(r_{ij};b_{ij}) = \begin{cases}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4ac859f0e16274b4aee2a84af94c581da76dffac6adcaa10d67e2f33d33a28e4.png" src="_images/4ac859f0e16274b4aee2a84af94c581da76dffac6adcaa10d67e2f33d33a28e4.png" />
+<img alt="_images/0e7dc7bd97cd1740abfb4f0c0ca96a2881891f9813a80f737ece9192aeba2e5f.png" src="_images/0e7dc7bd97cd1740abfb4f0c0ca96a2881891f9813a80f737ece9192aeba2e5f.png" />
 </div>
 </div>
 <p>The plot shows that the repulsive potential increases rapidly as particles approach each other, preventing overlap due to the hard-core diameter <span class="math notranslate nohighlight">\(b_{ij}\)</span>. The potential is zero beyond the cutoff distance, ensuring that particles do not interact beyond this range.</p>
@@ -588,7 +573,7 @@ V_{\mathrm{bond}}(r_{ij}) = -\frac{1}{2}k_{\mathrm{bond}}r_{\infty}^2\ln\left[1 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/24229c86b44b5ba47218126fc7c0c88039bc43faa947d237f1d5889c52b0f873.png" src="_images/24229c86b44b5ba47218126fc7c0c88039bc43faa947d237f1d5889c52b0f873.png" />
+<img alt="_images/fcd24dc83febea38f7096e2d5e4217c13713f54ad886219731e709f4b4b277b1.png" src="_images/fcd24dc83febea38f7096e2d5e4217c13713f54ad886219731e709f4b4b277b1.png" />
 </div>
 </div>
 <p>The plot shows that the bond potential increases rapidly as particles drift apart, preventing them from moving beyond the divergence distance <span class="math notranslate nohighlight">\(r_{\infty}\)</span>. The potential is infinite at <span class="math notranslate nohighlight">\(r_{\infty}\)</span>, ensuring that particles remain within a certain range.</p>
@@ -648,7 +633,7 @@ V_{\mathrm{bend}}(r_{ij}) = \frac{1}{2}k_{\mathrm{bend}}\left(r_{ij} - 4\sigma\r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08c10a3408551cada842008bc37c59362a65424b968de66a084939f7005d06be.png" src="_images/08c10a3408551cada842008bc37c59362a65424b968de66a084939f7005d06be.png" />
+<img alt="_images/2e3601e97f6a4e6a1ded66654b6ba570960f050043c8f5640ac2ca84062a4db4.png" src="_images/2e3601e97f6a4e6a1ded66654b6ba570960f050043c8f5640ac2ca84062a4db4.png" />
 </div>
 </div>
 <p>The plot shows that the bend potential increases as the angle deviates from the preferred value, favoring a straight configuration. The potential is zero at the preferred angle, ensuring that particles maintain the desired orientation.</p>
@@ -720,7 +705,7 @@ V_{\mathrm{attr}}(r_{ij}) =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e5ce158ff595ce9a8f9c2069270e79315d4849d5f646dcf0d2bcd4a12932405b.png" src="_images/e5ce158ff595ce9a8f9c2069270e79315d4849d5f646dcf0d2bcd4a12932405b.png" />
+<img alt="_images/ce38b6f59738e7ca913b35e4f6cea07bf4ed27f5137f22fed8d674f356b66c83.png" src="_images/ce38b6f59738e7ca913b35e4f6cea07bf4ed27f5137f22fed8d674f356b66c83.png" />
 </div>
 </div>
 <p>The plot shows that the attractive potential promotes interactions within a specific distance range, favoring lipid aggregation. The potential is zero beyond the attractive range, ensuring that interactions do not occur beyond this distance.</p>
@@ -822,7 +807,7 @@ Attractive Potential: -1.00 (expected: -1.00)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b271691c2518d274f38c190285ee95400ac971d52528b038fa4a0785117b7cb3.png" src="_images/b271691c2518d274f38c190285ee95400ac971d52528b038fa4a0785117b7cb3.png" />
+<img alt="_images/aaff3beca9fd4a2dc016b57d2718713a04b0904e5d9f6d1192afb0839e009856.png" src="_images/aaff3beca9fd4a2dc016b57d2718713a04b0904e5d9f6d1192afb0839e009856.png" />
 </div>
 </div>
 </section>
@@ -907,7 +892,7 @@ Attractive Potential: -1.00 (expected: -1.00)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cea1f71c134a1894cbf4ef1277ed07caf46ef55fea871960d6a855ec5b84595f.png" src="_images/cea1f71c134a1894cbf4ef1277ed07caf46ef55fea871960d6a855ec5b84595f.png" />
+<img alt="_images/684ba2ae8c5e0c594a260454c82cb67ac4d0b692c7296471b8dcb87db65fc41d.png" src="_images/684ba2ae8c5e0c594a260454c82cb67ac4d0b692c7296471b8dcb87db65fc41d.png" />
 </div>
 </div>
 </section>
@@ -981,7 +966,7 @@ Attractive Potential: -1.00 (expected: -1.00)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c3297c9f9582c4a347c171b2a9ea004bb00ad77fec2ecce3584a2b11fe6a3675.png" src="_images/c3297c9f9582c4a347c171b2a9ea004bb00ad77fec2ecce3584a2b11fe6a3675.png" />
+<img alt="_images/339c7d747db61e0195cb03d7a6de8d952a57cc8bc81dc60b474b0f1e04f3ca12.png" src="_images/339c7d747db61e0195cb03d7a6de8d952a57cc8bc81dc60b474b0f1e04f3ca12.png" />
 </div>
 </div>
 </section>
@@ -1159,7 +1144,7 @@ Attractive Potential: -1.00 (expected: -1.00)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/090ff660d8f19a32985e765ea9448c504a28427153be2404e0675b3cdc114983.png" src="_images/090ff660d8f19a32985e765ea9448c504a28427153be2404e0675b3cdc114983.png" />
+<img alt="_images/7e191919b5c1a86f4587b0d6987ff67cacbbb3f8665c206b123e401f34e2d715.png" src="_images/7e191919b5c1a86f4587b0d6987ff67cacbbb3f8665c206b123e401f34e2d715.png" />
 </div>
 </div>
 </section>
@@ -1221,7 +1206,8 @@ Attractive Potential: -1.00 (expected: -1.00)
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1302,8 +1288,8 @@ By Robert B. Wexler
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

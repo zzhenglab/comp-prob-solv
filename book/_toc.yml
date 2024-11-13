@@ -27,3 +27,5 @@ chapters:
 - file: lecture-21-verlet
 - file: lecture-22-thermostatting
 - file: lecture-23-ase
+- file: lecture-24-radial-dist
+# - file: lecture-25-bead-spring
