@@ -1,69 +1,20 @@
 Traceback (most recent call last):
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-import matplotlib.pyplot as plt
-import ipywidgets as widgets
-from ipywidgets import interact
-from scipy.constants import physical_constants
-from scipy.constants import k
-
-def maxwell_boltzmann_distribution(m_amu, T_K):
-    m = m_amu * physical_constants['atomic mass constant'][0]  # Convert mass from amu to kg
-    k = 1.380649e-23  # Boltzmann constant in J/K
-    v = np.linspace(0, 2000, 1000)  # Speed in m/s
-    f_v = 4 * np.pi * (m / (2 * np.pi * k * T_K))**(3/2) * v**2 * np.exp(-m * v**2 / (2 * k * T_K))
-    plt.figure(figsize=(10, 6))
-    plt.plot(v, f_v)
-    plt.xlabel('Speed (m/s)')
-    plt.ylabel('Probability Density')
-    plt.title('Maxwell-Boltzmann Distribution')
-    plt.grid(True)
-    plt.show()
-
-## Example: Macroscopic Dynamics of a Golf Ball
-
-In this example, we will simulate the trajectory of a golf ball of [mass 0.04593 kg](https://www.usga.org/equipment-standards/equipment-rules-2019/equipment-rules/equipment-rules.html#!ruletype=er&section=rule&partnum=4&rulenum=3) and [radius 0.02134 m](https://www.usga.org/equipment-standards/equipment-rules-2019/equipment-rules/equipment-rules.html#!ruletype=er&section=rule&partnum=4&rulenum=4) using the equations of motion. The golf ball is launched with an [initial speed of 77.65 m/s](https://www.pgatour.com/stats/detail/02402) at an [angle of 10.22 degrees](https://www.pgatour.com/stats/detail/02404) with the horizontal. We will take into account the effects of drag and lift forces on the golf ball. The drag force is given by
-
-$$
-F_d = \frac{1}{2} \rho v^2 C_d A
-$$
-
-where $\rho$ is the air density ([1.205 kg/m$^3$ at 20 °C and 1 atm](https://www.wolframalpha.com/input?i=air+density)), $v$ is the speed of the golf ball, $C_d$ is the drag coefficient ([~0.25 for a hexagonally dimpled ball](https://doi.org/10.1017/S0001925900007617) with a [spin rate of ~2,526.3 rpm](https://www.pgatour.com/stats/detail/02405) and an initial speed of ~77.65 m/s), and $A$ is the cross-sectional area of the golf ball ($\pi r^2$). The lift force is given by
-
-$$
-F_l = \frac{1}{2} \rho v^2 C_l A
-$$
-
-where $C_l$ is the lift coefficient ([~0.15 for a hexagonally dimpled ball](https://doi.org/10.1017/S0001925900007617) with a spin rate of ~2,526.3 rpm and an initial speed of ~77.65 m/s). The equations of motion for the golf ball are given by
-
-$$
-\begin{aligned}
-\frac{dv_x}{dt} &= -\frac{F_d}{m} \frac{v_x}{v} - \frac{F_l}{m} \frac{v_y}{v} \\
-\frac{dv_y}{dt} &= -\frac{F_d}{m} \frac{v_y}{v} + \frac{F_l}{m} \frac{v_x}{v} - g
-\end{aligned}
-$$
-
-where $v = \sqrt{v_x^2 + v_y^2}$ is the speed of the golf ball, $g$ is the acceleration due to gravity, and $m$ is the mass of the golf ball. We will solve these equations numerically to simulate the trajectory of the golf ball.
-
-```{code-cell} ipython3
 import numpy as np
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
@@ -146,9 +97,47 @@ plt.show()
 ------------------
 
 
-[0;36m  Cell [0;32mIn[1], line 23[0;36m[0m
-[0;31m    In this example, we will simulate the trajectory of a golf ball of [mass 0.04593 kg](https://www.usga.org/equipment-standards/equipment-rules-2019/equipment-rules/equipment-rules.html#!ruletype=er&section=rule&partnum=4&rulenum=3) and [radius 0.02134 m](https://www.usga.org/equipment-standards/equipment-rules-2019/equipment-rules/equipment-rules.html#!ruletype=er&section=rule&partnum=4&rulenum=4) using the equations of motion. The golf ball is launched with an [initial speed of 77.65 m/s](https://www.pgatour.com/stats/detail/02402) at an [angle of 10.22 degrees](https://www.pgatour.com/stats/detail/02404) with the horizontal. We will take into account the effects of drag and lift forces on the golf ball. The drag force is given by[0m
-[0m       ^[0m
-[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[2], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mintegrate[39;00m [38;5;28;01mimport[39;00m solve_ivp
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      5[0m [38;5;66;03m# Physical constants[39;00m
 
+File [0;32m~/.local/lib/python3.9/site-packages/scipy/integrate/__init__.py:91[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03m=============================================[39;00m
+[1;32m      3[0m [38;5;124;03mIntegration and ODEs (:mod:`scipy.integrate`)[39;00m
+[0;32m   (...)[0m
+[1;32m     87[0m [38;5;124;03m   solve_bvp     -- Solve a boundary value problem for a system of ODEs.[39;00m
+[1;32m     88[0m [38;5;124;03m"""[39;00m  [38;5;66;03m# noqa: E501[39;00m
+[0;32m---> 91[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_quadrature[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m     92[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_odepack_py[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m     93[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_quadpack_py[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+
+File [0;32m~/.local/lib/python3.9/site-packages/scipy/integrate/_quadrature.py:12[0m
+[1;32m      9[0m [38;5;66;03m# trapezoid is a public function for scipy.integrate,[39;00m
+[1;32m     10[0m [38;5;66;03m# even though it's actually a NumPy function.[39;00m
+[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mimport[39;00m trapz [38;5;28;01mas[39;00m trapezoid
+[0;32m---> 12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mspecial[39;00m [38;5;28;01mimport[39;00m roots_legendre
+[1;32m     13[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mspecial[39;00m [38;5;28;01mimport[39;00m gammaln
+[1;32m     15[0m __all__ [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mfixed_quad[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mquadrature[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mromberg[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mromb[39m[38;5;124m'[39m,
+[1;32m     16[0m            [38;5;124m'[39m[38;5;124mtrapezoid[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mtrapz[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msimps[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msimpson[39m[38;5;124m'[39m,
+[1;32m     17[0m            [38;5;124m'[39m[38;5;124mcumulative_trapezoid[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mcumtrapz[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mnewton_cotes[39m[38;5;124m'[39m,
+[1;32m     18[0m            [38;5;124m'[39m[38;5;124mAccuracyWarning[39m[38;5;124m'[39m]
+
+File [0;32m~/.local/lib/python3.9/site-packages/scipy/special/__init__.py:649[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03m========================================[39;00m
+[1;32m      3[0m [38;5;124;03mSpecial functions (:mod:`scipy.special`)[39;00m
+[0;32m   (...)[0m
+[1;32m    644[0m 
+[1;32m    645[0m [38;5;124;03m"""[39;00m
+[1;32m    647[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_sf_error[39;00m [38;5;28;01mimport[39;00m SpecialFunctionWarning, SpecialFunctionError
+[0;32m--> 649[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m _ufuncs
+[1;32m    650[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_ufuncs[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m    652[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m _basic
+
+[0;31mImportError[0m: dlopen(/Users/robertwexler/.local/lib/python3.9/site-packages/scipy/special/_ufuncs.cpython-39-darwin.so, 0x0002): symbol not found in flat namespace '_npy_asinh'
 

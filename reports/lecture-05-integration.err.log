@@ -1,85 +1,115 @@
 Traceback (most recent call last):
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pandas as pd
+from scipy.integrate import trapezoid
 
-# Separation values between the two hydrogen atoms in atomic units (Bohr radii)
-R_values = np.linspace(0.1, 5, 10)
-
-# Function to compute analytical overlap integral in atomic units
-def analytical_overlap_integral(R):
+def overlap_integral_trapezoid(N=100, grid_range=7, separation=0.7):
     """
-    Computes the analytical overlap integral in atomic units.
+    Computes the overlap integral using the trapezoidal rule with a uniform grid.
 
     Parameters:
-    R (float): Separation distance between the centers of the two atomic orbitals in atomic units.
+    N (int): Number of grid points along each axis.
+    grid_range (float): The range for x, y, z in Bohr radii.
+    separation (float): Separation distance between the centers of the two atomic orbitals.
 
     Returns:
-    float: The analytical overlap integral.
+    float: The computed overlap integral.
     """
-    return (1 + R + R**2 / 3) * np.exp(-R)
 
-# Initialize an empty DataFrame with the appropriate columns
-df = pd.DataFrame(columns=["Separation (a0)", "Riemann (Numerical)", "Trapezoidal (Numerical)", "Analytical"])
+    # Create grid points and calculate step size
+    x = np.linspace(0, grid_range, N)
+    dx = grid_range / N
 
-# Iterate over the separation values and compute the overlap integrals
-for R in R_values:
-    # Compute numerical and analytical overlaps
-    S_riemann = overlap_integral(N=100, grid_range=7, separation=R)
-    S_trapezoidal = overlap_integral_trapezoid(N=100, grid_range=7, separation=R)
-    S_analytical = analytical_overlap_integral(R)
+    # Create 3D grids for x, y, and z
+    X, Y, Z = np.meshgrid(x, x, x, indexing='ij')
 
-    # Create a dictionary for the current row
-    row_data = {
-        "Separation (a0)": R,
-        "Riemann (Numerical)": S_riemann,
-        "Trapezoidal (Numerical)": S_trapezoidal,
-        "Analytical": S_analytical
-    }
+    # Compute the distances r1 and r2
+    r1 = np.sqrt((X + separation / 2) ** 2 + Y ** 2 + Z ** 2)
+    r2 = np.sqrt((X - separation / 2) ** 2 + Y ** 2 + Z ** 2)
 
-    # Append the new row to the DataFrame
-    df = df.append(row_data, ignore_index=True)
+    # Compute the integrand for all points in the grid
+    integrand_value = np.exp(-(r1 + r2))
 
-# Display the final DataFrame with formatted values
-print(df)
+    # Apply the trapezoidal rule along each axis
+    integral_x = trapezoid(integrand_value, x, axis=0)
+    integral_y = trapezoid(integral_x, x, axis=0)
+    S_sum = trapezoid(integral_y, x, axis=0)
+
+    # Apply the normalization factor
+    normalization_factor = 8 / np.pi
+    S = normalization_factor * S_sum
+
+    return S
+
+# Example usage
+S_trapezoid = overlap_integral_trapezoid(N=100, grid_range=7, separation=0.7)
+print(f"Overlap integral S using the trapezoidal rule is approximately: {S_trapezoid:.6f}")
 ------------------
 
+----- stderr -----
+/Users/robertwexler/.local/lib/python3.9/site-packages/scipy/__init__.py:155: UserWarning: A NumPy version >=1.18.5 and <1.25.0 is required for this version of SciPy (detected version 1.26.4
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion}"
+------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m/var/folders/n9/q030dl3x6qgfqffys4wc7d4c0000gn/T/ipykernel_45602/3331481689.py[0m in [0;36m?[0;34m()[0m
-[1;32m     34[0m         [0;34m"Analytical"[0m[0;34m:[0m [0mS_analytical[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     35[0m     [0;34m}[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     36[0m [0;34m[0m[0m
-[1;32m     37[0m     [0;31m# Append the new row to the DataFrame[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 38[0;31m     [0mdf[0m [0;34m=[0m [0mdf[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mrow_data[0m[0;34m,[0m [0mignore_index[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     39[0m [0;34m[0m[0m
-[1;32m     40[0m [0;31m# Display the final DataFrame with formatted values[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     41[0m [0mprint[0m[0;34m([0m[0mdf[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[4], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mintegrate[39;00m [38;5;28;01mimport[39;00m trapezoid
+[1;32m      3[0m [38;5;28;01mdef[39;00m [38;5;21moverlap_integral_trapezoid[39m(N[38;5;241m=[39m[38;5;241m100[39m, grid_range[38;5;241m=[39m[38;5;241m7[39m, separation[38;5;241m=[39m[38;5;241m0.7[39m):
+[1;32m      4[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m      5[0m [38;5;124;03m    Computes the overlap integral using the trapezoidal rule with a uniform grid.[39;00m
+[1;32m      6[0m 
+[0;32m   (...)[0m
+[1;32m     13[0m [38;5;124;03m    float: The computed overlap integral.[39;00m
+[1;32m     14[0m [38;5;124;03m    """[39;00m
 
-[0;32m~/miniconda3/envs/comp-prob-solv/lib/python3.12/site-packages/pandas/core/generic.py[0m in [0;36m?[0;34m(self, name)[0m
-[1;32m   6295[0m             [0;32mand[0m [0mname[0m [0;32mnot[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_accessors[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6296[0m             [0;32mand[0m [0mself[0m[0;34m.[0m[0m_info_axis[0m[0;34m.[0m[0m_can_hold_identifiers_and_holds_name[0m[0;34m([0m[0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6297[0m         [0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   6298[0m             [0;32mreturn[0m [0mself[0m[0;34m[[0m[0mname[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 6299[0;31m         [0;32mreturn[0m [0mobject[0m[0;34m.[0m[0m__getattribute__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;31mAttributeError[0m: 'DataFrame' object has no attribute 'append'
+File [0;32m~/.local/lib/python3.9/site-packages/scipy/integrate/__init__.py:91[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03m=============================================[39;00m
+[1;32m      3[0m [38;5;124;03mIntegration and ODEs (:mod:`scipy.integrate`)[39;00m
+[0;32m   (...)[0m
+[1;32m     87[0m [38;5;124;03m   solve_bvp     -- Solve a boundary value problem for a system of ODEs.[39;00m
+[1;32m     88[0m [38;5;124;03m"""[39;00m  [38;5;66;03m# noqa: E501[39;00m
+[0;32m---> 91[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_quadrature[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m     92[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_odepack_py[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m     93[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_quadpack_py[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+
+File [0;32m~/.local/lib/python3.9/site-packages/scipy/integrate/_quadrature.py:12[0m
+[1;32m      9[0m [38;5;66;03m# trapezoid is a public function for scipy.integrate,[39;00m
+[1;32m     10[0m [38;5;66;03m# even though it's actually a NumPy function.[39;00m
+[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mimport[39;00m trapz [38;5;28;01mas[39;00m trapezoid
+[0;32m---> 12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mspecial[39;00m [38;5;28;01mimport[39;00m roots_legendre
+[1;32m     13[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mspecial[39;00m [38;5;28;01mimport[39;00m gammaln
+[1;32m     15[0m __all__ [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mfixed_quad[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mquadrature[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mromberg[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mromb[39m[38;5;124m'[39m,
+[1;32m     16[0m            [38;5;124m'[39m[38;5;124mtrapezoid[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mtrapz[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msimps[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124msimpson[39m[38;5;124m'[39m,
+[1;32m     17[0m            [38;5;124m'[39m[38;5;124mcumulative_trapezoid[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mcumtrapz[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mnewton_cotes[39m[38;5;124m'[39m,
+[1;32m     18[0m            [38;5;124m'[39m[38;5;124mAccuracyWarning[39m[38;5;124m'[39m]
+
+File [0;32m~/.local/lib/python3.9/site-packages/scipy/special/__init__.py:649[0m
+[1;32m      1[0m [38;5;124;03m"""[39;00m
+[1;32m      2[0m [38;5;124;03m========================================[39;00m
+[1;32m      3[0m [38;5;124;03mSpecial functions (:mod:`scipy.special`)[39;00m
+[0;32m   (...)[0m
+[1;32m    644[0m 
+[1;32m    645[0m [38;5;124;03m"""[39;00m
+[1;32m    647[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_sf_error[39;00m [38;5;28;01mimport[39;00m SpecialFunctionWarning, SpecialFunctionError
+[0;32m--> 649[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m _ufuncs
+[1;32m    650[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_ufuncs[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m    652[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m _basic
+
+[0;31mImportError[0m: dlopen(/Users/robertwexler/.local/lib/python3.9/site-packages/scipy/special/_ufuncs.cpython-39-darwin.so, 0x0002): symbol not found in flat namespace '_npy_asinh'
 
