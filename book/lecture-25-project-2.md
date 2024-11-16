@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 20: Molecular Dynamics Simulations of a Polymer Chain
+# Lecture 25: Molecular Dynamics Simulations of a Polymer Chain
 
 ## Introduction
 
