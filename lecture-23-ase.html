@@ -64,6 +64,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-23-ase';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lecture 24: Radial Distribution Function" href="lecture-24-radial-dist.html" />
     <link rel="prev" title="Lecture 22: Thermostatting" href="lecture-22-thermostatting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -192,6 +193,10 @@
 <li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Lecture 24: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Lecture 25: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Lecture 26: Newton-Raphson Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Lecture 27: Kinetic Monte Carlo</a></li>
 </ul>
 
     </div>
@@ -592,19 +597,19 @@ Default dtype float32 does not match model dtype float64, converting models to f
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Step     Time          Energy          fmax
-BFGS:    0 21:33:57      -14.174485        5.073719
+BFGS:    0 09:48:53      -14.174485        5.073719
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    1 21:33:57      -13.794709       13.550327
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    1 09:48:54      -13.794709       13.550327
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    2 21:33:57      -14.318933        1.653340
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    2 09:48:54      -14.318933        1.653340
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    3 21:33:57      -14.331827        0.601021
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    3 09:48:54      -14.331827        0.601021
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    4 21:33:57      -14.333701        0.039062
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    4 09:48:54      -14.333701        0.039062
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimized C–O bond length: 1.142 Å
@@ -738,7 +743,7 @@ Atomization Energy of CO: 10.56 eV
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ed2d9647baab711bfc176e16a4d8cedaa66363f90d538550a2eefee2679cfa99.png" src="_images/ed2d9647baab711bfc176e16a4d8cedaa66363f90d538550a2eefee2679cfa99.png" />
+<img alt="_images/2a440452378f65a03f5de4d2dd6651827e970ab7c86ed64fb1a58888e5756ee5.png" src="_images/2a440452378f65a03f5de4d2dd6651827e970ab7c86ed64fb1a58888e5756ee5.png" />
 </div>
 </div>
 </section>
@@ -773,13 +778,13 @@ Atomization Energy of CO: 10.56 eV
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Step     Time          Energy          fmax
-BFGS:    0 21:34:00      -66.033951        0.424760
+BFGS:    0 09:48:56      -66.033951        0.424760
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    1 21:34:00      -66.053253        0.370682
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    1 09:48:57      -66.053253        0.370682
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    2 21:34:00      -66.119148        0.035250
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    2 09:48:57      -66.119148        0.035249
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adsorption Energy: -1.95 eV
@@ -855,7 +860,7 @@ BFGS:    0 21:34:00      -66.033951        0.424760
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f812b9cc0be944f0cf3d6a3f2593c20c849374693bb7a362d74430094118a373.png" src="_images/f812b9cc0be944f0cf3d6a3f2593c20c849374693bb7a362d74430094118a373.png" />
+<img alt="_images/26916de1068e881500e197c19fa585ba686d7fd582639d641446f6879a6414fa.png" src="_images/26916de1068e881500e197c19fa585ba686d7fd582639d641446f6879a6414fa.png" />
 </div>
 </div>
 </section>
@@ -876,7 +881,7 @@ BFGS:    0 21:34:00      -66.033951        0.424760
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/db43749a6480a88cc6958e656177d5c2b55df6ddb70984705a1b233cea2027a8.png" src="_images/db43749a6480a88cc6958e656177d5c2b55df6ddb70984705a1b233cea2027a8.png" />
+<img alt="_images/9968d9de326fbf8ab5684c00e855ed805b457814ba8593f69b31f7a9fb6f117a.png" src="_images/9968d9de326fbf8ab5684c00e855ed805b457814ba8593f69b31f7a9fb6f117a.png" />
 </div>
 </div>
 </section>
@@ -935,6 +940,15 @@ BFGS:    0 21:34:00      -66.033951        0.424760
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Lecture 22: Thermostatting</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="lecture-24-radial-dist.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 24: Radial Distribution Function</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

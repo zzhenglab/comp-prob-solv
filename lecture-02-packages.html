@@ -193,6 +193,10 @@
 <li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Lecture 24: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Lecture 25: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Lecture 26: Newton-Raphson Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Lecture 27: Kinetic Monte Carlo</a></li>
 </ul>
 
     </div>
@@ -650,9 +654,9 @@ eigenvalues = [-0.37228132  5.37228132]
 [[1. 1. 1.]
  [1. 1. 1.]
  [1. 1. 1.]]
-[[0.70567671 0.67975044 0.32267197]
- [0.13735555 0.71198993 0.72415661]
- [0.38299178 0.19744743 0.3708212 ]]
+[[0.83911178 0.05228729 0.28975697]
+ [0.36913281 0.77139261 0.59474915]
+ [0.19648207 0.72031968 0.61279058]]
 </pre></div>
 </div>
 </div>
@@ -733,7 +737,7 @@ Create a 3x3 identity matrix.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0523f39154295e3bbdceb0f199423c77eecc3583c43c506140840a39073ce1df.png" src="_images/0523f39154295e3bbdceb0f199423c77eecc3583c43c506140840a39073ce1df.png" />
+<img alt="_images/5a57711e8a9b76664c5877f83148c1a2f96a2aeec354bf670700fac05770cf0b.png" src="_images/5a57711e8a9b76664c5877f83148c1a2f96a2aeec354bf670700fac05770cf0b.png" />
 </div>
 </div>
 </section>
@@ -778,7 +782,7 @@ Create a 3x3 identity matrix.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/637845517753a00835f78d3354bb395154377c6c9f422647061beabd3a8d314f.png" src="_images/637845517753a00835f78d3354bb395154377c6c9f422647061beabd3a8d314f.png" />
+<img alt="_images/0ab6c5aa1fd75136a95c7d79b74be1a4e2ee233271ec3a58be311e8f5e375eb9.png" src="_images/0ab6c5aa1fd75136a95c7d79b74be1a4e2ee233271ec3a58be311e8f5e375eb9.png" />
 </div>
 </div>
 </section>
@@ -861,11 +865,11 @@ Create a histogram of random data with customizations, including changing the co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.074863
-1   -0.743115
-2   -1.187072
-3    0.431168
-4   -0.025896
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.622197
+1   -0.467027
+2    0.242379
+3    0.188775
+4    1.005303
 dtype: float64
 </pre></div>
 </div>
@@ -897,11 +901,11 @@ dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          A         B
-0  1.126359  0.856246
-1 -1.723601  0.258663
-2 -1.084549  0.521409
-3 -1.432192  0.692335
-4  0.915616  0.333588
+0 -0.813936  0.729370
+1 -0.170073  0.782818
+2  1.182129  0.555889
+3  0.231457  0.353427
+4 -0.335821  0.038676
 </pre></div>
 </div>
 </div>
