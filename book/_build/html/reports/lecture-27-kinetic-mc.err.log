@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 1, 100)
+y = -np.sin(2 * np.pi * x) ** 2 + x
+
+plt.plot(x, y)
+plt.xlabel('Reaction Coordinate')
+plt.ylabel('Potential Energy')
+plt.xlim(0.2, 0.8)
+plt.xticks([0.25, 0.5, 0.75], ['Ground State', 'Activated State', 'Final State'])
+plt.yticks([])
+
+plt.axhline(y=np.min(y), color='black', linestyle='--')
+plt.axhline(y=np.min(y[y.shape[0] // 2:]), xmin=0.75, xmax=1, color='black', linestyle='--')
+plt.axhline(y=np.max(y[y.shape[0] // 4:3 * y.shape[0] // 4]), xmin=0.375, xmax=0.625, color='black', linestyle='--')
+
+ax.annotate("", xy=(0.5, np.min(y) - 0.05), xytext=(0.5, np.min(y) - 0.1), arrowprops=dict(arrowstyle="->", lw=1.5))
+
+plt.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 18[0m
+[1;32m     15[0m plt[38;5;241m.[39maxhline(y[38;5;241m=[39mnp[38;5;241m.[39mmin(y[y[38;5;241m.[39mshape[[38;5;241m0[39m] [38;5;241m/[39m[38;5;241m/[39m [38;5;241m2[39m:]), xmin[38;5;241m=[39m[38;5;241m0.75[39m, xmax[38;5;241m=[39m[38;5;241m1[39m, color[38;5;241m=[39m[38;5;124m'[39m[38;5;124mblack[39m[38;5;124m'[39m, linestyle[38;5;241m=[39m[38;5;124m'[39m[38;5;124m--[39m[38;5;124m'[39m)
+[1;32m     16[0m plt[38;5;241m.[39maxhline(y[38;5;241m=[39mnp[38;5;241m.[39mmax(y[y[38;5;241m.[39mshape[[38;5;241m0[39m] [38;5;241m/[39m[38;5;241m/[39m [38;5;241m4[39m:[38;5;241m3[39m [38;5;241m*[39m y[38;5;241m.[39mshape[[38;5;241m0[39m] [38;5;241m/[39m[38;5;241m/[39m [38;5;241m4[39m]), xmin[38;5;241m=[39m[38;5;241m0.375[39m, xmax[38;5;241m=[39m[38;5;241m0.625[39m, color[38;5;241m=[39m[38;5;124m'[39m[38;5;124mblack[39m[38;5;124m'[39m, linestyle[38;5;241m=[39m[38;5;124m'[39m[38;5;124m--[39m[38;5;124m'[39m)
+[0;32m---> 18[0m [43max[49m[38;5;241m.[39mannotate([38;5;124m"[39m[38;5;124m"[39m, xy[38;5;241m=[39m([38;5;241m0.5[39m, np[38;5;241m.[39mmin(y) [38;5;241m-[39m [38;5;241m0.05[39m), xytext[38;5;241m=[39m([38;5;241m0.5[39m, np[38;5;241m.[39mmin(y) [38;5;241m-[39m [38;5;241m0.1[39m), arrowprops[38;5;241m=[39m[38;5;28mdict[39m(arrowstyle[38;5;241m=[39m[38;5;124m"[39m[38;5;124m->[39m[38;5;124m"[39m, lw[38;5;241m=[39m[38;5;241m1.5[39m))
+[1;32m     20[0m plt[38;5;241m.[39mshow()
+
+[0;31mNameError[0m: name 'ax' is not defined
+

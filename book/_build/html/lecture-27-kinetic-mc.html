@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lecture 27: Kinetic Monte Carlo &#8212; Computational Problem Solving in the Chemical Sciences</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-27-kinetic-mc';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lecture 26: Newton-Raphson Method" href="lecture-26-newton-raphson.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Computational Problem Solving in the Chemical Sciences
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture-01-introduction.html">Lecture 1: Introduction to Python for the Chemical Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Lecture 2: Essential Python Packages for the Chemical Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-03-control.html">Lecture 3: Control Structures in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-06-linalg.html">Lecture 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-07-regression.html">Lecture 7: Orders of Reaction and Linear Regression Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-08-calibration.html">Lecture 8: Calibration Data, Confidence Intervals, and Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-09-thermo.html">Lecture 9: Classical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Lecture 10: Statistical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Lecture 11: Ensembles and Ergodicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Lecture 12: The Monte Carlo Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Lecture 13: Monte Carlo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Lecture 14: A Basic Monte Carlo Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Lecture 15: Nanoparticle Shape and Simulated Annealing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Lecture 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Lecture 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Lecture 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Lecture 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Lecture 20: Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Lecture 24: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Lecture 25: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Lecture 26: Newton-Raphson Method</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 27: Kinetic Monte Carlo</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture-27-kinetic-mc.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture-27-kinetic-mc.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 27: Kinetic Monte Carlo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-kinetic-monte-carlo">Introduction to Kinetic Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-studied-by-kinetic-monte-carlo">Diffusion Studied by Kinetic Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-monte-carlo-procedure">Kinetic Monte Carlo Procedure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-reaction-rate-theory">Transition (Reaction) Rate Theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-assumptions-of-transition-state-theory">Basic Assumptions of Transition State Theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-results-of-transition-state-theory">Main Results of Transition State Theory</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-27-kinetic-monte-carlo">
+<h1>Lecture 27: Kinetic Monte Carlo<a class="headerlink" href="#lecture-27-kinetic-monte-carlo" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this lecture, you will be able to:</p>
+<ol class="arabic simple">
+<li><p>Understand the concept of Kinetic Monte Carlo (KMC) simulations.</p></li>
+<li><p>Implement a simple KMC simulation in Python.</p></li>
+<li><p>Apply KMC simulations to model the dynamics of a system.</p></li>
+</ol>
+</section>
+<section id="introduction-to-kinetic-monte-carlo">
+<h2>Introduction to Kinetic Monte Carlo<a class="headerlink" href="#introduction-to-kinetic-monte-carlo" title="Link to this heading">#</a></h2>
+<p>Phenomena such as diffusion, nucleation of a new phase, structural transformations, and chemical reactions often involve processes that occur over timescales much longer than those accessible via molecular dynamics (MD) simulations. MD simulations are limited by computational resources, making it challenging to simulate processes that occur over milliseconds or longer. Despite their extended timescales, these processes are kinetic and time-dependent.</p>
+<p>A common aspect of these processes is that they proceed through transitions between various configurations or states, each occurring with a certain frequency. These frequencies determine the time evolution of the entire process. However, they are not outcomes of the kinetic Monte Carlo (KMC) method itself; rather, they must be known or calculated beforehand. This means that prior to performing a KMC simulation, the possible transitions involved in the kinetic process, along with their corresponding frequencies, must be identified and determined independently of the KMC calculation. These frequencies can be calculated using methods such as transition state theory or harmonic approximation. While they can also be calculated on the fly during the simulation, such calculations are separate from the KMC process itself.</p>
+<p>KMC is a computational algorithm that simulates the time evolution of a system by probabilistically selecting and executing transitions based on their frequencies. To illustrate the KMC method in practice, we will apply it to model the diffusion process in a solid.</p>
+</section>
+<section id="diffusion-studied-by-kinetic-monte-carlo">
+<h2>Diffusion Studied by Kinetic Monte Carlo<a class="headerlink" href="#diffusion-studied-by-kinetic-monte-carlo" title="Link to this heading">#</a></h2>
+<p>We consider diffusion via the movement of vacancies in a crystal structure. For example, in the cubic structure of cerium dioxide (CeO₂), which crystallizes in this form, a vacancy can occur at one of the sites occupied by the majority atoms (oxygen in CeO₂). As shown in Figure 3, this vacancy can move to several neighboring sites, indicated by the arrows. Each such jump occurs with a specific frequency.</p>
+<p>Vacancies facilitate atomic movement within the lattice, making them crucial for understanding diffusion mechanisms in solids. There are <span class="math notranslate nohighlight">\(N\)</span> possible positions for the vacancy within the crystal lattice. If the vacancy is at position <span class="math notranslate nohighlight">\(i\)</span>, it can jump to <span class="math notranslate nohighlight">\(M_i\)</span> different neighboring positions with frequencies <span class="math notranslate nohighlight">\(\nu_{ij}\)</span>, where <span class="math notranslate nohighlight">\(j\)</span> indexes the possible destinations from position <span class="math notranslate nohighlight">\(i\)</span>. When it moves to a new position <span class="math notranslate nohighlight">\(j\)</span>, it can again jump to <span class="math notranslate nohighlight">\(M_j\)</span> positions with frequencies <span class="math notranslate nohighlight">\(\nu_{jk}\)</span>, and so on. Thus, the diffusion process is characterized by the set of frequencies <span class="math notranslate nohighlight">\(\{ \nu_{ij} \}\)</span>, forming an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix where each element represents the frequency of a jump from position <span class="math notranslate nohighlight">\(i\)</span> to position <span class="math notranslate nohighlight">\(j\)</span>. Note that some of these frequencies may be zero if a direct jump from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span> is not possible.</p>
+<p>The probability that a jump from position <span class="math notranslate nohighlight">\(i\)</span> to position <span class="math notranslate nohighlight">\(j\)</span> occurs is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+p_{ij} = \frac{\nu_{ij}}{\sum_{k=1}^{N} \nu_{ik}}
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\sum_{k=1}^{N} \nu_{ik}\)</span> is the total frequency of all possible jumps from position <span class="math notranslate nohighlight">\(i\)</span>. Obviously, <span class="math notranslate nohighlight">\(0 \leq p_{ij} \leq 1\)</span>, and <span class="math notranslate nohighlight">\(\sum_{j=1}^{N} p_{ij} = 1\)</span>. These probabilities are commonly referred to as <strong>transition probabilities</strong>, while the frequencies <span class="math notranslate nohighlight">\(\nu_{ij}\)</span> are known as <strong>rate constants</strong>.</p>
+<p>The frequencies <span class="math notranslate nohighlight">\(\nu_{ij}\)</span> can be calculated using methods such as transition state theory or derived from experimental data. In KMC simulations, these transition probabilities are used to stochastically determine the sequence of vacancy movements over time.</p>
+<p>In defining these jump frequencies, we assume that when the vacancy moves from position <span class="math notranslate nohighlight">\(i\)</span> to position <span class="math notranslate nohighlight">\(j\)</span>, it completely “loses the memory” of how it arrived at state <span class="math notranslate nohighlight">\(i\)</span>. Therefore, the probability <span class="math notranslate nohighlight">\(p_{ij}\)</span> is entirely independent of the previous jumps that led to position <span class="math notranslate nohighlight">\(i\)</span>. This property characterizes the process as a <strong>Markov process</strong>, which is fundamental to the KMC method.</p>
+<figure class="align-default" id="ceo2-vacancy-diffusion">
+<img alt="_images/ceo2-vacancy-diffusion.png" src="_images/ceo2-vacancy-diffusion.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Crystal structure of cerium dioxide (CeO₂) illustrating an oxygen vacancy (highlighted). The vacancy resides on an oxygen site within the fluorite structure. The arrows indicate potential pathways for oxygen ion diffusion via vacancy migration. Axes (a, b, c) are provided for reference.</span><a class="headerlink" href="#ceo2-vacancy-diffusion" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="kinetic-monte-carlo-procedure">
+<h2>Kinetic Monte Carlo Procedure<a class="headerlink" href="#kinetic-monte-carlo-procedure" title="Link to this heading">#</a></h2>
+<p>We start with a vacanccy at a position marked <span class="math notranslate nohighlight">\(i\)</span> and select randomly a possible jump into a position <span class="math notranslate nohighlight">\(j\)</span>. This jump is then made with probability <span class="math notranslate nohighlight">\(p_{ij}\)</span>. To do this we generate a random number <span class="math notranslate nohighlight">\(\xi\)</span> such that <span class="math notranslate nohighlight">\(0 \leq \xi &lt; 1\)</span> and make the jump <span class="math notranslate nohighlight">\(i \rightarrow j\)</span> if <span class="math notranslate nohighlight">\(p_{ij} \geq \xi\)</span>. However, if <span class="math notranslate nohighlight">\(p_{ij} &lt; \xi\)</span> we do not make any jump and repeat the process starting again by selecting randomly another possible jump.. After a jump occured we start with a new vacancy position that is associated with new jump frequencies (new rate constants) and the process is repeated. In this way the vacancy travels and attains various positions but to determine the rate at which it moves we have to associate a time with each step of this random walk.</p>
+<p>If the vacancy is at a site <span class="math notranslate nohighlight">\(i\)</span> then the frequency <span class="math notranslate nohighlight">\(\nu_\text{tot}^i\)</span> with which it will leave the site <span class="math notranslate nohighlight">\(i\)</span> is equal to the sum of the frequencies of all possible jumps away from the site <span class="math notranslate nohighlight">\(i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\nu_\text{tot}^i = \sum_{k=1}^{M_i} \nu_{ik}
+\]</div>
+<p>Hence the time the vacancy stays at the site <span class="math notranslate nohighlight">\(i\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+t_i = \frac{1}{\nu_\text{tot}^i}
+\]</div>
+<p>In this way we have associated with every vacancy position <span class="math notranslate nohighlight">\(i\)</span> the time <span class="math notranslate nohighlight">\(t_i\)</span> during which the vacancy waits at this position. This time is usually dominated by one of the frequencies that is much higher than all the other frequencies. During the KMC process we associate with every state <span class="math notranslate nohighlight">\(i\)</span> into which the vacancy got during the process, the time <span class="math notranslate nohighlight">\(t_i\)</span> during which the vacancy remains at the position <span class="math notranslate nohighlight">\(i\)</span>, determined by the previous equation. The time associated with the process consisting of <span class="math notranslate nohighlight">\(K\)</span> steps of the KMC is then</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta t^{(K)} = \sum_{k \text{ corresponding to all states attained}} t_k
+\]</div>
+</section>
+<section id="transition-reaction-rate-theory">
+<h2>Transition (Reaction) Rate Theory<a class="headerlink" href="#transition-reaction-rate-theory" title="Link to this heading">#</a></h2>
+<p>We investigate a process during which the potential energy of a system varies as depicted in the figure below. The initial and final states are <strong>metastable</strong>, corresponding to minima in the potential energy (or enthalpy, if external forces are performing work). Between these states, the energy rises to a maximum at an intermediate stage, representing the <strong>activated state</strong> or <strong>transition state</strong>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">add_double_arrow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">arrow_length_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.0125</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a double-sided arrow to a plot.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        x (float): The x-coordinate of the arrow base.</span>
+<span class="sd">        y_min (float): The starting y-coordinate (bottom) of the arrow.</span>
+<span class="sd">        y_max (float): The ending y-coordinate (top) of the arrow.</span>
+<span class="sd">        arrow_length_offset (float): Adjustment to the arrow length (positive to make shorter).</span>
+<span class="sd">        head_width (float): Width of the arrowhead.</span>
+<span class="sd">        head_length (float): Length of the arrowhead.</span>
+<span class="sd">        color (str): Color of the arrows.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">arrow_length</span> <span class="o">=</span> <span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span> <span class="o">-</span> <span class="n">arrow_length_offset</span>
+    
+    <span class="c1"># Downward arrow</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">arrow_length</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="n">head_width</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="n">head_length</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    
+    <span class="c1"># Upward arrow</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">+</span> <span class="n">arrow_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">arrow_length</span> <span class="o">+</span> <span class="n">arrow_length_offset</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="n">head_width</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="n">head_length</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="c1"># Generate data for the potential energy curve</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span>
+
+<span class="c1"># Define key points for the ground, activated, and final states</span>
+<span class="n">x_gs</span><span class="p">,</span> <span class="n">x_as</span><span class="p">,</span> <span class="n">x_fs</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span>
+<span class="n">y_gs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">y_as</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">4</span><span class="p">:</span><span class="mi">3</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">y_fs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:])</span>
+
+<span class="c1"># Plot the potential energy curve</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Potential Energy Curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Reaction Coordinate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Potential Energy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="n">x_gs</span><span class="p">,</span> <span class="n">x_as</span><span class="p">,</span> <span class="n">x_fs</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Ground State&#39;</span><span class="p">,</span> <span class="s1">&#39;Activated State&#39;</span><span class="p">,</span> <span class="s1">&#39;Final State&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="n">y_gs</span><span class="p">,</span> <span class="n">y_as</span><span class="p">,</span> <span class="n">y_fs</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;$E_</span><span class="se">\\</span><span class="s1">text</span><span class="si">{gs}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$E_</span><span class="se">\\</span><span class="s1">text</span><span class="si">{as}</span><span class="s1"> = E_</span><span class="se">\\</span><span class="s1">text</span><span class="si">{gs}</span><span class="s1"> + E_a$&#39;</span><span class="p">,</span> <span class="s1">&#39;$E_</span><span class="se">\\</span><span class="s1">text</span><span class="si">{fs}</span><span class="s1"> = E_</span><span class="se">\\</span><span class="s1">text</span><span class="si">{gs}</span><span class="s1"> + </span><span class="se">\\</span><span class="s1">Delta E$&#39;</span><span class="p">])</span>
+
+<span class="c1"># Add dashed lines for energy levels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y_gs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Ground State Level&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y_fs</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Final State Level&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y_as</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mf">0.375</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mf">0.625</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C3&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Activated State Level&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add double-sided arrows for activation energy and reaction energy</span>
+<span class="n">add_double_arrow</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="n">y_gs</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="n">y_as</span><span class="p">,</span> <span class="n">arrow_length_offset</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">add_double_arrow</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="n">y_gs</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="n">y_fs</span><span class="p">,</span> <span class="n">arrow_length_offset</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Add text annotations for energy levels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="p">(</span><span class="n">y_gs</span> <span class="o">+</span> <span class="n">y_as</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;$E_a$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="p">(</span><span class="n">y_gs</span> <span class="o">+</span> <span class="n">y_fs</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">Delta E$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/39f5715a445781e6299b02262cd171912b2f80905095156ac58f1a4351a48b09.png" src="_images/39f5715a445781e6299b02262cd171912b2f80905095156ac58f1a4351a48b09.png" />
+</div>
+</div>
+<p>As illustrated in the figure above, the potential energy profile shows two minima separated by an energy barrier of height <span class="math notranslate nohighlight">\(E_a\)</span>. The “reaction coordinate” axis represents the pathway along which the reaction occurs, encompassing the structural changes the system undergoes during the transformation. During this process, the system temporarily acquires an amount of energy equal to <span class="math notranslate nohighlight">\(E_a\)</span> to overcome the transition state.</p>
+<p><strong>We now pose the following question: Assuming we know the reaction path and the associated energy barrier of height <span class="math notranslate nohighlight">\(E_a\)</span>, what is the frequency with which the transition from one equilibrium state to the other occurs?</strong></p>
+<p>This question can be answered to a good approximation within the framework of classical transition state theory (also known as reaction rate theory), which was first thoroughly presented in the book by Glasstone, Laidler, and Eyring:</p>
+<p><a class="reference external" href="https://wash-primo.hosted.exlibrisgroup.com/permalink/f/1kqpcd6/WUSTL_SIERRA21314618">Glasstone, S., Laidler, K. J., and Eyring, H., <em>The Theory of Rate Processes</em>, McGraw-Hill, 1941</a>.</p>
+<p>Transition state theory is fundamental in chemical kinetics as it allows us to predict reaction rates based on the energy barrier and temperature. It provides a method for calculating reaction rates by considering the activated complex at the top of the energy barrier. In the following sections, we summarize the main aspects of this theory and derive an expression for the reaction rate constant <span class="math notranslate nohighlight">\(k\)</span> that depends on <span class="math notranslate nohighlight">\(E_a\)</span> and the temperature <span class="math notranslate nohighlight">\(T\)</span>.</p>
+</section>
+<section id="basic-assumptions-of-transition-state-theory">
+<h2>Basic Assumptions of Transition State Theory<a class="headerlink" href="#basic-assumptions-of-transition-state-theory" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Stable Initial and Final States:</strong></p>
+<ul class="simple">
+<li><p>The reaction involves initial and final configurations that are stable states. The transition between these states occurs along a specific pathway known as the <strong>reaction coordinate</strong> or <strong>reaction path</strong>.</p></li>
+<li><p>The reaction coordinate represents a path on the <strong>potential energy surface (PES)</strong>, which maps the energy changes as the system progresses from reactants to products.</p></li>
+</ul>
+</li>
+<li><p><strong>Energy Barrier and Activated State:</strong></p>
+<ul class="simple">
+<li><p>There is an energy barrier between the initial and final states when moving along the reaction path. The most favorable path is the one with the lowest energy barrier. The point at which the energy reaches a maximum along this path is called the <strong>activated state</strong> or <strong>transition state</strong>.</p></li>
+<li><p>Although the transition state represents a maximum in energy, it is a transient configuration that cannot be isolated.</p></li>
+</ul>
+</li>
+<li><p><strong>Quasi-Equilibrium of the Activated State:</strong></p>
+<ul class="simple">
+<li><p>It is assumed that the system reaches a <strong>quasi-equilibrium</strong> where the activated state is in thermodynamic equilibrium with the initial state. This allows for the use of equilibrium thermodynamics to describe the population of the activated state.</p></li>
+<li><p>In the activated state, the system vibrates in all directions perpendicular to the reaction coordinate but moves translationally along the reaction path. In contrast, the stable initial and final states have vibrational degrees of freedom in all directions, including along the reaction coordinate.</p></li>
+<li><p>The validity of these assumptions depends on the specific reaction mechanism. These are approximations, and experimental observations ultimately determine whether the conclusions drawn from the theory are accurate. In cases where quantum tunneling or non-equilibrium dynamics play a significant role, the assumptions may not hold.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="main-results-of-transition-state-theory">
+<h2>Main Results of Transition State Theory<a class="headerlink" href="#main-results-of-transition-state-theory" title="Link to this heading">#</a></h2>
+<p>In transition state theory, the reaction rate (or frequency of activations) is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\nu = \nu_0 \exp\left(-\frac{E_a}{k_\text{B} T}\right)
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\nu\)</span> is the reaction rate or frequency of successful transitions.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu_0\)</span> is the <strong>pre-exponential factor</strong> or <strong>attempt frequency</strong>, representing the frequency of attempts to overcome the energy barrier.</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_a\)</span> is the activation energy—the height of the energy barrier between the initial and final states.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_\text{B}\)</span> is the Boltzmann constant.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> is the absolute temperature.</p></li>
+</ul>
+<p>Because of the exponential dependence on the activation energy <span class="math notranslate nohighlight">\(E_a\)</span>, the actual reaction frequency <span class="math notranslate nohighlight">\(\nu\)</span> is much smaller than the attempt frequency <span class="math notranslate nohighlight">\(\nu_0\)</span>; the difference between these two frequencies can span several orders of magnitude.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To test whether a process is well described by transition state theory, you can produce an <strong>Arrhenius plot</strong>. Plot the logarithm of a quantity proportional to the reaction rate (e.g., <span class="math notranslate nohighlight">\(\ln \nu\)</span> or <span class="math notranslate nohighlight">\(\ln k\)</span>) versus the inverse of the temperature <span class="math notranslate nohighlight">\(1/T\)</span>. If the process follows transition state theory, the plot should be a straight line, indicating an exponential dependence on <span class="math notranslate nohighlight">\(E_a\)</span>.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture-26-newton-raphson.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 26: Newton-Raphson Method</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-kinetic-monte-carlo">Introduction to Kinetic Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-studied-by-kinetic-monte-carlo">Diffusion Studied by Kinetic Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-monte-carlo-procedure">Kinetic Monte Carlo Procedure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-reaction-rate-theory">Transition (Reaction) Rate Theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-assumptions-of-transition-state-theory">Basic Assumptions of Transition State Theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-results-of-transition-state-theory">Main Results of Transition State Theory</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert B. Wexler
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
