@@ -392,6 +392,9 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-reaction-rate-theory">Transition (Reaction) Rate Theory</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-assumptions-of-transition-state-theory">Basic Assumptions of Transition State Theory</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-results-of-transition-state-theory">Main Results of Transition State Theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-of-the-kinetic-monte-carlo-to-oxygen-vacancy-diffusion-in-ceo2">Application of the Kinetic Monte Carlo to Oxygen Vacancy Diffusion in CeO₂</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-constant">Diffusion Constant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
             </nav>
         </div>
@@ -441,7 +444,7 @@ p_{ij} = \frac{\nu_{ij}}{\sum_{k=1}^{N} \nu_{ik}}
 </section>
 <section id="kinetic-monte-carlo-procedure">
 <h2>Kinetic Monte Carlo Procedure<a class="headerlink" href="#kinetic-monte-carlo-procedure" title="Link to this heading">#</a></h2>
-<p>We start with a vacanccy at a position marked <span class="math notranslate nohighlight">\(i\)</span> and select randomly a possible jump into a position <span class="math notranslate nohighlight">\(j\)</span>. This jump is then made with probability <span class="math notranslate nohighlight">\(p_{ij}\)</span>. To do this we generate a random number <span class="math notranslate nohighlight">\(\xi\)</span> such that <span class="math notranslate nohighlight">\(0 \leq \xi &lt; 1\)</span> and make the jump <span class="math notranslate nohighlight">\(i \rightarrow j\)</span> if <span class="math notranslate nohighlight">\(p_{ij} \geq \xi\)</span>. However, if <span class="math notranslate nohighlight">\(p_{ij} &lt; \xi\)</span> we do not make any jump and repeat the process starting again by selecting randomly another possible jump.. After a jump occured we start with a new vacancy position that is associated with new jump frequencies (new rate constants) and the process is repeated. In this way the vacancy travels and attains various positions but to determine the rate at which it moves we have to associate a time with each step of this random walk.</p>
+<p>We start with a vacanccy at a position marked <span class="math notranslate nohighlight">\(i\)</span> and select randomly a possible jump into a position <span class="math notranslate nohighlight">\(j\)</span>. This jump is then made with probability <span class="math notranslate nohighlight">\(p_{ij}\)</span>. To do this we generate a random number <span class="math notranslate nohighlight">\(\xi\)</span> such that <span class="math notranslate nohighlight">\(0 \leq \xi &lt; 1\)</span> and make the jump <span class="math notranslate nohighlight">\(i \rightarrow j\)</span> if <span class="math notranslate nohighlight">\(p_{ij} \geq \xi\)</span>. However, if <span class="math notranslate nohighlight">\(p_{ij} &lt; \xi\)</span> we do not make any jump and repeat the process starting again by selecting randomly another possible jump.. After a jump occurred we start with a new vacancy position that is associated with new jump frequencies (new rate constants) and the process is repeated. In this way the vacancy travels and attains various positions but to determine the rate at which it moves we have to associate a time with each step of this random walk.</p>
 <p>If the vacancy is at a site <span class="math notranslate nohighlight">\(i\)</span> then the frequency <span class="math notranslate nohighlight">\(\nu_\text{tot}^i\)</span> with which it will leave the site <span class="math notranslate nohighlight">\(i\)</span> is equal to the sum of the frequencies of all possible jumps away from the site <span class="math notranslate nohighlight">\(i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -586,6 +589,285 @@ t_i = \frac{1}{\nu_\text{tot}^i}
 <p>To test whether a process is well described by transition state theory, you can produce an <strong>Arrhenius plot</strong>. Plot the logarithm of a quantity proportional to the reaction rate (e.g., <span class="math notranslate nohighlight">\(\ln \nu\)</span> or <span class="math notranslate nohighlight">\(\ln k\)</span>) versus the inverse of the temperature <span class="math notranslate nohighlight">\(1/T\)</span>. If the process follows transition state theory, the plot should be a straight line, indicating an exponential dependence on <span class="math notranslate nohighlight">\(E_a\)</span>.</p>
 </div>
 </section>
+<section id="application-of-the-kinetic-monte-carlo-to-oxygen-vacancy-diffusion-in-ceo2">
+<h2>Application of the Kinetic Monte Carlo to Oxygen Vacancy Diffusion in CeO₂<a class="headerlink" href="#application-of-the-kinetic-monte-carlo-to-oxygen-vacancy-diffusion-in-ceo2" title="Link to this heading">#</a></h2>
+<p>We will now apply the KMC method to model the diffusion of oxygen vacancies in CeO₂. The vacancy can move to neighboring sites with specific frequencies, and we will simulate the time evolution of the system by stochastically selecting and executing these jumps. The frequencies of the jumps are determined by the transition probabilities, which are calculated based on the rate constants.</p>
+<p>In this example, we will consider a cubic lattice with vacancies that can move to neighboring sites in three dimensions. We will define the lattice as a 3D array, where each site can be occupied by an oxygen atom or a vacancy. The vacancy will move to neighboring sites with specific frequencies, and we will simulate the diffusion process using the KMC method.</p>
+<p>Let’s start by defining the cubic lattice parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the cubic lattice parameters</span>
+<span class="n">lattice_size</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 10x10x10 lattice</span>
+<span class="n">num_steps</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># Number of KMC steps</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Temperature in Kelvin</span>
+<span class="n">activation_energy</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Activation energy in eV</span>
+<span class="n">attempt_frequency</span> <span class="o">=</span> <span class="mf">1e13</span>  <span class="c1"># Attempt frequency in Hz</span>
+<span class="n">boltzmann_constant</span> <span class="o">=</span> <span class="mf">8.617333262e-5</span>  <span class="c1"># Boltzmann constant in eV/K</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we will precompute the rate constants for the vacancy jumps between neighboring sites. We will assume that the vacancy can move to the six neighboring sites in 3D space with equal frequencies. The rate constants will be calculated based on the activation energy and temperature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Precompute rate constant</span>
+<span class="n">rate_constant</span> <span class="o">=</span> <span class="n">attempt_frequency</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">activation_energy</span> <span class="o">/</span> <span class="p">(</span><span class="n">boltzmann_constant</span> <span class="o">*</span> <span class="n">temperature</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rate constant: </span><span class="si">{</span><span class="n">rate_constant</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> Hz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rate constant: 9.12e+07 Hz
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the rate constant as a function of temperature</span>
+<span class="n">temperatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">rate_constants</span> <span class="o">=</span> <span class="n">attempt_frequency</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">activation_energy</span> <span class="o">/</span> <span class="p">(</span><span class="n">boltzmann_constant</span> <span class="o">*</span> <span class="n">temperatures</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temperatures</span><span class="p">,</span> <span class="n">rate_constants</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">rate_constant</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Rate Constant (Hz)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/68aadfb4668e19f83ce961f50f365e045491d003d97cae773f46f36e6546b2ec.png" src="_images/68aadfb4668e19f83ce961f50f365e045491d003d97cae773f46f36e6546b2ec.png" />
+</div>
+</div>
+<p>Now, we will initialize the lattice with a single vacancy at the center and simulate the diffusion process using the KMC method. We will randomly select a neighboring site to move the vacancy to based on the transition probabilities calculated from the rate constants.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the lattice with a single vacancy</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">lattice_size</span><span class="p">,</span> <span class="n">lattice_size</span><span class="p">,</span> <span class="n">lattice_size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">vacancy_position</span> <span class="o">=</span> <span class="p">[</span><span class="n">lattice_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>  <span class="c1"># Start at the center of the lattice</span>
+<span class="c1"># vacancy_position = [0, 0, 0]</span>
+<span class="c1"># vacancy_position = [lattice_size - 1] * 3</span>
+<span class="n">lattice</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">vacancy_position</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Mark the vacancy position</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the initial lattice configuration</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the lattice sites</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">lattice</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;$z$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Initial Lattice Configuration&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/be0c04af18cbb24a2d7e99254a0f6562587b1bf60fe5cd0e36b26d2a6f4cbf26.png" src="_images/be0c04af18cbb24a2d7e99254a0f6562587b1bf60fe5cd0e36b26d2a6f4cbf26.png" />
+</div>
+</div>
+<p>Next, we will define the neighbor offsets for a cubic lattice, where the vacancy can move to six neighboring sites in 3D space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define neighbor offsets for a cubic lattice (6 neighbors)</span>
+<span class="n">neighbor_offsets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1"># +/- x direction</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1"># +/- y direction</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># +/- z direction</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the neighbor offsets in 3D space as arrows from the vacancy position (center) to the neighbors (6 directions)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot a subset of the lattice sites</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lattice_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lattice_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lattice_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">vacancy_position</span><span class="p">):</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Plot the neighbor offsets as arrows</span>
+<span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="n">neighbor_offsets</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">vacancy_position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vacancy_position</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vacancy_position</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">offset</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">arrow_length_ratio</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;$z$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Neighbor Offsets for Vacancy Movement&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/199154b4a214a0886dc4c9fc5ce398cbecaf07ceef0e30128a38ee34c70da4f2.png" src="_images/199154b4a214a0886dc4c9fc5ce398cbecaf07ceef0e30128a38ee34c70da4f2.png" />
+</div>
+</div>
+<p>Now, we will keep track of the vacancy position and time during the KMC simulation. We will randomly select a neighboring site to move the vacancy to based on the transition probabilities calculated from the rate constants. The simulation will proceed for a specified number of steps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keep track of the vacancy position and time</span>
+<span class="n">vacancy_positions</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">vacancy_position</span><span class="p">)]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">time_steps</span> <span class="o">=</span> <span class="p">[</span><span class="n">time</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we will perform the KMC simulation by randomly selecting a neighboring site to move the vacancy to based on the transition probabilities. We will update the vacancy position and time for each step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the KMC simulation</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Set random seed for reproducibility</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Determine possible moves</span>
+        <span class="n">possible_moves</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="n">neighbor_offsets</span><span class="p">:</span>
+            <span class="c1"># Calculate the neighbor position (wrap around for periodic boundary conditions)</span>
+            <span class="n">neighbor</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">(</span><span class="n">vacancy_position</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">%</span> <span class="n">lattice_size</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="n">possible_moves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+        
+        <span class="c1"># Assign probabilities to each move (uniform here)</span>
+        <span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="n">rate_constant</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">possible_moves</span><span class="p">]</span>
+        <span class="n">probabilities</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span>
+        
+        <span class="c1"># Randomly select a possible move</span>
+        <span class="n">chosen_move_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">possible_moves</span><span class="p">))</span>
+        <span class="n">new_position</span> <span class="o">=</span> <span class="n">possible_moves</span><span class="p">[</span><span class="n">chosen_move_idx</span><span class="p">]</span>
+
+        <span class="c1"># Generate a random number for acceptance</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+
+        <span class="c1"># Check the acceptance criterion</span>
+        <span class="k">if</span> <span class="n">xi</span> <span class="o">&lt;</span> <span class="n">probabilities</span><span class="p">[</span><span class="n">chosen_move_idx</span><span class="p">]:</span>
+            <span class="c1"># Move is accepted, exit the loop</span>
+            <span class="k">break</span>
+
+    <span class="c1"># Update the lattice and the vacancy position</span>
+    <span class="n">lattice</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">vacancy_position</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">lattice</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">new_position</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">vacancy_position</span> <span class="o">=</span> <span class="n">new_position</span>
+    <span class="n">vacancy_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">vacancy_position</span><span class="p">))</span>
+
+    <span class="c1"># Update time</span>
+    <span class="n">total_rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">rate_constant</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">possible_moves</span><span class="p">])</span>
+    <span class="n">time</span> <span class="o">+=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span> <span class="o">/</span> <span class="n">total_rate</span>
+    <span class="n">time_steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total simulation time: </span><span class="si">{</span><span class="n">time</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total simulation time: 1.84e-05 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the vacancy positions to a list of ASE atoms for visualization</span>
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
+<span class="kn">from</span> <span class="nn">ase.visualize</span> <span class="kn">import</span> <span class="n">view</span>
+
+<span class="n">list_atoms</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">vacancy_positions</span><span class="p">:</span>
+    <span class="c1"># Create a list of chemical symbols for the lattice sites</span>
+    <span class="n">chemical_symbols</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="n">position</span><span class="p">:</span>
+                    <span class="n">chemical_symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>  <span class="c1"># Vacancy</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">chemical_symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">)</span>  <span class="c1"># Oxygen atom</span>
+
+    <span class="c1"># Create an ASE Atoms object for the lattice configuration</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="n">chemical_symbols</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lattice_size</span><span class="p">)],</span> <span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="p">[</span><span class="n">lattice_size</span><span class="p">,</span> <span class="n">lattice_size</span><span class="p">,</span> <span class="n">lattice_size</span><span class="p">])</span>
+    <span class="n">list_atoms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
+
+<span class="c1"># Write the lattice configurations to a trajectory file for visualization</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span>
+<span class="n">write</span><span class="p">(</span><span class="s1">&#39;vacancy_diffusion.extxyz&#39;</span><span class="p">,</span> <span class="n">list_atoms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="vacancy-diffusion">
+<img alt="_images/vacancy_diffusion.png" src="_images/vacancy_diffusion.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Visualization of the vacancy diffusion process in a cubic lattice. The vacancy (highlighted in blue) moves to neighboring sites over time, simulating the diffusion process. The trajectory lines indicate the path taken by the vacancy during the simulation.</span><a class="headerlink" href="#vacancy-diffusion" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="diffusion-constant">
+<h2>Diffusion Constant<a class="headerlink" href="#diffusion-constant" title="Link to this heading">#</a></h2>
+<p>The diffusion constant of the vacancy, <span class="math notranslate nohighlight">\(D_v\)</span>, can now be determined using the Einstein formula</p>
+<div class="math notranslate nohighlight">
+\[
+D_v = \lim_{\tau \to \infty} \frac{1}{6 \tau} \langle \left[ r(\tau) - r(0) \right]^2 \rangle
+\]</div>
+<p>expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+D_v = \lim_{K \to \infty} \frac{1}{6 \Delta t^{(K)}} \langle \left[ r(\Delta t^{(K)}) - r(0) \right]^2 \rangle
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(r(\Delta t^{(K)})\)</span> is the position of the vacancy after <span class="math notranslate nohighlight">\(K\)</span> steps and <span class="math notranslate nohighlight">\(r(0)\)</span> the starting position. <strong>Averaging has to be taken over a large number of KMC paths that start with different original positions of the vacancy.</strong></p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this lecture, we introduced the concept of KMC simulations and applied it to model the diffusion of oxygen vacancies in a solid. We precomputed the rate constants for vacancy jumps between neighboring sites and simulated the time evolution of the system by stochastically selecting and executing these jumps. The KMC method allowed us to model the dynamics of the system over time and observe the diffusion process in action.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -651,6 +933,9 @@ t_i = \frac{1}{\nu_\text{tot}^i}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-reaction-rate-theory">Transition (Reaction) Rate Theory</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-assumptions-of-transition-state-theory">Basic Assumptions of Transition State Theory</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-results-of-transition-state-theory">Main Results of Transition State Theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-of-the-kinetic-monte-carlo-to-oxygen-vacancy-diffusion-in-ceo2">Application of the Kinetic Monte Carlo to Oxygen Vacancy Diffusion in CeO₂</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-constant">Diffusion Constant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>
 
