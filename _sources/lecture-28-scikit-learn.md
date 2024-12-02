@@ -86,14 +86,14 @@ df.describe()
 df['target'].value_counts()
 ```
 
-<!-- ```{code-cell} ipython3
+```{code-cell} ipython3
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 sns.pairplot(df, hue='target')
 
 plt.show()
-``` -->
+```
 
 ##### Step 3: Preprocess the Data
 

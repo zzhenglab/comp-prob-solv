@@ -805,14 +805,21 @@ Name: count, dtype: int64
 </div>
 </div>
 </div>
-<!-- ```{code-cell} ipython3
-import seaborn as sns
-import matplotlib.pyplot as plt
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-sns.pairplot(df, hue='target')
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
 
-plt.show()
-``` -->
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a5600ed1fd30080f65467cfa40e9f8f153c7da4bd35b04ad4b64cc82a0281ae0.png" src="_images/a5600ed1fd30080f65467cfa40e9f8f153c7da4bd35b04ad4b64cc82a0281ae0.png" />
+</div>
+</div>
 </section>
 <section id="step-3-preprocess-the-data">
 <h5>Step 3: Preprocess the Data<a class="headerlink" href="#step-3-preprocess-the-data" title="Link to this heading">#</a></h5>
@@ -887,7 +894,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d8cf39b7a7c75eb30695f040a37b3e11d3139bbacd58f767a3fc2c6f1025e9c2.png" src="_images/d8cf39b7a7c75eb30695f040a37b3e11d3139bbacd58f767a3fc2c6f1025e9c2.png" />
+<img alt="_images/dda47346dfef537cf895756bf2f8d670ba3f3e183027e21c1b95f39856a42f8a.png" src="_images/dda47346dfef537cf895756bf2f8d670ba3f3e183027e21c1b95f39856a42f8a.png" />
 </div>
 </div>
 <div class="tip admonition">
@@ -925,13 +932,13 @@ weighted avg       0.95      0.94      0.94       143
 Random Forest:
               precision    recall  f1-score   support
 
-           0       0.92      1.00      0.96        48
-           1       1.00      0.88      0.93        57
-           2       0.93      1.00      0.96        38
+           0       0.92      0.96      0.94        48
+           1       0.96      0.89      0.93        57
+           2       0.95      1.00      0.97        38
 
-    accuracy                           0.95       143
-   macro avg       0.95      0.96      0.95       143
-weighted avg       0.95      0.95      0.95       143
+    accuracy                           0.94       143
+   macro avg       0.94      0.95      0.95       143
+weighted avg       0.94      0.94      0.94       143
 </pre></div>
 </div>
 </div>
