@@ -15,27 +15,46 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Sort the coefficients
-sorted_idx = lr.coef_[0].argsort()
+from sklearn.linear_model import RidgeCV
+from sklearn.neural_network import MLPRegressor
 
-# Plot the coefficients
+# Train the Ridge regression model
+ridge = RidgeCV()
+ridge.fit(X_train, y_train)
+y_pred_ridge = ridge.predict(X_test)
+
+# Train the MLPRegressor model
+mlp = MLPRegressor(
+    hidden_layer_sizes=(100, 50),
+    activation='relu',
+    solver='adam',
+    max_iter=1000,
+    random_state=42
+)
+mlp.fit(X_train, y_train)
+y_pred_mlp = mlp.predict(X_test)
+
+# Plot the predicted vs. actual values
 plt.figure(figsize=(12, 6))
-plt.barh(data.feature_names[sorted_idx], lr.coef_[0][sorted_idx])
-plt.xlabel('Coefficient Value')
-plt.ylabel('Feature Name')
-plt.title('Logistic Regression Coefficients')
+plt.scatter(y_test, y_pred_ridge, label='Ridge Regression')
+plt.scatter(y_test, y_pred_mlp, label='MLPRegressor')
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2)
+plt.xlabel('Actual')
+plt.ylabel('Predicted')
+plt.legend()
+plt.title('Predicted vs. Actual Values')
+plt.aspect_equal()
 plt.show()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[7], line 6[0m
-[1;32m      4[0m [38;5;66;03m# Plot the coefficients[39;00m
-[1;32m      5[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m12[39m, [38;5;241m6[39m))
-[0;32m----> 6[0m plt[38;5;241m.[39mbarh([43mdata[49m[38;5;241;43m.[39;49m[43mfeature_names[49m[43m[[49m[43msorted_idx[49m[43m][49m, lr[38;5;241m.[39mcoef_[[38;5;241m0[39m][sorted_idx])
-[1;32m      7[0m plt[38;5;241m.[39mxlabel([38;5;124m'[39m[38;5;124mCoefficient Value[39m[38;5;124m'[39m)
-[1;32m      8[0m plt[38;5;241m.[39mylabel([38;5;124m'[39m[38;5;124mFeature Name[39m[38;5;124m'[39m)
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[15], line 29[0m
+[1;32m     27[0m plt[38;5;241m.[39mlegend()
+[1;32m     28[0m plt[38;5;241m.[39mtitle([38;5;124m'[39m[38;5;124mPredicted vs. Actual Values[39m[38;5;124m'[39m)
+[0;32m---> 29[0m [43mplt[49m[38;5;241;43m.[39;49m[43maspect_equal[49m()
+[1;32m     30[0m plt[38;5;241m.[39mshow()
 
-[0;31mTypeError[0m: only integer scalar arrays can be converted to a scalar index
+[0;31mAttributeError[0m: module 'matplotlib.pyplot' has no attribute 'aspect_equal'
 
