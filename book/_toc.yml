@@ -32,3 +32,4 @@ chapters:
 - file: lecture-26-newton-raphson
 - file: lecture-27-kinetic-mc
 - file: lecture-28-scikit-learn
+- file: lecture-29-nested-sampling
