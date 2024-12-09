@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 29: Nested Sampling
+# Chapter 27: Nested Sampling
 
 In this lecture, we will discuss the nested sampling algorithm. Nested sampling is a method that can be used to estimate the partition function of a chemical system.
 

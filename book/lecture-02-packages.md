@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 2: Essential Python Packages for the Chemical Sciences
+# Chapter 2: Essential Python Packages for the Chemical Sciences
 
 One of the key strengths of Python is its extensive ecosystem of packages that cater to various scientific needs, including those in the chemical sciences. These packages extend Python’s capabilities, allowing you to perform complex calculations, analyze data, and visualize results with ease. While there are many packages available, in this lecture, we will focus on some of the most fundamental ones that you’ll be using frequently throughout this course:
 

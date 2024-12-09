@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 16: Technical Details: Boundary Conditions, Truncation of Interactions, *Etc.*
+# Chapter 16: Technical Details: Boundary Conditions, Truncation of Interactions, *Etc.*
 
 ## Learning Objectives
 

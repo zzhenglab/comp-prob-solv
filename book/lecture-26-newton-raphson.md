@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 26: Newton-Raphson Method
+# Chapter 24: Newton-Raphson Method
 
 ## Learning Objectives
 

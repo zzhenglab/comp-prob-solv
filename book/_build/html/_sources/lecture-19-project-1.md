@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption
+# Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption
 
 ## Introduction
 

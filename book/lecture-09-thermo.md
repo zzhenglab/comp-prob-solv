@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 9: Classical Thermodynamics
+# Chapter 9: Classical Thermodynamics
 
 ## Learning Objectives
 

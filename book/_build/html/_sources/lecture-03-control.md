@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 3: Control Structures in Python
+# Chapter 3: Control Structures in Python
 
 ## Introduction
 

@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 11: Ensembles and Ergodicity
+# Chapter 11: Ensembles and Ergodicity
 
 ## Learning Objectives
 

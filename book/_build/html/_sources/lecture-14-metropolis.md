@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 14: A Basic Monte Carlo Algorithm
+# Chapter 14: A Basic Monte Carlo Algorithm
 
 ## Learning Objectives
 

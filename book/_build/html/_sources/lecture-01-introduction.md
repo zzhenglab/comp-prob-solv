@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 1: Introduction to Python for the Chemical Sciences
+# Chapter 1: Introduction to Python for the Chemical Sciences
 
 Welcome to **Computational Problem Solving in the Chemical Sciences!** This course is designed to equip you with the skills to tackle a wide range of problems in chemistry, chemical engineering, chemical physics, chemical biology, and beyond, using modern numerical tools. While we will primarily focus on Python—a language highly valued in today's workforce—it's important to recognize that there are many other tools at your disposal for solving problems in the chemical sciences.
 

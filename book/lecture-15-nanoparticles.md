@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 15: Nanoparticle Shape and Simulated Annealing
+# Chapter 15: Nanoparticle Shape and Simulated Annealing
 
 ## Learning Objectives
 

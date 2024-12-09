@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 13: Monte Carlo Integration
+# Chapter 13: Monte Carlo Integration
 
 ## Learning Objectives
 

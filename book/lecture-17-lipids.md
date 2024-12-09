@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 17: Lipid Interactions in Membranes and Monte Carlo Simulations
+# Chapter 17: Lipid Interactions in Membranes and Monte Carlo Simulations
 
 ## Learning Objectives
 

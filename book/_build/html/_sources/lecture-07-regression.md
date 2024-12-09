@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 7: Orders of Reaction and Linear Regression Analysis
+# Chapter 7: Orders of Reaction and Linear Regression Analysis
 
 ## Learning Objectives
 

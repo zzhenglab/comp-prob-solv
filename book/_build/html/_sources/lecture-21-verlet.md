@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 21: Verlet Integration
+# Chapter 20: Verlet Integration
 
 ## Learning Objectives
 

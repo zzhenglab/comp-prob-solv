@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 23: Atomic Simulation Environment (ASE)
+# Chapter 22: Atomic Simulation Environment (ASE)
 
 ## Learning Objectives
 

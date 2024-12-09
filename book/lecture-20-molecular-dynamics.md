@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 20: Molecular Dynamics
+# Chapter 19: Molecular Dynamics
 
 ## Learning Objectives
 

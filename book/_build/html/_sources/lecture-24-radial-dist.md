@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 24: Radial Distribution Function
+# Chapter 23: Radial Distribution Function
 
 ## Learning Objectives
 

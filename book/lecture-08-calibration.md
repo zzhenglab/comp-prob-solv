@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 8: Calibration Data, Confidence Intervals, and Correlation Analysis
+# Chapter 8: Calibration Data, Confidence Intervals, and Correlation Analysis
 
 ## Learning Objectives
 
