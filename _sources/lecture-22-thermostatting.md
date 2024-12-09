@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 22: Thermostatting
+# Chapter 21: Thermostatting
 
 ## Learning Objectives
 

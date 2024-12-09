@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 28: `scikit-learn`
+# Chapter 26: `scikit-learn`
 
 ## Learning Objectives
 

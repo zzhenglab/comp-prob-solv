@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 4: Chemical Reaction Equilibria and Roots of Equations
+# Chapter 4: Chemical Reaction Equilibria and Roots of Equations
 
 ## Learning Objectives
 

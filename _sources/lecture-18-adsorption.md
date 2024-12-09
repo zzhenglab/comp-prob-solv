@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 18: Monte Carlo Simulations of Adsorption on Surfaces
+# Chapter 18: Monte Carlo Simulations of Adsorption on Surfaces
 
 ## Learning Objectives
 

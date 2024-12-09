@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 10: Statistical Thermodynamics
+# Chapter 10: Statistical Thermodynamics
 
 ## Learning Objectives
 

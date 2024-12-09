@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 12: The Monte Carlo Method
+# Chapter 12: The Monte Carlo Method
 
 ## Learning Objectives
 

@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 27: Kinetic Monte Carlo
+# Chapter 25: Kinetic Monte Carlo
 
 ## Learning Objectives
 

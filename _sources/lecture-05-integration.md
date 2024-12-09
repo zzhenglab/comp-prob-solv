@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Lecture 5: Chemical Bonding and Numerical Integration
+# Chapter 5: Chemical Bonding and Numerical Integration
 
 The covalent bond plays a central role in the chemical sciences, dictating the chemical and physical properties of organic matter. It also plays an important role in inorganic, solid-state, and materials chemistry. The covalent bond is a quantum mechanical phenomenon where electrons in atomic orbitals are shared between atoms, causing these atomic orbitals to hybridize and form molecular orbitals. The hybridization of atomic orbitals is primarily governed by the energetic similarity of the atomic orbitals involved and their spatial proximity and orientation. In quantum chemistry, the latter is quantified using the overlap integral, which takes the following form:
 
