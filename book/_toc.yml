@@ -6,6 +6,7 @@ root: intro
 parts:
   - caption: Part 1. Introduction to Python Computations
     chapters:
+    - file: lecture-00-test
     - file: lecture-01-introduction
     - file: lecture-02-packages
     - file: lecture-03-control
