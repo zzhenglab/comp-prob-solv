@@ -16,34 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -66,11 +63,10 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-08-calibration';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 9: Classical Thermodynamics" href="lecture-09-thermo.html" />
+    <link rel="next" title="Chapter 9: Classical Thermodynamics" href="lecture-09-thermo.html" />
     <link rel="prev" title="Chapter 7: Orders of Reaction and Linear Regression Analysis" href="lecture-07-regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,8 +82,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -95,6 +102,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -102,8 +110,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -119,8 +127,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -150,17 +157,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Problem Solving in the Chemical Sciences - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -190,36 +201,36 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 4. Introduction to Molecular Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-09-thermo.html">Lecture 9: Classical Thermodynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Lecture 10: Statistical Thermodynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Lecture 11: Ensembles and Ergodicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-09-thermo.html">Chapter 9: Classical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Chapter 10: Statistical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Chapter 11: Ensembles and Ergodicity</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 5. Monte Carlo Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Lecture 12: The Monte Carlo Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Lecture 13: Monte Carlo Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Lecture 14: A Basic Monte Carlo Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Lecture 15: Nanoparticle Shape and Simulated Annealing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Lecture 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Lecture 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Lecture 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Lecture 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Chapter 12: The Monte Carlo Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Chapter 13: Monte Carlo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Chapter 14: A Basic Monte Carlo Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Chapter 15: Nanoparticle Shape and Simulated Annealing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Chapter 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Chapter 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Chapter 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 6. Molecular Dynamics Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Lecture 20: Molecular Dynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Lecture 24: Radial Distribution Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Lecture 25: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Chapter 19: Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Chapter 20: Verlet Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Chapter 21: Thermostatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Chapter 22: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Chapter 23: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Project 2: Molecular Dynamics Simulations of a Polymer Chain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 7. Advanced and Emerging Topics in Computational Chemistry</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Lecture 26: Newton-Raphson Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Lecture 27: Kinetic Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Lecture 28: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Lecture 29: Nested Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Chapter 24: Newton-Raphson Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Chapter 25: Kinetic Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Chapter 26: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Chapter 27: Nested Sampling</a></li>
 </ul>
 
     </div>
@@ -374,16 +385,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -482,23 +501,23 @@
 <p>Let us plot the data and fit a line to it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="k">def</span> <span class="nf">ols_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ols_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">y_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="n">numerator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_mean</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_mean</span><span class="p">))</span>
     <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_mean</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
 
-<span class="k">def</span> <span class="nf">ols_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ols_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">x_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">y_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="n">slope</span> <span class="o">=</span> <span class="n">ols_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">y_mean</span> <span class="o">-</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">x_mean</span>
 
-<span class="k">def</span> <span class="nf">ols</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ols</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">slope</span> <span class="o">=</span> <span class="n">ols_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="n">intercept</span> <span class="o">=</span> <span class="n">ols_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span>
@@ -524,7 +543,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f8534aa0d5bf2308bcacf0053b01fcda72b997befb6184cb5853698ca55de41b.png" src="_images/f8534aa0d5bf2308bcacf0053b01fcda72b997befb6184cb5853698ca55de41b.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span><span class="w"> </span><span class="nf">ols_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>Isn’t it great that we already have OLS functions to do this?</p>
@@ -580,16 +608,11 @@ CI(\hat{\beta}_0) = \hat{\beta}_0 \pm t_{\alpha/2} SE(\hat{\beta}_0)
 <span class="n">residuals</span> <span class="o">=</span> <span class="n">absorbance</span> <span class="o">-</span> <span class="n">line</span>
 
 <span class="c1"># Calculate the sum of the squared residuals</span>
-<span class="k">def</span> <span class="nf">sse</span><span class="p">(</span><span class="n">residuals</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sse</span><span class="p">(</span><span class="n">residuals</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">residuals</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Test the function</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sse</span><span class="p">(</span><span class="n">residuals</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.4647058823529414e-06
 </pre></div>
 </div>
 </div>
@@ -598,16 +621,11 @@ CI(\hat{\beta}_0) = \hat{\beta}_0 \pm t_{\alpha/2} SE(\hat{\beta}_0)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the variance of the residuals</span>
-<span class="k">def</span> <span class="nf">variance</span><span class="p">(</span><span class="n">residuals</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">variance</span><span class="p">(</span><span class="n">residuals</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">sse</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Test the function</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">variance</span><span class="p">(</span><span class="n">residuals</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.488235294117647e-06
 </pre></div>
 </div>
 </div>
@@ -616,7 +634,7 @@ CI(\hat{\beta}_0) = \hat{\beta}_0 \pm t_{\alpha/2} SE(\hat{\beta}_0)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the standard error of the slope</span>
-<span class="k">def</span> <span class="nf">se_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">se_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">):</span>
     <span class="c1"># numerator</span>
     <span class="n">numerator</span> <span class="o">=</span> <span class="n">variance</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
     <span class="c1"># denominator</span>
@@ -628,7 +646,7 @@ CI(\hat{\beta}_0) = \hat{\beta}_0 \pm t_{\alpha/2} SE(\hat{\beta}_0)
 <span class="nb">print</span><span class="p">(</span><span class="n">se_slope</span><span class="p">(</span><span class="n">concentration</span><span class="p">,</span> <span class="n">residuals</span><span class="p">))</span>
 
 <span class="c1"># Calculate the standard error of the intercept</span>
-<span class="k">def</span> <span class="nf">se_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">se_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">):</span>
     <span class="c1"># numerator</span>
     <span class="n">numerator</span> <span class="o">=</span> <span class="n">variance</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
     <span class="c1"># denominator</span>
@@ -641,20 +659,14 @@ CI(\hat{\beta}_0) = \hat{\beta}_0 \pm t_{\alpha/2} SE(\hat{\beta}_0)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0004184333939712645
-0.0001871291025951396
-</pre></div>
-</div>
-</div>
 </div>
 <p>Bringing it all together, we can calculate the confidence intervals for the slope and intercept.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the confidence interval</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">t</span>
 
-<span class="k">def</span> <span class="nf">confidence_interval_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">confidence_level</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">confidence_interval_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">confidence_level</span><span class="p">):</span>
     <span class="c1"># Calculate the standard error of the slope</span>
     <span class="n">se</span> <span class="o">=</span> <span class="n">se_slope</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">)</span>
 
@@ -672,17 +684,12 @@ CI(\hat{\beta}_0) = \hat{\beta}_0 \pm t_{\alpha/2} SE(\hat{\beta}_0)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>slope: 0.008 +/- 0.001
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now for the intercept.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the confidence interval for the intercept</span>
-<span class="k">def</span> <span class="nf">confidence_interval_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">confidence_level</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">confidence_interval_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">confidence_level</span><span class="p">):</span>
     <span class="c1"># Calculate the standard error of the intercept</span>
     <span class="n">se</span> <span class="o">=</span> <span class="n">se_intercept</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">residuals</span><span class="p">)</span>
 
@@ -697,11 +704,6 @@ CI(\hat{\beta}_0) = \hat{\beta}_0 \pm t_{\alpha/2} SE(\hat{\beta}_0)
 
 <span class="c1"># Calculate the 95% confidence interval for the intercept</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;intercept: </span><span class="si">{</span><span class="n">intercept</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">confidence_interval_intercept</span><span class="p">(</span><span class="n">concentration</span><span class="p">,</span><span class="w"> </span><span class="n">residuals</span><span class="p">,</span><span class="w"> </span><span class="mf">0.95</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>intercept: -0.000 +/- 0.001
 </pre></div>
 </div>
 </div>
@@ -764,15 +766,12 @@ r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/4f98a4ea77809b62b6a5147b813478257f0b28dc7114a2ae81147f2b0bbbef1b.png" src="_images/4f98a4ea77809b62b6a5147b813478257f0b28dc7114a2ae81147f2b0bbbef1b.png" />
-</div>
 </div>
 <p>Let us calculate the correlation coefficient for the diacetyl concentration and the absorbance value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the correlation coefficient</span>
-<span class="k">def</span> <span class="nf">correlation_coefficient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">correlation_coefficient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="c1"># Calculate the mean of x and y</span>
     <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">mean_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -793,22 +792,12 @@ r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.857228165610269
-</pre></div>
-</div>
-</div>
 </div>
 <p>Applying this to our data, we get the following correlation coefficient.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the correlation coefficient of the concentration and absorbance data</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">correlation_coefficient</span><span class="p">(</span><span class="n">concentration</span><span class="p">,</span> <span class="n">absorbance</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9962040088352188
 </pre></div>
 </div>
 </div>
@@ -913,7 +902,7 @@ r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 9: Classical Thermodynamics</p>
+        <p class="prev-next-title">Chapter 9: Classical Thermodynamics</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -924,8 +913,7 @@ r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -993,8 +981,8 @@ By Robert B. Wexler
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

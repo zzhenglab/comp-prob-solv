@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lecture 01 — Test: Machine Learning in Chemistry &#8212; Computational Problem Solving in the Chemical Sciences</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-00-test';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 1: Introduction to Python for the Chemical Sciences" href="lecture-01-introduction.html" />
+    <link rel="prev" title="Welcome to Computational Problem Solving in the Chemical Sciences" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Problem Solving in the Chemical Sciences - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Computational Problem Solving in the Chemical Sciences
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1. Introduction to Python Computations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 01 — Test: Machine Learning in Chemistry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-01-introduction.html">Chapter 1: Introduction to Python for the Chemical Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-02-packages.html">Chapter 2: Essential Python Packages for the Chemical Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-03-control.html">Chapter 3: Control Structures in Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2. Numerical Methods in Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Chapter 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Chapter 5: Chemical Bonding and Numerical Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-06-linalg.html">Chapter 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3. Statistics — Regression and Correlation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture-07-regression.html">Chapter 7: Orders of Reaction and Linear Regression Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-08-calibration.html">Chapter 8: Calibration Data, Confidence Intervals, and Correlation Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 4. Introduction to Molecular Simulations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture-09-thermo.html">Chapter 9: Classical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Chapter 10: Statistical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Chapter 11: Ensembles and Ergodicity</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 5. Monte Carlo Simulations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Chapter 12: The Monte Carlo Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Chapter 13: Monte Carlo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Chapter 14: A Basic Monte Carlo Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Chapter 15: Nanoparticle Shape and Simulated Annealing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Chapter 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Chapter 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Chapter 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 6. Molecular Dynamics Simulations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Chapter 19: Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Chapter 20: Verlet Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Chapter 21: Thermostatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Chapter 22: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Chapter 23: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Project 2: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 7. Advanced and Emerging Topics in Computational Chemistry</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Chapter 24: Newton-Raphson Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Chapter 25: Kinetic Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Chapter 26: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Chapter 27: Nested Sampling</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture-00-test.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture-00-test.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 01 — Test: Machine Learning in Chemistry</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">1. Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-why-ml">2. Background: Why ML?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-equation">2.1 A quick equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-mini-table">2.2 A mini table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handson-linear-regression">3. Hands‑on: Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-cell-hidden-input">3.1 Code cell (hidden <em>input</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-cell-with-a-plot-visible">3.2 Code cell with a plot (visible)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">3.3 Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sidebar-notes">4. Sidebar notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-an-image">5. Embedding an image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-output-example">6. Hidden <em>output</em> example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">7. Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-01-test-machine-learning-in-chemistry">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Lecture 01 — Test: Machine Learning in Chemistry</a><a class="headerlink" href="#lecture-01-test-machine-learning-in-chemistry" title="Link to this heading">#</a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#lecture-01-test-machine-learning-in-chemistry" id="id1">Lecture 01 — Test: Machine Learning in Chemistry</a></p>
+<ul>
+<li><p><a class="reference internal" href="#learning-goals" id="id2">1. Learning Goals</a></p></li>
+<li><p><a class="reference internal" href="#background-why-ml" id="id3">2. Background: Why ML?</a></p></li>
+<li><p><a class="reference internal" href="#handson-linear-regression" id="id4">3. Hands‑on: Linear Regression</a></p></li>
+<li><p><a class="reference internal" href="#sidebar-notes" id="id5">4. Sidebar notes</a></p></li>
+<li><p><a class="reference internal" href="#embedding-an-image" id="id6">5. Embedding an image</a></p></li>
+<li><p><a class="reference internal" href="#hidden-output-example" id="id7">6. Hidden <em>output</em> example</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id8">7. Conclusion</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>Welcome to our test lecture showcasing <strong>MyST Markdown</strong> features used in <em>Jupyter Book</em>. The scientific theme is <em>machine learning (ML) in chemistry</em>, but the real goal is to demonstrate every major styling element you might want in your own notes.</p>
+<section id="learning-goals">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">1. Learning Goals</a><a class="headerlink" href="#learning-goals" title="Link to this heading">#</a></h2>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="note admonition">
+<p class="admonition-title">Fun fact</p>
+<p>The term <strong>“chemoinformatics”</strong> was coined in 1998 to describe the emerging intersection of chemistry and information science.</p>
+</div>
+</aside>
+</section>
+<section id="background-why-ml">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">2. Background: Why ML?</a><a class="headerlink" href="#background-why-ml" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><em>“Machine learning is rapidly becoming the third pillar of chemical discovery, alongside theory and experiment.”</em><br />
+— <em>Someone on the Internet</em></p>
+</div></blockquote>
+<section id="a-quick-equation">
+<h3>2.1 A quick equation<a class="headerlink" href="#a-quick-equation" title="Link to this heading">#</a></h3>
+<p>(\hat y = f(\mathbf x;,\theta))</p>
+<p>where $\theta$ are the trainable parameters of our model.</p>
+</section>
+<section id="a-mini-table">
+<h3>2.2 A mini table<a class="headerlink" href="#a-mini-table" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data modality</p></th>
+<th class="head"><p>Common ML task</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Spectra</p></td>
+<td><p>Regression</p></td>
+<td><p>Predict concentration</p></td>
+</tr>
+<tr class="row-odd"><td><p>SMILES string</p></td>
+<td><p>Classification</p></td>
+<td><p>Toxic vs. non‑toxic</p></td>
+</tr>
+<tr class="row-even"><td><p>MD trajectory</p></td>
+<td><p>Clustering</p></td>
+<td><p>Conformational states</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="handson-linear-regression">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">3. Hands‑on: Linear Regression</a><a class="headerlink" href="#handson-linear-regression" title="Link to this heading">#</a></h2>
+<section id="code-cell-hidden-input">
+<h3>3.1 Code cell (hidden <em>input</em>)<a class="headerlink" href="#code-cell-hidden-input" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">2.0</span><span class="p">],[</span><span class="mf">3.0</span><span class="p">],[</span><span class="mf">4.0</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Slope = </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Intercept = </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">2.0</span><span class="p">],[</span><span class="mf">3.0</span><span class="p">],[</span><span class="mf">4.0</span><span class="p">]])</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-cell-with-a-plot-visible">
+<h3>3.2 Code cell with a plot (visible)<a class="headerlink" href="#code-cell-with-a-plot-visible" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Feature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise">
+<h3>3.3 Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="sidebar-notes">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">4. Sidebar notes</a><a class="headerlink" href="#sidebar-notes" title="Link to this heading">#</a></h2>
+<p>:::{sidebar} Key terms <strong>Descriptor</strong> – a numerical representation of molecular structure.</p>
+<p><strong>Overfitting</strong> – memorizing noise instead of learning signal. :::</p>
+</section>
+<section id="embedding-an-image">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">5. Embedding an image</a><a class="headerlink" href="#embedding-an-image" title="Link to this heading">#</a></h2>
+</section>
+<section id="hidden-output-example">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">6. Hidden <em>output</em> example</a><a class="headerlink" href="#hidden-output-example" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This cell&#39;s printout will be hidden in the final book</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training complete! Accuracy = 0.95&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">7. Conclusion</a><a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<p><em>End of sample file.</em></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to Computational Problem Solving in the Chemical Sciences</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lecture-01-introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 1: Introduction to Python for the Chemical Sciences</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">1. Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-why-ml">2. Background: Why ML?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-equation">2.1 A quick equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-mini-table">2.2 A mini table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handson-linear-regression">3. Hands‑on: Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-cell-hidden-input">3.1 Code cell (hidden <em>input</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-cell-with-a-plot-visible">3.2 Code cell with a plot (visible)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">3.3 Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sidebar-notes">4. Sidebar notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-an-image">5. Embedding an image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-output-example">6. Hidden <em>output</em> example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">7. Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert B. Wexler
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

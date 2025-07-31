@@ -16,34 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -66,11 +63,10 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture-18-adsorption';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption" href="lecture-19-project-1.html" />
+    <link rel="next" title="Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption" href="lecture-19-project-1.html" />
     <link rel="prev" title="Chapter 17: Lipid Interactions in Membranes and Monte Carlo Simulations" href="lecture-17-lipids.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,8 +82,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -95,6 +102,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -102,8 +110,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -119,8 +127,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -150,17 +157,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Problem Solving in the Chemical Sciences - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -203,23 +214,23 @@
 <li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Chapter 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Chapter 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Chapter 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 6. Molecular Dynamics Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Lecture 20: Molecular Dynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Lecture 24: Radial Distribution Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Lecture 25: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Chapter 19: Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Chapter 20: Verlet Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Chapter 21: Thermostatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Chapter 22: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Chapter 23: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Project 2: Molecular Dynamics Simulations of a Polymer Chain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 7. Advanced and Emerging Topics in Computational Chemistry</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Lecture 26: Newton-Raphson Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Lecture 27: Kinetic Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Lecture 28: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Lecture 29: Nested Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Chapter 24: Newton-Raphson Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Chapter 25: Kinetic Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Chapter 26: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Chapter 27: Nested Sampling</a></li>
 </ul>
 
     </div>
@@ -374,16 +385,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -487,14 +506,14 @@
 <h3>Ideal Sorbent<a class="headerlink" href="#ideal-sorbent" title="Link to this heading">#</a></h3>
 <p>In this model system, <span class="math notranslate nohighlight">\(N_s\)</span> sorbent particles interact with <span class="math notranslate nohighlight">\(N_a\)</span> adsorption sites on a solid surface but do not interact with each other.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Define grid size</span>
 <span class="n">gridsize</span> <span class="o">=</span> <span class="mi">4</span>
@@ -539,7 +558,16 @@
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/c951f4278a572b8a1edb3fbaee963cd78cba5ce6a39304f2c297fd8565dd0500.png" src="_images/c951f4278a572b8a1edb3fbaee963cd78cba5ce6a39304f2c297fd8565dd0500.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Define grid size</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <aside class="margin sidebar">
@@ -565,14 +593,14 @@
 <h3>Sorbent with Mean-Field Interactions<a class="headerlink" href="#sorbent-with-mean-field-interactions" title="Link to this heading">#</a></h3>
 <p>In a more realistic model, we can introduce mean-field interactions between the sorbent particles. The mean-field interaction energy between one sorbent particle and all other sorbent particles can be set to a constant value. This interaction energy can be used to model the attractive or repulsive interactions between the sorbent particles.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Define grid size</span>
 <span class="n">gridsize</span> <span class="o">=</span> <span class="mi">4</span>
@@ -621,9 +649,6 @@
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/e52ce8e553c72c3316572b26883f7c4ab3b532b097ff4390c9cebf6bd0ab6a1e.png" src="_images/e52ce8e553c72c3316572b26883f7c4ab3b532b097ff4390c9cebf6bd0ab6a1e.png" />
-</div>
 </div>
 <p>The figure above shows the same sorbent system as before, but now with interactions between the sorbent particles represented by red arrows. In a mean-field model, these interactions are replaced by a constant mean-field interaction energy.</p>
 </section>
@@ -677,7 +702,7 @@ E(N) = N \epsilon
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the interaction energy between the sorbent particles and the surface. Let’s define the energy function for the system.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">energy_ideal_sorbent</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">energy_ideal_sorbent</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the energy of the ideal sorbent system.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">N</span> <span class="o">*</span> <span class="n">epsilon</span>
 </pre></div>
@@ -690,11 +715,11 @@ E(N) = N \epsilon
 <p>Now, let’s implement the grand canonical Monte Carlo simulation for the ideal sorbent system.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">grand_canonical_mc_ideal_sorbent</span><span class="p">(</span><span class="n">N_a</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">grand_canonical_mc_ideal_sorbent</span><span class="p">(</span><span class="n">N_a</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform grand canonical Monte Carlo simulation for ideal sorbent particles.&quot;&quot;&quot;</span>
     <span class="c1"># Initialize the system</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">0</span>
@@ -732,7 +757,7 @@ E(N) = N \epsilon
 <p>Let’s run the grand canonical Monte Carlo simulation for the ideal sorbent system and plot the adsorption isotherm.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Define system parameters</span>
 <span class="n">N_a</span> <span class="o">=</span> <span class="mi">16</span>
@@ -757,9 +782,6 @@ E(N) = N \epsilon
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/5ac31819b6e28991376042e569e5582f1fc9cfbc82d3ef1a91ae36f7ab29c674.png" src="_images/5ac31819b6e28991376042e569e5582f1fc9cfbc82d3ef1a91ae36f7ab29c674.png" />
-</div>
 </div>
 <p>The plot above shows the adsorption isotherm for the ideal sorbent system obtained from the grand canonical Monte Carlo simulation (solid line) and the analytical solution (dashed line). The coverage of the surface increases with the chemical potential, as expected because the sorbent particles are more likely to adsorb on the surface at higher chemical potentials.</p>
 </section>
@@ -777,7 +799,7 @@ E(N) = N \epsilon + N_a \theta z \epsilon_{\rm int}
 <p>where <span class="math notranslate nohighlight">\(z\)</span> is the coordination number of the lattice, and <span class="math notranslate nohighlight">\(\epsilon_{\rm int}\)</span> is the mean-field interaction energy between the sorbent particles. Let’s define the energy function for the system with mean-field interactions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">energy_mean_field_sorbent</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N_a</span><span class="p">,</span> <span class="n">coverage</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">epsilon_int</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">energy_mean_field_sorbent</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N_a</span><span class="p">,</span> <span class="n">coverage</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">epsilon_int</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the energy of the system with mean-field interactions.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">N</span> <span class="o">*</span> <span class="n">epsilon</span> <span class="o">+</span> <span class="n">N_a</span> <span class="o">*</span> <span class="n">coverage</span> <span class="o">*</span> <span class="n">z</span> <span class="o">*</span> <span class="n">epsilon_int</span>
 </pre></div>
@@ -796,7 +818,7 @@ E(N) = N \epsilon + N_a \theta z \epsilon_{\rm int}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">grand_canonical_mc_mean_field_sorbent</span><span class="p">(</span><span class="n">N_a</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">epsilon_int</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">grand_canonical_mc_mean_field_sorbent</span><span class="p">(</span><span class="n">N_a</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">epsilon_int</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform grand canonical Monte Carlo simulation for sorbent particles with mean-field interactions.&quot;&quot;&quot;</span>
     <span class="c1"># Initialize the system</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">0</span>
@@ -863,9 +885,6 @@ E(N) = N \epsilon + N_a \theta z \epsilon_{\rm int}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/3d196c732c0aa3d8aaa36490d6acfee50fde3b1dd4138e8b21c4c89f4ae49cf9.png" src="_images/3d196c732c0aa3d8aaa36490d6acfee50fde3b1dd4138e8b21c4c89f4ae49cf9.png" />
-</div>
 </div>
 <p>The plot above shows the adsorption isotherm for the ideal sorbent system and the system with mean-field interactions obtained from the grand canonical Monte Carlo simulation. The dashed lines indicate the critical chemical potentials where the coverage of the surface is equal to 0.5.</p>
 </section>
@@ -924,7 +943,7 @@ E(N) = N \epsilon + N_a \theta z \epsilon_{\rm int}
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</p>
+        <p class="prev-next-title">Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -935,8 +954,7 @@ E(N) = N \epsilon + N_a \theta z \epsilon_{\rm int}
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1024,8 +1042,8 @@ By Robert B. Wexler
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

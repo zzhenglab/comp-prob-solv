@@ -1,68 +1,95 @@
 Traceback (most recent call last):
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\jupyter_core\utils\__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1314, in execute
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\nbclient\client.py", line 1319, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\jupyter_core\utils\__init__.py", line 158, in wrapped
     return loop.run_until_complete(inner)
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+  File "C:\Users\52377\.conda\envs\chem508\lib\asyncio\base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 709, in async_execute
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\nbclient\client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Run the KMC simulation
-for step in range(num_steps):
-    # Determine possible moves
-    possible_moves = []
-    for offset in neighbor_offsets:
+import matplotlib.pyplot as plt
+import numpy as np
 
-        # Calculate the neighbor position (wrap around for periodic boundary conditions)
-        neighbor = [
-            (vacancy_position[i] + offset[i]) % lattice_size
-            for i in range(3)
-        ]
-        possible_moves.append(neighbor)
+def add_double_arrow(x, y_min, y_max, arrow_length_offset=0, head_width=0.0125, head_length=0.05, color='black'):
+    """
+    Add a double-sided arrow to a plot.
+
+    Parameters:
+        x (float): The x-coordinate of the arrow base.
+        y_min (float): The starting y-coordinate (bottom) of the arrow.
+        y_max (float): The ending y-coordinate (top) of the arrow.
+        arrow_length_offset (float): Adjustment to the arrow length (positive to make shorter).
+        head_width (float): Width of the arrowhead.
+        head_length (float): Length of the arrowhead.
+        color (str): Color of the arrows.
+    """
+    arrow_length = y_max - y_min - arrow_length_offset
     
-    # Assign probabilities to each move (uniform here)
-    probabilities = [rate_constant for _ in possible_moves]
-    probabilities /= np.sum(probabilities)
+    # Downward arrow
+    plt.arrow(x, y_min, 0, arrow_length, head_width=head_width, head_length=head_length, fc=color, ec=color)
     
-    # Select the move based on probabilities
-    chosen_move_idx = np.random.choice(len(possible_moves), p=probabilities)
-    print(chosen_move_idx)
-    print(posible_moves)
-    new_position = possible_moves[chosen_move_idx]
-    print(new_position)
-    break
-    
-    # Update the lattice and the vacancy position
-    lattice[tuple(vacancy_position)] = 0
-    lattice[tuple(new_position)] = 1
-    vacancy_position = new_position
-    vacancy_positions.append(tuple(vacancy_position))
-    
-    # Update time
-    total_rate = np.sum(probabilities) * attempt_frequency
-    time += -np.log(np.random.random()) / total_rate
+    # Upward arrow
+    plt.arrow(x, y_min + arrow_length, 0, -arrow_length + arrow_length_offset, head_width=head_width, head_length=head_length, fc=color, ec=color)
+
+# Generate data for the potential energy curve
+x = np.linspace(0, 1, 100)
+y = -np.sin(2 * np.pi * x) ** 2 + x
+
+# Define key points for the ground, activated, and final states
+x_gs, x_as, x_fs = 0.25, 0.5, 0.75
+y_gs = np.min(y)
+y_as = np.max(y[y.shape[0] // 4:3 * y.shape[0] // 4])
+y_fs = np.min(y[y.shape[0] // 2:])
+
+# Plot the potential energy curve
+plt.figure(figsize=(8, 6))
+plt.plot(x, y, label='Potential Energy Curve')
+plt.xlabel('Reaction Coordinate')
+plt.ylabel('Potential Energy')
+plt.xlim(0.2, 0.8)
+plt.xticks([x_gs, x_as, x_fs], ['Ground State', 'Activated State', 'Final State'])
+plt.yticks([y_gs, y_as, y_fs], ['$E_\\text{gs}$', '$E_\\text{as} = E_\\text{gs} + E_a$', '$E_\\text{fs} = E_\\text{gs} + \\Delta E$'])
+
+# Add dashed lines for energy levels
+plt.axhline(y=y_gs, color='C1', linestyle='--', label='Ground State Level')
+plt.axhline(y=y_fs, xmin=0.75, xmax=1, color='C2', linestyle='--', label='Final State Level')
+plt.axhline(y=y_as, xmin=0.375, xmax=0.625, color='C3', linestyle='--', label='Activated State Level')
+
+# Add double-sided arrows for activation energy and reaction energy
+add_double_arrow(x=0.5, y_min=y_gs, y_max=y_as, arrow_length_offset=0.05)
+add_double_arrow(x=0.75, y_min=y_gs, y_max=y_fs, arrow_length_offset=0.05)
+
+# Add text annotations for energy levels
+plt.text(0.5, (y_gs + y_as) / 2, '$E_a$', ha='center', va='center', bbox=dict(facecolor='white', edgecolor='white'))
+plt.text(0.75, (y_gs + y_fs) / 2, '$\\Delta E$', ha='center', va='center', bbox=dict(facecolor='white', edgecolor='white'))
+
+plt.legend()
+plt.tight_layout()
+plt.show()
 ------------------
 
------ stdout -----
-1
-------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[10], line 21[0m
-[1;32m     19[0m chosen_move_idx [38;5;241m=[39m np[38;5;241m.[39mrandom[38;5;241m.[39mchoice([38;5;28mlen[39m(possible_moves), p[38;5;241m=[39mprobabilities)
-[1;32m     20[0m [38;5;28mprint[39m(chosen_move_idx)
-[0;32m---> 21[0m [38;5;28mprint[39m([43mposible_moves[49m)
-[1;32m     22[0m new_position [38;5;241m=[39m possible_moves[chosen_move_idx]
-[1;32m     23[0m [38;5;28mprint[39m(new_position)
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[1], line 1[0m
+[1;32m----> 1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mplt[39;00m
+[0;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
+[0;32m      4[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21madd_double_arrow[39m(x, y_min, y_max, arrow_length_offset[38;5;241m=[39m[38;5;241m0[39m, head_width[38;5;241m=[39m[38;5;241m0.0125[39m, head_length[38;5;241m=[39m[38;5;241m0.05[39m, color[38;5;241m=[39m[38;5;124m'[39m[38;5;124mblack[39m[38;5;124m'[39m):
 
-[0;31mNameError[0m: name 'posible_moves' is not defined
+[1;31mModuleNotFoundError[0m: No module named 'matplotlib'
 

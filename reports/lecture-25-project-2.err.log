@@ -1,72 +1,70 @@
 Traceback (most recent call last):
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\jupyter_core\utils\__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1314, in execute
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\nbclient\client.py", line 1319, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\jupyter_core\utils\__init__.py", line 158, in wrapped
     return loop.run_until_complete(inner)
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+  File "C:\Users\52377\.conda\envs\chem508\lib\asyncio\base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 709, in async_execute
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\nbclient\client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/Users/robertwexler/miniconda3/envs/comp-prob-solv/lib/python3.9/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+  File "C:\Users\52377\.conda\envs\chem508\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Arrays to store properties
-temperatures = np.linspace(0.1, 1.0, 10)
-Rg_values = []
-Ree_values = []
-potential_energies = []
+import matplotlib.pyplot as plt
+import numpy as np
 
-for T in temperatures:
-    # Set target temperature
-    target_temperature = T
-    # (Re-initialize positions and velocities)
-    # (Run simulation)
-    # Compute properties
-    Rg = calculate_radius_of_gyration(positions)
-    Ree = calculate_end_to_end_distance(positions)
-    Rg_values.append(Rg)
-    Ree_values.append(Ree)
-    potential_energies.append(np.mean(potential_energy_array))
+# Harmonic bond potential
+def harmonic_bond_potential(r, k, r0):
+    return 0.5 * k * (r - r0)**2
 
-# Plotting
-plt.figure()
-plt.plot(temperatures, Rg_values, label='Radius of Gyration')
-plt.xlabel('Temperature')
-plt.ylabel('Radius of Gyration')
-plt.title('Radius of Gyration vs Temperature')
-plt.legend()
-plt.show()
+# Harmonic bond force
+def harmonic_bond_force(r, k, r0):
+    return -k * (r - r0)
 
-plt.figure()
-plt.plot(temperatures, Ree_values, label='End-to-End Distance')
-plt.xlabel('Temperature')
-plt.ylabel('End-to-End Distance')
-plt.title('End-to-End Distance vs Temperature')
-plt.legend()
-plt.show()
+# Parameters
+k = 1.0
+r0 = 1.0
+r_values = np.linspace(0.5, 1.5, 100)
+U_values = harmonic_bond_potential(r_values, k, r0)
+F_values = harmonic_bond_force(r_values, k, r0)
 
-plt.figure()
-plt.plot(temperatures, potential_energies, label='Potential Energy')
-plt.xlabel('Temperature')
-plt.ylabel('Potential Energy')
-plt.title('Potential Energy vs Temperature')
-plt.legend()
+# Plot
+fig, axs = plt.subplots(1, 2)
+axs[0].plot(r_values, U_values)
+axs[0].axvline(x=r0, color='r', linestyle='--', label='Equilibrium Length')
+axs[0].set_xlabel('$r$')
+axs[0].set_ylabel('$U_{\text{bond}}(r)$')
+axs[0].set_title('Harmonic Bond Potential')
+axs[0].legend()
+axs[1].plot(r_values, F_values)
+axs[1].axvline(x=r0, color='r', linestyle='--', label='Equilibrium Length')
+axs[1].set_xlabel('$r$')
+axs[1].set_ylabel('$F_{\text{bond}}(r)$')
+axs[1].set_title('Harmonic Bond Force')
+axs[1].legend()
+plt.tight_layout()
 plt.show()
 ------------------
 
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[1], line 2[0m
-[1;32m      1[0m [38;5;66;03m# Arrays to store properties[39;00m
-[0;32m----> 2[0m temperatures [38;5;241m=[39m [43mnp[49m[38;5;241m.[39mlinspace([38;5;241m0.1[39m, [38;5;241m1.0[39m, [38;5;241m10[39m)
-[1;32m      3[0m Rg_values [38;5;241m=[39m []
-[1;32m      4[0m Ree_values [38;5;241m=[39m []
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[1], line 1[0m
+[1;32m----> 1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mplt[39;00m
+[0;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
+[0;32m      4[0m [38;5;66;03m# Harmonic bond potential[39;00m
 
-[0;31mNameError[0m: name 'np' is not defined
+[1;31mModuleNotFoundError[0m: No module named 'matplotlib'
 

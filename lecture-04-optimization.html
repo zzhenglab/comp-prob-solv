@@ -16,34 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -70,7 +67,6 @@
     <link rel="prev" title="Chapter 3: Control Structures in Python" href="lecture-03-control.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,8 +82,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -95,6 +102,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -102,8 +110,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -119,8 +127,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -150,17 +157,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Problem Solving in the Chemical Sciences - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -185,41 +196,41 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3. Statistics — Regression and Correlation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-07-regression.html">Lecture 7: Orders of Reaction and Linear Regression Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-08-calibration.html">Lecture 8: Calibration Data, Confidence Intervals, and Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-07-regression.html">Chapter 7: Orders of Reaction and Linear Regression Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-08-calibration.html">Chapter 8: Calibration Data, Confidence Intervals, and Correlation Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 4. Introduction to Molecular Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-09-thermo.html">Lecture 9: Classical Thermodynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Lecture 10: Statistical Thermodynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Lecture 11: Ensembles and Ergodicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-09-thermo.html">Chapter 9: Classical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Chapter 10: Statistical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Chapter 11: Ensembles and Ergodicity</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 5. Monte Carlo Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Lecture 12: The Monte Carlo Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Lecture 13: Monte Carlo Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Lecture 14: A Basic Monte Carlo Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Lecture 15: Nanoparticle Shape and Simulated Annealing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Lecture 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Lecture 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Lecture 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Lecture 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Chapter 12: The Monte Carlo Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Chapter 13: Monte Carlo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Chapter 14: A Basic Monte Carlo Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Chapter 15: Nanoparticle Shape and Simulated Annealing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Chapter 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Chapter 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Chapter 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 6. Molecular Dynamics Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Lecture 20: Molecular Dynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Lecture 24: Radial Distribution Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Lecture 25: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Chapter 19: Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Chapter 20: Verlet Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Chapter 21: Thermostatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Chapter 22: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Chapter 23: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Project 2: Molecular Dynamics Simulations of a Polymer Chain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 7. Advanced and Emerging Topics in Computational Chemistry</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Lecture 26: Newton-Raphson Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Lecture 27: Kinetic Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Lecture 28: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Lecture 29: Nested Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Chapter 24: Newton-Raphson Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Chapter 25: Kinetic Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Chapter 26: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Chapter 27: Nested Sampling</a></li>
 </ul>
 
     </div>
@@ -374,16 +385,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -547,11 +566,11 @@ x = \frac{3 \pm \sqrt{(-3)^2 - 4 \cdot 1 \cdot 2}}{2 \cdot 1} = 2, 1
 <p>Before we find these roots numerically, let’s visualize the quadratic function <span class="math notranslate nohighlight">\(f(x) = x^2 - 3x + 2\)</span> using Matplotlib to see where the roots lie. The roots are the points where the curve intersects the x-axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Define the quadratic function</span>
-<span class="k">def</span> <span class="nf">quadratic_equation</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">quadratic_equation</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
 
 <span class="c1"># Generate x values</span>
@@ -576,16 +595,25 @@ x = \frac{3 \pm \sqrt{(-3)^2 - 4 \cdot 1 \cdot 2}}{2 \cdot 1} = 2, 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2ec6e681a30a07ec8da7f2c5da94bbf899fc686a96b2503fdfd936f15978d370.png" src="_images/2ec6e681a30a07ec8da7f2c5da94bbf899fc686a96b2503fdfd936f15978d370.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Define the quadratic function</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>Now, let’s find these roots numerically using Python’s <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> function. We’ll approach this by minimizing the absolute value of the quadratic expression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 
 <span class="c1"># Define the objective function, which is the absolute value of the quadratic equation</span>
-<span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">objective_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Perform the minimization starting from an initial guess of x = 0</span>
@@ -597,19 +625,6 @@ x = \frac{3 \pm \sqrt{(-3)^2 - 4 \cdot 1 \cdot 2}}{2 \cdot 1} = 2, 1
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       message: Optimization terminated successfully.
-       success: True
-        status: 0
-           fun: 8.881784197001252e-16
-             x: [ 1.000e+00]
-           nit: 31
-          nfev: 62
- final_simplex: (array([[ 1.000e+00],
-                       [ 1.000e+00]]), array([ 8.882e-16,  9.766e-07]))
 </pre></div>
 </div>
 </div>
@@ -631,11 +646,6 @@ x = \frac{3 \pm \sqrt{(-3)^2 - 4 \cdot 1 \cdot 2}}{2 \cdot 1} = 2, 1
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Observe how it converges to a different root</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.000000381469727
 </pre></div>
 </div>
 </div>
@@ -677,7 +687,7 @@ K_P = \frac{4x^3}{(2 - 2x)^2 (2 + x)}
 <p>First, we define the objective function representing the equilibrium equation to be minimized:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">K_P</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">objective_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">K_P</span><span class="p">):</span>
     <span class="n">equilibrium_equation</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">K_P</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
     <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">equilibrium_equation</span><span class="p">)</span>
 </pre></div>
@@ -704,9 +714,6 @@ K_P = \frac{4x^3}{(2 - 2x)^2 (2 + x)}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/4d2b5caf853336afdf1b1e488cb8419176a01beefeb932fdcfd44f2fc254364b.png" src="_images/4d2b5caf853336afdf1b1e488cb8419176a01beefeb932fdcfd44f2fc254364b.png" />
-</div>
 </div>
 <div class="warning admonition">
 <p class="admonition-title">Wait, What’s the Expected Solution?</p>
@@ -725,11 +732,6 @@ K_P = \frac{4x^3}{(2 - 2x)^2 (2 + x)}
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.0f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># Convert the result to percentage</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25%
 </pre></div>
 </div>
 </div>
@@ -754,15 +756,6 @@ K_P = \frac{4x^3}{(2 - 2x)^2 (2 + x)}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25%
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/n9/q030dl3x6qgfqffys4wc7d4c0000gn/T/ipykernel_22255/1733916972.py:1: OptimizeWarning: Initial guess is not within the specified bounds
-  result = minimize(
-</pre></div>
-</div>
-</div>
 </div>
 <p>The warning indicates that the initial guess is outside the specified bounds. However, the method still converges to the correct solution, which is 78% reaction progress.</p>
 </section>
@@ -777,10 +770,10 @@ x^3 - 6x^2 + 11x - 6 = 0
 <p>This equation has three real roots. We will use different initial guesses to find these roots using the <code class="docutils literal notranslate"><span class="pre">minimize</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 
 <span class="c1"># Define the cubic equation</span>
-<span class="k">def</span> <span class="nf">cubic_eq</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cubic_eq</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">11</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span>
 
 <span class="c1"># Root near x = 1</span>
@@ -809,13 +802,6 @@ x^3 - 6x^2 + 11x - 6 = 0
     <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Root near 3:&quot;</span><span class="p">,</span> <span class="n">high_root_guess</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Should be close to 3</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Root near 1: 1.0000003051757815
-Root near 2: 2.0000003433227533
-Root near 3: 3.000000019073487
 </pre></div>
 </div>
 </div>
@@ -886,8 +872,7 @@ Root near 3: 3.000000019073487
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -957,8 +942,8 @@ By Robert B. Wexler
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
