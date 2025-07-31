@@ -16,34 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="prev" title="Chapter 1: Introduction to Python for the Chemical Sciences" href="lecture-01-introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,17 +155,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Problem Solving in the Chemical Sciences - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -177,47 +188,47 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2. Numerical Methods in Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Lecture 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Lecture 5: Chemical Bonding and Numerical Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-06-linalg.html">Lecture 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-04-optimization.html">Chapter 4: Chemical Reaction Equilibria and Roots of Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-05-integration.html">Chapter 5: Chemical Bonding and Numerical Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-06-linalg.html">Chapter 6: Balancing Chemical Equations and Systems of Linear Algebraic Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3. Statistics — Regression and Correlation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-07-regression.html">Lecture 7: Orders of Reaction and Linear Regression Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-08-calibration.html">Lecture 8: Calibration Data, Confidence Intervals, and Correlation Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-07-regression.html">Chapter 7: Orders of Reaction and Linear Regression Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-08-calibration.html">Chapter 8: Calibration Data, Confidence Intervals, and Correlation Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 4. Introduction to Molecular Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-09-thermo.html">Lecture 9: Classical Thermodynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Lecture 10: Statistical Thermodynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Lecture 11: Ensembles and Ergodicity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-09-thermo.html">Chapter 9: Classical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-10-stat-thermo.html">Chapter 10: Statistical Thermodynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-11-ensembles.html">Chapter 11: Ensembles and Ergodicity</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 5. Monte Carlo Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Lecture 12: The Monte Carlo Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Lecture 13: Monte Carlo Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Lecture 14: A Basic Monte Carlo Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Lecture 15: Nanoparticle Shape and Simulated Annealing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Lecture 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Lecture 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Lecture 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Lecture 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-12-monte-carlo.html">Chapter 12: The Monte Carlo Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-13-mc-integration.html">Chapter 13: Monte Carlo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-14-metropolis.html">Chapter 14: A Basic Monte Carlo Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-15-nanoparticles.html">Chapter 15: Nanoparticle Shape and Simulated Annealing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Chapter 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-17-lipids.html">Chapter 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Chapter 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 6. Molecular Dynamics Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Lecture 20: Molecular Dynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Lecture 24: Radial Distribution Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Lecture 25: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Chapter 19: Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Chapter 20: Verlet Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Chapter 21: Thermostatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Chapter 22: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Chapter 23: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Project 2: Molecular Dynamics Simulations of a Polymer Chain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 7. Advanced and Emerging Topics in Computational Chemistry</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Lecture 26: Newton-Raphson Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Lecture 27: Kinetic Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Lecture 28: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Lecture 29: Nested Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Chapter 24: Newton-Raphson Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Chapter 25: Kinetic Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Chapter 26: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Chapter 27: Nested Sampling</a></li>
 </ul>
 
     </div>
@@ -372,16 +383,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -514,7 +533,7 @@
 <p>Vectors, which play a vital role in representing physical quantities in chemistry, can be created easily with NumPy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Create a 3D vector</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -528,8 +547,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 2 3]
-&lt;class &#39;numpy.ndarray&#39;&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Create a 3D vector</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
 </pre></div>
 </div>
 </div>
@@ -541,12 +566,6 @@
 <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 2]
- [3 4]]
 </pre></div>
 </div>
 </div>
@@ -580,11 +599,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 5 11]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Reminder</p>
@@ -603,11 +617,6 @@
 <span class="n">dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">dot_product</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32
 </pre></div>
 </div>
 </div>
@@ -638,15 +647,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>det(M) = -2.0000000000000004
-M_inv = 
-[[-2.   1. ]
- [ 1.5 -0.5]]
-eigenvalues = [-0.37228132  5.37228132]
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="generating-arrays-with-specific-properties">
@@ -665,19 +665,6 @@ eigenvalues = [-0.37228132  5.37228132]
 <span class="c1"># Create a 3x3 array of random numbers</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0. 0. 0.]
- [0. 0. 0.]
- [0. 0. 0.]]
-[[1. 1. 1.]
- [1. 1. 1.]
- [1. 1. 1.]]
-[[0.01010901 0.4801873  0.46680214]
- [0.7746669  0.2927538  0.79827382]
- [0.62481479 0.23189932 0.01202236]]
 </pre></div>
 </div>
 </div>
@@ -741,8 +728,8 @@ Create a 3x3 identity matrix.</p>
 <p>Scatter plots are ideal for visualizing relationships between two variables. Here’s how you can create a scatter plot using Matplotlib:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Create random data</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -756,9 +743,6 @@ Create a 3x3 identity matrix.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/849dc547f89ab2cda5a53e5d3f8176b495e87aa945d2dd2590e7fb1d7e6559c2.png" src="_images/849dc547f89ab2cda5a53e5d3f8176b495e87aa945d2dd2590e7fb1d7e6559c2.png" />
 </div>
 </div>
 </section>
@@ -780,9 +764,6 @@ Create a 3x3 identity matrix.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/338ca04d02a853853fc70a57b8165833ec46b50aae9dbe252f7ca032495eb801.png" src="_images/338ca04d02a853853fc70a57b8165833ec46b50aae9dbe252f7ca032495eb801.png" />
-</div>
 </div>
 </section>
 <section id="histograms">
@@ -801,9 +782,6 @@ Create a 3x3 identity matrix.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/84871a58eeb9d09474bdb1da25eb58e4faf810d995a4d8a8d4d491b574b2d012.png" src="_images/84871a58eeb9d09474bdb1da25eb58e4faf810d995a4d8a8d4d491b574b2d012.png" />
 </div>
 </div>
 </section>
@@ -827,9 +805,6 @@ Create a 3x3 identity matrix.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/fac527359b1c219580be4a621ae148cbd9e7b34457a4b2acf456e393300783c4.png" src="_images/fac527359b1c219580be4a621ae148cbd9e7b34457a4b2acf456e393300783c4.png" />
 </div>
 </div>
 <p>In this example, we’ve customized the plot by changing the line color to red, using a dashed line style, and adding circular markers. We also included a legend, labeled the axes, added a title, and enabled grid lines for better readability.</p>
@@ -875,23 +850,13 @@ Create a histogram of random data with customizations, including changing the co
 <p>Here’s how you can create a <code class="docutils literal notranslate"><span class="pre">Series</span></code> from a NumPy array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Create a Series from a NumPy array</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   -0.711844
-1    0.842310
-2   -0.106704
-3    2.633209
-4    0.293875
-dtype: float64
 </pre></div>
 </div>
 </div>
@@ -920,16 +885,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          A         B
-0 -0.384993  0.977632
-1 -0.034570  0.024457
-2 -0.570536  0.967046
-3  0.226702  0.844619
-4  0.353898  0.678614
-</pre></div>
-</div>
-</div>
 </div>
 <p>In this <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, the index column functions like the row numbers in Excel, and each key in the dictionary becomes a column. The <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> provides the power to manipulate and analyze your data more efficiently than traditional spreadsheet software.</p>
 </section>
@@ -942,24 +897,6 @@ dtype: float64
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Element  Per Mole  Per Atom Per Mole Unit Per Atom Unit
-0    Actinium    410.00      4.25        kJ/mol       eV/atom
-1    Aluminum    327.00      3.39        kJ/mol       eV/atom
-2   Americium    264.00      2.73        kJ/mol       eV/atom
-3    Antimony    265.00      2.75        kJ/mol       eV/atom
-4       Argon      7.74      0.08        kJ/mol       eV/atom
-..        ...       ...       ...           ...           ...
-85      Xenon     15.90      0.16        kJ/mol       eV/atom
-86  Ytterbium    154.00      1.60        kJ/mol       eV/atom
-87    Yttrium    422.00      4.37        kJ/mol       eV/atom
-88       Zinc    130.00      1.35        kJ/mol       eV/atom
-89  Zirconium    603.00      6.25        kJ/mol       eV/atom
-
-[90 rows x 5 columns]
 </pre></div>
 </div>
 </div>
@@ -991,16 +928,6 @@ dtype: float64
 <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Per Mole&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Per Mole&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">filtered_df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Element  Per Mole  Per Atom Per Mole Unit Per Atom Unit
-15     Cesium      77.6     0.804        kJ/mol       eV/atom
-24   Fluorine      81.0     0.840        kJ/mol       eV/atom
-42    Mercury      65.0     0.670        kJ/mol       eV/atom
-57  Potassium      90.1     0.934        kJ/mol       eV/atom
-63   Rubidium      82.2     0.852        kJ/mol       eV/atom
 </pre></div>
 </div>
 </div>
@@ -1097,8 +1024,7 @@ Filter a <code class="docutils literal notranslate"><span class="pre">DataFrame<
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1194,8 +1120,8 @@ By Robert B. Wexler
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

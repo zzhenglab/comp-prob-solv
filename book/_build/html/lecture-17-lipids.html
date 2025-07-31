@@ -16,34 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=564be945" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -70,7 +67,6 @@
     <link rel="prev" title="Chapter 16: Technical Details: Boundary Conditions, Truncation of Interactions, Etc." href="lecture-16-tech-details.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,8 +82,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -95,6 +102,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -102,8 +110,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -119,8 +127,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -150,17 +157,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Computational Problem Solving in the Chemical Sciences - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Problem Solving in the Chemical Sciences - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -203,23 +214,23 @@
 <li class="toctree-l1"><a class="reference internal" href="lecture-16-tech-details.html">Chapter 16: Technical Details: Boundary Conditions, Truncation of Interactions, <em>Etc.</em></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 17: Lipid Interactions in Membranes and Monte Carlo Simulations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture-18-adsorption.html">Chapter 18: Monte Carlo Simulations of Adsorption on Surfaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Chapter 19: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-19-project-1.html">Project 1: Grand Canonical Monte Carlo Simulations of Competitive Adsorption</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 6. Molecular Dynamics Simulations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Lecture 20: Molecular Dynamics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Lecture 21: Verlet Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Lecture 22: Thermostatting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Lecture 23: Atomic Simulation Environment (ASE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Lecture 24: Radial Distribution Function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Lecture 25: Molecular Dynamics Simulations of a Polymer Chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-20-molecular-dynamics.html">Chapter 19: Molecular Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-21-verlet.html">Chapter 20: Verlet Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-22-thermostatting.html">Chapter 21: Thermostatting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-23-ase.html">Chapter 22: Atomic Simulation Environment (ASE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-24-radial-dist.html">Chapter 23: Radial Distribution Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-25-project-2.html">Project 2: Molecular Dynamics Simulations of a Polymer Chain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 7. Advanced and Emerging Topics in Computational Chemistry</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Lecture 26: Newton-Raphson Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Lecture 27: Kinetic Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Lecture 28: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Lecture 29: Nested Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-26-newton-raphson.html">Chapter 24: Newton-Raphson Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-27-kinetic-mc.html">Chapter 25: Kinetic Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-28-scikit-learn.html">Chapter 26: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture-29-nested-sampling.html">Chapter 27: Nested Sampling</a></li>
 </ul>
 
     </div>
@@ -374,16 +385,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -490,10 +509,10 @@ V_{\mathrm{rep}}(r_{ij};b_{ij}) = \begin{cases}
 <p>Let’s visualize the repulsive potential for different values of <span class="math notranslate nohighlight">\(b\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="k">def</span> <span class="nf">repulsive_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">repulsive_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the repulsive potential between two particles.</span>
 
@@ -537,7 +556,16 @@ V_{\mathrm{rep}}(r_{ij};b_{ij}) = \begin{cases}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0e7dc7bd97cd1740abfb4f0c0ca96a2881891f9813a80f737ece9192aeba2e5f.png" src="_images/0e7dc7bd97cd1740abfb4f0c0ca96a2881891f9813a80f737ece9192aeba2e5f.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span><span class="w"> </span><span class="nf">repulsive_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>The plot shows that the repulsive potential increases rapidly as particles approach each other, preventing overlap due to the hard-core diameter <span class="math notranslate nohighlight">\(b_{ij}\)</span>. The potential is zero beyond the cutoff distance, ensuring that particles do not interact beyond this range.</p>
@@ -556,7 +584,7 @@ V_{\mathrm{bond}}(r_{ij}) = -\frac{1}{2}k_{\mathrm{bond}}r_{\infty}^2\ln\left[1 
 <p>where <span class="math notranslate nohighlight">\(k_{\mathrm{bond}} = 30\epsilon/\sigma^2\)</span> is the bond stiffness, <span class="math notranslate nohighlight">\(r_{\infty} = 1.5\sigma\)</span> is the “divergence distance,” and <span class="math notranslate nohighlight">\(\sigma\)</span> is the particle separation. The bond potential prevents particles from drifting too far apart. Let’s visualize the bond potential for different values of <span class="math notranslate nohighlight">\(r_{\infty}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bond_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bond_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the bond potential between two particles.</span>
 
@@ -597,9 +625,6 @@ V_{\mathrm{bond}}(r_{ij}) = -\frac{1}{2}k_{\mathrm{bond}}r_{\infty}^2\ln\left[1 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/fcd24dc83febea38f7096e2d5e4217c13713f54ad886219731e709f4b4b277b1.png" src="_images/fcd24dc83febea38f7096e2d5e4217c13713f54ad886219731e709f4b4b277b1.png" />
-</div>
 </div>
 <p>The plot shows that the bond potential increases rapidly as particles drift apart, preventing them from moving beyond the divergence distance <span class="math notranslate nohighlight">\(r_{\infty}\)</span>. The potential is infinite at <span class="math notranslate nohighlight">\(r_{\infty}\)</span>, ensuring that particles remain within a certain range.</p>
 <div class="tip admonition">
@@ -620,7 +645,7 @@ V_{\mathrm{bend}}(r_{ij}) = \frac{1}{2}k_{\mathrm{bend}}\left(r_{ij} - 4\sigma\r
 <p>where <span class="math notranslate nohighlight">\(k_{\mathrm{bend}} = 10\epsilon/\sigma^2\)</span> is the bending stiffness. The bend potential favors a preferred angle between particles, promoting a straight configuration. Let’s calculate the bend potential for different angles.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bend_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bend_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the bend potential between two particles.</span>
 
@@ -657,9 +682,6 @@ V_{\mathrm{bend}}(r_{ij}) = \frac{1}{2}k_{\mathrm{bend}}\left(r_{ij} - 4\sigma\r
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/2e3601e97f6a4e6a1ded66654b6ba570960f050043c8f5640ac2ca84062a4db4.png" src="_images/2e3601e97f6a4e6a1ded66654b6ba570960f050043c8f5640ac2ca84062a4db4.png" />
-</div>
 </div>
 <p>The plot shows that the bend potential increases as the angle deviates from the preferred value, favoring a straight configuration. The potential is zero at the preferred angle, ensuring that particles maintain the desired orientation.</p>
 </section>
@@ -678,7 +700,7 @@ V_{\mathrm{attr}}(r_{ij}) =
 <p>where <span class="math notranslate nohighlight">\(w_c\)</span> is the attractive range. The attractive potential favors interactions within a specific distance range, promoting lipid aggregation. Let’s visualize the attractive potential for different values of <span class="math notranslate nohighlight">\(w_c\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">attractive_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">attractive_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the attractive potential between two particles.</span>
 
@@ -729,9 +751,6 @@ V_{\mathrm{attr}}(r_{ij}) =
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/ce38b6f59738e7ca913b35e4f6cea07bf4ed27f5137f22fed8d674f356b66c83.png" src="_images/ce38b6f59738e7ca913b35e4f6cea07bf4ed27f5137f22fed8d674f356b66c83.png" />
-</div>
 </div>
 <p>The plot shows that the attractive potential promotes interactions within a specific distance range, favoring lipid aggregation. The potential is zero beyond the attractive range, ensuring that interactions do not occur beyond this distance.</p>
 </section>
@@ -769,13 +788,6 @@ V_{\mathrm{total}}(\mathbf{r}) &amp;= \sum_{i &lt; j} V_{\mathrm{rep}}(r_{ij};b_
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Repulsive Potential: 1.00 (expected: 1.00)
-Bond Potential: 19.84 (expected: 19.84)
-Attractive Potential: -1.00 (expected: -1.00)
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -803,7 +815,7 @@ Attractive Potential: -1.00 (expected: -1.00)
 <p>Let’s build a single lipid with one head and two tail particles. We will define the particle positions and visualize the lipid configuration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">patches</span>
 
 <span class="c1"># Define the particle positions for one lipid</span>
 <span class="n">head</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -831,9 +843,6 @@ Attractive Potential: -1.00 (expected: -1.00)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/aaff3beca9fd4a2dc016b57d2718713a04b0904e5d9f6d1192afb0839e009856.png" src="_images/aaff3beca9fd4a2dc016b57d2718713a04b0904e5d9f6d1192afb0839e009856.png" />
-</div>
 </div>
 </section>
 <section id="optimizing-the-lipid-s-geometry">
@@ -841,9 +850,9 @@ Attractive Potential: -1.00 (expected: -1.00)
 <p>To optimize the lipid’s geometry, we need to minimize the total potential <span class="math notranslate nohighlight">\(V_{\mathrm{total}}(r_{ij})\)</span> by adjusting the particle positions. We will use the L-BFGS-B algorithm to minimize the potential and visualize the optimized lipid configuration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 
-<span class="k">def</span> <span class="nf">one_lipid_potential</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">b_head_head</span><span class="p">,</span> <span class="n">b_head_tail</span><span class="p">,</span> <span class="n">b_tail_tail</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">one_lipid_potential</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">b_head_head</span><span class="p">,</span> <span class="n">b_head_tail</span><span class="p">,</span> <span class="n">b_tail_tail</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the total potential for one lipid.</span>
 
@@ -916,9 +925,6 @@ Attractive Potential: -1.00 (expected: -1.00)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/684ba2ae8c5e0c594a260454c82cb67ac4d0b692c7296471b8dcb87db65fc41d.png" src="_images/684ba2ae8c5e0c594a260454c82cb67ac4d0b692c7296471b8dcb87db65fc41d.png" />
-</div>
 </div>
 </section>
 <section id="building-a-lipid-monolayer">
@@ -926,7 +932,7 @@ Attractive Potential: -1.00 (expected: -1.00)
 <p>To build a lipid monolayer, we need to create a system of lipids with head and tail particles. We will optimize the lipid geometry and visualize the monolayer configuration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_lipid_monolayer</span><span class="p">(</span><span class="n">n_lipids</span><span class="p">,</span> <span class="n">b_head_head</span><span class="p">,</span> <span class="n">b_head_tail</span><span class="p">,</span> <span class="n">b_tail_tail</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_lipid_monolayer</span><span class="p">(</span><span class="n">n_lipids</span><span class="p">,</span> <span class="n">b_head_head</span><span class="p">,</span> <span class="n">b_head_tail</span><span class="p">,</span> <span class="n">b_tail_tail</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build a lipid monolayer with the specified number of lipids.</span>
 
@@ -990,9 +996,6 @@ Attractive Potential: -1.00 (expected: -1.00)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/339c7d747db61e0195cb03d7a6de8d952a57cc8bc81dc60b474b0f1e04f3ca12.png" src="_images/339c7d747db61e0195cb03d7a6de8d952a57cc8bc81dc60b474b0f1e04f3ca12.png" />
-</div>
 </div>
 </section>
 <section id="equilibrating-the-lipid-monolayer">
@@ -1000,7 +1003,7 @@ Attractive Potential: -1.00 (expected: -1.00)
 <p>To equilibrate the lipid monolayer, we will perform a Metropolis Monte Carlo simulation to sample lipid configurations. We will implement the Metropolis algorithm to accept or reject moves based on the total potential <span class="math notranslate nohighlight">\(V_{\mathrm{total}}(r_{ij})\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lipid_monolayer_potential</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">n_lipids</span><span class="p">,</span> <span class="n">b_head_head</span><span class="p">,</span> <span class="n">b_head_tail</span><span class="p">,</span> <span class="n">b_tail_tail</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lipid_monolayer_potential</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">n_lipids</span><span class="p">,</span> <span class="n">b_head_head</span><span class="p">,</span> <span class="n">b_head_tail</span><span class="p">,</span> <span class="n">b_tail_tail</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the total potential for a lipid monolayer.</span>
 
@@ -1074,7 +1077,7 @@ Attractive Potential: -1.00 (expected: -1.00)
     <span class="n">potential</span> <span class="o">=</span> <span class="n">V_rep</span> <span class="o">+</span> <span class="n">V_bond</span> <span class="o">+</span> <span class="n">V_bend</span> <span class="o">+</span> <span class="n">V_attr</span>
     <span class="k">return</span> <span class="n">potential</span>
 
-<span class="k">def</span> <span class="nf">metropolis_mc</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">n_lipids</span><span class="p">,</span> <span class="n">b_head_head</span><span class="p">,</span> <span class="n">b_head_tail</span><span class="p">,</span> <span class="n">b_tail_tail</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">,</span> <span class="n">temperature</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">metropolis_mc</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">n_lipids</span><span class="p">,</span> <span class="n">b_head_head</span><span class="p">,</span> <span class="n">b_head_tail</span><span class="p">,</span> <span class="n">b_tail_tail</span><span class="p">,</span> <span class="n">k_bond</span><span class="p">,</span> <span class="n">r_inf</span><span class="p">,</span> <span class="n">k_bend</span><span class="p">,</span> <span class="n">r_c</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">,</span> <span class="n">temperature</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Perform a Metropolis Monte Carlo simulation for a lipid monolayer.</span>
 
@@ -1168,9 +1171,6 @@ Attractive Potential: -1.00 (expected: -1.00)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/7e191919b5c1a86f4587b0d6987ff67cacbbb3f8665c206b123e401f34e2d715.png" src="_images/7e191919b5c1a86f4587b0d6987ff67cacbbb3f8665c206b123e401f34e2d715.png" />
-</div>
 </div>
 </section>
 </section>
@@ -1231,8 +1231,7 @@ Attractive Potential: -1.00 (expected: -1.00)
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1313,8 +1312,8 @@ By Robert B. Wexler
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
